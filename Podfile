@@ -17,4 +17,6 @@ pod 'Kingfisher'
 pod 'Toucan'
 pod 'NewPopMenu'
 pod 'ExpandingMenu'
+pod 'CombineExt'
+pod 'CombineCocoa'
 end

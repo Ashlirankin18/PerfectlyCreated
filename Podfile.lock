@@ -218,6 +218,8 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.7):
     - BoringSSL-GRPC/Interface (= 0.0.7)
   - BoringSSL-GRPC/Interface (0.0.7)
+  - CombineCocoa (0.2.0)
+  - CombineExt (1.2.0)
   - ExpandingMenu (0.4.0)
   - Firebase/Auth (6.34.0):
     - Firebase/CoreOnly
@@ -407,6 +409,8 @@ PODS:
   - Toucan (1.1.0)
 
 DEPENDENCIES:
+  - CombineCocoa
+  - CombineExt
   - ExpandingMenu
   - Firebase/Auth
   - Firebase/Core
@@ -423,6 +427,8 @@ SPEC REPOS:
   trunk:
     - abseil
     - BoringSSL-GRPC
+    - CombineCocoa
+    - CombineExt
     - ExpandingMenu
     - Firebase
     - FirebaseAnalytics
@@ -458,6 +464,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
+  CombineCocoa: 92b2579a9e4a364f8ba94be7fc68335bd3d73d92
+  CombineExt: f6ad3c8e9a0c85f06e5c66ddd85eb32875d906d2
   ExpandingMenu: 3187a4ed1aa1aea85418e444c213e4cd6063c122
   Firebase: c23a36d9e4cdf7877dfcba8dd0c58add66358999
   FirebaseAnalytics: 3bb096873ee0d7fa4b6c70f5e9166b6da413cc7f
@@ -490,6 +498,6 @@ SPEC CHECKSUMS:
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   Toucan: 8f228fabb21521b9658692df9325fe76e71d74b2
 
-PODFILE CHECKSUM: 878ed911d9eacdcb72722898fc0fdc59b6d18a41
+PODFILE CHECKSUM: a0aab4f92428278f9de5dd82c5679977c25d3970
 
 COCOAPODS: 1.9.3

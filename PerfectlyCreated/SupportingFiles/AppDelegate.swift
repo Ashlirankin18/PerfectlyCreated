@@ -21,15 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
         FirebaseApp.configure()
         
         let rootController: UIViewController
         
-        if let _ = userSession?.getCurrentUser() {
+        if let _ = AppDelegate.userSession?.getCurrentUser() {
             rootController = PerfectlyCraftedTabBarViewController()
         }else{
-            let signUpViewController = UIStoryboard(name: "SignUpViewController", bundle: .main).instantiateViewController(identifier: "SignUpViewController") { coder in
-                return SignUpViewController(coder: coder, accountFlow: .signUp)
+            let signUpViewController = UIStoryboard(name: "SignupViewController", bundle: .main).instantiateViewController(identifier: "SignupViewController") { coder in
+                return SignupViewController(coder: coder, accountFlow: .signUp)
             }
             rootController = signUpViewController
         }

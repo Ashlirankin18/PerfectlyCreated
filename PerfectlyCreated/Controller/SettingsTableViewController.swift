@@ -105,8 +105,10 @@ extension SettingsTableViewController: UserSessionSignOutDelegate{
   func didSignOutUser(_userSession: UserSession) {
     showAlert(title: "Sign Out Sucessful", message: "You were sucessfully signed out")
     let window = (UIApplication.shared.delegate as! AppDelegate).window
-    let loginViewController = SignUpViewController()
-    window?.rootViewController = loginViewController
+    let signUpViewController = UIStoryboard(name: "SignUpViewController", bundle: .main).instantiateViewController(identifier: "SignUpViewController") { coder in
+        return SignupViewController(coder: coder, accountFlow: .signUp)
+    }
+    window?.rootViewController = signUpViewController
   }
 }
 extension SettingsTableViewController: UITextFieldDelegate{

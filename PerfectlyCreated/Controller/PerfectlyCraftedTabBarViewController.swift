@@ -32,7 +32,7 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
         let myProductViewController = UIStoryboard(name: "ProductViewController", bundle: .main).instantiateViewController(identifier: "ProductViewController") { coder in
             return ProductViewController(coder: coder)
         }
-        
+        let myProductNavigationController = UINavigationController(rootViewController: myProductViewController)
         profileViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-user-26")
         profileViewController.title = "Profile"
         searchViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-search-25")
@@ -40,7 +40,7 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
         myProductViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-spray-filled-25.png")
         myProductViewController.title = "My Products"
         
-        self.viewControllers = [myProductViewController, searchNavigationController, profileNavigationController]
+        self.viewControllers = [myProductNavigationController, searchNavigationController, profileNavigationController]
         
     }
     

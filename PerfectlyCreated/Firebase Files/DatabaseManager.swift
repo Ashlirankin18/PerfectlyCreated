@@ -101,7 +101,7 @@ final class DataBaseManager {
     })
   }
   static func deleteDocumentFromDatabase(product:ProductModel){
-    firebaseDB.collection(FirebaseCollectionKeys.products).document(product.productId).delete { (error) in
+    firebaseDB.collection(FirebaseCollectionKeys.products).document().delete { (error) in
       if let error = error{
         print("there was an error deleting the item: \(error)")
       }else{
@@ -111,7 +111,7 @@ final class DataBaseManager {
     
   }
   static func updateCompletionStatus(product:ProductModel){
-    firebaseDB.collection(FirebaseCollectionKeys.products).document(product.productId)
+    firebaseDB.collection(FirebaseCollectionKeys.products).document(product.documentId)
       .updateData(["isCompleted" : product.isCompleted]) { (error) in
         if let error = error{
           print("there was an error updating completion status: \(error)")

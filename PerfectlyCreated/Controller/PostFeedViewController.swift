@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseFirestoreSwift
 
 class PostFeedViewController: UIViewController {
 
@@ -47,7 +48,7 @@ class PostFeedViewController: UIViewController {
       let dateFormatter = DateFormatter()
       dateFormatter.dateStyle = .long
       let dateString = dateFormatter.string(from: date)
-      let feed = FeedModel.init(feedId: "", userId: theUser.uid, userImageLink: (theUser.photoURL?.absoluteString)!, productId: product.productId, imageURL: product.productImage, caption: caption, userName: theUser.displayName!, datePosted: dateString)
+      let feed = FeedModel.init(feedId: "", userId: theUser.uid, userImageLink: (theUser.photoURL?.absoluteString)!, productId: product.documentId, imageURL: product.productImage, caption: caption, userName: theUser.displayName!, datePosted: dateString)
     DataBaseManager.postFeedTo(feed: feed, user: theUser)
     dismiss(animated: true)
   }
@@ -70,9 +71,7 @@ DataBaseManager.firebaseDB.collection(FirebaseCollectionKeys.products).whereFiel
         print(error)
       }
       else if let snapshot = snapshot{
-        if let result = snapshot.documents.first?.data(){
-          let newProduct = ProductModel.init(dict: result)
-          self?.productToPost = newProduct
+        if let result = snapshot.documents.first {
         }
       }
     }

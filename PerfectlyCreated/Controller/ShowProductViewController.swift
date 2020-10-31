@@ -61,7 +61,7 @@ class ShowProductViewController: UIViewController {
       }
       else if let snapshot = snapshot{
         if snapshot.documents.count == 0 {
-          let product = ProductModel.init(productName: theCurrentHairProduct.name, productId: "", productDescription: theCurrentHairProduct.description, userId: user.uid, productImage: imageUrl, category: category, isCompleted: false)
+            let product = ProductModel.init(productName: theCurrentHairProduct.name, documentId: "", productDescription: theCurrentHairProduct.description, userId: user.uid, productImage: imageUrl, category: category, isCompleted: false)
           DataBaseManager.postProductToDatabase(product: product, user: user)
          
         }

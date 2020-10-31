@@ -29,11 +29,11 @@ class SignUpFormViewController: UIViewController {
     userSession = AppDelegate.theUser
   }
 
-  @objc private func dismissPage(){
+  @objc private func dismissPage() {
     self.dismiss(animated: true, completion: nil)
   }
   
- private func signUpButtonAction(){
+ private func signUpButtonAction() {
     signUpForm.signUpButton.addTarget(self, action: #selector(saveUser), for: .touchUpInside)
   }
  @objc private func saveUser() {
@@ -51,20 +51,4 @@ class SignUpFormViewController: UIViewController {
  
   
 }
-extension SignUpFormViewController:UITextFieldDelegate{
-  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    textField.resignFirstResponder()
-    return true
-  }
-}
-extension SignUpViewController:UserSessionAccountCreationDelegate{
-  func didReceiveError(_ userSession: UserSession, error: Error) {
-    showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
-  }
-  
-  func didCreateAccount(_ userSession: UserSession, user: User) {
-    showAlert(title: "Alert Created", message: "Your account was sucessfully created")
-  }
-  
-  
-}
+

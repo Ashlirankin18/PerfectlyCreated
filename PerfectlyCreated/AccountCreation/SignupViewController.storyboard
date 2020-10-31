@@ -51,34 +51,47 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57f-Xk-Ga3">
-                                <rect key="frame" x="83" y="613" width="248" height="50"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="e87-Fo-eXb">
+                                <rect key="frame" x="113" y="606" width="188" height="105"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57f-Xk-Ga3">
+                                        <rect key="frame" x="0.0" y="0.0" width="188" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="ilW-js-bPS"/>
+                                        </constraints>
+                                        <state key="normal" title="Sign up"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5rd-c9-ZNO">
+                                        <rect key="frame" x="64.5" y="71" width="59" height="34"/>
+                                        <state key="normal" title="Sign in "/>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ilW-js-bPS"/>
+                                    <constraint firstItem="57f-Xk-Ga3" firstAttribute="width" secondItem="e87-Fo-eXb" secondAttribute="width" multiplier="0.6" constant="75.200000000000017" id="k0U-zq-Mbi"/>
                                 </constraints>
-                                <state key="normal" title="Sign up"/>
-                            </button>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QiR-h3-jUb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="e87-Fo-eXb" firstAttribute="centerX" secondItem="dX1-n7-CuA" secondAttribute="centerX" id="0SZ-KJ-7pp"/>
                             <constraint firstItem="dFQ-uA-DY8" firstAttribute="centerX" secondItem="dX1-n7-CuA" secondAttribute="centerX" id="3Gy-jz-XK5"/>
                             <constraint firstItem="yHf-SQ-HH2" firstAttribute="centerX" secondItem="dX1-n7-CuA" secondAttribute="centerX" id="5pL-IM-eXk"/>
-                            <constraint firstItem="57f-Xk-Ga3" firstAttribute="centerX" secondItem="dX1-n7-CuA" secondAttribute="centerX" id="A0Y-6d-bP4"/>
                             <constraint firstItem="yHf-SQ-HH2" firstAttribute="centerY" secondItem="dX1-n7-CuA" secondAttribute="centerY" id="DnB-o3-1uf"/>
                             <constraint firstItem="QiR-h3-jUb" firstAttribute="trailing" secondItem="GzU-tH-98p" secondAttribute="trailing" id="Hru-xR-Rva"/>
                             <constraint firstItem="dFQ-uA-DY8" firstAttribute="top" secondItem="QiR-h3-jUb" secondAttribute="top" constant="40" id="LRh-3E-sgb"/>
                             <constraint firstItem="GzU-tH-98p" firstAttribute="leading" secondItem="QiR-h3-jUb" secondAttribute="leading" id="Sz4-G3-wi0"/>
-                            <constraint firstItem="57f-Xk-Ga3" firstAttribute="width" secondItem="dX1-n7-CuA" secondAttribute="width" multiplier="0.6" id="Tt7-30-nIh"/>
                             <constraint firstAttribute="bottom" secondItem="GzU-tH-98p" secondAttribute="bottom" id="Zbb-4m-Z0J"/>
                             <constraint firstItem="GzU-tH-98p" firstAttribute="top" secondItem="dX1-n7-CuA" secondAttribute="top" id="any-rR-m3J"/>
                             <constraint firstItem="yHf-SQ-HH2" firstAttribute="width" secondItem="dX1-n7-CuA" secondAttribute="width" multiplier="0.8" id="fJd-Rq-rEl"/>
-                            <constraint firstItem="57f-Xk-Ga3" firstAttribute="top" secondItem="yHf-SQ-HH2" secondAttribute="bottom" constant="80" id="kze-Cu-mPt"/>
+                            <constraint firstItem="e87-Fo-eXb" firstAttribute="top" secondItem="yHf-SQ-HH2" secondAttribute="bottom" constant="73" id="xKJ-Cx-aot"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="gJN-Nb-2Zd" id="qiZ-Ep-vVP"/>
                         <outlet property="passwordTextField" destination="VNH-JS-d4q" id="wgd-Fb-1CW"/>
+                        <outlet property="signInButton" destination="5rd-c9-ZNO" id="Mpu-nW-1pw"/>
+                        <outlet property="signUpButton" destination="57f-Xk-Ga3" id="fT2-fJ-RWx"/>
                         <outlet property="usernameTextField" destination="ATc-NH-DfO" id="cSz-k9-TGj"/>
                     </connections>
                 </viewController>

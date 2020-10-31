@@ -14,6 +14,8 @@ final class SignUpViewController: UIViewController {
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
+    @IBOutlet private weak var signUpButton: UIButton!
+    @IBOutlet private weak var signInButton: UIButton!
     
     private var userSession: UserSession!
     
@@ -31,6 +33,7 @@ final class SignUpViewController: UIViewController {
 }
 
 extension SignUpViewController: UITextFieldDelegate {
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -38,6 +41,7 @@ extension SignUpViewController: UITextFieldDelegate {
 }
 
 extension SignUpViewController:UserSessionAccountCreationDelegate {
+    
     func didReceiveError(_ userSession: UserSession, error: Error) {
         showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
     }

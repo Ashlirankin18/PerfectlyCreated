@@ -108,9 +108,9 @@ class ProfileViewController: UIViewController {
           print(error.localizedDescription)
         }
         else if let snapshot = snapshot{
-          guard let userData = snapshot.data() else {return}
-          let profileUser = UserModel.init(dict: userData)
-          self?.setUpUi(user: profileUser)
+          guard let userData =  try? snapshot.data(as: UserModel.self), let userModel = userData else {return}
+          let profileUser = userData
+          self?.setUpUi(user: userModel)
           self?.appUser = profileUser
         }
       }

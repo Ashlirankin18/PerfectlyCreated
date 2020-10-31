@@ -61,8 +61,8 @@ class FeedsViewController: UIViewController {
                     print(error.localizedDescription)
                 }
                 else if let snapshot = snapshot{
-                    guard let userData = snapshot.data() else {return}
-                    let profileUser = UserModel.init(dict: userData)
+                    guard let userData =  try? snapshot.data(as: UserModel.self) else {return}
+                    let profileUser = userData
                     
                     self?.appUser = profileUser
                 }

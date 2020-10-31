@@ -7,10 +7,12 @@
 //
 
 import Foundation
+
 struct AllHairProducts:Codable{
   let id: String
   let results: HairProductDetails
 }
+
 struct HairProductDetails :Codable{
   let gtins:[String]
   let upc: String
@@ -22,13 +24,16 @@ struct HairProductDetails :Codable{
   let features: Features?
   let category: String
 }
+
 struct SiteDetails:Codable{
   let url: URL
   let latestoffers: [LatestOffers]
 }
+
 struct Features:Codable{
   let blob: String?
 }
+
 struct LatestOffers:Codable{
   let price: String
   let lastrecorded_at : Int

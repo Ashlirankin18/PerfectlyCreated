@@ -71,8 +71,8 @@ DataBaseManager.firebaseDB.collection(FirebaseCollectionKeys.users).document(fir
       if let error = error{
         print(error.localizedDescription)
       }else if let snapshot = snapshot {
-        if let userData = snapshot.data(){
-          self?.firebaseUser = UserModel.init(dict: userData)
+        if let userData = try? snapshot.data(as: UserModel.self){
+            self?.firebaseUser = userData
           self?.emailLabel.text = self?.firebaseUser.email
         }
       }

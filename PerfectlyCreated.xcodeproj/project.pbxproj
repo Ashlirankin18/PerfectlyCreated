@@ -24,11 +24,12 @@
 		2E0FFB92254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB89254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf */; };
 		2E0FFB93254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB8A254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf */; };
 		2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB8B254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf */; };
+		2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */; };
+		2E0FFBC5254D9D720020D9DC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EA62208D37500988116 /* SignUpViewController.swift */; };
 		2E2607422237DBC8009FD3FB /* BarcodeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2607412237DBC8009FD3FB /* BarcodeExt.swift */; };
 		2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3E922208D2C800988116 /* AppDelegate.swift */; };
 		2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E992208D2CB00988116 /* Assets.xcassets */; };
 		2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E9B2208D2CB00988116 /* LaunchScreen.storyboard */; };
-		2E4A3EA72208D37500988116 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EA62208D37500988116 /* SignUpViewController.swift */; };
 		2E4A3EAC2208D5D900988116 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EAB2208D5D900988116 /* SignUpView.swift */; };
 		2E4A3EAE2208E77200988116 /* SignUpFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EAD2208E77200988116 /* SignUpFormViewController.swift */; };
 		2E4A3EB02208E7A200988116 /* SignUpViewForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EAF2208E7A200988116 /* SignUpViewForm.swift */; };
@@ -98,6 +99,7 @@
 		2E0FFB89254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Ultralight.otf"; sourceTree = "<group>"; };
 		2E0FFB8A254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Heavy.otf"; sourceTree = "<group>"; };
 		2E0FFB8B254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
+		2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignupViewController.storyboard; sourceTree = "<group>"; };
 		2E2607412237DBC8009FD3FB /* BarcodeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeExt.swift; sourceTree = "<group>"; };
 		2E4A3E8F2208D2C800988116 /* PerfectlyCreated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectlyCreated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4A3E922208D2C800988116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -186,6 +188,15 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		2E0FFB97254D9AEC0020D9DC /* AccountCreation */ = {
+			isa = PBXGroup;
+			children = (
+				2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */,
+				2E4A3EA62208D37500988116 /* SignUpViewController.swift */,
+			);
+			path = AccountCreation;
+			sourceTree = "<group>";
+		};
 		2E4A3E862208D2C800988116 = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +218,7 @@
 		2E4A3E912208D2C800988116 /* PerfectlyCreated */ = {
 			isa = PBXGroup;
 			children = (
+				2E0FFB97254D9AEC0020D9DC /* AccountCreation */,
 				5B5ED219235380BF000227D1 /* Feed */,
 				2EA365AB220A301400FFDC5E /* Model */,
 				2E4A3EB12208E7B100988116 /* Views */,
@@ -235,7 +247,6 @@
 				2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */,
 				2E984787221D575800204A42 /* SearchProductViewController.swift */,
 				2E997F9F221B1EFD00730ED7 /* ShowProductViewController.swift */,
-				2E4A3EA62208D37500988116 /* SignUpViewController.swift */,
 				2E4A3EAD2208E77200988116 /* SignUpFormViewController.swift */,
 			);
 			path = Controller;
@@ -443,6 +454,7 @@
 				2E0FFB8D254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf in Resources */,
 				2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */,
 				2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */,
+				2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */,
 				2E0FFB90254D1D750020D9DC /* SF-Pro-Rounded-Thin.otf in Resources */,
 				2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */,
 				2E0FFB93254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf in Resources */,
@@ -505,6 +517,7 @@
 				2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */,
 				2EDB0E51222E1FCB006DB8EE /* PostFeedViewController.swift in Sources */,
 				2E997F9A221B0FCF00730ED7 /* AppError.swift in Sources */,
+				2E0FFBC5254D9D720020D9DC /* SignUpViewController.swift in Sources */,
 				2E04A4B6221A76620066568E /* PopUpView.swift in Sources */,
 				2E063E6F220B78DC00D85406 /* FeedsCollectionViewCell.swift in Sources */,
 				2E2607422237DBC8009FD3FB /* BarcodeExt.swift in Sources */,
@@ -515,7 +528,6 @@
 				2EA365A8220A2F0400FFDC5E /* UserModel.swift in Sources */,
 				2EDB0E4D222DC49C006DB8EE /* ImageViewControllerExtension.swift in Sources */,
 				2E997FA2221B200D00730ED7 /* HairProductView.swift in Sources */,
-				2E4A3EA72208D37500988116 /* SignUpViewController.swift in Sources */,
 				2E997FAC221BB5BE00730ED7 /* ProductCell.swift in Sources */,
 				2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */,
 				2E7946DF220CFABE00219B6A /* RatingViewController.swift in Sources */,

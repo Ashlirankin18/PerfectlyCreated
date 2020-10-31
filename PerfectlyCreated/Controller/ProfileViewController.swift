@@ -15,7 +15,7 @@ class ProfileViewController: UIViewController {
     private var userSession: UserSession!
     private var tapGesture: UITapGestureRecognizer!
     private var imagePickerController: UIImagePickerController!
-    private var storageManager: StorageManager!
+    private var storageManager = StorageManager()
     private var appUser: UserModel!
     
     private var myPosts = [FeedModel](){

@@ -17,7 +17,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="mWi-F4-hQD">
             <objects>
-                <viewController id="vJF-5k-RG7" customClass="SignUpViewController" customModule="PerfectlyCreated" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" id="vJF-5k-RG7" customClass="SignUpViewController" customModule="PerfectlyCreated" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dX1-n7-CuA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

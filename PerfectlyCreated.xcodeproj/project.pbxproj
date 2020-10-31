@@ -34,6 +34,7 @@
 		2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFCFF254DCE060020D9DC /* ProductViewController.storyboard */; };
 		2E0FFD05254DCFD90020D9DC /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFD03254DCFD90020D9DC /* ProductCollectionViewCell.swift */; };
 		2E0FFD06254DCFD90020D9DC /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFD04254DCFD90020D9DC /* ProductCollectionViewCell.xib */; };
+		2E0FFD3B254DDD260020D9DC /* SearchProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E984787221D575800204A42 /* SearchProductViewController.swift */; };
 		2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3E922208D2C800988116 /* AppDelegate.swift */; };
 		2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E992208D2CB00988116 /* Assets.xcassets */; };
 		2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E9B2208D2CB00988116 /* LaunchScreen.storyboard */; };
@@ -45,7 +46,6 @@
 		2E7946A1220C816D00219B6A /* RatingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7946A0220C816D00219B6A /* RatingCollectionViewCell.swift */; };
 		2E7946DF220CFABE00219B6A /* RatingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7946DE220CFABE00219B6A /* RatingViewController.swift */; };
 		2E7946E1220CFB8700219B6A /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7946E0220CFB8700219B6A /* RatingView.swift */; };
-		2E984788221D575800204A42 /* SearchProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E984787221D575800204A42 /* SearchProductViewController.swift */; };
 		2E98478A221D57D600204A42 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E984789221D57D600204A42 /* SearchView.swift */; };
 		2E98478C221D5D4400204A42 /* ProductDisplayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E98478B221D5D4400204A42 /* ProductDisplayCell.swift */; };
 		2E997F94221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F93221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift */; };
@@ -67,6 +67,7 @@
 		2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B6220A64E700FFDC5E /* LoginViewController.swift */; };
 		2EA365B9220A678200FFDC5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B8220A678200FFDC5E /* LoginView.swift */; };
 		2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365BA220A760800FFDC5E /* UserSession.swift */; };
+		2EAE6836254DE36300BE0E1E /* SearchProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFD0D254DDBF10020D9DC /* SearchProductViewController.storyboard */; };
 		2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */; };
 		2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */; };
 		2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */; };
@@ -114,6 +115,7 @@
 		2E0FFCFF254DCE060020D9DC /* ProductViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductViewController.storyboard; sourceTree = "<group>"; };
 		2E0FFD03254DCFD90020D9DC /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E0FFD04254DCFD90020D9DC /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
+		2E0FFD0D254DDBF10020D9DC /* SearchProductViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchProductViewController.storyboard; sourceTree = "<group>"; };
 		2E4A3E8F2208D2C800988116 /* PerfectlyCreated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectlyCreated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4A3E922208D2C800988116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E4A3E992208D2CB00988116 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -229,6 +231,15 @@
 			path = Product;
 			sourceTree = "<group>";
 		};
+		2E0FFD0C254DDBDC0020D9DC /* SearchController */ = {
+			isa = PBXGroup;
+			children = (
+				2E0FFD0D254DDBF10020D9DC /* SearchProductViewController.storyboard */,
+				2E984787221D575800204A42 /* SearchProductViewController.swift */,
+			);
+			path = SearchController;
+			sourceTree = "<group>";
+		};
 		2E4A3E862208D2C800988116 = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +261,7 @@
 		2E4A3E912208D2C800988116 /* PerfectlyCreated */ = {
 			isa = PBXGroup;
 			children = (
+				2E0FFD0C254DDBDC0020D9DC /* SearchController */,
 				2E0FFCFA254DCDC50020D9DC /* Product */,
 				2E0FFC40254DB5340020D9DC /* BarcodeScanner */,
 				2E0FFB97254D9AEC0020D9DC /* AccountCreation */,
@@ -279,7 +291,6 @@
 				2EA365B2220A59A900FFDC5E /* ProfileViewController.swift */,
 				2EC7B542223173AC00D165B1 /* SettingsTableViewController.swift */,
 				2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */,
-				2E984787221D575800204A42 /* SearchProductViewController.swift */,
 				2E997F9F221B1EFD00730ED7 /* ShowProductViewController.swift */,
 			);
 			path = Controller;
@@ -488,6 +499,7 @@
 				2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */,
 				2E0FFB90254D1D750020D9DC /* SF-Pro-Rounded-Thin.otf in Resources */,
+				2EAE6836254DE36300BE0E1E /* SearchProductViewController.storyboard in Resources */,
 				2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */,
 				2E0FFB93254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf in Resources */,
 				2E0FFD06254DCFD90020D9DC /* ProductCollectionViewCell.xib in Resources */,
@@ -554,7 +566,6 @@
 				2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */,
 				2E04A4B6221A76620066568E /* PopUpView.swift in Sources */,
 				2E063E6F220B78DC00D85406 /* FeedsCollectionViewCell.swift in Sources */,
-				2E984788221D575800204A42 /* SearchProductViewController.swift in Sources */,
 				2E4A3EAC2208D5D900988116 /* SignUpView.swift in Sources */,
 				2E997F9E221B18AA00730ED7 /* HairProductModel.swift in Sources */,
 				2E063E69220B629A00D85406 /* ProfileCollectionViewCell.swift in Sources */,
@@ -575,6 +586,7 @@
 				2E997F98221B0E4700730ED7 /* Extension+Alerts.swift in Sources */,
 				2E04A4B4221A76460066568E /* PopUpViewController.swift in Sources */,
 				2E0FFC47254DB8B50020D9DC /* BarcodeScannerViewController.swift in Sources */,
+				2E0FFD3B254DDD260020D9DC /* SearchProductViewController.swift in Sources */,
 				2E0FFB41254D0DE90020D9DC /* FeedsCollectionViewDataSource.swift in Sources */,
 				2EED896D2229993700ADDEBD /* FirebaseProductModel.swift in Sources */,
 				2E063E6D220B77C500D85406 /* FeedsView.swift in Sources */,

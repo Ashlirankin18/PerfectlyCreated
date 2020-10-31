@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hUe-e7-rEz">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Search Product View Controller-->
+        <scene sceneID="2mV-ml-Zdx">
+            <objects>
+                <viewController storyboardIdentifier="SearchProductViewController" id="aif-Af-3JT" customClass="SearchProductViewController" customModule="PerfectlyCreated" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HIL-Lq-O1n">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J0U-VM-laL">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="WYR-gg-rJM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WYR-gg-rJM" firstAttribute="trailing" secondItem="J0U-VM-laL" secondAttribute="trailing" id="16t-SS-eEo"/>
+                            <constraint firstItem="J0U-VM-laL" firstAttribute="leading" secondItem="WYR-gg-rJM" secondAttribute="leading" id="DLQ-4T-Sk4"/>
+                            <constraint firstItem="J0U-VM-laL" firstAttribute="top" secondItem="WYR-gg-rJM" secondAttribute="top" id="mDJ-pj-NYy"/>
+                            <constraint firstAttribute="bottom" secondItem="J0U-VM-laL" secondAttribute="bottom" id="sFK-Z4-7VH"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="qf1-2Y-etk">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="W8E-s1-UVh">
+                            <imageReference key="image" image="chevron.down" catalog="system" symbolScale="medium"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="dismissBarButtonItem" destination="W8E-s1-UVh" id="QZn-8D-3TQ"/>
+                        <outlet property="productTableView" destination="J0U-VM-laL" id="wc2-Gt-AaZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aPX-BN-7wN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1368.1159420289855" y="114.50892857142857"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Oqw-lg-Blr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hUe-e7-rEz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MXx-eg-F6U">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aif-Af-3JT" kind="relationship" relationship="rootViewController" id="MYZ-TU-MN8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h4H-hy-aDq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="457.97101449275368" y="114.50892857142857"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

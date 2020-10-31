@@ -1,5 +1,5 @@
 //
-//  SignUpViewController.swift
+//  SignupViewController.swift
 //  PerfectlyCrafted
 //
 //  Created by Ashli Rankin on 2/4/19.
@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-final class SignUpViewController: UIViewController {
+final class SignupViewController: UIViewController {
     
     enum AccountFlow {
         case signIn
@@ -29,6 +29,10 @@ final class SignUpViewController: UIViewController {
     init?(coder: NSCoder, accountFlow: AccountFlow) {
         self.accountFlow = accountFlow
         super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -53,7 +57,7 @@ final class SignUpViewController: UIViewController {
     }
 }
 
-extension SignUpViewController: UITextFieldDelegate {
+extension SignupViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -61,7 +65,7 @@ extension SignUpViewController: UITextFieldDelegate {
     }
 }
 
-extension SignUpViewController:UserSessionAccountCreationDelegate {
+extension SignupViewController: UserSessionAccountCreationDelegate {
     
     func didReceiveError(_ userSession: UserSession, error: Error) {
         showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")

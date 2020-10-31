@@ -25,7 +25,7 @@
 		2E0FFB93254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB8A254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf */; };
 		2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB8B254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf */; };
 		2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */; };
-		2E0FFBC5254D9D720020D9DC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EA62208D37500988116 /* SignUpViewController.swift */; };
+		2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EA62208D37500988116 /* SignupViewController.swift */; };
 		2E2607422237DBC8009FD3FB /* BarcodeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2607412237DBC8009FD3FB /* BarcodeExt.swift */; };
 		2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3E922208D2C800988116 /* AppDelegate.swift */; };
 		2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E992208D2CB00988116 /* Assets.xcassets */; };
@@ -104,7 +104,7 @@
 		2E4A3E992208D2CB00988116 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E4A3E9C2208D2CB00988116 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E4A3E9E2208D2CB00988116 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E4A3EA62208D37500988116 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		2E4A3EA62208D37500988116 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		2E4A3EAB2208D5D900988116 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		2E4A3EAF2208E7A200988116 /* SignUpViewForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewForm.swift; sourceTree = "<group>"; };
 		2E57C3C9220E506C00C89FFC /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
@@ -188,7 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */,
-				2E4A3EA62208D37500988116 /* SignUpViewController.swift */,
+				2E4A3EA62208D37500988116 /* SignupViewController.swift */,
 			);
 			path = AccountCreation;
 			sourceTree = "<group>";
@@ -510,7 +510,7 @@
 				2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */,
 				2EDB0E51222E1FCB006DB8EE /* PostFeedViewController.swift in Sources */,
 				2E997F9A221B0FCF00730ED7 /* AppError.swift in Sources */,
-				2E0FFBC5254D9D720020D9DC /* SignUpViewController.swift in Sources */,
+				2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */,
 				2E04A4B6221A76620066568E /* PopUpView.swift in Sources */,
 				2E063E6F220B78DC00D85406 /* FeedsCollectionViewCell.swift in Sources */,
 				2E2607422237DBC8009FD3FB /* BarcodeExt.swift in Sources */,

@@ -30,6 +30,10 @@
 		2E0FFC47254DB8B50020D9DC /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */; };
 		2E0FFC48254DB8B50020D9DC /* BarcodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFC46254DB8B50020D9DC /* BarcodeScannerViewController.xib */; };
 		2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */; };
+		2E0FFCFC254DCDE60020D9DC /* ProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFCFB254DCDE60020D9DC /* ProductViewController.swift */; };
+		2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFCFF254DCE060020D9DC /* ProductViewController.storyboard */; };
+		2E0FFD05254DCFD90020D9DC /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFD03254DCFD90020D9DC /* ProductCollectionViewCell.swift */; };
+		2E0FFD06254DCFD90020D9DC /* ProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFD04254DCFD90020D9DC /* ProductCollectionViewCell.xib */; };
 		2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3E922208D2C800988116 /* AppDelegate.swift */; };
 		2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E992208D2CB00988116 /* Assets.xcassets */; };
 		2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E9B2208D2CB00988116 /* LaunchScreen.storyboard */; };
@@ -106,6 +110,10 @@
 		2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		2E0FFC46254DB8B50020D9DC /* BarcodeScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarcodeScannerViewController.xib; sourceTree = "<group>"; };
 		2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSessionController.swift; sourceTree = "<group>"; };
+		2E0FFCFB254DCDE60020D9DC /* ProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductViewController.swift; sourceTree = "<group>"; };
+		2E0FFCFF254DCE060020D9DC /* ProductViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductViewController.storyboard; sourceTree = "<group>"; };
+		2E0FFD03254DCFD90020D9DC /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E0FFD04254DCFD90020D9DC /* ProductCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductCollectionViewCell.xib; sourceTree = "<group>"; };
 		2E4A3E8F2208D2C800988116 /* PerfectlyCreated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectlyCreated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4A3E922208D2C800988116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E4A3E992208D2CB00988116 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -210,6 +218,17 @@
 			path = BarcodeScanner;
 			sourceTree = "<group>";
 		};
+		2E0FFCFA254DCDC50020D9DC /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				2E0FFCFB254DCDE60020D9DC /* ProductViewController.swift */,
+				2E0FFCFF254DCE060020D9DC /* ProductViewController.storyboard */,
+				2E0FFD03254DCFD90020D9DC /* ProductCollectionViewCell.swift */,
+				2E0FFD04254DCFD90020D9DC /* ProductCollectionViewCell.xib */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
 		2E4A3E862208D2C800988116 = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +250,7 @@
 		2E4A3E912208D2C800988116 /* PerfectlyCreated */ = {
 			isa = PBXGroup;
 			children = (
+				2E0FFCFA254DCDC50020D9DC /* Product */,
 				2E0FFC40254DB5340020D9DC /* BarcodeScanner */,
 				2E0FFB97254D9AEC0020D9DC /* AccountCreation */,
 				5B5ED219235380BF000227D1 /* Feed */,
@@ -464,11 +484,13 @@
 				2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */,
 				2E0FFB8D254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf in Resources */,
 				2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */,
+				2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */,
 				2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */,
 				2E0FFB90254D1D750020D9DC /* SF-Pro-Rounded-Thin.otf in Resources */,
 				2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */,
 				2E0FFB93254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf in Resources */,
+				2E0FFD06254DCFD90020D9DC /* ProductCollectionViewCell.xib in Resources */,
 				2E0FFB8E254D1D750020D9DC /* SF-Pro-Rounded-Black.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -559,6 +581,7 @@
 				2EB2A1A922272DEF00525BD4 /* StorageKeys.swift in Sources */,
 				2E57C3CA220E506C00C89FFC /* CreateView.swift in Sources */,
 				2E98478A221D57D600204A42 /* SearchView.swift in Sources */,
+				2E0FFD05254DCFD90020D9DC /* ProductCollectionViewCell.swift in Sources */,
 				2E7946E1220CFB8700219B6A /* RatingView.swift in Sources */,
 				2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */,
 				2E997FA8221B751300730ED7 /* OtherOptionsCell.swift in Sources */,
@@ -572,6 +595,7 @@
 				2E6359122224F8A30053BBD9 /* DatabaseManager.swift in Sources */,
 				2E997F9C221B0FFD00730ED7 /* ImageCache.swift in Sources */,
 				2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */,
+				2E0FFCFC254DCDE60020D9DC /* ProductViewController.swift in Sources */,
 				2EA365B9220A678200FFDC5E /* LoginView.swift in Sources */,
 				2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */,
 				2E63590E2224A2CD0053BBD9 /* ProductDataManager.swift in Sources */,

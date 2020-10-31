@@ -30,7 +30,6 @@
 		2E0FFC47254DB8B50020D9DC /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */; };
 		2E0FFC48254DB8B50020D9DC /* BarcodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFC46254DB8B50020D9DC /* BarcodeScannerViewController.xib */; };
 		2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */; };
-		2E2607422237DBC8009FD3FB /* BarcodeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2607412237DBC8009FD3FB /* BarcodeExt.swift */; };
 		2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3E922208D2C800988116 /* AppDelegate.swift */; };
 		2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E992208D2CB00988116 /* Assets.xcassets */; };
 		2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E9B2208D2CB00988116 /* LaunchScreen.storyboard */; };
@@ -106,7 +105,6 @@
 		2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		2E0FFC46254DB8B50020D9DC /* BarcodeScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarcodeScannerViewController.xib; sourceTree = "<group>"; };
 		2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSessionController.swift; sourceTree = "<group>"; };
-		2E2607412237DBC8009FD3FB /* BarcodeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeExt.swift; sourceTree = "<group>"; };
 		2E4A3E8F2208D2C800988116 /* PerfectlyCreated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectlyCreated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4A3E922208D2C800988116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E4A3E992208D2CB00988116 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -345,7 +343,6 @@
 		2EED896B22298A1C00ADDEBD /* Firebase Files */ = {
 			isa = PBXGroup;
 			children = (
-				2E2607412237DBC8009FD3FB /* BarcodeExt.swift */,
 				2EB2A1A622272CC300525BD4 /* StorageManager.swift */,
 				2E6359112224F8A30053BBD9 /* DatabaseManager.swift */,
 				2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */,
@@ -535,7 +532,6 @@
 				2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */,
 				2E04A4B6221A76620066568E /* PopUpView.swift in Sources */,
 				2E063E6F220B78DC00D85406 /* FeedsCollectionViewCell.swift in Sources */,
-				2E2607422237DBC8009FD3FB /* BarcodeExt.swift in Sources */,
 				2E984788221D575800204A42 /* SearchProductViewController.swift in Sources */,
 				2E4A3EAC2208D5D900988116 /* SignUpView.swift in Sources */,
 				2E997F9E221B18AA00730ED7 /* HairProductModel.swift in Sources */,

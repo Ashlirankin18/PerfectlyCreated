@@ -8,15 +8,18 @@
 
 import Foundation
 import FirebaseAuth
+import Combine
 
 protocol UserSessionAccountCreationDelegate:AnyObject {
     func didReceiveError(_ userSession: UserSession, error:Error)
     func didCreateAccount(_ userSession:UserSession,user:User)
 }
+
 protocol UserSessionSignOutDelegate:AnyObject{
     func didReceiveSignOutError(_ userSession:UserSession,error:Error)
     func didSignOutUser(_userSession:UserSession)
 }
+
 protocol UserSessionSignInExistingUserDelegate:AnyObject {
     func didReceiveSignInError(_ userSession: UserSession,error:Error)
     func didSignInUser(_ userSession: UserSession, user: User)
@@ -27,6 +30,10 @@ final class UserSession {
     weak var userSessionAccountdelegate: UserSessionAccountCreationDelegate?
     weak var userSessionSignOutDelegate: UserSessionSignOutDelegate?
     weak var userSignInDelegate: UserSessionSignInExistingUserDelegate?
+    
+    var accountCreationPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
+    var signOutPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
+    
     
     private var documentId: String {
         return DataBaseManager.firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
@@ -39,13 +46,9 @@ final class UserSession {
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResults, error) in
             
             if let error = error {
-                print(error)
-                self.userSessionAccountdelegate?.didReceiveError(self, error: error)
-            }
-            
-            if let authDataResults = authDataResults {
-                self.userSessionAccountdelegate?.didCreateAccount(self, user: authDataResults.user)
-                
+                self.accountCreationPassThroughSubject.send(.failure(error))
+            } else {
+                self.accountCreationPassThroughSubject.send((.success(())))
                 do {
                     try DataBaseManager.firebaseDB.collection(FirebaseCollectionKeys.users).document(userId).setData(from: user)
                 } catch {
@@ -62,9 +65,9 @@ final class UserSession {
     func signOut() {
         do{
             try Auth.auth().signOut()
-            userSessionSignOutDelegate?.didSignOutUser(_userSession: self)
+            signOutPassThroughSubject.send(.success(()))
         }catch{
-            userSessionSignOutDelegate?.didReceiveSignOutError(self, error: error)
+            signOutPassThroughSubject.send(.failure(error))
         }
     }
     

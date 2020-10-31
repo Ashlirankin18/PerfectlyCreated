@@ -10,11 +10,8 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct UserModel: Codable {
-  let userName:String
-  let email:String
-  let profileImageLink: String?
-  let hairType: String?
-  let aboutMe: String
-  let userId: String
-  let documentId: String
+    let userName:String
+    let email:String
+    let profileImageLink: String?
+    let documentId: String
 }

@@ -23,11 +23,6 @@ final class DataBaseManager {
   static func postUserToDatabase(user:UserModel){
     var ref: DocumentReference? = nil
     ref = firebaseDB.collection(FirebaseCollectionKeys.users).addDocument(data: [
-      "userName":user.userName,
-      "hairType":user.hairType!,
-      "bio":user.aboutMe,
-      "email":user.email,
-      "userId":user.userId,
       "imageURL":user.profileImageLink!,
       
       
@@ -48,6 +43,7 @@ final class DataBaseManager {
         
     })
   }
+    
   static func postProductToDatabase(product:ProductModel,user:User){
     var ref: DocumentReference? = nil
 

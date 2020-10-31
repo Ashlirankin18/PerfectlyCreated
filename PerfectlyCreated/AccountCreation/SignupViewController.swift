@@ -30,7 +30,7 @@ final class SignupViewController: UIViewController {
     
     @Published var usernameText = ""
     
-    private var userSession: UserSession!
+    private lazy var userSession: UserSession = UserSession()
     
     private let accountFlow: AccountFlow
     
@@ -49,6 +49,7 @@ final class SignupViewController: UIViewController {
         super.viewDidLoad()
         setTheDelegates()
         configureTapHandlers()
+        configureTextfieldHandlers()
     }
     
     private func configureViews() {
@@ -60,22 +61,28 @@ final class SignupViewController: UIViewController {
         }
     }
     
-    private func setTheDelegates(){
+    private func setTheDelegates() {
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
-        userSession = AppDelegate.userSession
     }
     
     private func configureTapHandlers() {
         
-        guard !emailText.isEmpty, !passwordText.isEmpty else {
-            return
-        }
-        
-        signUpButton.tapPublisher.sink {
+        signUpButton.tapPublisher.sink { [weak self] _ in
+            guard let self = self  else {
+                return
+            }
             
+            guard !self.emailText.isEmpty, !self.passwordText.isEmpty else {
+                return
+            }
             
+            do {
+               try self.userSession.createUser(email: self.emailText, password: self.passwordText, username: self.usernameText)
+            } catch {
+                print(error.localizedDescription)
+            }
         }
         .store(in: &cancellables)
     }

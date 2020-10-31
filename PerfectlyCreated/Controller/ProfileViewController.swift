@@ -120,10 +120,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func setUpUi(user:UserModel){
-        self.profileView.hairType.text = "\(user.hairType ?? "")"
         self.profileView.userName.text = user.userName
-        self.profileView.aboutMeTextView.text = user.aboutMe
-        
         self.profileView.profileImage.kf.setImage(with: URL(string: user.profileImageLink!), for: .normal,placeholder:#imageLiteral(resourceName: "placeholder.png"))
     }
     private func getMyPost(){

@@ -95,7 +95,7 @@ extension FeedsViewController:UICollectionViewDataSource{
         let posrUrl = URL(string: feed.imageURL)
         let placeholder = #imageLiteral(resourceName: "placeholder.png")
         cell.postImage.kf.setImage(with: posrUrl,placeholder:placeholder)
-        if appUser.userId == feed.userId {
+        if appUser.documentId == feed.userId {
             if let userURL = appUser.profileImageLink{
                 cell.profileImage.kf.setImage(with: URL(string: userURL), for: .normal,placeholder:#imageLiteral(resourceName: "placeholder.png"))
             }

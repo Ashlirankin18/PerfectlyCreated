@@ -70,14 +70,7 @@ class SetProfileViewController: UIViewController {
     
     @objc func createButtonPressed(){
         if let _ = userSession.getCurrentUser(),let imageURL = imageURL {
-            guard let bio = setUpProfileView.aboutMeTextView.text,
-                  let userName = setUpProfileView.userNameTextField.text,
-                  let hairType = setUpProfileView.hairTypeInput.text else {return}
-            userSession.updateExistingUser(imageURL: imageURL, userName: userName, hairType: hairType, bio: bio)
-            
-            let tabbarController = PerfectlyCraftedTabBarViewController()
-            tabbarController.selectedViewController = tabbarController.viewControllers?[0]
-            self.present(tabbarController, animated: true, completion: nil)
+       
             
         }
     }

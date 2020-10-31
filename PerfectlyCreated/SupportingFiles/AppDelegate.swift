@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let rootController: UIViewController
         
-        if let _ = AppDelegate.userSession?.getCurrentUser() {
+        if let _ = Auth.auth().currentUser {
             rootController = PerfectlyCraftedTabBarViewController()
         }else{
             let signUpViewController = UIStoryboard(name: "SignupViewController", bundle: .main).instantiateViewController(identifier: "SignupViewController") { coder in

@@ -15,6 +15,7 @@ protocol HairProductsTableViewControllerDelegate:AnyObject {
 }
 
 class HairProductsTableViewController: UITableViewController {
+    
     weak var delegate: HairProductsTableViewControllerDelegate?
     @IBOutlet weak var backButton: UIBarButtonItem!
     
@@ -214,6 +215,7 @@ class HairProductsTableViewController: UITableViewController {
         return [delete, share]
     }
 }
+
 extension HairProductsTableViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true)

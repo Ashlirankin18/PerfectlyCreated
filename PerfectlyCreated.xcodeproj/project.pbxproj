@@ -26,6 +26,10 @@
 		2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB8B254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf */; };
 		2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */; };
 		2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EA62208D37500988116 /* SignupViewController.swift */; };
+		2E0FFC42254DB5800020D9DC /* BarcodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFC41254DB5800020D9DC /* BarcodeScannerController.swift */; };
+		2E0FFC47254DB8B50020D9DC /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */; };
+		2E0FFC48254DB8B50020D9DC /* BarcodeScannerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFC46254DB8B50020D9DC /* BarcodeScannerViewController.xib */; };
+		2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */; };
 		2E2607422237DBC8009FD3FB /* BarcodeExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2607412237DBC8009FD3FB /* BarcodeExt.swift */; };
 		2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3E922208D2C800988116 /* AppDelegate.swift */; };
 		2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E992208D2CB00988116 /* Assets.xcassets */; };
@@ -98,6 +102,10 @@
 		2E0FFB8A254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Heavy.otf"; sourceTree = "<group>"; };
 		2E0FFB8B254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignupViewController.storyboard; sourceTree = "<group>"; };
+		2E0FFC41254DB5800020D9DC /* BarcodeScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerController.swift; sourceTree = "<group>"; };
+		2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
+		2E0FFC46254DB8B50020D9DC /* BarcodeScannerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarcodeScannerViewController.xib; sourceTree = "<group>"; };
+		2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSessionController.swift; sourceTree = "<group>"; };
 		2E2607412237DBC8009FD3FB /* BarcodeExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeExt.swift; sourceTree = "<group>"; };
 		2E4A3E8F2208D2C800988116 /* PerfectlyCreated.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerfectlyCreated.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E4A3E922208D2C800988116 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -193,6 +201,17 @@
 			path = AccountCreation;
 			sourceTree = "<group>";
 		};
+		2E0FFC40254DB5340020D9DC /* BarcodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				2E0FFC41254DB5800020D9DC /* BarcodeScannerController.swift */,
+				2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */,
+				2E0FFC46254DB8B50020D9DC /* BarcodeScannerViewController.xib */,
+				2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */,
+			);
+			path = BarcodeScanner;
+			sourceTree = "<group>";
+		};
 		2E4A3E862208D2C800988116 = {
 			isa = PBXGroup;
 			children = (
@@ -214,6 +233,7 @@
 		2E4A3E912208D2C800988116 /* PerfectlyCreated */ = {
 			isa = PBXGroup;
 			children = (
+				2E0FFC40254DB5340020D9DC /* BarcodeScanner */,
 				2E0FFB97254D9AEC0020D9DC /* AccountCreation */,
 				5B5ED219235380BF000227D1 /* Feed */,
 				2EA365AB220A301400FFDC5E /* Model */,
@@ -437,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B5ED21B23538100000227D1 /* Feeds.storyboard in Resources */,
+				2E0FFC48254DB8B50020D9DC /* BarcodeScannerViewController.xib in Resources */,
 				2E0FFB8F254D1D750020D9DC /* SF-Pro-Rounded-Light.otf in Resources */,
 				2E0FFB45254D13190020D9DC /* GoogleService-Info.plist in Resources */,
 				2E0FFB91254D1D750020D9DC /* SF-Pro-Rounded-Medium.otf in Resources */,
@@ -507,6 +528,7 @@
 				2E98478C221D5D4400204A42 /* ProductDisplayCell.swift in Sources */,
 				2E997F96221B0E2800730ED7 /* NetworkHelper.swift in Sources */,
 				2E997FAA221B99A300730ED7 /* DateExtension.swift in Sources */,
+				2E0FFC42254DB5800020D9DC /* BarcodeScannerController.swift in Sources */,
 				2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */,
 				2EDB0E51222E1FCB006DB8EE /* PostFeedViewController.swift in Sources */,
 				2E997F9A221B0FCF00730ED7 /* AppError.swift in Sources */,
@@ -522,6 +544,7 @@
 				2EDB0E4D222DC49C006DB8EE /* ImageViewControllerExtension.swift in Sources */,
 				2E997FA2221B200D00730ED7 /* HairProductView.swift in Sources */,
 				2E997FAC221BB5BE00730ED7 /* ProductCell.swift in Sources */,
+				2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */,
 				2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */,
 				2E7946DF220CFABE00219B6A /* RatingViewController.swift in Sources */,
 				2EDB0E4F222E1014006DB8EE /* FeedModel.swift in Sources */,
@@ -533,6 +556,7 @@
 				2E997F94221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift in Sources */,
 				2E997F98221B0E4700730ED7 /* Extension+Alerts.swift in Sources */,
 				2E04A4B4221A76460066568E /* PopUpViewController.swift in Sources */,
+				2E0FFC47254DB8B50020D9DC /* BarcodeScannerViewController.swift in Sources */,
 				2E0FFB41254D0DE90020D9DC /* FeedsCollectionViewDataSource.swift in Sources */,
 				2EED896D2229993700ADDEBD /* FirebaseProductModel.swift in Sources */,
 				2E063E6D220B77C500D85406 /* FeedsView.swift in Sources */,

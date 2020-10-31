@@ -13,8 +13,7 @@ class PopUpViewController: UIViewController {
   
  private let popUpView = PopUpView()
   private var imagePickerController: UIImagePickerController!
-  private lazy var vision = Vision.vision()
-  private weak var barcodeDetector: VisionBarcodeDetector?
+
   var allHairProducts = [AllHairProducts](){
     didSet{
       allHairProducts.sort{$0.results.name < $1.results.name}
@@ -27,7 +26,6 @@ class PopUpViewController: UIViewController {
     self.view.addSubview(popUpView)
     view.backgroundColor = .clear
     setUpImagePickerController()
-    self.barcodeDetector = vision.barcodeDetector()
     addingActionsToButtons()
     setUpTapGesture()
   }
@@ -84,45 +82,12 @@ class PopUpViewController: UIViewController {
     let navigationController = UINavigationController.init(rootViewController: searchController)
         self.present(navigationController, animated: true)
   }
- private func makeCallToBarcodeDetector(image:UIImage?){
-        if let barcodeReader = self.barcodeDetector {
-          if let image = image {
-             let visionImage = VisionImage(image: image)
-            barcodeReader.detect(in: visionImage, completion: { [weak self] (barcodes, error) in
-              if let error = error{
-                print(error.localizedDescription)
-              }
-              else if let barcodes = barcodes {
-                for barcode in barcodes {
-                  if let barcodeNumber = barcode.rawValue{
-                    if let product = self?.getProductFromBarcode(barcodeNumber: barcodeNumber){
-                      let productViewController = ShowProductViewController.init(hairProduct: product, view: HairProductView())
-                      let navController = UINavigationController(rootViewController: productViewController)
-                      self?.present(navController, animated: true, completion: nil)
-                    }else{
-                      print("no product was found")
-                    }
-                  } else if let barcode = barcode.rawValue?.isEmpty {
-                    print("no \(barcode) number found")
-                  }
-                }
-              }
-            })
-          }else{
-            print("no image was found")
-          }
-          
-        }else {
-            print("barcode reader not found")
-    }
-  }
 }
   
 
 extension PopUpViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     if let productImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-      makeCallToBarcodeDetector(image: productImage)
       
     } else {
       

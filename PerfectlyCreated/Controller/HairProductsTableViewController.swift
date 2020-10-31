@@ -8,13 +8,14 @@
 
 import UIKit
 import FirebaseFirestore
-import ExpandingMenu
+
 import Firebase
 protocol HairProductsTableViewControllerDelegate:AnyObject {
     func sendSelectedProduct(_ controller:HairProductsTableViewController,selectedProduct: ProductModel)
 }
 
 class HairProductsTableViewController: UITableViewController {
+    
     weak var delegate: HairProductsTableViewControllerDelegate?
     @IBOutlet weak var backButton: UIBarButtonItem!
     
@@ -35,9 +36,7 @@ class HairProductsTableViewController: UITableViewController {
     }
     private var userSession: UserSession!
     private var selectedProduct: ProductModel?
-    lazy var vision = Vision.vision()
-    weak var barcodeDetector: VisionBarcodeDetector?
-    var imagePickerController: UIImagePickerController!
+   
     var allHairProducts = [AllHairProducts]()
     
     
@@ -48,55 +47,12 @@ class HairProductsTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.tableView.dataSource = self
         getUserProducts()
-        setExpandingButton()
-        self.barcodeDetector = vision.barcodeDetector()
         allHairProducts =  ProductDataManager.getProducts()
-        setUpImagePickerController()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
     }
-    private func setUpImagePickerController(){
-        imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        
-    }
-    private func showImagePickerController(){
-        self.present(imagePickerController, animated: true, completion: nil)
-    }
-    private func openCamera(){
-        if UIImagePickerController.isSourceTypeAvailable(.camera){
-            let myPickerController = UIImagePickerController()
-            myPickerController.delegate = self
-            myPickerController.sourceType = .camera
-            present(myPickerController, animated: true, completion: nil)
-        }
-    }
-    
-    private func setExpandingButton(){
-        let menuButtonSize: CGSize = CGSize(width: 80, height: 120)
-        let menuButton = ExpandingMenuButton(frame: CGRect.init(origin: CGPoint.zero, size: menuButtonSize), image: #imageLiteral(resourceName: "icons8-plus-filled-40"), rotatedImage:#imageLiteral(resourceName: "icons8-plus-filled-40"))
-        menuButton.center = CGPoint(x: self.view.bounds.width - 32.0, y: self.view.bounds.height - 110.0)
-        
-        view.addSubview(menuButton)
-        let camera = ExpandingMenuItem(size: CGSize.init(width: 60, height: 100), title: "Camera", titleColor: nil, image: #imageLiteral(resourceName: "icons8-screenshot-40 (1).png"), highlightedImage: #imageLiteral(resourceName: "icons8-screenshot-40 (1)"), backgroundImage: nil, backgroundHighlightedImage: nil) {
-            self.openCamera()
-        }
-        let gallery = ExpandingMenuItem(size: CGSize.init(width: 60, height: 100), title: "Gallery", titleColor: nil, image: #imageLiteral(resourceName: "icons8-picture-40.png"), highlightedImage: #imageLiteral(resourceName: "icons8-picture-40.png"), backgroundImage: nil, backgroundHighlightedImage: nil) {
-            self.present(self.imagePickerController, animated: true, completion: nil)
-        }
-        let search = ExpandingMenuItem(size: CGSize.init(width: 60, height: 100), title: "Search", titleColor: nil, image: #imageLiteral(resourceName: "icons8-search-40"), highlightedImage: #imageLiteral(resourceName: "icons8-search-25"), backgroundImage: nil, backgroundHighlightedImage: nil) {
-            let searchController = SearchProductViewController()
-            searchController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: searchController, action: #selector(searchController.backButtonPressed))
-            let searchNavigation = UINavigationController(rootViewController: searchController)
-            self.present(searchNavigation, animated: true)
-        }
-        
-        menuButton.addMenuItems([camera,gallery,search])
-    }
-    
     
     @IBAction func completedButtonPressed(_ sender: UIButton) {
         if (sender.currentImage?.isEqual(#imageLiteral(resourceName: "icons8-checked-filled-25.png")))!{
@@ -139,7 +95,6 @@ class HairProductsTableViewController: UITableViewController {
                 }
             }
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -214,21 +169,3 @@ class HairProductsTableViewController: UITableViewController {
         return [delete, share]
     }
 }
-extension HairProductsTableViewController:UIImagePickerControllerDelegate,UINavigationControllerDelegate{
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        dismiss(animated: true)
-    }
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        if let productImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            makeCallToBarcodeDetector(image: productImage)
-            
-        } else {
-            
-            print("No image was found")
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-}
-

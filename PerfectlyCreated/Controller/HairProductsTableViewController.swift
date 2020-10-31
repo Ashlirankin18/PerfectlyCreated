@@ -36,8 +36,8 @@ class HairProductsTableViewController: UITableViewController {
     private var userSession: UserSession!
     private var selectedProduct: ProductModel?
     lazy var vision = Vision.vision()
-    public weak var barcodeDetector: VisionBarcodeDetector?
-    public var imagePickerController: UIImagePickerController!
+    weak var barcodeDetector: VisionBarcodeDetector?
+    var imagePickerController: UIImagePickerController!
     var allHairProducts = [AllHairProducts]()
     
     

@@ -29,7 +29,9 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
         
         let searchViewController = SearchProductViewController()
         let searchNavigationController = UINavigationController(rootViewController: searchViewController)
-        let myProductViewController = UIStoryboard.init(name: "ProfileOptions", bundle: nil).instantiateViewController(withIdentifier: "HairProductsTableViewController")
+        let myProductViewController = UIStoryboard(name: "ProductViewController", bundle: .main).instantiateViewController(identifier: "ProductViewController") { coder in
+            return ProductViewController(coder: coder)
+        }
         
         profileViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-user-26")
         profileViewController.title = "Profile"

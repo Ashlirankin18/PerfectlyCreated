@@ -11,6 +11,11 @@ import FirebaseAuth
 
 final class SignUpViewController: UIViewController {
     
+    enum AccountFlow {
+        case signIn
+        case signUp
+    }
+    
     @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
@@ -19,16 +24,32 @@ final class SignUpViewController: UIViewController {
     
     private var userSession: UserSession!
     
+    private let accountFlow: AccountFlow
+    
+    init?(coder: NSCoder, accountFlow: AccountFlow) {
+        self.accountFlow = accountFlow
+        super.init(coder: coder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheDelegates()
+    }
+    
+    private func configureViews() {
+        switch accountFlow {
+        case .signIn:
+            emailTextField.isHidden = true
+        case .signUp:
+            emailTextField.isHidden = false
+        }
     }
     
     private func setTheDelegates(){
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
-        userSession = AppDelegate.theUser
+        userSession = AppDelegate.userSession
     }
 }
 

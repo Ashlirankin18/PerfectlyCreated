@@ -36,8 +36,7 @@ class HairProductsTableViewController: UITableViewController {
     }
     private var userSession: UserSession!
     private var selectedProduct: ProductModel?
-    lazy var vision = Vision.vision()
-  
+   
     var allHairProducts = [AllHairProducts]()
     
     

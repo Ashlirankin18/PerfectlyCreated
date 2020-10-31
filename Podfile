@@ -6,17 +6,15 @@ target 'PerfectlyCreated' do
   use_frameworks!
 
   # Pods for PerfectlyCreated
-pod 'Firebase/Core'
+
 pod 'Firebase/Auth'
-pod 'Firebase/MLVision'
+pod 'MLKit'
 pod 'MLKitBarcodeScanning'
 pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 pod 'FirebaseFirestoreSwift'
 pod 'Kingfisher'
 pod 'Toucan'
-pod 'NewPopMenu'
-pod 'ExpandingMenu'
 pod 'CombineExt'
 pod 'CombineCocoa'
 end

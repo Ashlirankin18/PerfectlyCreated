@@ -33,7 +33,7 @@ class FeedsViewController: UIViewController {
     }
     
     private func setUpDelegates(){
-        self.userSession = AppDelegate.theUser
+        self.userSession = AppDelegate.userSession
         feedsCollectionView.delegate = self
         feedsCollectionView.dataSource = self
     }

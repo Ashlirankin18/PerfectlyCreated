@@ -25,7 +25,7 @@ class SetProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       view.addSubview(setUpProfileView)
-       userSession = AppDelegate.theUser
+       userSession = AppDelegate.userSession
       setUpButtonAction()
       setUpProfileView.userNameTextField.delegate = self
       setUpProfileView.aboutMeTextView.delegate = self

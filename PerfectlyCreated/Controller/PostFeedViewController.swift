@@ -30,7 +30,7 @@ class PostFeedViewController: UIViewController {
     containerView.layer.masksToBounds = true
     containerView.layer.cornerRadius = 10
     setUpUi()
-    userSession = AppDelegate.theUser
+    userSession = AppDelegate.userSession
     postCaption.delegate = self
     textViewSetUp()
     

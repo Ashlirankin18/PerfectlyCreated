@@ -22,7 +22,7 @@ class SettingsTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    userSession = AppDelegate.theUser
+    userSession = AppDelegate.userSession
     userSession.userSessionSignOutDelegate = self
     
     if let myView = initialView {

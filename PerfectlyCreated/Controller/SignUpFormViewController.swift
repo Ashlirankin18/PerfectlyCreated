@@ -26,7 +26,7 @@ class SignUpFormViewController: UIViewController {
   private func setTheDelegates(){
     signUpForm.passwordTextField.delegate = self
     signUpForm.emailTextField.delegate = self
-    userSession = AppDelegate.theUser
+    userSession = AppDelegate.userSession
   }
 
   @objc private func dismissPage() {

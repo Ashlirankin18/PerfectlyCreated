@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
   private func setUpdelegates(){
     loginView.userNameEmail.delegate = self
     loginView.passwordTextField.delegate = self
-    userSession = AppDelegate.theUser
+    userSession = AppDelegate.userSession
     userSession.userSignInDelegate = self
     
   }

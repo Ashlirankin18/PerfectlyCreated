@@ -43,7 +43,7 @@ class HairProductsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userSession = AppDelegate.theUser
+        userSession = AppDelegate.userSession
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         self.tableView.dataSource = self

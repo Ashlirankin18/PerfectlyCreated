@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController {
   
 
   private func setDelegates(){
-    userSession = AppDelegate.theUser
+    userSession = AppDelegate.userSession
     profileView.profileCollectionView.delegate = self
     profileView.profileCollectionView.dataSource = self
     

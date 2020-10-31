@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import Combine
+import CombineCocoa
 
 final class SignupViewController: UIViewController {
     
@@ -22,9 +24,17 @@ final class SignupViewController: UIViewController {
     @IBOutlet private weak var signUpButton: UIButton!
     @IBOutlet private weak var signInButton: UIButton!
     
+    @Published var emailText = ""
+    
+    @Published var passwordText = ""
+    
+    @Published var usernameText = ""
+    
     private var userSession: UserSession!
     
     private let accountFlow: AccountFlow
+    
+    private var cancellables = Set<AnyCancellable>()
     
     init?(coder: NSCoder, accountFlow: AccountFlow) {
         self.accountFlow = accountFlow
@@ -38,6 +48,7 @@ final class SignupViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTheDelegates()
+        configureTapHandlers()
     }
     
     private func configureViews() {
@@ -54,6 +65,45 @@ final class SignupViewController: UIViewController {
         passwordTextField.delegate = self
         emailTextField.delegate = self
         userSession = AppDelegate.userSession
+    }
+    
+    private func configureTapHandlers() {
+        
+        guard !emailText.isEmpty, !passwordText.isEmpty else {
+            return
+        }
+        
+        signUpButton.tapPublisher.sink {
+            
+            
+        }
+        .store(in: &cancellables)
+    }
+    
+    private func configureTextfieldHandlers() {
+        emailTextField.textPublisher.sink { emailText in
+            guard let text = emailText else {
+                return
+            }
+            self.emailText = text
+        }
+        .store(in: &cancellables)
+        
+        passwordTextField.textPublisher.sink { emailText in
+            guard let text = emailText else {
+                return
+            }
+            self.passwordText = text
+        }
+        .store(in: &cancellables)
+        
+        usernameTextField.textPublisher.sink { emailText in
+            guard let text = emailText else {
+                return
+            }
+            self.usernameText = text
+        }
+        .store(in: &cancellables)
     }
 }
 

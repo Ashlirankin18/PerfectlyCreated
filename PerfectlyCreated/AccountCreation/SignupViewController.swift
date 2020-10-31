@@ -24,11 +24,11 @@ final class SignupViewController: UIViewController {
     @IBOutlet private weak var signUpButton: UIButton!
     @IBOutlet private weak var signInButton: UIButton!
     
-    @Published var emailText = ""
+    @Published private var emailText = ""
     
-    @Published var passwordText = ""
+    @Published private var passwordText = ""
     
-    @Published var usernameText = ""
+    @Published private var usernameText = ""
     
     private lazy var userSession: UserSession = UserSession()
     
@@ -80,6 +80,22 @@ final class SignupViewController: UIViewController {
             
             do {
                try self.userSession.createUser(email: self.emailText, password: self.passwordText, username: self.usernameText)
+                
+                self.userSession.accountCreationPassThroughSubject.sink { [weak self] result in
+                    
+                    guard let self = self  else {
+                        return
+                    }
+                    
+                    switch result {
+                    case let .failure(error):
+                        self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
+                    case .success:
+                        let controller = PerfectlyCraftedTabBarViewController()
+                        self.show(controller, sender: self)
+                    }
+                }
+                .store(in: &self.cancellables)
             } catch {
                 print(error.localizedDescription)
             }
@@ -119,16 +135,5 @@ extension SignupViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-extension SignupViewController: UserSessionAccountCreationDelegate {
-    
-    func didReceiveError(_ userSession: UserSession, error: Error) {
-        showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
-    }
-    
-    func didCreateAccount(_ userSession: UserSession, user: User) {
-        showAlert(title: "Alert Created", message: "Your account was successfully created")
     }
 }

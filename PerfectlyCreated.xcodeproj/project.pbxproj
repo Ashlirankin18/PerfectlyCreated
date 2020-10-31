@@ -31,7 +31,6 @@
 		2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E992208D2CB00988116 /* Assets.xcassets */; };
 		2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E9B2208D2CB00988116 /* LaunchScreen.storyboard */; };
 		2E4A3EAC2208D5D900988116 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EAB2208D5D900988116 /* SignUpView.swift */; };
-		2E4A3EAE2208E77200988116 /* SignUpFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EAD2208E77200988116 /* SignUpFormViewController.swift */; };
 		2E4A3EB02208E7A200988116 /* SignUpViewForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EAF2208E7A200988116 /* SignUpViewForm.swift */; };
 		2E57C3CA220E506C00C89FFC /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E57C3C9220E506C00C89FFC /* CreateView.swift */; };
 		2E63590E2224A2CD0053BBD9 /* ProductDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E63590D2224A2CD0053BBD9 /* ProductDataManager.swift */; };
@@ -107,7 +106,6 @@
 		2E4A3E9E2208D2CB00988116 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E4A3EA62208D37500988116 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		2E4A3EAB2208D5D900988116 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		2E4A3EAD2208E77200988116 /* SignUpFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFormViewController.swift; sourceTree = "<group>"; };
 		2E4A3EAF2208E7A200988116 /* SignUpViewForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewForm.swift; sourceTree = "<group>"; };
 		2E57C3C9220E506C00C89FFC /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		2E63590D2224A2CD0053BBD9 /* ProductDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataManager.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */,
 				2E984787221D575800204A42 /* SearchProductViewController.swift */,
 				2E997F9F221B1EFD00730ED7 /* ShowProductViewController.swift */,
-				2E4A3EAD2208E77200988116 /* SignUpFormViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -556,7 +553,6 @@
 				2E997F9C221B0FFD00730ED7 /* ImageCache.swift in Sources */,
 				2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */,
 				2EA365B9220A678200FFDC5E /* LoginView.swift in Sources */,
-				2E4A3EAE2208E77200988116 /* SignUpFormViewController.swift in Sources */,
 				2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */,
 				2E63590E2224A2CD0053BBD9 /* ProductDataManager.swift in Sources */,
 				2EC7B5472231911700D165B1 /* EditProfileView.swift in Sources */,
@@ -702,7 +698,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ASLRJLYD2S;
 				INFOPLIST_FILE = PerfectlyCreated/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -722,7 +718,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ASLRJLYD2S;
 				INFOPLIST_FILE = PerfectlyCreated/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

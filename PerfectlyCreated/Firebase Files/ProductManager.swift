@@ -11,13 +11,15 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 final class ProductManager {
-   
+    
     let firebaseDB: Firestore = {
-      let db = Firestore.firestore()
-      let settings = db.settings
-      db.settings = settings
-      return db
+        let db = Firestore.firestore()
+        let settings = db.settings
+        db.settings = settings
+        return db
     }()
+    
+    private lazy var userManager = UserManager()
     
     var documentId: String {
         return firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
@@ -31,6 +33,29 @@ final class ProductManager {
         } catch {
             completion(.failure(error))
             return
+        }
+    }
+    
+    func retrieveProducts(completion: @escaping (Result<[ProductModel], Error>) -> Void) {
+        
+        guard let currentUser = userManager.currentUser else {
+            return
+        }
+        
+        firebaseDB.collection(FirebaseCollectionKeys.products).whereField("userId", isEqualTo: currentUser.uid).addSnapshotListener { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            }
+            if let snapshot = snapshot {
+                do {
+                    let models = try snapshot.documents.compactMap { snapshotQuery -> ProductModel? in
+                        return try snapshotQuery.data(as: ProductModel.self)
+                    }
+                    completion(.success(models))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
         }
     }
 }

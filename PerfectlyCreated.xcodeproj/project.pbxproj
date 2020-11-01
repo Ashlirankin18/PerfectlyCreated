@@ -70,6 +70,7 @@
 		2EAE6836254DE36300BE0E1E /* SearchProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFD0D254DDBF10020D9DC /* SearchProductViewController.storyboard */; };
 		2EAE6839254E5F7200BE0E1E /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */; };
 		2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */; };
+		2EAE6841254F04AF00BE0E1E /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6840254F04AF00BE0E1E /* ProductManager.swift */; };
 		2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */; };
 		2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */; };
 		2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */; };
@@ -156,6 +157,7 @@
 		2EA365BA220A760800FFDC5E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetailViewController.storyboard; sourceTree = "<group>"; };
+		2EAE6840254F04AF00BE0E1E /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
 		2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpProfileView.swift; sourceTree = "<group>"; };
 		2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionKeys.swift; sourceTree = "<group>"; };
@@ -384,6 +386,7 @@
 				2E6359112224F8A30053BBD9 /* DatabaseManager.swift */,
 				2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */,
 				2EB2A1A822272DEF00525BD4 /* StorageKeys.swift */,
+				2EAE6840254F04AF00BE0E1E /* ProductManager.swift */,
 			);
 			path = "Firebase Files";
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				2E0FFCFC254DCDE60020D9DC /* ProductViewController.swift in Sources */,
 				2EA365B9220A678200FFDC5E /* LoginView.swift in Sources */,
 				2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */,
+				2EAE6841254F04AF00BE0E1E /* ProductManager.swift in Sources */,
 				2E63590E2224A2CD0053BBD9 /* ProductDataManager.swift in Sources */,
 				2EC7B5472231911700D165B1 /* EditProfileView.swift in Sources */,
 				2EA365AA220A300C00FFDC5E /* PersistanceManager.swift in Sources */,

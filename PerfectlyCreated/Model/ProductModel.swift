@@ -1,5 +1,5 @@
 //
-//  FirebaseProductModel.swift
+//  ProductModel.swift
 //  PerfectlyCrafted
 //
 //  Created by Ashli Rankin on 3/1/19.
@@ -14,10 +14,9 @@ struct ProductModel: Codable {
   let productName: String
   let documentId: String
   let productDescription: String
-  var userId:String
-  var productImage: String
+  var userId: String
+  var productImageURL: String
   let category: String
   var isCompleted: Bool
-  
 }
 

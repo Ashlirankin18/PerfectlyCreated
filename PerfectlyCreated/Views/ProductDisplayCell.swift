@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProductDisplayCell: UITableViewCell {
+final class ProductDisplayCell: UITableViewCell {
 
   lazy var productImage:UIImageView = {
     let imageView = UIImageView()
@@ -17,35 +17,37 @@ class ProductDisplayCell: UITableViewCell {
     imageView.layer.cornerRadius = 5
     return imageView
   }()
+    
   lazy var dividerView:UIView = {
     let view = UIView()
     view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     return view
   }()
+    
   lazy var productName: UILabel = {
     let label = UILabel()
     label.backgroundColor = .white
     label.text = "Product Name"
-    label.numberOfLines = 0
-    label.adjustsFontSizeToFitWidth = true
+    label.numberOfLines = 1
     label.textAlignment = .center
     return label
   }()
+    
   lazy var categoryLabel: UILabel = {
     let label = UILabel()
     label.backgroundColor = .white
     label.text = "Product Name"
+    label.font = .systemFont(ofSize: 15, weight: .bold)
+    label.textColor = .gray
     label.numberOfLines = 0
     label.textAlignment = .center
     label.layer.masksToBounds = true
     label.adjustsFontSizeToFitWidth = true
-    label.layer.cornerRadius = 5
-    label.layer.borderWidth = 3
-    label.layer.borderColor = UIColor.lightGray.cgColor
     return label
   }()
+    
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-    super.init(style: .default, reuseIdentifier: "DisplayCell")
+    super.init(style: .default, reuseIdentifier: "ProductDisplayCell")
     commonInit()
   }
   
@@ -57,16 +59,18 @@ class ProductDisplayCell: UITableViewCell {
   func commonInit(){
     setUpViews()
   }
-  
 }
-extension ProductDisplayCell{
-  func setUpViews(){
+
+private extension ProductDisplayCell {
+    
+  func setUpViews() {
     setUpImageView()
     setUpDividerView()
     setUpProductNameConstraints()
     setUpCategoryLabel()
   }
-  func setUpImageView(){
+    
+  func setUpImageView() {
     addSubview(productImage)
     productImage.translatesAutoresizingMaskIntoConstraints = false
     productImage.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 14).isActive = true
@@ -74,7 +78,8 @@ extension ProductDisplayCell{
     productImage.widthAnchor.constraint(equalToConstant: 70).isActive = true
     productImage.heightAnchor.constraint(equalToConstant: 70).isActive = true
   }
-  func setUpDividerView(){
+    
+  func setUpDividerView() {
     addSubview(dividerView)
     dividerView.translatesAutoresizingMaskIntoConstraints = false
     dividerView.leadingAnchor.constraint(equalToSystemSpacingAfter: productImage.trailingAnchor, multiplier: 1.4).isActive = true
@@ -82,20 +87,21 @@ extension ProductDisplayCell{
     dividerView.widthAnchor.constraint(equalToConstant: 3).isActive = true
     dividerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.7).isActive = true
   }
-  func setUpProductNameConstraints(){
+    
+  func setUpProductNameConstraints() {
     addSubview(productName)
     productName.translatesAutoresizingMaskIntoConstraints = false
     productName.leadingAnchor.constraint(equalToSystemSpacingAfter: dividerView.trailingAnchor, multiplier: 1.0).isActive = true
     productName.topAnchor.constraint(equalToSystemSpacingBelow: safeAreaLayoutGuide.topAnchor, multiplier: 1.4).isActive = true
     productName.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    productName.widthAnchor.constraint(equalToConstant: 300).isActive = true
+    productName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24).isActive = true
   }
-  func setUpCategoryLabel(){
+    
+  func setUpCategoryLabel() {
     addSubview(categoryLabel)
     categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-    categoryLabel.topAnchor.constraint(equalToSystemSpacingBelow: productName.bottomAnchor, multiplier: 1.2).isActive = true
-    categoryLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: dividerView.trailingAnchor, multiplier: 1.0).isActive = true
+    categoryLabel.topAnchor.constraint(equalToSystemSpacingBelow: productName.bottomAnchor, multiplier: 1).isActive = true
     categoryLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
-    categoryLabel.widthAnchor.constraint(equalToConstant: 200).isActive = true
+    categoryLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: dividerView.trailingAnchor, multiplier: 1.0).isActive = true
   }
 }

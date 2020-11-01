@@ -78,7 +78,7 @@ class PopUpViewController: UIViewController {
   }
   @objc private func searchButtonPressed(){
     let searchController = SearchProductViewController()
-    searchController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: searchController, action: #selector(searchController.backButtonPressed))
+  
     let navigationController = UINavigationController.init(rootViewController: searchController)
         self.present(navigationController, animated: true)
   }

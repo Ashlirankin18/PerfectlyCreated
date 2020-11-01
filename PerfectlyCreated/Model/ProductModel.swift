@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct ProductModel: Codable {
+struct ProductModel: Codable, Hashable {
     
     let productName: String
     

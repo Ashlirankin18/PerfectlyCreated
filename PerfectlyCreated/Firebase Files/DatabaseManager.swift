@@ -51,7 +51,7 @@ final class DataBaseManager {
                                                                                     "productDescription":product.productDescription,
                                                                                     
                                                             "userId": user.uid ,
-                                                            "productImage":product.productImage,
+                                                            "productImage":product.productImageURL,
                                                             "category":product.category,
                                                             "isComplete":product.isCompleted],
       completion: { (error) in

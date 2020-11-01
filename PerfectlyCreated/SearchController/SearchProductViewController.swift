@@ -42,8 +42,8 @@ final class SearchProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.searchController = searchController
         productTableView.register(ProductDisplayCell.self, forCellReuseIdentifier: "ProductDisplayCell")
+        configureNavigationItemProperties()
         setDelegates()
         configureDismissButtonHandler()
     }
@@ -56,6 +56,12 @@ final class SearchProductViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.allHairProducts = ProductDataManager.getProducts().sorted{$0.results.name < $1.results.name}
+    }
+    
+    private func configureNavigationItemProperties() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        definesPresentationContext = true
     }
     
     private func configureDismissButtonHandler() {
@@ -71,6 +77,8 @@ final class SearchProductViewController: UIViewController {
 }
 
 extension SearchProductViewController: UITableViewDataSource {
+    
+    // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allHairProducts.count
@@ -89,23 +97,31 @@ extension SearchProductViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let productController = ShowProductViewController.init(hairProduct: allHairProducts[indexPath.row], view: HairProductView())
-        let navigationController = UINavigationController(rootViewController: productController)
         
-        self.present(navigationController, animated: true, completion: nil)
+        let productController =
+        UIStoryboard(name: "ProductDetailViewController", bundle: .main).instantiateViewController(identifier: "ProductDetailViewController") { coder in
+            return ProductDetailViewController(coder: coder, product: self.allHairProducts[indexPath.row])
+        }
+        
+        self.navigationController?.pushViewController(productController, animated: true)
     }
 }
 
 extension SearchProductViewController: UITableViewDelegate {
+    
+    // MARK: - UITableViewDelegate
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat(100)
+        return 100
     }
 }
 
 extension SearchProductViewController: UISearchResultsUpdating {
+    
+    // MARK: - UISearchResultsUpdating
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {
-            print("no text found")
             return
         }
         

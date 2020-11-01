@@ -104,13 +104,16 @@ class HairProductsTableViewController: UITableViewController {
         }
         return 0
     }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CGFloat.init(integerLiteral: 220)
+        return CGFloat(integerLiteral: 220)
     }
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let titles = Array(dict.keys)
         return titles[section]
     }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return dict.count
     }
@@ -121,7 +124,7 @@ class HairProductsTableViewController: UITableViewController {
         let sectionTitles = Array(dict.keys)
         if let values = dict[sectionTitles[indexPath.section]]{
             let product = values[indexPath.row]
-            getImage(ImageView: cell.productImage, imageURLString: product.productImage)
+            getImage(ImageView: cell.productImage, imageURLString: product.productImageURL)
             cell.productName.text = product.productName
             if product.isCompleted == true{
                 cell.shareProduct.setImage(#imageLiteral(resourceName: "icons8-checked-filled-25 (1).png"), for: .normal)

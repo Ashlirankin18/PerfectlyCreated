@@ -71,6 +71,7 @@
 		2EAE6839254E5F7200BE0E1E /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */; };
 		2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */; };
 		2EAE6841254F04AF00BE0E1E /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6840254F04AF00BE0E1E /* ProductManager.swift */; };
+		2EAE6846254F0B9C00BE0E1E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6845254F0B9C00BE0E1E /* UserManager.swift */; };
 		2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */; };
 		2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */; };
 		2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */; };
@@ -158,6 +159,7 @@
 		2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetailViewController.storyboard; sourceTree = "<group>"; };
 		2EAE6840254F04AF00BE0E1E /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
+		2EAE6845254F0B9C00BE0E1E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
 		2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpProfileView.swift; sourceTree = "<group>"; };
 		2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionKeys.swift; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 				2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */,
 				2EB2A1A822272DEF00525BD4 /* StorageKeys.swift */,
 				2EAE6840254F04AF00BE0E1E /* ProductManager.swift */,
+				2EAE6845254F0B9C00BE0E1E /* UserManager.swift */,
 			);
 			path = "Firebase Files";
 			sourceTree = "<group>";
@@ -584,6 +587,7 @@
 				2EDB0E4D222DC49C006DB8EE /* ImageViewControllerExtension.swift in Sources */,
 				2E997FA2221B200D00730ED7 /* HairProductView.swift in Sources */,
 				2E997FAC221BB5BE00730ED7 /* ProductCell.swift in Sources */,
+				2EAE6846254F0B9C00BE0E1E /* UserManager.swift in Sources */,
 				2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */,
 				2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */,
 				2E7946DF220CFABE00219B6A /* RatingViewController.swift in Sources */,

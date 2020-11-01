@@ -39,7 +39,6 @@ class HairProductsTableViewController: UITableViewController {
    
     var allHairProducts = [AllHairProducts]()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         userSession = AppDelegate.userSession

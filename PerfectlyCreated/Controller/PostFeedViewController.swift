@@ -48,7 +48,7 @@ class PostFeedViewController: UIViewController {
       let dateFormatter = DateFormatter()
       dateFormatter.dateStyle = .long
       let dateString = dateFormatter.string(from: date)
-      let feed = FeedModel.init(feedId: "", userId: theUser.uid, userImageLink: (theUser.photoURL?.absoluteString)!, productId: product.documentId, imageURL: product.productImageURL, caption: caption, userName: theUser.displayName!, datePosted: dateString)
+      let feed = FeedModel.init(feedId: "", userId: theUser.uid, userImageLink: (theUser.photoURL?.absoluteString)!, productId: product.documentId , imageURL: product.productImageURL, caption: caption, userName: theUser.displayName!, datePosted: dateString)
     DataBaseManager.postFeedTo(feed: feed, user: theUser)
     dismiss(animated: true)
   }

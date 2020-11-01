@@ -9,13 +9,14 @@
 import Foundation
 
 class ProductDataManager {
+    
   private static var products = [AllHairProducts]()
   
-  static public func setProducts(products: [AllHairProducts]) {
+  static func setProducts(products: [AllHairProducts]) {
     self.products = products
   }
   
-  static public func getProducts() -> [AllHairProducts] {
+  static func getProducts() -> [AllHairProducts] {
     return self.products
   }
 }

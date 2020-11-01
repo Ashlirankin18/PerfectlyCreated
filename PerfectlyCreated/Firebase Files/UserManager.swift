@@ -7,3 +7,20 @@
 //
 
 import Foundation
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+
+final class UserManager {
+    
+    let firebaseDB: Firestore = {
+      let db = Firestore.firestore()
+      let settings = db.settings
+      db.settings = settings
+      return db
+    }()
+    
+    var currentUser: User? {
+        return Auth.auth().currentUser
+    }
+}

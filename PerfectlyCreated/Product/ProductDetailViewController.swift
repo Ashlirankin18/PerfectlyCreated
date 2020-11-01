@@ -53,7 +53,11 @@ final class ProductDetailViewController: UIViewController {
         
         let model = product.results
         let product = ProductModel(productName: model.name, documentId: productManager.documentId, productDescription: model.description, userId: currentUser.uid, productImageURL: model.images.first?.absoluteString ?? "", category: model.category, isCompleted: false)
-        addProductBarButtonItem.tapPublisher.sink {  _ in
+       
+        addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
+            guard let self = self else {
+                return
+            }
             
             self.activityIndicator.isHidden = false
             self.activityIndicator.startAnimating()

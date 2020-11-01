@@ -14,4 +14,5 @@ struct UserModel: Codable {
     let email:String
     let profileImageLink: String?
     let documentId: String
+    let productIds: [String]
 }

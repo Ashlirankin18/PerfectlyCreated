@@ -10,13 +10,19 @@ import Foundation
 import FirebaseFirestoreSwift
 
 struct ProductModel: Codable {
-  
-  let productName: String
-  let documentId: String
-  let productDescription: String
-  var userId: String
-  var productImageURL: String
-  let category: String
-  var isCompleted: Bool
+    
+    let productName: String
+    
+    var documentId: String
+    
+    let productDescription: String
+    
+    var userId: String
+    
+    var productImageURL: String
+    
+    let category: String
+    
+    var isCompleted: Bool
 }
 

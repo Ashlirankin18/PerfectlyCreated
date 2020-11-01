@@ -61,7 +61,7 @@ class PostFeedViewController: UIViewController {
   }
   private func setUpUi(){
     guard let product = productToPost else {return}
-    getImage(ImageView: self.productImage, imageURLString: product.productImageURL)
+    getImage(imageView: self.productImage, imageURLString: product.productImageURL)
     self.productName.text = product.productName
     
   }

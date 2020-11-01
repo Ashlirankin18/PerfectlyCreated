@@ -41,7 +41,7 @@ final class UserSession {
     
     func createUser(email: String, password: String, username: String) throws {
         let userId = documentId
-        let user = UserModel(userName: username, email: email, profileImageLink: nil, documentId: userId)
+        let user = UserModel(userName: username, email: email, profileImageLink: nil, documentId: userId, productIds: [])
         
         Auth.auth().createUser(withEmail: email, password: password) { (authDataResults, error) in
             

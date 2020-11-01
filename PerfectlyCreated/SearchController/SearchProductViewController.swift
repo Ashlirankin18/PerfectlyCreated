@@ -92,7 +92,7 @@ extension SearchProductViewController: UITableViewDataSource {
         let urlString = hairProduct.results.images.first?.absoluteString ?? "no string found"
         cell.productName.text = hairProduct.results.name.capitalized
         cell.categoryLabel.text = hairProduct.results.category
-        getImage(ImageView: cell.productImage, imageURLString: urlString)
+        getImage(imageView: cell.productImage, imageURLString: urlString)
         return cell
     }
     

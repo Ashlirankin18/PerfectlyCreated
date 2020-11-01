@@ -8,20 +8,19 @@
 
 import UIKit
 extension UIViewController {
-  func getImage(ImageView:UIImageView,imageURLString:String){
+  func getImage(imageView: UIImageView, imageURLString: String){
     if let image = ImageCache.shared.fetchImageFromCache(urlString: imageURLString){
       DispatchQueue.main.async {
-        ImageView.image = image
+        imageView.image = image
       }
-      
-    }else{
+    } else{
       ImageCache.shared.fetchImageFromNetwork(urlString: imageURLString) { (error, image) in
         if let error = error{
           print(error.errorMessage())
         }
         else if let image = image {
           DispatchQueue.main.async {
-            ImageView.image = image
+            imageView.image = image
           }
         }
       }

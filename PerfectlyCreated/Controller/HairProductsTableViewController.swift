@@ -124,7 +124,7 @@ class HairProductsTableViewController: UITableViewController {
         let sectionTitles = Array(dict.keys)
         if let values = dict[sectionTitles[indexPath.section]]{
             let product = values[indexPath.row]
-            getImage(ImageView: cell.productImage, imageURLString: product.productImageURL)
+            getImage(imageView: cell.productImage, imageURLString: product.productImageURL)
             cell.productName.text = product.productName
             if product.isCompleted == true{
                 cell.shareProduct.setImage(#imageLiteral(resourceName: "icons8-checked-filled-25 (1).png"), for: .normal)

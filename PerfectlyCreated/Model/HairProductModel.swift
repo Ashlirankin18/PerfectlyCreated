@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct AllHairProducts:Codable{
+struct AllHairProducts: Codable {
   let id: String
   let results: HairProductDetails
 }
 
-struct HairProductDetails :Codable{
+struct HairProductDetails: Codable {
   let gtins:[String]
   let upc: String
   let created_at: Int
@@ -25,16 +25,16 @@ struct HairProductDetails :Codable{
   let category: String
 }
 
-struct SiteDetails:Codable{
+struct SiteDetails: Codable {
   let url: URL
   let latestoffers: [LatestOffers]
 }
 
-struct Features:Codable{
+struct Features:Codable {
   let blob: String?
 }
 
-struct LatestOffers:Codable{
+struct LatestOffers:Codable {
   let price: String
   let lastrecorded_at : Int
   let isActive: Int?
@@ -43,5 +43,4 @@ struct LatestOffers:Codable{
   let id:String
   let avalibility:String?
   let seller:String
-  
 }

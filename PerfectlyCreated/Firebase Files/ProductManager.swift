@@ -20,7 +20,7 @@ final class ProductManager {
     }()
     
     var documentId: String {
-        return DataBaseManager.firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
+        return firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
     }
     
     func addProduct(product: ProductModel, completion: @escaping (Result<Void, Error>) -> Void) {

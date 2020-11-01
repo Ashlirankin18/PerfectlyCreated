@@ -19,7 +19,7 @@ class HairProductsTableViewController: UITableViewController {
     weak var delegate: HairProductsTableViewControllerDelegate?
     @IBOutlet weak var backButton: UIBarButtonItem!
     
-    private var userProducts = [ProductModel](){
+    private var userProducts = [ProductModel]() {
         didSet{
             DispatchQueue.main.async {
                 self.dict = Dictionary.init(grouping: self.userProducts, by: {$0.category})

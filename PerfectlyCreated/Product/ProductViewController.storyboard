@@ -47,6 +47,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addBarButtonItem" destination="dvV-kl-e8E" id="UKb-uk-5vl"/>
+                        <outlet property="productCollectionView" destination="Uxi-Cd-SZh" id="7pv-1e-SyC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cDH-qM-Rvg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

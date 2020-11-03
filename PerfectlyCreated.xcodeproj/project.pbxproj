@@ -72,6 +72,13 @@
 		2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */; };
 		2EAE6841254F04AF00BE0E1E /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6840254F04AF00BE0E1E /* ProductManager.swift */; };
 		2EAE6846254F0B9C00BE0E1E /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6845254F0B9C00BE0E1E /* UserManager.swift */; };
+		2EAE684A254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6848254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.swift */; };
+		2EAE684B254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE6849254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.xib */; };
+		2EAE684F254F732D00BE0E1E /* AboutProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE684D254F732D00BE0E1E /* AboutProductCollectionViewCell.swift */; };
+		2EAE6850254F732D00BE0E1E /* AboutProductCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE684E254F732D00BE0E1E /* AboutProductCollectionViewCell.xib */; };
+		2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6853254F7AB400BE0E1E /* NSCoding+Nib.swift */; };
+		2EAE6859254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6857254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift */; };
+		2EAE685A254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE6858254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib */; };
 		2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */; };
 		2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */; };
 		2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */; };
@@ -160,6 +167,13 @@
 		2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetailViewController.storyboard; sourceTree = "<group>"; };
 		2EAE6840254F04AF00BE0E1E /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		2EAE6845254F0B9C00BE0E1E /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		2EAE6848254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		2EAE6849254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategorySectionHeaderCollectionReusableView.xib; sourceTree = "<group>"; };
+		2EAE684D254F732D00BE0E1E /* AboutProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		2EAE684E254F732D00BE0E1E /* AboutProductCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutProductCollectionViewCell.xib; sourceTree = "<group>"; };
+		2EAE6853254F7AB400BE0E1E /* NSCoding+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCoding+Nib.swift"; sourceTree = "<group>"; };
+		2EAE6857254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalCollectionReusableView.swift; sourceTree = "<group>"; };
+		2EAE6858254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalCollectionReusableView.xib; sourceTree = "<group>"; };
 		2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
 		2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpProfileView.swift; sourceTree = "<group>"; };
 		2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionKeys.swift; sourceTree = "<group>"; };
@@ -237,6 +251,12 @@
 				2E0FFD04254DCFD90020D9DC /* ProductCollectionViewCell.xib */,
 				2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */,
 				2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */,
+				2EAE6848254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.swift */,
+				2EAE6849254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.xib */,
+				2EAE684D254F732D00BE0E1E /* AboutProductCollectionViewCell.swift */,
+				2EAE684E254F732D00BE0E1E /* AboutProductCollectionViewCell.xib */,
+				2EAE6857254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift */,
+				2EAE6858254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -271,6 +291,7 @@
 		2E4A3E912208D2C800988116 /* PerfectlyCreated */ = {
 			isa = PBXGroup;
 			children = (
+				2EAE6852254F7A9C00BE0E1E /* Extension */,
 				2E0FFD0C254DDBDC0020D9DC /* SearchController */,
 				2E0FFCFA254DCDC50020D9DC /* Product */,
 				2E0FFC40254DB5340020D9DC /* BarcodeScanner */,
@@ -367,6 +388,14 @@
 				2EF32CDC22175881006E2B1F /* hairProducts.json */,
 			);
 			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		2EAE6852254F7A9C00BE0E1E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2EAE6853254F7AB400BE0E1E /* NSCoding+Nib.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		2EED896A222989D000ADDEBD /* IceBoxItems */ = {
@@ -499,15 +528,18 @@
 				5B5ED21B23538100000227D1 /* Feeds.storyboard in Resources */,
 				2E0FFC48254DB8B50020D9DC /* BarcodeScannerViewController.xib in Resources */,
 				2E0FFB8F254D1D750020D9DC /* SF-Pro-Rounded-Light.otf in Resources */,
+				2EAE6850254F732D00BE0E1E /* AboutProductCollectionViewCell.xib in Resources */,
 				2E0FFB45254D13190020D9DC /* GoogleService-Info.plist in Resources */,
 				2E0FFB91254D1D750020D9DC /* SF-Pro-Rounded-Medium.otf in Resources */,
 				2EED896722284C9E00ADDEBD /* ProfileOptions.storyboard in Resources */,
 				2E0FFB92254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf in Resources */,
+				2EAE685A254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib in Resources */,
 				2EF32CDD22175881006E2B1F /* hairProducts.json in Resources */,
 				2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */,
 				2E0FFB8D254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf in Resources */,
 				2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */,
 				2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */,
+				2EAE684B254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.xib in Resources */,
 				2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */,
 				2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */,
@@ -573,6 +605,7 @@
 				2E997F96221B0E2800730ED7 /* NetworkHelper.swift in Sources */,
 				2E997FAA221B99A300730ED7 /* DateExtension.swift in Sources */,
 				2E0FFC42254DB5800020D9DC /* BarcodeScannerController.swift in Sources */,
+				2EAE684A254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.swift in Sources */,
 				2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */,
 				2EDB0E51222E1FCB006DB8EE /* PostFeedViewController.swift in Sources */,
 				2E997F9A221B0FCF00730ED7 /* AppError.swift in Sources */,
@@ -588,6 +621,7 @@
 				2E997FA2221B200D00730ED7 /* HairProductView.swift in Sources */,
 				2E997FAC221BB5BE00730ED7 /* ProductCell.swift in Sources */,
 				2EAE6846254F0B9C00BE0E1E /* UserManager.swift in Sources */,
+				2EAE6859254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift in Sources */,
 				2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */,
 				2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */,
 				2E7946DF220CFABE00219B6A /* RatingViewController.swift in Sources */,
@@ -612,6 +646,8 @@
 				2E7946E1220CFB8700219B6A /* RatingView.swift in Sources */,
 				2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */,
 				2E997FA8221B751300730ED7 /* OtherOptionsCell.swift in Sources */,
+				2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */,
+				2EAE684F254F732D00BE0E1E /* AboutProductCollectionViewCell.swift in Sources */,
 				2EA365B5220A59B900FFDC5E /* FeedsViewController.swift in Sources */,
 				2E063E67220B5E9C00D85406 /* ProfileView.swift in Sources */,
 				2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */,

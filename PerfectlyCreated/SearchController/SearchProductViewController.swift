@@ -99,8 +99,8 @@ extension SearchProductViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let productController =
-        UIStoryboard(name: "ProductDetailViewController", bundle: .main).instantiateViewController(identifier: "ProductDetailViewController") { coder in
-            return ProductDetailViewController(coder: coder, product: self.allHairProducts[indexPath.row])
+            UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
+            return ProductDetailViewController(coder: coder, productType: .general(self.allHairProducts[indexPath.row]))
         }
         
         self.navigationController?.pushViewController(productController, animated: true)

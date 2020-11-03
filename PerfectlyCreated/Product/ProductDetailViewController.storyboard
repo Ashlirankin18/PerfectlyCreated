@@ -4,86 +4,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Rounded-Light.otf">
-            <string>SFProRounded-Light</string>
-        </array>
-        <array key="SF-Pro-Rounded-Semibold.otf">
-            <string>SFProRounded-Semibold</string>
-        </array>
-    </customFonts>
     <scenes>
-        <!--Product Detail View Controller-->
-        <scene sceneID="SoR-Rc-StN">
-            <objects>
-                <viewController storyboardIdentifier="ProductDetailViewController" id="mhp-gD-xSJ" customClass="ProductDetailViewController" customModule="PerfectlyCreated" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9xz-87-mFt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="IBt-yX-JSf">
-                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
-                                <color key="color" systemColor="systemIndigoColor"/>
-                            </activityIndicatorView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="CSv-lx-jn1">
-                                <rect key="frame" x="16" y="88" width="382" height="613"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H5d-ID-HEF">
-                                        <rect key="frame" x="0.0" y="0.0" width="382" height="300"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="XdD-zv-Hfs"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hR4-bs-Wxw">
-                                        <rect key="frame" x="165.5" y="324" width="51" height="25.5"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="21"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="axB-4a-pcR">
-                                        <rect key="frame" x="2" y="373.5" width="378" height="239.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="H5d-ID-HEF" firstAttribute="leading" secondItem="CSv-lx-jn1" secondAttribute="leadingMargin" id="ZUq-Vw-aAC"/>
-                                    <constraint firstItem="axB-4a-pcR" firstAttribute="leading" secondItem="CSv-lx-jn1" secondAttribute="leading" constant="2" id="cIQ-k7-gOw"/>
-                                </constraints>
-                            </stackView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="JBN-1l-T6z"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="JBN-1l-T6z" firstAttribute="trailing" secondItem="CSv-lx-jn1" secondAttribute="trailing" constant="16" id="IPV-Iw-QwW"/>
-                            <constraint firstItem="IBt-yX-JSf" firstAttribute="centerY" secondItem="9xz-87-mFt" secondAttribute="centerY" id="Icj-Gv-bgH"/>
-                            <constraint firstItem="CSv-lx-jn1" firstAttribute="top" secondItem="JBN-1l-T6z" secondAttribute="top" id="Pp6-FB-pHw"/>
-                            <constraint firstItem="IBt-yX-JSf" firstAttribute="centerX" secondItem="9xz-87-mFt" secondAttribute="centerX" id="gBk-Pl-Jyo"/>
-                            <constraint firstItem="CSv-lx-jn1" firstAttribute="leading" secondItem="9xz-87-mFt" secondAttribute="leading" constant="16" id="uO0-Ic-1vN"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="J87-Si-oTc">
-                        <barButtonItem key="rightBarButtonItem" title="Add Product" id="vZ0-v5-IpK"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="activityIndicator" destination="IBt-yX-JSf" id="lnt-vf-kbM"/>
-                        <outlet property="addProductBarButtonItem" destination="vZ0-v5-IpK" id="I7y-p2-a46"/>
-                        <outlet property="productDescriptionTextView" destination="axB-4a-pcR" id="MvW-Un-cWz"/>
-                        <outlet property="productImageImageView" destination="H5d-ID-HEF" id="1PP-xN-W3Y"/>
-                        <outlet property="productNameLabel" destination="hR4-bs-Wxw" id="Qsl-On-dgr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BCa-lp-dIE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1050.7246376811595" y="106.47321428571428"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="avR-dd-Wma">
             <objects>
@@ -95,18 +19,51 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="mhp-gD-xSJ" kind="relationship" relationship="rootViewController" id="uBt-yW-sO0"/>
+                        <segue destination="eKe-IB-Sah" kind="relationship" relationship="rootViewController" id="MSM-bu-VOJ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ro-Ef-ah5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140.57971014492756" y="106.47321428571428"/>
         </scene>
+        <!--Product Detail View Controller-->
+        <scene sceneID="tif-yC-T2C">
+            <objects>
+                <collectionViewController storyboardIdentifier="ProductDetailViewController" id="eKe-IB-Sah" customClass="ProductDetailViewController" customModule="PerfectlyCreated" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="43a-66-YTK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HzW-JW-WO2">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
+                        <connections>
+                            <outlet property="dataSource" destination="eKe-IB-Sah" id="c5R-nf-4dQ"/>
+                            <outlet property="delegate" destination="eKe-IB-Sah" id="nF0-xe-KCf"/>
+                        </connections>
+                    </collectionView>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="gTK-79-mZv">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="1fB-Hq-11r">
+                            <color key="tintColor" systemColor="systemIndigoColor"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addProductBarButtonItem" destination="1fB-Hq-11r" id="ain-mU-3u9"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ESW-iM-wuH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1197" y="106"/>
+        </scene>
     </scenes>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

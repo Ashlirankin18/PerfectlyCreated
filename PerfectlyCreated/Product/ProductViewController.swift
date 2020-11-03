@@ -10,10 +10,9 @@ import UIKit
 import CombineCocoa
 import Combine
 
-final class ProductViewController: UIViewController {
+final class ProductViewController: UICollectionViewController {
     
     @IBOutlet private weak var addBarButtonItem: UIBarButtonItem!
-    @IBOutlet private weak var productCollectionView: UICollectionView!
     
     private var searchController: SearchProductViewController = {
         let controller = UIStoryboard(name: "SearchProductViewController", bundle: .main).instantiateViewController(identifier: "SearchProductViewController") { coder in
@@ -30,20 +29,25 @@ final class ProductViewController: UIViewController {
         }
     }
     
+    private var sectionTitles = [String]()
+    
     private lazy var productManager = ProductManager()
     
-    private lazy var dataSource: UICollectionViewDiffableDataSource<String, ProductModel> = UICollectionViewDiffableDataSource(collectionView: self.productCollectionView) { (_, indexPath, model) -> UICollectionViewCell? in
+    private lazy var dataSource: UICollectionViewDiffableDataSource<String, ProductModel> = UICollectionViewDiffableDataSource(collectionView: self.collectionView) { (_, indexPath, model) -> UICollectionViewCell? in
         return self.configureCell(model: model, indexPath: indexPath)
     }
     
     private let productCellCollectionLayoutSection: NSCollectionLayoutSection = {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "CategorySectionHeaderCollectionReusableView", alignment: .top)
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalWidth(0.6))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
         return section
@@ -51,12 +55,13 @@ final class ProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        productCollectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ProductCollectionViewCell")
-        productCollectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: productCellCollectionLayoutSection)
-        productCollectionView.dataSource = dataSource
+        collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ProductCollectionViewCell")
+        collectionView.register(UINib(nibName: "CategorySectionHeaderCollectionReusableView", bundle: .main), forSupplementaryViewOfKind: "view", withReuseIdentifier: "CategorySectionHeaderCollectionReusableView")
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: productCellCollectionLayoutSection)
+        collectionView.dataSource = dataSource
         configureButtonTapHandler()
         retrieveProducts()
+        configureHeaders()
     }
     
     private func retrieveProducts() {
@@ -65,6 +70,9 @@ final class ProductViewController: UIViewController {
             case let .failure(error):
                 print(error)
             case let .success(models):
+                let sections = Set(models.map { $0.category })
+                let array = Array(sections)
+                self.sectionTitles = array
                 self.productsDictionary = models
             }
         }
@@ -78,8 +86,8 @@ final class ProductViewController: UIViewController {
     }
     
     private func configureCell(model: ProductModel, indexPath: IndexPath) -> UICollectionViewCell {
-      
-        guard let cell = productCollectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell else {
+        
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.productImageView.kf.setImage(with: URL(string: model.productImageURL))
@@ -118,14 +126,35 @@ final class ProductViewController: UIViewController {
     private func reloadDataSource(models: [ProductModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<String, ProductModel>()
         
-        let sections = Set(models.map { $0.category })
-
-        snapshot.appendSections(Array(sections))
+        snapshot.appendSections(sectionTitles)
         
-        sections.forEach { section in
+        sectionTitles.forEach { section in
             let model = models.filter { $0.category == section }
-             snapshot.appendItems(model, toSection: section)
+            snapshot.appendItems(model, toSection: section)
         }
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func configureHeaders() {
+        dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: "view", withReuseIdentifier: "CategorySectionHeaderCollectionReusableView", for: indexPath) as? CategorySectionHeaderCollectionReusableView else {
+                return nil
+            }
+            
+            header.sectionTitleLabel.text = self.sectionTitles[indexPath.section]
+            
+            return header
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedProduct = dataSource.itemIdentifier(for: indexPath) else {
+            return
+        }
+        let productController =
+            UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
+                return ProductDetailViewController(coder: coder, productType: .personal(selectedProduct))
+            }
+        navigationController?.pushViewController(productController, animated: true)
     }
 }

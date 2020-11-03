@@ -28,6 +28,11 @@ final class ProductDetailViewController: UICollectionViewController {
         case additionalInfo(ProductModel)
     }
     
+    enum SectionDataTest: Hashable {
+        case productModel(SectionData)
+        case completed(Bool)
+    }
+    
     @IBOutlet private weak var addProductBarButtonItem: UIBarButtonItem!
     
     private let productType: ProductType
@@ -36,7 +41,7 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private lazy var productManager = ProductManager()
     
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, SectionData> = UICollectionViewDiffableDataSource(collectionView: self.collectionView) { (_, indexPath, model) -> UICollectionViewCell? in
+    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, SectionDataTest> = UICollectionViewDiffableDataSource(collectionView: self.collectionView) { (_, indexPath, model) -> UICollectionViewCell? in
         return self.configureCell(model: model, indexPath: indexPath)
     }
     
@@ -52,7 +57,6 @@ final class ProductDetailViewController: UICollectionViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [sectionHeader]
         section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         return section
     }()
     
@@ -71,11 +75,11 @@ final class ProductDetailViewController: UICollectionViewController {
         configureCollectionView()
         configureHeaders()
         reloadDataSource()
-        
     }
     
     private func configureCollectionView() {
         collectionView.register(UINib(nibName: AboutProductCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: AboutProductCollectionViewCell.defaultNibName)
+        collectionView.register(UINib(nibName: TestCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: "TestCell")
         collectionView.register(UINib(nibName: AdditionalCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName)
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: aboutProductCollectionLayoutSection)
         collectionView.dataSource = dataSource
@@ -118,53 +122,54 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     private func reloadDataSource() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, SectionData>()
-        snapshot.appendSections([.aboutProduct])
+        var snapshot = NSDiffableDataSourceSnapshot<Section, SectionDataTest>()
+        snapshot.appendSections([.aboutProduct, .additionalInfo])
         
         switch productType {
         case let .general(product):
-            snapshot.appendItems([.aboutProduct(product.results)], toSection: .aboutProduct)
+            snapshot.appendItems([.productModel(.aboutProduct(product.results))], toSection: .aboutProduct)
         case let .personal(product):
-            snapshot.appendItems([.additionalInfo(product)], toSection: .aboutProduct)
+            snapshot.appendItems([.productModel(.additionalInfo(product))], toSection: .aboutProduct)
+            snapshot.appendItems([.completed(product.isCompleted)], toSection: .additionalInfo)
         }
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    private func configureCell(model: SectionData, indexPath: IndexPath) -> UICollectionViewCell {
-        
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutProductCollectionViewCell", for: indexPath) as? AboutProductCollectionViewCell else {
-            return UICollectionViewCell()
-        }
+    private func configureCell(model: SectionDataTest, indexPath: IndexPath) -> UICollectionViewCell {
         
         switch model {
-        case let .aboutProduct(info):
-            cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: info.name, productDescription: info.features?.blob ?? info.description, productURL: info.images.first)
-        case let .additionalInfo(product):
-            cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.productName, productDescription: product.productDescription, productURL: URL(string: product.productImageURL))
+        case let .productModel(sectionData):
+            
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutProductCollectionViewCell", for: indexPath) as? AboutProductCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            switch sectionData {
+            case let .aboutProduct(info):
+                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: info.name, productDescription: info.features?.blob ?? info.description, productURL: info.images.first)
+            case let .additionalInfo(product):
+                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.productName, productDescription: product.productDescription, productURL: URL(string: product.productImageURL))
+            }
+            return cell
+        case let .completed(completed):
+            guard let testCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestCell", for: indexPath) as? TestCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            print(completed)
+            return testCell
         }
-        return cell
     }
     
     private func configureHeaders() {
         dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
             
-            guard let section = Section(rawValue: indexPath.section) else {
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
                 return nil
             }
             
-            switch section {
-            case .aboutProduct:
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
-                    return nil
-                }
+            header.editButtonTapHandler = {
                 
-                header.editButtonTapHandler = {
-                    
-                }
-                return header
-            case .additionalInfo:
-                return UICollectionReusableView()
             }
+            return header
         }
     }
 }

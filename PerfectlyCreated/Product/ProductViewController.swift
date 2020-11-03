@@ -55,13 +55,17 @@ final class ProductViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCollectionView()
+        configureButtonTapHandler()
+        retrieveProducts()
+        configureHeaders()
+    }
+    
+    private func configureCollectionView() {
         collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ProductCollectionViewCell")
         collectionView.register(UINib(nibName: "CategorySectionHeaderCollectionReusableView", bundle: .main), forSupplementaryViewOfKind: "view", withReuseIdentifier: "CategorySectionHeaderCollectionReusableView")
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: productCellCollectionLayoutSection)
         collectionView.dataSource = dataSource
-        configureButtonTapHandler()
-        retrieveProducts()
-        configureHeaders()
     }
     
     private func retrieveProducts() {
@@ -71,8 +75,7 @@ final class ProductViewController: UICollectionViewController {
                 print(error)
             case let .success(models):
                 let sections = Set(models.map { $0.category })
-                let array = Array(sections)
-                self.sectionTitles = array
+                self.sectionTitles = Array(sections)
                 self.productsDictionary = models
             }
         }

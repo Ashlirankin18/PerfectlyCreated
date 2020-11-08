@@ -18,7 +18,7 @@ final class ProductDetailViewController: UICollectionViewController {
         case general(AllHairProducts)
     }
     
-    enum Section: Int, Hashable {
+    enum Section: Int, CaseIterable, Hashable {
         case aboutProduct
         case additionalInfo
     }
@@ -29,6 +29,7 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     enum SectionDataTest: Hashable {
+        
         case productModel(SectionData)
         case completed(Bool)
     }
@@ -60,6 +61,28 @@ final class ProductDetailViewController: UICollectionViewController {
         return section
     }()
     
+    private let additionalInfoCollectionLayoutSection: NSCollectionLayoutSection = {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        return section
+    }()
+     
+    private lazy var compositionalLayout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
+         let sections = Section.allCases[sectionIndex]
+        
+        switch sections {
+        case .aboutProduct:
+            return self.aboutProductCollectionLayoutSection
+        case .additionalInfo:
+            return self.additionalInfoCollectionLayoutSection
+        }
+    }
+    
     init?(coder: NSCoder, productType: ProductType) {
         self.productType = productType
         super.init(coder: coder)
@@ -79,9 +102,9 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private func configureCollectionView() {
         collectionView.register(UINib(nibName: AboutProductCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: AboutProductCollectionViewCell.defaultNibName)
-        collectionView.register(UINib(nibName: TestCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: "TestCell")
+        collectionView.register(UINib(nibName: CompletedCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: CompletedCollectionViewCell.defaultNibName)
         collectionView.register(UINib(nibName: AdditionalCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName)
-        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: aboutProductCollectionLayoutSection)
+        collectionView.collectionViewLayout = compositionalLayout
         collectionView.dataSource = dataSource
     }
     
@@ -116,7 +139,7 @@ final class ProductDetailViewController: UICollectionViewController {
                 }
             }
             .store(in: &cancellables)
-        case let .personal(product):
+        case let .personal:
             addProductBarButtonItem = nil
         }
     }
@@ -151,11 +174,11 @@ final class ProductDetailViewController: UICollectionViewController {
             }
             return cell
         case let .completed(completed):
-            guard let testCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TestCell", for: indexPath) as? TestCollectionViewCell else {
+            guard let completedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            print(completed)
-            return testCell
+            completedCell.viewModel = CompletedCollectionViewCell.ViewModel(isCompleted: completed, title: "Product Complete")
+            return completedCell
         }
     }
     

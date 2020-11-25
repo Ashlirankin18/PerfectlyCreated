@@ -13,6 +13,8 @@
 		2E063E69220B629A00D85406 /* ProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E063E68220B629A00D85406 /* ProfileCollectionViewCell.swift */; };
 		2E063E6D220B77C500D85406 /* FeedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E063E6C220B77C500D85406 /* FeedsView.swift */; };
 		2E063E6F220B78DC00D85406 /* FeedsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E063E6E220B78DC00D85406 /* FeedsCollectionViewCell.swift */; };
+		2E07D20C25588E700029FB36 /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07D20A25588E700029FB36 /* NotesCollectionViewCell.swift */; };
+		2E07D20D25588E700029FB36 /* NotesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E07D20B25588E700029FB36 /* NotesCollectionViewCell.xib */; };
 		2E0FFB41254D0DE90020D9DC /* FeedsCollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFB40254D0DE90020D9DC /* FeedsCollectionViewDataSource.swift */; };
 		2E0FFB45254D13190020D9DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB44254D13190020D9DC /* GoogleService-Info.plist */; };
 		2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB83254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf */; };
@@ -108,6 +110,8 @@
 		2E063E68220B629A00D85406 /* ProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E063E6C220B77C500D85406 /* FeedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsView.swift; sourceTree = "<group>"; };
 		2E063E6E220B78DC00D85406 /* FeedsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E07D20A25588E700029FB36 /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
+		2E07D20B25588E700029FB36 /* NotesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotesCollectionViewCell.xib; sourceTree = "<group>"; };
 		2E0FFB40254D0DE90020D9DC /* FeedsCollectionViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedsCollectionViewDataSource.swift; sourceTree = "<group>"; };
 		2E0FFB44254D13190020D9DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E0FFB83254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
@@ -223,6 +227,8 @@
 				2EAE6858254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib */,
 				2E110A812550F203001ADACD /* CompletedCollectionViewCell.swift */,
 				2E110A822550F203001ADACD /* CompletedCollectionViewCell.xib */,
+				2E07D20A25588E700029FB36 /* NotesCollectionViewCell.swift */,
+				2E07D20B25588E700029FB36 /* NotesCollectionViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -551,6 +557,7 @@
 				2EF32CDD22175881006E2B1F /* hairProducts.json in Resources */,
 				2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */,
 				2E0FFB8D254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf in Resources */,
+				2E07D20D25588E700029FB36 /* NotesCollectionViewCell.xib in Resources */,
 				2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */,
 				2E110A842550F203001ADACD /* CompletedCollectionViewCell.xib in Resources */,
 				2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */,
@@ -668,6 +675,7 @@
 				2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */,
 				2E110A832550F203001ADACD /* CompletedCollectionViewCell.swift in Sources */,
 				2EA365B3220A59A900FFDC5E /* ProfileViewController.swift in Sources */,
+				2E07D20C25588E700029FB36 /* NotesCollectionViewCell.swift in Sources */,
 				2E7946A1220C816D00219B6A /* RatingCollectionViewCell.swift in Sources */,
 				2EB2A1A722272CC300525BD4 /* StorageManager.swift in Sources */,
 				2EDB0E4B222DC230006DB8EE /* HairTableViewCell.swift in Sources */,

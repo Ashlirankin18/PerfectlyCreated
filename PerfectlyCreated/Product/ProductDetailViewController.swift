@@ -140,7 +140,7 @@ final class ProductDetailViewController: UICollectionViewController {
             }
             .store(in: &cancellables)
         case let .personal:
-            addProductBarButtonItem = nil
+            navigationItem.rightBarButtonItem = nil
         }
     }
     
@@ -185,14 +185,23 @@ final class ProductDetailViewController: UICollectionViewController {
     private func configureHeaders() {
         dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
             
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
-                return nil
-            }
-            
-            header.editButtonTapHandler = {
+            switch self.productType {
+            case .personal:
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
+                    return nil
+                }
                 
+                header.editButtonTapHandler = {
+                    
+                }
+                return header
+            case .general:
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
+                    return nil
+                }
+                header.isHidden = true
+                return header
             }
-            return header
         }
     }
 }

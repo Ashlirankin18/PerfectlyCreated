@@ -29,9 +29,9 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     enum SectionDataTest: Hashable {
-        
         case productModel(SectionData)
         case completed(Bool)
+        case notes(String)
     }
     
     @IBOutlet private weak var addProductBarButtonItem: UIBarButtonItem!
@@ -62,13 +62,13 @@ final class ProductDetailViewController: UICollectionViewController {
     }()
     
     private let additionalInfoCollectionLayoutSection: NSCollectionLayoutSection = {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .continuous
+    
         return section
     }()
      
@@ -103,6 +103,7 @@ final class ProductDetailViewController: UICollectionViewController {
     private func configureCollectionView() {
         collectionView.register(UINib(nibName: AboutProductCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: AboutProductCollectionViewCell.defaultNibName)
         collectionView.register(UINib(nibName: CompletedCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: CompletedCollectionViewCell.defaultNibName)
+        collectionView.register(UINib(nibName: NotesCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: NotesCollectionViewCell.defaultNibName)
         collectionView.register(UINib(nibName: AdditionalCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName)
         collectionView.collectionViewLayout = compositionalLayout
         collectionView.dataSource = dataSource
@@ -118,7 +119,7 @@ final class ProductDetailViewController: UICollectionViewController {
             
             let model = product.results
             
-            let product = ProductModel(productName: model.name, documentId: productManager.documentId, productDescription: model.features?.blob ?? model.description, userId: currentUser.uid, productImageURL: model.images.first?.absoluteString ?? "", category: model.category, isCompleted: false)
+            let product = ProductModel(productName: model.name, documentId: productManager.documentId, productDescription: model.features?.blob ?? model.description, userId: currentUser.uid, productImageURL: model.images.first?.absoluteString ?? "", category: model.category, isCompleted: false, notes: "")
             
             addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
                 guard let self = self else {
@@ -154,6 +155,9 @@ final class ProductDetailViewController: UICollectionViewController {
         case let .personal(product):
             snapshot.appendItems([.productModel(.additionalInfo(product))], toSection: .aboutProduct)
             snapshot.appendItems([.completed(product.isCompleted)], toSection: .additionalInfo)
+          
+            let notes = product.notes ?? "Tap Edit to add note."
+            snapshot.appendItems([.notes(notes)], toSection: .additionalInfo)
         }
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -168,9 +172,9 @@ final class ProductDetailViewController: UICollectionViewController {
             }
             switch sectionData {
             case let .aboutProduct(info):
-                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: info.name, productDescription: info.features?.blob ?? info.description, productURL: info.images.first)
+                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: info.name, productDescription: info.features?.blob ?? info.description, productURL: info.images.first, category: info.category)
             case let .additionalInfo(product):
-                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.productName, productDescription: product.productDescription, productURL: URL(string: product.productImageURL))
+                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.productName, productDescription: product.productDescription, productURL: URL(string: product.productImageURL), category: product.category)
             }
             return cell
         case let .completed(completed):
@@ -179,6 +183,12 @@ final class ProductDetailViewController: UICollectionViewController {
             }
             completedCell.viewModel = CompletedCollectionViewCell.ViewModel(isCompleted: completed, title: "Product Complete")
             return completedCell
+        case let .notes(notes):
+            guard let notesCell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.defaultNibName, for: indexPath) as? NotesCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            notesCell.viewModel = NotesCollectionViewCell.ViewModel(title: "Notes", notes: notes)
+            return notesCell
         }
     }
     

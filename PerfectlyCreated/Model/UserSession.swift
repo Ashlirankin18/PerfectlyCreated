@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseAuth
 import Combine
+import CombineExt
 
 protocol UserSessionAccountCreationDelegate:AnyObject {
     func didReceiveError(_ userSession: UserSession, error:Error)
@@ -33,7 +34,7 @@ final class UserSession {
     
     var accountCreationPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
     var signOutPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
-    
+    var signInPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
     
     private var documentId: String {
         return DataBaseManager.firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
@@ -63,22 +64,26 @@ final class UserSession {
     }
     
     func signOut() {
-        do{
+        do {
             try Auth.auth().signOut()
             signOutPassThroughSubject.send(.success(()))
-        }catch{
+        } catch {
             signOutPassThroughSubject.send(.failure(error))
         }
     }
     
-    func signInExistingUser(email:String,password:String){
-        Auth.auth().signIn(withEmail: email, password: password) { (results, error) in
-            if let error = error{
-                self.userSignInDelegate?.didReceiveSignInError(self, error: error)
+    func signInExistingUser(email: String,password: String) -> AnyPublisher<Void, Error> {
+        AnyPublisher.create { subscriber -> Cancellable in
+            Auth.auth().signIn(withEmail: email, password: password) { (results, error) in
+                if let error = error {
+                    subscriber.send(completion: .failure(error))
+                }
+                else if results != nil {
+                    subscriber.send(())
+                }
             }
-            else if let results = results{
-                self.userSignInDelegate?.didSignInUser(self, user: results.user)
-            }
+            return AnyCancellable { }
         }
+        .eraseToAnyPublisher()
     }
 }

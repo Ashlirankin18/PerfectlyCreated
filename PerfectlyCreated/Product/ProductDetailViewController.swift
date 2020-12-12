@@ -139,7 +139,7 @@ final class ProductDetailViewController: UICollectionViewController {
                 }
             }
             .store(in: &cancellables)
-        case let .personal:
+        case .personal:
             navigationItem.rightBarButtonItem = nil
         }
     }

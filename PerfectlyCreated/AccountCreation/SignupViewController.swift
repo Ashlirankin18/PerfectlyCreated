@@ -18,20 +18,13 @@ final class SignupViewController: UIViewController {
         case signUp
     }
     
-    @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var signUpButton: UIButton!
     @IBOutlet private weak var signInButton: UIButton!
     
-    @Published private var emailText = ""
-    
-    @Published private var passwordText = ""
-    
-    @Published private var usernameText = ""
-    
     private lazy var userSession: UserSession = UserSession()
-    
+    private var accountCreationValidator = AccountCreationValidator()
     private let accountFlow: AccountFlow
     
     private var cancellables = Set<AnyCancellable>()
@@ -50,6 +43,10 @@ final class SignupViewController: UIViewController {
         setTheDelegates()
         configureTapHandlers()
         configureTextfieldHandlers()
+        
+        accountCreationValidator.readyToSubmit
+            .assign(to: \.isEnabled, on: signUpButton, and: \.isEnabled, on: signInButton)
+            .store(in: &cancellables)
     }
     
     private func configureViews() {
@@ -62,7 +59,6 @@ final class SignupViewController: UIViewController {
     }
     
     private func setTheDelegates() {
-        usernameTextField.delegate = self
         passwordTextField.delegate = self
         emailTextField.delegate = self
     }
@@ -73,13 +69,10 @@ final class SignupViewController: UIViewController {
             guard let self = self  else {
                 return
             }
-            
-            guard !self.emailText.isEmpty, !self.passwordText.isEmpty else {
-                return
-            }
+            self.accountCreationValidator.formatUserName()
             
             do {
-               try self.userSession.createUser(email: self.emailText, password: self.passwordText, username: self.usernameText)
+                try self.userSession.createUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText, username: self.accountCreationValidator.usernameText)
                 
                 self.userSession.accountCreationPassThroughSubject.sink { [weak self] result in
                     
@@ -89,42 +82,57 @@ final class SignupViewController: UIViewController {
                     
                     switch result {
                     case let .failure(error):
-                        self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
+                        self.showAlert(title: "Error!", message: "There was an error signing up : \(error.localizedDescription)")
                     case .success:
                         let controller = PerfectlyCraftedTabBarViewController()
+                        controller.modalPresentationStyle = .fullScreen
                         self.show(controller, sender: self)
                     }
                 }
                 .store(in: &self.cancellables)
             } catch {
-                print(error.localizedDescription)
+                assertionFailure("An error occurred: \(error.localizedDescription)")
             }
+        }
+        .store(in: &cancellables)
+        
+        signInButton.tapPublisher.sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            self.userSession.signInExistingUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText).sink { error in
+                switch error {
+                case let .failure(error):
+                    self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
+                case .finished: break
+                }
+            } receiveValue: { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                let controller = PerfectlyCraftedTabBarViewController()
+                controller.modalPresentationStyle = .fullScreen
+                self.show(controller, sender: self)
+            }
+            .store(in: &self.cancellables)
         }
         .store(in: &cancellables)
     }
     
     private func configureTextfieldHandlers() {
-        emailTextField.textPublisher.sink { emailText in
+        emailTextField.textPublisher.sink { [weak self] emailText in
             guard let text = emailText else {
                 return
             }
-            self.emailText = text
+            self?.accountCreationValidator.emailText = text
         }
         .store(in: &cancellables)
         
-        passwordTextField.textPublisher.sink { emailText in
-            guard let text = emailText else {
+        passwordTextField.textPublisher.sink { passwordText in
+            guard let text = passwordText else {
                 return
             }
-            self.passwordText = text
-        }
-        .store(in: &cancellables)
-        
-        usernameTextField.textPublisher.sink { emailText in
-            guard let text = emailText else {
-                return
-            }
-            self.usernameText = text
+            self.accountCreationValidator.passwordText = text
         }
         .store(in: &cancellables)
     }

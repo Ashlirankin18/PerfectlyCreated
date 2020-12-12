@@ -16,7 +16,6 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = #colorLiteral(red: 0.6722700215, green: 1, blue: 0.6019102933, alpha: 1)
         getAllHairProducts()
         setUpTabbarItems()
     }

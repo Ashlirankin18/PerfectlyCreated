@@ -17,30 +17,19 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getAllHairProducts()
-        setUpTabbarItems()
+        setUpTabBarItems()
     }
     
     
-    private func setUpTabbarItems() {
-        
-        let profileViewController = ProfileViewController.init(view: ProfileView())
-        let profileNavigationController = UINavigationController(rootViewController: profileViewController)
-        
-        let searchViewController = SearchProductViewController()
-        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+    private func setUpTabBarItems() {
         let myProductViewController = UIStoryboard(name: "ProductViewController", bundle: .main).instantiateViewController(identifier: "ProductViewController") { coder in
             return ProductViewController(coder: coder)
         }
         let myProductNavigationController = UINavigationController(rootViewController: myProductViewController)
-        profileViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-user-26")
-        profileViewController.title = "Profile"
-        searchViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-search-25")
-        searchViewController.title = "Search"
         myProductViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-spray-filled-25.png")
         myProductViewController.title = "My Products"
         
-        self.viewControllers = [myProductNavigationController, searchNavigationController, profileNavigationController]
-        
+        self.viewControllers = [myProductNavigationController]
     }
     
     private func getAllHairProducts() {

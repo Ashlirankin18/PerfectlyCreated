@@ -59,7 +59,7 @@ class ShowProductViewController: UIViewController {
             }
             else if let snapshot = snapshot{
                 if snapshot.documents.count == 0 {
-                    let product = ProductModel.init(productName: theCurrentHairProduct.name, documentId: "", productDescription: theCurrentHairProduct.description, userId: user.uid, productImageURL: imageUrl, category: category, isCompleted: false)
+                    let product = ProductModel.init(productName: theCurrentHairProduct.name, documentId: "", productDescription: theCurrentHairProduct.description, userId: user.uid, productImageURL: imageUrl, category: category, isCompleted: false, notes: "")
                     DataBaseManager.postProductToDatabase(product: product, user: user)
                     
                 }
@@ -87,6 +87,7 @@ class ShowProductViewController: UIViewController {
             }
         }
     }
+    
     func getSelectedProduct( product:inout ProductModel) -> ProductModel? {
         guard let user = userSession.getCurrentUser() else{
             return nil

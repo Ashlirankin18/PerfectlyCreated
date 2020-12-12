@@ -13,16 +13,19 @@ struct ProductModel: Codable, Hashable {
     
     let productName: String
     
-    var documentId: String
+    let documentId: String
     
     let productDescription: String
     
     var userId: String
     
-    var productImageURL: String
+    let productImageURL: String
     
     let category: String
     
     var isCompleted: Bool
+    
+    let notes: String?
+    
 }
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +11,9 @@
     <customFonts key="customFonts">
         <array key="SF-Pro-Rounded-Light.otf">
             <string>SFProRounded-Light</string>
+        </array>
+        <array key="SF-Pro-Rounded-Regular.otf">
+            <string>SFProRounded-Regular</string>
         </array>
         <array key="SF-Pro-Rounded-Semibold.otf">
             <string>SFProRounded-Semibold</string>
@@ -29,42 +32,64 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phA-5k-Re3">
                         <rect key="frame" x="0.0" y="0.0" width="416" height="760"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="kec-uK-Qw3">
-                                <rect key="frame" x="12" y="0.0" width="392" height="760"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-as-qhR">
+                                <rect key="frame" x="12" y="0.0" width="392" height="748"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YEE-FT-mlW">
-                                        <rect key="frame" x="0.0" y="0.0" width="392" height="300"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="kec-uK-Qw3">
+                                        <rect key="frame" x="0.0" y="0.0" width="392" height="671"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YEE-FT-mlW">
+                                                <rect key="frame" x="0.0" y="0.0" width="392" height="300"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="300" id="ndX-oZ-gft"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7u-Nh-92I">
+                                                <rect key="frame" x="170.5" y="324" width="51" height="25.5"/>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="21"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7H-v6-ol5">
+                                                <rect key="frame" x="2" y="373.5" width="388" height="297.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                <color key="textColor" systemColor="labelColor"/>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="ndX-oZ-gft"/>
+                                            <constraint firstItem="p7H-v6-ol5" firstAttribute="leading" secondItem="kec-uK-Qw3" secondAttribute="leading" constant="2" id="BFm-fX-xWp"/>
+                                            <constraint firstItem="YEE-FT-mlW" firstAttribute="leading" secondItem="kec-uK-Qw3" secondAttribute="leadingMargin" id="CbB-x8-joH"/>
                                         </constraints>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7u-Nh-92I">
-                                        <rect key="frame" x="170.5" y="324" width="51" height="25.5"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="21"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7H-v6-ol5">
-                                        <rect key="frame" x="2" y="373.5" width="388" height="386.5"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <color key="textColor" systemColor="labelColor"/>
-                                        <fontDescription key="fontDescription" name="SFProRounded-Light" family="SF Pro Rounded" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DUg-sM-GZZ">
+                                        <rect key="frame" x="0.0" y="695" width="392" height="53"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfH-LX-Qyj">
+                                                <rect key="frame" x="0.0" y="0.0" width="74.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ0-4j-idA">
+                                                <rect key="frame" x="0.0" y="32.5" width="39.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" name="SFProRounded-Regular" family="SF Pro Rounded" pointSize="17"/>
+                                                <color key="textColor" systemColor="systemIndigoColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="p7H-v6-ol5" firstAttribute="leading" secondItem="kec-uK-Qw3" secondAttribute="leading" constant="2" id="BFm-fX-xWp"/>
-                                    <constraint firstItem="YEE-FT-mlW" firstAttribute="leading" secondItem="kec-uK-Qw3" secondAttribute="leadingMargin" id="CbB-x8-joH"/>
-                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="kec-uK-Qw3" secondAttribute="trailing" constant="12" id="6aJ-YJ-oeI"/>
-                            <constraint firstItem="kec-uK-Qw3" firstAttribute="top" secondItem="phA-5k-Re3" secondAttribute="top" id="FQh-eQ-Wor"/>
-                            <constraint firstItem="kec-uK-Qw3" firstAttribute="leading" secondItem="phA-5k-Re3" secondAttribute="leading" constant="12" id="Pod-jv-X1E"/>
-                            <constraint firstAttribute="bottom" secondItem="kec-uK-Qw3" secondAttribute="bottom" id="kJF-45-bEy"/>
+                            <constraint firstItem="G2X-as-qhR" firstAttribute="top" secondItem="phA-5k-Re3" secondAttribute="top" id="N2L-fH-ftF"/>
+                            <constraint firstAttribute="bottom" secondItem="G2X-as-qhR" secondAttribute="bottom" constant="12" id="mSt-va-yvg"/>
+                            <constraint firstItem="G2X-as-qhR" firstAttribute="leading" secondItem="phA-5k-Re3" secondAttribute="leading" constant="12" id="rvO-t3-JI2"/>
+                            <constraint firstAttribute="trailing" secondItem="G2X-as-qhR" secondAttribute="trailing" constant="12" id="ym3-0X-2xI"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -78,6 +103,7 @@
             </constraints>
             <size key="customSize" width="416" height="760"/>
             <connections>
+                <outlet property="categoryLabel" destination="iQ0-4j-idA" id="cRx-h8-BWL"/>
                 <outlet property="productDescriptionTextView" destination="p7H-v6-ol5" id="HgQ-8z-6lf"/>
                 <outlet property="productImageImageView" destination="YEE-FT-mlW" id="osj-JN-JTd"/>
                 <outlet property="productNameLabel" destination="r7u-Nh-92I" id="Vpv-kF-jTW"/>
@@ -91,6 +117,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

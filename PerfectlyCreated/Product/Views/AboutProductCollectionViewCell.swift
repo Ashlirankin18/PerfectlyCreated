@@ -14,16 +14,18 @@ final class AboutProductCollectionViewCell: UICollectionViewCell {
         let productName: String
         let productDescription: String
         let productURL: URL?
+        let category: String
     }
     
     @IBOutlet private weak var productImageImageView: UIImageView!
     @IBOutlet private weak var productNameLabel: UILabel!
     @IBOutlet private weak var productDescriptionTextView: UITextView!
-    
+    @IBOutlet private weak var categoryLabel: UILabel!
     
     var viewModel: ViewModel? {
         didSet {
             productNameLabel.text = viewModel?.productName
+            categoryLabel.text = viewModel?.category
             productImageImageView.kf.setImage(with: viewModel?.productURL)
             productDescriptionTextView.text = viewModel?.productDescription
         }

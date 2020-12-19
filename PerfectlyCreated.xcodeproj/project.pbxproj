@@ -44,6 +44,8 @@
 		2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E9B2208D2CB00988116 /* LaunchScreen.storyboard */; };
 		2E4A3EAC2208D5D900988116 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EAB2208D5D900988116 /* SignUpView.swift */; };
 		2E4A3EB02208E7A200988116 /* SignUpViewForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EAF2208E7A200988116 /* SignUpViewForm.swift */; };
+		2E4A8231258DA12D0031F30E /* EditProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A8230258DA12D0031F30E /* EditProductViewController.storyboard */; };
+		2E4A8238258DA8F40031F30E /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A822D258DA11D0031F30E /* EditProductViewController.swift */; };
 		2E57C3CA220E506C00C89FFC /* CreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E57C3C9220E506C00C89FFC /* CreateView.swift */; };
 		2E63590E2224A2CD0053BBD9 /* ProductDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E63590D2224A2CD0053BBD9 /* ProductDataManager.swift */; };
 		2E6359122224F8A30053BBD9 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6359112224F8A30053BBD9 /* DatabaseManager.swift */; };
@@ -147,6 +149,8 @@
 		2E4A3EA62208D37500988116 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		2E4A3EAB2208D5D900988116 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		2E4A3EAF2208E7A200988116 /* SignUpViewForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewForm.swift; sourceTree = "<group>"; };
+		2E4A822D258DA11D0031F30E /* EditProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
+		2E4A8230258DA12D0031F30E /* EditProductViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProductViewController.storyboard; sourceTree = "<group>"; };
 		2E57C3C9220E506C00C89FFC /* CreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateView.swift; sourceTree = "<group>"; };
 		2E63590D2224A2CD0053BBD9 /* ProductDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataManager.swift; sourceTree = "<group>"; };
 		2E6359112224F8A30053BBD9 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 				2E07D20725588D990029FB36 /* Views */,
 				2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */,
 				2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */,
+				2E4A8234258DA8980031F30E /* Edit Profile  */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -374,6 +379,23 @@
 				2E063E6E220B78DC00D85406 /* FeedsCollectionViewCell.swift */,
 				2EDB0E4A222DC230006DB8EE /* HairTableViewCell.swift */,
 				2E984789221D57D600204A42 /* SearchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2E4A8234258DA8980031F30E /* Edit Profile  */ = {
+			isa = PBXGroup;
+			children = (
+				2E4A8236258DA8A30031F30E /* Views */,
+				2E4A822D258DA11D0031F30E /* EditProductViewController.swift */,
+				2E4A8230258DA12D0031F30E /* EditProductViewController.storyboard */,
+			);
+			path = "Edit Profile ";
+			sourceTree = "<group>";
+		};
+		2E4A8236258DA8A30031F30E /* Views */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -570,6 +592,7 @@
 				2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */,
 				2E110A842550F203001ADACD /* CompletedCollectionViewCell.xib in Resources */,
 				2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */,
+				2E4A8231258DA12D0031F30E /* EditProductViewController.storyboard in Resources */,
 				2EAE684B254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.xib in Resources */,
 				2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */,
@@ -646,6 +669,7 @@
 				2E4A3EAC2208D5D900988116 /* SignUpView.swift in Sources */,
 				2E997F9E221B18AA00730ED7 /* HairProductModel.swift in Sources */,
 				2E063E69220B629A00D85406 /* ProfileCollectionViewCell.swift in Sources */,
+				2E4A8238258DA8F40031F30E /* EditProductViewController.swift in Sources */,
 				2EAE6839254E5F7200BE0E1E /* ProductDetailViewController.swift in Sources */,
 				2EA365A8220A2F0400FFDC5E /* UserModel.swift in Sources */,
 				2EDB0E4D222DC49C006DB8EE /* ImageViewControllerExtension.swift in Sources */,
@@ -842,7 +866,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ASLRJLYD2S;
 				INFOPLIST_FILE = PerfectlyCreated/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -862,7 +886,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ASLRJLYD2S;
 				INFOPLIST_FILE = PerfectlyCreated/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

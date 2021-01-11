@@ -55,8 +55,19 @@ final class EditProductViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init?(coder: NSCoder, productModel: ProductModel) {
+    @Published private var notes: String = ""
+    
+    @Published private var isCompleted: Bool = false
+    
+    private var notesHasText: AnyPublisher<Bool, Never> {
+        return $notes.map { !$0.isEmpty }.eraseToAnyPublisher()
+    }
+    
+    private let productManager: ProductManager
+    
+    init?(coder: NSCoder, productModel: ProductModel, productManager: ProductManager) {
         self.productModel = productModel
+        self.productManager = productManager
         super.init(coder: coder)
     }
     
@@ -69,7 +80,10 @@ final class EditProductViewController: UIViewController {
         view.backgroundColor = .systemIndigo
         editProductCollectionView.backgroundColor = .systemIndigo
         configureNavBar()
+        configureSaveBarButton()
+        configureBackButton()
         configureCollectionView()
+        enableSaveButtonIfNeeded()
         configureLayout()
         reloadDataSource()
     }
@@ -95,28 +109,72 @@ final class EditProductViewController: UIViewController {
         editProductCollectionView.collectionViewLayout = layout
     }
     
+    private func configureSaveBarButton() {
+        saveBarButtonItem.tapPublisher.sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            let product = self.productModel
+            let productFieldsToUpdate: [String: Any] = [ "notes": self.notes , "isCompleted": self.isCompleted]
+            
+            self.productManager.updateProduct(documentId: product.documentId, productFields: productFieldsToUpdate) { result in
+                switch result {
+                    case let .failure(error):
+                        self.showAlert(title: "Error!", message: "\(error.localizedDescription)")
+                    case .success:
+                        self.navigationController?.popViewController(animated: true)
+                }
+            }
+        }
+        .store(in: &cancellables)
+    }
+    
+    private func configureBackButton() {
+        backBarButtonItem.tapPublisher.sink { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        .store(in: &cancellables)
+    }
+    
+    private func enableSaveButtonIfNeeded() {
+        $isCompleted.combineLatest(notesHasText)
+            .map { $0 && $1 }
+            .assign(to: \.isEnabled, on: saveBarButtonItem)
+            .store(in: &cancellables)
+    }
+    
     private func configureCell(collectionView: UICollectionView, model: SectionData, indexPath: IndexPath) -> UICollectionViewCell {
         
         switch model {
-        case let .info(product):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
-                return  UICollectionViewCell()
-            }
-            
-            cell.viewModel = .init(isCompleted: product.isCompleted, title: "Is Completed?", configuration: .editing)
-            return cell
-        case let .notes(notes):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.defaultNibName, for: indexPath) as? NotesCollectionViewCell else {
-                return  UICollectionViewCell()
-            }
-           
-            cell.viewModel = .init(title: "Add notes here.", notes: notes, configuration: .editing)
-            
-            cell.textViewTextDidChangePublisher.sink { [weak self] _ in
-                self?.editProductCollectionView.collectionViewLayout.invalidateLayout()
-            }
-            .store(in: &cancellables)
-            return cell
+            case let .info(product):
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
+                    return  UICollectionViewCell()
+                }
+                
+                cell.viewModel = .init(isCompleted: product.isCompleted, title: "Is Completed?", configuration: .editing)
+                
+                cell.isCompletePublisher.sink { isCompleted in
+                    self.isCompleted = isCompleted
+                }
+                .store(in: &cancellables)
+                
+                return cell
+            case let .notes(notes):
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.defaultNibName, for: indexPath) as? NotesCollectionViewCell else {
+                    return  UICollectionViewCell()
+                }
+                
+                cell.viewModel = .init(title: "Add notes here.", notes: notes, configuration: .editing)
+                
+                cell.textViewTextDidChangePublisher.sink { [weak self] _ in
+                    self?.editProductCollectionView.collectionViewLayout.invalidateLayout()
+                }
+                .store(in: &cancellables)
+                
+                cell.notesTextHandler = { text in
+                    self.notes = text ?? ""
+                }
+                return cell
         }
     }
     

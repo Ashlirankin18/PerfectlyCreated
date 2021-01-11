@@ -37,6 +37,12 @@ class CompletedCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var checkmarkButton: UIButton!
     private var cancellables = Set<AnyCancellable>()
     
+    private var isCompletedPassThroughSubject = PassthroughSubject<Bool, Never>()
+   
+    var isCompletePublisher: AnyPublisher<Bool, Never> {
+        return isCompletedPassThroughSubject.eraseToAnyPublisher()
+    }
+    
     var viewModel: ViewModel? {
         didSet {
             
@@ -44,7 +50,9 @@ class CompletedCollectionViewCell: UICollectionViewCell {
                 return
             }
             titleLabel.text = viewModel.title
-            checkmarkButton.setImage(viewModel.completeImage, for: .normal)
+            checkmarkButton.isSelected = viewModel.isCompleted
+            checkmarkButton.setImage(viewModel.completeImage, for: .selected)
+           
             checkmarkButton.isUserInteractionEnabled = viewModel.configuration == .editing
             
             if viewModel.configuration == .editing {
@@ -54,7 +62,6 @@ class CompletedCollectionViewCell: UICollectionViewCell {
             }
         }
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -66,6 +73,7 @@ class CompletedCollectionViewCell: UICollectionViewCell {
             } else {
                 self.checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .selected)
             }
+            self.isCompletedPassThroughSubject.send(self.checkmarkButton.isSelected)
         }
         .store(in: &cancellables)
     }

@@ -258,7 +258,7 @@ final class ProductDetailViewController: UICollectionViewController {
         switch productType {
         case.general: return nil
         case let .personal(productModel):
-            let controller  = EditProductViewController(coder: coder, productModel: productModel)
+            let controller  = EditProductViewController(coder: coder, productModel: productModel, productManager: productManager)
             return controller
         }
     }

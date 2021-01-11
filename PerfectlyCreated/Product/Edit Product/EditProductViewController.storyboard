@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MYM-tW-G2m">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -38,16 +37,31 @@
                             <constraint firstItem="szF-fx-QIt" firstAttribute="bottom" secondItem="yir-uh-7nh" secondAttribute="bottom" id="zQK-52-IUk"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="NS4-Og-FPG">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" id="t4o-Kf-1l4">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="lBK-9q-ciE">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                        <connections>
+                            <outlet property="backBarButtonItem" destination="t4o-Kf-1l4" id="fLY-Ql-DgD"/>
+                            <outlet property="rightBarButtonItem" destination="lBK-9q-ciE" id="2Ji-jA-rko"/>
+                        </connections>
+                    </navigationItem>
                     <connections>
+                        <outlet property="backBarButtonItem" destination="t4o-Kf-1l4" id="Mbc-9d-i9b"/>
                         <outlet property="editProductCollectionView" destination="yir-uh-7nh" id="ZKD-CP-25L"/>
+                        <outlet property="saveBarButtonItem" destination="lBK-9q-ciE" id="gbL-MZ-E4R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UeK-o2-yBU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="108"/>
+            <point key="canvasLocation" x="984.05797101449286" y="107.8125"/>
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

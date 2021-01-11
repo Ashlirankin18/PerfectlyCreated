@@ -41,7 +41,7 @@ final class ProductViewController: UICollectionViewController {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "CategorySectionHeaderCollectionReusableView", alignment: .top)
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalWidth(0.6))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalWidth(0.8))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
@@ -55,15 +55,22 @@ final class ProductViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         configureCollectionView()
         configureButtonTapHandler()
         retrieveProducts()
         configureHeaders()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.configuresShadowlessOpaqueNavigationBar()
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     private func configureCollectionView() {
-        collectionView.register(UINib(nibName: "ProductCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "ProductCollectionViewCell")
-        collectionView.register(UINib(nibName: "CategorySectionHeaderCollectionReusableView", bundle: .main), forSupplementaryViewOfKind: "view", withReuseIdentifier: "CategorySectionHeaderCollectionReusableView")
+        collectionView.register(UINib(nibName: ProductCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: ProductCollectionViewCell.defaultNibName)
+        collectionView.register(UINib(nibName: CategorySectionHeaderCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: "view", withReuseIdentifier: CategorySectionHeaderCollectionReusableView.defaultNibName)
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: productCellCollectionLayoutSection)
         collectionView.dataSource = dataSource
     }
@@ -90,9 +97,11 @@ final class ProductViewController: UICollectionViewController {
     
     private func configureCell(model: ProductModel, indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductCollectionViewCell", for: indexPath) as? ProductCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.defaultNibName, for: indexPath) as? ProductCollectionViewCell else {
             return UICollectionViewCell()
         }
+        let borderColor: UIColor = model.isCompleted ? UIColor.systemIndigo : UIColor.systemIndigo.withAlphaComponent(0.5)
+        cell.borderColor = borderColor
         cell.productImageView.kf.setImage(with: URL(string: model.productImageURL))
         cell.productNameLabel.text = model.productName
         return cell

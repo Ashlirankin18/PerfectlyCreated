@@ -21,4 +21,17 @@ extension UIViewController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
         handler(alertController)
     }
+    
+    func persentDestructiveAlertController(title: String?, message: String?, destructiveTitle: String, destructiveCompletion: @escaping () -> Void, nonDestructiveTitle: String ) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let destructiveAction = UIAlertAction(title: destructiveTitle, style: .destructive) { _ in
+            destructiveCompletion()
+        }
+        let nonDestructiveAction = UIAlertAction(title: nonDestructiveTitle, style: .cancel, handler: nil)
+        alertController.addAction(nonDestructiveAction)
+        alertController.addAction(destructiveAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
 }

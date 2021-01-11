@@ -12,6 +12,10 @@ import Combine
 import FirebaseAuth
 
 final class ProductDetailViewController: UICollectionViewController {
+   
+    private enum SegueIdentifier {
+        static let editProduct = "editProduct"
+    }
     
     enum ProductType {
         case personal(ProductModel)
@@ -35,6 +39,8 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     @IBOutlet private weak var addProductBarButtonItem: UIBarButtonItem!
+    
+    @IBOutlet private weak var backBarButtonItem: UIBarButtonItem!
     
     private let productType: ProductType
     
@@ -95,9 +101,16 @@ final class ProductDetailViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBarButtonTapHandler()
+        configureBackButtonItem()
         configureCollectionView()
         configureHeaders()
         reloadDataSource()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.configuresShadowlessTransparentNavigationBar(backgroundColor: .clear)
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     private func configureCollectionView() {
@@ -107,6 +120,13 @@ final class ProductDetailViewController: UICollectionViewController {
         collectionView.register(UINib(nibName: AdditionalCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName)
         collectionView.collectionViewLayout = compositionalLayout
         collectionView.dataSource = dataSource
+    }
+    
+    private func configureBackButtonItem() {
+        backBarButtonItem.tapPublisher.sink { [weak self] _ in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        .store(in: &cancellables)
     }
     
     private func configureBarButtonTapHandler() {
@@ -119,7 +139,7 @@ final class ProductDetailViewController: UICollectionViewController {
             
             let model = product.results
             
-            let product = ProductModel(productName: model.name, documentId: productManager.documentId, productDescription: model.features?.blob ?? model.description, userId: currentUser.uid, productImageURL: model.images.first?.absoluteString ?? "", category: model.category, isCompleted: false, notes: "")
+            let product = ProductModel(productName: model.name, documentId: productManager.documentId, productDescription: model.features?.blob ?? model.description, userId: currentUser.uid, productImageURL: model.images.first?.absoluteString ?? "", category: model.category, isCompleted: false, notes: nil)
             
             addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
                 guard let self = self else {
@@ -140,9 +160,28 @@ final class ProductDetailViewController: UICollectionViewController {
                 }
             }
             .store(in: &cancellables)
-        case .personal:
-            navigationItem.rightBarButtonItem = nil
+        case let .personal(product):
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "trash.fill")
+            navigationItem.rightBarButtonItem?.tintColor = .systemRed
+            
+            addProductBarButtonItem.tapPublisher.sink { [weak self] _ in
+                self?.persentDestructiveAlertController(title: nil, message: "Are you sure you want to delete this product?", destructiveTitle: "Delete", destructiveCompletion: {
+                    self?.performDeleteAction(product: product)
+                }, nonDestructiveTitle: "Keep")
+            }
+            .store(in: &cancellables)
         }
+    }
+    
+    private func performDeleteAction(product: ProductModel) {
+        productManager.deleteProduct(product, completionHandler: { [weak self] result in
+            switch result {
+            case let .failure(error):
+                self?.showAlert(title: "Error", message: "An error occurred: \(error.localizedDescription)")
+            case .success:
+                self?.navigationController?.popViewController(animated: true)
+            }
+        })
     }
     
     private func reloadDataSource() {
@@ -181,13 +220,13 @@ final class ProductDetailViewController: UICollectionViewController {
             guard let completedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            completedCell.viewModel = CompletedCollectionViewCell.ViewModel(isCompleted: completed, title: "Product Complete")
+            completedCell.viewModel = CompletedCollectionViewCell.ViewModel(isCompleted: completed, title: "Product Complete", configuration: .display)
             return completedCell
         case let .notes(notes):
             guard let notesCell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.defaultNibName, for: indexPath) as? NotesCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            notesCell.viewModel = NotesCollectionViewCell.ViewModel(title: "Notes", notes: notes)
+            notesCell.viewModel = NotesCollectionViewCell.ViewModel(title: "Notes", notes: notes, configuration: .display)
             return notesCell
         }
     }
@@ -202,7 +241,7 @@ final class ProductDetailViewController: UICollectionViewController {
                 }
                 
                 header.editButtonTapHandler = {
-                    
+                    self.performSegue(withIdentifier: SegueIdentifier.editProduct, sender: self)
                 }
                 return header
             case .general:
@@ -212,6 +251,15 @@ final class ProductDetailViewController: UICollectionViewController {
                 header.isHidden = true
                 return header
             }
+        }
+    }
+    
+    @IBSegueAction func makeEditViewController(coder: NSCoder) -> EditProductViewController? {
+        switch productType {
+        case.general: return nil
+        case let .personal(productModel):
+            let controller  = EditProductViewController(coder: coder, productModel: productModel)
+            return controller
         }
     }
 }

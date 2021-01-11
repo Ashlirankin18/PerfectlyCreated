@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qiP-iG-rp0">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qiP-iG-rp0">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Product View Controller-->
+        <!--My Products-->
         <scene sceneID="uZ9-j8-dvo">
             <objects>
                 <collectionViewController storyboardIdentifier="ProductViewController" id="FGK-kw-HAw" customClass="ProductViewController" customModule="PerfectlyCreated" customModuleProvider="target" sceneMemberID="viewController">
@@ -29,7 +28,7 @@
                             <outlet property="delegate" destination="FGK-kw-HAw" id="ocQ-f2-AsW"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="GvX-9r-5n4">
+                    <navigationItem key="navigationItem" title="My Products" id="GvX-9r-5n4">
                         <barButtonItem key="rightBarButtonItem" id="7fi-nz-PkN">
                             <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                             <color key="tintColor" systemColor="systemIndigoColor"/>
@@ -41,15 +40,15 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1jQ-er-1as" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="860.86956521739137" y="-10.044642857142856"/>
+            <point key="canvasLocation" x="1291" y="-33"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="CQ7-fn-e4J">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qiP-iG-rp0" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PuM-ob-qI9">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="PuM-ob-qI9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

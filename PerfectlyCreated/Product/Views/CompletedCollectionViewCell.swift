@@ -7,12 +7,21 @@
 //
 
 import UIKit
+import Combine
 
 class CompletedCollectionViewCell: UICollectionViewCell {
     
     struct ViewModel {
+        
+        enum Configuration {
+            case display
+            case editing
+        }
+        
         let isCompleted: Bool
         let title: String
+        
+        let configuration: Configuration
         
         fileprivate var completeImage: UIImage! {
             if isCompleted {
@@ -21,11 +30,12 @@ class CompletedCollectionViewCell: UICollectionViewCell {
                 return UIImage(systemName: "checkmark.circle")
             }
         }
+        
     }
     
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet weak var checkmarkImageView: UIImageView!
-    
+    @IBOutlet private weak var checkmarkButton: UIButton!
+    private var cancellables = Set<AnyCancellable>()
     
     var viewModel: ViewModel? {
         didSet {
@@ -34,7 +44,29 @@ class CompletedCollectionViewCell: UICollectionViewCell {
                 return
             }
             titleLabel.text = viewModel.title
-            checkmarkImageView.image = viewModel.completeImage
+            checkmarkButton.setImage(viewModel.completeImage, for: .normal)
+            checkmarkButton.isUserInteractionEnabled = viewModel.configuration == .editing
+            
+            if viewModel.configuration == .editing {
+                borderWidth = 1.0
+                borderColor = .systemIndigo
+                cornerRadius = 10
+            }
         }
+    }
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        checkmarkButton.tapPublisher.sink { _ in
+            self.checkmarkButton.isSelected.toggle()
+            
+            if self.checkmarkButton.isSelected {
+                self.checkmarkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .selected)
+            } else {
+                self.checkmarkButton.setImage(UIImage(systemName: "checkmark.circle"), for: .selected)
+            }
+        }
+        .store(in: &cancellables)
     }
 }

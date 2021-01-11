@@ -58,4 +58,14 @@ final class ProductManager {
             }
         }
     }
+    
+    func deleteProduct(_ product: ProductModel, completionHandler: @escaping (Result<Void, Error>) -> Void ) {
+        firebaseDB.collection(FirebaseCollectionKeys.products).document(product.documentId).delete { error in
+            if let error = error {
+                completionHandler(.failure(error))
+            } else {
+                completionHandler(.success(()))
+            }
+        }
+    }
 }

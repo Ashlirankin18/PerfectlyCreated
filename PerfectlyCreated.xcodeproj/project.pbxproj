@@ -288,7 +288,7 @@
 				2E07D20725588D990029FB36 /* Views */,
 				2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */,
 				2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */,
-				2E4A8234258DA8980031F30E /* Edit Profile  */,
+				2E4A8234258DA8980031F30E /* Edit Product */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -383,21 +383,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2E4A8234258DA8980031F30E /* Edit Profile  */ = {
+		2E4A8234258DA8980031F30E /* Edit Product */ = {
 			isa = PBXGroup;
 			children = (
-				2E4A8236258DA8A30031F30E /* Views */,
 				2E4A822D258DA11D0031F30E /* EditProductViewController.swift */,
 				2E4A8230258DA12D0031F30E /* EditProductViewController.storyboard */,
 			);
-			path = "Edit Profile ";
-			sourceTree = "<group>";
-		};
-		2E4A8236258DA8A30031F30E /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
+			path = "Edit Product";
 			sourceTree = "<group>";
 		};
 		2EA365AB220A301400FFDC5E /* Model */ = {
@@ -779,6 +771,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = all;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

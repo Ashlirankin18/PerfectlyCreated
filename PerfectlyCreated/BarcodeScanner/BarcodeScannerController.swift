@@ -39,4 +39,23 @@ final class BarCodeScannerController {
             }
         }
     }
+    
+    func captureOutout(with image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+        let visionImage = VisionImage(image: image)
+        barcodeDetector.process(visionImage) { ( barcodes, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            if let barcodes = barcodes {
+                for barcode in barcodes {
+                    if let barCodeString = barcode.rawValue {
+                        completion(.success(barCodeString))
+                        return
+                    }
+                }
+            }
+        }
+    }
 }

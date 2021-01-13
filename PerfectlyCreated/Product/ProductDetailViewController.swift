@@ -52,6 +52,8 @@ final class ProductDetailViewController: UICollectionViewController {
         return self.configureCell(model: model, indexPath: indexPath)
     }
     
+    private var productInfoDraft = ProductInfoDraft()
+    
     private let aboutProductCollectionLayoutSection: NSCollectionLayoutSection = {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
@@ -104,7 +106,21 @@ final class ProductDetailViewController: UICollectionViewController {
         configureBackButtonItem()
         configureCollectionView()
         configureHeaders()
-        reloadDataSource()
+        
+        switch productType {
+            case .general:
+                reloadDataSource()
+                
+            case let .personal(product):
+                productManager.retireveProduct(with: product.documentId) { result in
+                    switch result {
+                        case let .failure(error):
+                            print(error.localizedDescription)
+                        case let .success(retrievedProduct):
+                            self.reloadDataSource(product: retrievedProduct)
+                    }
+                }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,13 +207,25 @@ final class ProductDetailViewController: UICollectionViewController {
         switch productType {
         case let .general(product):
             snapshot.appendItems([.productModel(.aboutProduct(product.results))], toSection: .aboutProduct)
-        case let .personal(product):
-            snapshot.appendItems([.productModel(.additionalInfo(product))], toSection: .aboutProduct)
-            snapshot.appendItems([.completed(product.isCompleted)], toSection: .additionalInfo)
-          
-            let notes = product.notes ?? "Tap Edit to add note."
-            snapshot.appendItems([.notes(notes)], toSection: .additionalInfo)
+        case .personal: break
         }
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    private func reloadDataSource(product: ProductModel) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, SectionDataTest>()
+        snapshot.appendSections([.aboutProduct, .additionalInfo])
+        
+        productInfoDraft.documentId = product.documentId
+        productInfoDraft.isCompleted = product.isCompleted
+        productInfoDraft.notes = product.notes ?? "Tap edit to add note"
+        snapshot.appendItems([.productModel(.additionalInfo(product))], toSection: .aboutProduct)
+        
+        snapshot.appendItems([.completed(productInfoDraft.isCompleted)], toSection: .additionalInfo)
+        
+        let notes = productInfoDraft.notes
+        snapshot.appendItems([.notes(notes)], toSection: .additionalInfo)
+        
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
@@ -256,9 +284,9 @@ final class ProductDetailViewController: UICollectionViewController {
     
     @IBSegueAction func makeEditViewController(coder: NSCoder) -> EditProductViewController? {
         switch productType {
-        case.general: return nil
-        case let .personal(productModel):
-            let controller  = EditProductViewController(coder: coder, productModel: productModel, productManager: productManager)
+        case .general: return nil
+        case .personal:
+            let controller  = EditProductViewController(coder: coder, productInfoDraft: productInfoDraft, productManager: productManager)
             return controller
         }
     }

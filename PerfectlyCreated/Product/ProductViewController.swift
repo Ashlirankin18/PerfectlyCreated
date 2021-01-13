@@ -21,6 +21,8 @@ final class ProductViewController: UICollectionViewController {
         return controller
     }()
     
+    private lazy var barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.defaultNibName, bundle: .main)
+    
     private var cancellables = Set<AnyCancellable>()
     
     private var productsDictionary: [ProductModel] = [] {
@@ -114,11 +116,17 @@ final class ProductViewController: UICollectionViewController {
             
         }
         
-        let scanBarCodeAction = UIAlertAction(title: "Scan barcode", style: .default) { _ in
+        let scanBarCodeAction = UIAlertAction(title: "Scan barcode", style: .default) { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            let navigationController = UINavigationController(rootViewController: self.barcodeScannerViewController)
+            navigationController.modalPresentationStyle = .fullScreen
+            self.present(navigationController, animated: true)
             
         }
         
-        let searchProduct = UIAlertAction(title: "Search", style: .default) {[weak self] _ in
+        let searchProduct = UIAlertAction(title: "Search", style: .default) { [weak self] _ in
             
             guard let self = self else {
                 return

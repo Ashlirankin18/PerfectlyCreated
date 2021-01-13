@@ -17,9 +17,13 @@ extension UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func showAlert(title: String?, message: String?, style: UIAlertController.Style, handler: @escaping (UIAlertController) -> Void) {
+    func showAlert(title: String?, message: String?, style: UIAlertController.Style, handler: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-        handler(alertController)
+        let okAction = UIAlertAction(title: "Ok", style: .default) { _ in
+            handler()
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
     
     func persentDestructiveAlertController(title: String?, message: String?, destructiveTitle: String, destructiveCompletion: @escaping () -> Void, nonDestructiveTitle: String ) {

@@ -18,7 +18,7 @@ final class EditProductViewController: UIViewController {
     }
     
     private enum SectionData: Hashable {
-        case info(ProductModel)
+        case info(Bool)
         case notes(String)
     }
     
@@ -51,22 +51,14 @@ final class EditProductViewController: UIViewController {
         return section
     }()
     
-    private let productModel: ProductModel
+    private let productInfoDraft: ProductInfoDraft
     
     private var cancellables = Set<AnyCancellable>()
     
-    @Published private var notes: String = ""
-    
-    @Published private var isCompleted: Bool = false
-    
-    private var notesHasText: AnyPublisher<Bool, Never> {
-        return $notes.map { !$0.isEmpty }.eraseToAnyPublisher()
-    }
-    
     private let productManager: ProductManager
     
-    init?(coder: NSCoder, productModel: ProductModel, productManager: ProductManager) {
-        self.productModel = productModel
+    init?(coder: NSCoder, productInfoDraft: ProductInfoDraft, productManager: ProductManager) {
+        self.productInfoDraft = productInfoDraft
         self.productManager = productManager
         super.init(coder: coder)
     }
@@ -81,7 +73,6 @@ final class EditProductViewController: UIViewController {
         editProductCollectionView.backgroundColor = .systemIndigo
         configureNavBar()
         configureSaveBarButton()
-        configureBackButton()
         configureCollectionView()
         configureLayout()
         reloadDataSource()
@@ -113,10 +104,10 @@ final class EditProductViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            let product = self.productModel
-            let productFieldsToUpdate: [String: Any] = [ "notes": self.notes , "isCompleted": self.isCompleted]
             
-            self.productManager.updateProduct(documentId: product.documentId, productFields: productFieldsToUpdate) { result in
+            let productFieldsToUpdate: [String: Any] = [ "notes": self.productInfoDraft.notes , "isCompleted": self.productInfoDraft.isCompleted]
+            
+            self.productManager.updateProduct(documentId: self.productInfoDraft.documentId, productFields: productFieldsToUpdate) { result in
                 switch result {
                     case let .failure(error):
                         self.showAlert(title: "Error!", message: "\(error.localizedDescription)")
@@ -134,19 +125,19 @@ final class EditProductViewController: UIViewController {
         }
         .store(in: &cancellables)
     }
-    
+
     private func configureCell(collectionView: UICollectionView, model: SectionData, indexPath: IndexPath) -> UICollectionViewCell {
         
         switch model {
-            case let .info(product):
+            case let .info(isCompleted):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
                     return  UICollectionViewCell()
                 }
                 
-                cell.viewModel = .init(isCompleted: product.isCompleted, title: "Is Completed?", configuration: .editing)
+                cell.viewModel = .init(isCompleted: isCompleted, title: "Is Completed?", configuration: .editing)
                 
                 cell.isCompletePublisher.sink { isCompleted in
-                    self.isCompleted = isCompleted
+                    self.productInfoDraft.isCompleted = isCompleted
                 }
                 .store(in: &cancellables)
                 
@@ -164,7 +155,7 @@ final class EditProductViewController: UIViewController {
                 .store(in: &cancellables)
                 
                 cell.notesTextHandler = { text in
-                    self.notes = text ?? ""
+                    self.productInfoDraft.notes = text ?? ""
                 }
                 return cell
         }
@@ -173,8 +164,8 @@ final class EditProductViewController: UIViewController {
     private func reloadDataSource() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, SectionData>()
         snapshot.appendSections([.info, .notes])
-        snapshot.appendItems([.info(productModel)], toSection: .info)
-        snapshot.appendItems([.notes(productModel.notes ?? "")], toSection: .notes)
+        snapshot.appendItems([.info(productInfoDraft.isCompleted)], toSection: .info)
+        snapshot.appendItems([.notes(productInfoDraft.notes)], toSection: .notes)
         editProductDataSource.apply(snapshot)
     }
 }

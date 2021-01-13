@@ -59,6 +59,29 @@ final class ProductManager {
         }
     }
     
+    func retireveProduct(with documenId: String, completion: @escaping (Result<ProductModel, Error>) -> Void) {
+        firebaseDB.collection(FirebaseCollectionKeys.products).document(documenId).addSnapshotListener({ (snapshot, error) in
+           
+            DispatchQueue.main.async {
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                if let snapshot = snapshot {
+                    do {
+                        guard let model = try snapshot.data(as: ProductModel.self) else {
+                            assertionFailure("Could not find model.")
+                            return
+                        }
+                        completion(.success(model))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                }
+            }
+        })
+    }
+    
     func deleteProduct(_ product: ProductModel, completionHandler: @escaping (Result<Void, Error>) -> Void ) {
         firebaseDB.collection(FirebaseCollectionKeys.products).document(product.documentId).delete { error in
             if let error = error {

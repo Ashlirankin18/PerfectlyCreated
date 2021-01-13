@@ -83,7 +83,6 @@ final class EditProductViewController: UIViewController {
         configureSaveBarButton()
         configureBackButton()
         configureCollectionView()
-        enableSaveButtonIfNeeded()
         configureLayout()
         reloadDataSource()
     }
@@ -134,13 +133,6 @@ final class EditProductViewController: UIViewController {
             self?.navigationController?.popViewController(animated: true)
         }
         .store(in: &cancellables)
-    }
-    
-    private func enableSaveButtonIfNeeded() {
-        $isCompleted.combineLatest(notesHasText)
-            .map { $0 && $1 }
-            .assign(to: \.isEnabled, on: saveBarButtonItem)
-            .store(in: &cancellables)
     }
     
     private func configureCell(collectionView: UICollectionView, model: SectionData, indexPath: IndexPath) -> UICollectionViewCell {

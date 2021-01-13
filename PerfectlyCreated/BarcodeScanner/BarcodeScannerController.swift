@@ -19,19 +19,22 @@ final class BarCodeScannerController {
         return scanner
     }()
     
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection, completion: @escaping (Result<String, Error>) -> Void) {
         
         let visionImage = VisionImage(buffer: sampleBuffer)
         
         barcodeDetector.process(visionImage) { barcodes, error in
             if let error = error {
-                print(error.localizedDescription)
+                completion(.failure(error))
                 return
             }
             
             if let barcodes = barcodes {
                 for barcode in barcodes {
-                    print(barcode.rawValue!)
+                    if let barCodeString = barcode.rawValue {
+                        completion(.success(barCodeString))
+                        return
+                    }
                 }
             }
         }

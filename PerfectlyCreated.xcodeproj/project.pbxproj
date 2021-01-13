@@ -73,6 +73,7 @@
 		2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B6220A64E700FFDC5E /* LoginViewController.swift */; };
 		2EA365B9220A678200FFDC5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B8220A678200FFDC5E /* LoginView.swift */; };
 		2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365BA220A760800FFDC5E /* UserSession.swift */; };
+		2EAD2CF325AF3EDE00C71DAB /* ProductInfoDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD2CF225AF3EDE00C71DAB /* ProductInfoDraft.swift */; };
 		2EAE6836254DE36300BE0E1E /* SearchProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFD0D254DDBF10020D9DC /* SearchProductViewController.storyboard */; };
 		2EAE6839254E5F7200BE0E1E /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */; };
 		2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */; };
@@ -179,6 +180,7 @@
 		2EA365B6220A64E700FFDC5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2EA365B8220A678200FFDC5E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EA365BA220A760800FFDC5E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		2EAD2CF225AF3EDE00C71DAB /* ProductInfoDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoDraft.swift; sourceTree = "<group>"; };
 		2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetailViewController.storyboard; sourceTree = "<group>"; };
 		2EAE6840254F04AF00BE0E1E /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
@@ -289,6 +291,7 @@
 				2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */,
 				2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */,
 				2E4A8234258DA8980031F30E /* Edit Product */,
+				2EAD2CF225AF3EDE00C71DAB /* ProductInfoDraft.swift */,
 			);
 			path = Product;
 			sourceTree = "<group>";
@@ -693,6 +696,7 @@
 				2E98478A221D57D600204A42 /* SearchView.swift in Sources */,
 				2E0FFD05254DCFD90020D9DC /* ProductCollectionViewCell.swift in Sources */,
 				2E7946E1220CFB8700219B6A /* RatingView.swift in Sources */,
+				2EAD2CF325AF3EDE00C71DAB /* ProductInfoDraft.swift in Sources */,
 				2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */,
 				2E997FA8221B751300730ED7 /* OtherOptionsCell.swift in Sources */,
 				2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */,

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AVFoundation
+import Combine
 
 /// Controls the logic related to reading the barcodes.
 final class VideoSessionController: NSObject {
@@ -20,6 +21,14 @@ final class VideoSessionController: NSObject {
     private let backgroundView: UIView
     
     private lazy var barcodeController = BarCodeScannerController()
+    
+    var bacodeStringPublisher: AnyPublisher<String, Error> {
+        return bacodeStringSubject.eraseToAnyPublisher()
+    }
+    
+    private var bacodeStringSubject = PassthroughSubject<String, Error>()
+    
+    private var cancellables = Set<AnyCancellable>()
     
     init(backgroundView: UIView) {
         self.backgroundView = backgroundView
@@ -67,6 +76,17 @@ final class VideoSessionController: NSObject {
 extension VideoSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        barcodeController.captureOutput(output, didOutput: sampleBuffer, from: connection)
+        barcodeController.captureOutput(output, didOutput: sampleBuffer, from: connection) { [weak self] result in
+            
+            guard let self = self else {
+                return
+            }
+            switch result {
+                case let .failure(error):
+                    self.bacodeStringSubject.send(completion: .failure(error))
+                case let .success(barcodeString):
+                    self.bacodeStringSubject.send(barcodeString)
+            }
+        }
     }
 }

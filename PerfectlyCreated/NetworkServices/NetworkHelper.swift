@@ -7,55 +7,43 @@
 //
 
 import Foundation
+import Combine
 
-public final class NetworkHelper {
-  private init() {
-    let cache = URLCache(memoryCapacity: 10 * 1024 * 1024, diskCapacity: 10 * 1024 * 1024, diskPath: nil)
-    URLCache.shared = cache
-  }
-  public static let shared = NetworkHelper()
-  
-  public func performDataTask(endpointURLString: String,
-                              httpMethod: String,
-                              httpBody: Data?,
-                              completionHandler: @escaping (AppError?, Data?, HTTPURLResponse?) ->Void) {
-    guard let url = URL(string: endpointURLString) else {
-      completionHandler(AppError.badURL("\(endpointURLString)"), nil, nil)
-      return
-    }
-    var request = URLRequest(url: url)
-    request.httpMethod = httpMethod
-    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-      if let error = error {
-        completionHandler(AppError.networkError(error), nil, response as? HTTPURLResponse)
-        return
-      } else if let data = data {
-        completionHandler(nil, data, response as? HTTPURLResponse)
-      }
-    }
-    task.resume()
-  }
-  
-  public func performUploadTask(endpointURLString: String,
-                                httpMethod: String,
-                                httpBody: Data?,
-                                completionHandler: @escaping (AppError?, Data?, HTTPURLResponse?) ->Void) {
-    guard let url = URL(string: endpointURLString) else {
-      completionHandler(AppError.badURL("\(endpointURLString)"), nil, nil)
-      return
-    }
-    var request = URLRequest(url: url)
-    request.httpMethod = httpMethod
-    request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+/// Object which contains the networing logic.
+final class NetworkHelper {
     
-    let task = URLSession.shared.uploadTask(with: request, from: httpBody) { (data, response, error) in
-      if let error = error {
-        completionHandler(AppError.networkError(error), nil, response as? HTTPURLResponse)
-        return
-      } else if let data = data {
-        completionHandler(nil, data, response as? HTTPURLResponse)
-      }
+    /// Creates a new instance of `NetworkHelper`.
+    init() {
+        let cache = URLCache(memoryCapacity: 10 * 1024 * 1024, diskCapacity: 10 * 1024 * 1024, diskPath: nil)
+        URLCache.shared = cache
     }
-    task.resume()
-  }
+    
+    private var cancellables = Set<AnyCancellable>()
+    /// Performs a data task.
+    /// - Parameters:
+    ///   - endpointURLString: The url end point.
+    ///   - httpMethod: The HTTP Method
+    ///   - httpBody: The http body.
+    ///   - completionHandler: Called on completion
+    func performDataTask(endpointURL: URL, httpMethod: String, httpBody: Data?) -> AnyPublisher<Data, AppError> {
+        
+        let passThroughSubject = PassthroughSubject<Data, AppError>()
+        
+        var request = URLRequest(url: endpointURL)
+        request.httpMethod = httpMethod
+        
+        URLSession.shared.dataTaskPublisher(for: request)
+            .sink { completion in
+                switch completion {
+                    case let .failure(error):
+                        passThroughSubject.send(completion: .failure(.networkError(error)))
+                    case  .finished:
+                        passThroughSubject.send(completion: .finished)
+                }
+            } receiveValue: { result in
+                passThroughSubject.send(result.data)
+            }
+            .store(in: &cancellables)
+        return passThroughSubject.eraseToAnyPublisher()
+    }
 }

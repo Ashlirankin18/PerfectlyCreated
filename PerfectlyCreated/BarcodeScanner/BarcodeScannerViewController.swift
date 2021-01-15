@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 
+/// `UIViewController` subclass which displays the barcode scanner.
 final class BarcodeScannerViewController: UIViewController {
     
     @IBOutlet private weak var barcodeView: UIView!
@@ -19,6 +20,7 @@ final class BarcodeScannerViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
+    /// Subscriber to this publisher to recieve chages related to the barcode.
     var bacodeStringPublisher: AnyPublisher<String, Error> {
         return bacodeStringSubject.eraseToAnyPublisher()
     }
@@ -30,24 +32,7 @@ final class BarcodeScannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCancelButton()
-    
-        videoSession.bacodeStringPublisher
-            .removeDuplicates()
-            .sink { [weak self] result in
-                switch result {
-                    case let .failure(error):
-                        self?.dismiss(animated: true)
-                        self?.bacodeStringSubject.send(completion: .failure(error))
-                        
-                    case .finished: break
-                }
-            } receiveValue: { [weak self] barcodeString in
-                guard let self = self else {
-                    return
-                }
-                self.dismiss(animated: true)
-                self.bacodeStringSubject.send(barcodeString)
-            }.store(in: &cancellables)
+        configureBarcodeScannerPublisher()
     }
     
     override func viewDidLayoutSubviews() {
@@ -66,5 +51,25 @@ final class BarcodeScannerViewController: UIViewController {
             self.dismiss(animated: true  )
         }
         .store(in: &cancellables)
+    }
+    
+    private func configureBarcodeScannerPublisher() {
+        videoSession.bacodeStringPublisher
+            .removeDuplicates()
+            .sink { [weak self] result in
+                switch result {
+                    case let .failure(error):
+                        self?.dismiss(animated: true)
+                        self?.bacodeStringSubject.send(completion: .failure(error))
+                        
+                    case .finished: break
+                }
+            } receiveValue: { [weak self] barcodeString in
+                guard let self = self else {
+                    return
+                }
+                self.dismiss(animated: true)
+                self.bacodeStringSubject.send(barcodeString)
+            }.store(in: &cancellables)
     }
 }

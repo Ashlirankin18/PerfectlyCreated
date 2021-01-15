@@ -27,7 +27,11 @@ final class AboutProductCollectionViewCell: UICollectionViewCell {
             productNameLabel.text = viewModel?.productName
             categoryLabel.text = viewModel?.category
             productImageImageView.kf.setImage(with: viewModel?.productURL)
+            if viewModel?.productDescription.isEmpty ?? true {
+                productDescriptionTextView.isHidden = true
+            }
             productDescriptionTextView.text = viewModel?.productDescription
+            
         }
     }
 }

@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import Combine
 
 /// `UITabBarController` subclass which contais all the controllers dicplayed in the tab.
 final class PerfectlyCraftedTabBarViewController: UITabBarController {
     
-    //MARK : - UITabBarController
+    private lazy var hairProductApiClient = HairProductApiClient()
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    // MARK: - UITabBarController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +24,8 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
         setUpTabBarItems()
     }
     
-    //MARK : - PerfectlyCraftedTabBarViewController
+    // MARK: - PerfectlyCraftedTabBarViewController
+    
     private func setUpTabBarItems() {
         let myProductViewController = UIStoryboard(name: ProductViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductViewController.defaultNibName) { coder in
             return ProductViewController(coder: coder)
@@ -32,13 +38,15 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
     }
     
     private func getAllHairProducts() {
-        HairProductApiClient.getHairProducts { (error, allHairProducts) in
-            if let error = error {
-                print(error.errorMessage())
+        hairProductApiClient.getHairProducts()?.sink(receiveCompletion: { [weak self] completion in
+            switch completion {
+                case let .failure(error):
+                    self?.showAlert(title: "Error!!", message: error.localizedDescription)
+                case .finished: break
             }
-            if let allHairProducts = allHairProducts{
-                ProductDataManager.setProducts(products: allHairProducts)
-            }
-        }
+        }, receiveValue: { products in
+            ProductDataManager.setProducts(products: products)
+        })
+        .store(in: &cancellables)
     }
 }

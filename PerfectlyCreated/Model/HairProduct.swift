@@ -8,11 +8,13 @@
 
 import Foundation
 
-// MARK: - Welcome
+/// Represents a hair product.
 struct HairProduct: Codable, Hashable, Equatable {
-   
+    
+    /// The item attributes.
     let itemAttributes: ItemAttributes
     
+    /// The stores where the product can be found.
     let stores: [Store]
     
     enum CodingKeys: String, CodingKey {

@@ -10,10 +10,11 @@ import UIKit
 import CombineCocoa
 import Combine
 
+/// `UIViewContrller` subclass which allows a user to search for a product.
 final class SearchProductViewController: UIViewController {
     
     @IBOutlet private weak var dismissBarButtonItem: UIBarButtonItem!
-    @IBOutlet private var productTableView: UITableView!
+    @IBOutlet private weak var productTableView: UITableView!
     
     private var allHairProducts = [AllHairProducts]() {
         didSet{
@@ -23,6 +24,8 @@ final class SearchProductViewController: UIViewController {
             }
         }
     }
+    
+    private var cancellables = Set<AnyCancellable>()
     
     private lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
@@ -38,7 +41,7 @@ final class SearchProductViewController: UIViewController {
         return searchController
     }()
     
-    private var cancellables = Set<AnyCancellable>()
+    // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,16 +51,18 @@ final class SearchProductViewController: UIViewController {
         configureDismissButtonHandler()
     }
     
-    private func setDelegates() {
-        productTableView.dataSource = self
-        productTableView.delegate = self
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.allHairProducts = ProductDataManager.getProducts().sorted{$0.results.name < $1.results.name}
     }
     
+    // MARK: - SearchProductViewController
+    
+    private func setDelegates() {
+        productTableView.dataSource = self
+        productTableView.delegate = self
+    }
+   
     private func configureNavigationItemProperties() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -108,7 +113,7 @@ extension SearchProductViewController: UITableViewDataSource {
 
 extension SearchProductViewController: UITableViewDelegate {
     
-    // MARK: - UITableViewDelegate
+    // MARK : - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -117,7 +122,7 @@ extension SearchProductViewController: UITableViewDelegate {
 
 extension SearchProductViewController: UISearchResultsUpdating {
     
-    // MARK: - UISearchResultsUpdating
+    // MARK : - UISearchResultsUpdating
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {

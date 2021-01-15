@@ -62,7 +62,7 @@ final class ProductDetailViewController: UICollectionViewController {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: AdditionalCollectionReusableView.defaultNibName, alignment: .bottom)
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
@@ -74,7 +74,7 @@ final class ProductDetailViewController: UICollectionViewController {
     }()
     
     private let additionalInfoCollectionLayoutSection: NSCollectionLayoutSection = {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])

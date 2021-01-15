@@ -8,11 +8,10 @@
 
 import UIKit
 
+/// `UITabBarController` subclass which contais all the controllers dicplayed in the tab.
 final class PerfectlyCraftedTabBarViewController: UITabBarController {
     
-    var allHairProducts = [AllHairProducts]()
-    
-    var theLocalUser:UserModel?
+    //MARK : - UITabBarController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +19,9 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
         setUpTabBarItems()
     }
     
-    
+    //MARK : - PerfectlyCraftedTabBarViewController
     private func setUpTabBarItems() {
-        let myProductViewController = UIStoryboard(name: "ProductViewController", bundle: .main).instantiateViewController(identifier: "ProductViewController") { coder in
+        let myProductViewController = UIStoryboard(name: ProductViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductViewController.defaultNibName) { coder in
             return ProductViewController(coder: coder)
         }
         let myProductNavigationController = UINavigationController(rootViewController: myProductViewController)

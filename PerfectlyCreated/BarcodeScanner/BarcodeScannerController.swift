@@ -14,6 +14,11 @@ import MLKitVision
 
 final class BarCodeScannerController {
     
+    enum AppError: Error {
+        case noBarcodeFound(String)
+        case processingError(Error)
+    }
+    
     private lazy var barcodeDetector: BarcodeScanner = {
         let scanner = BarcodeScanner.barcodeScanner()
         return scanner
@@ -40,21 +45,26 @@ final class BarCodeScannerController {
         }
     }
     
-    func captureOutout(with image: UIImage, completion: @escaping (Result<String, Error>) -> Void) {
+    func captureOutout(with image: UIImage, completion: @escaping (Result<String, AppError>) -> Void) {
         let visionImage = VisionImage(image: image)
         barcodeDetector.process(visionImage) { ( barcodes, error) in
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(.processingError(error)))
                 return
             }
             
             if let barcodes = barcodes {
+                if barcodes.isEmpty {
+                    completion(.failure(.noBarcodeFound("Barcode could not be found.")))
+                }
                 for barcode in barcodes {
                     if let barCodeString = barcode.rawValue {
                         completion(.success(barCodeString))
                         return
                     }
                 }
+            } else {
+                print("no bar code")
             }
         }
     }

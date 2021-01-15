@@ -7,45 +7,65 @@
 //
 
 import Foundation
+import Combine
 
 final class HairProductApiClient {
     
-    private init(){}
+    private var cancellables = Set<AnyCancellable>()
     
-    static func getHairProducts(completionHandler: @escaping (AppError?, [AllHairProducts]?) -> Void) {
+    private lazy var networkHelper = NetworkHelper()
+    
+    /// Retrieves the hair products from the api.
+    /// - Returns: Publisher containing the returned hair products and a possible error.
+    func getHairProducts() -> AnyPublisher<[AllHairProducts], AppError>? {
         let urlString = "http://5c671eba24e2140014f9ee6d.mockapi.io/api/v1/hairProducts"
-        NetworkHelper.shared.performDataTask(endpointURLString: urlString, httpMethod: "GET", httpBody: nil) { (error, data, response) in
-            if let error = error{
-                completionHandler(AppError.badURL(error.errorMessage()),nil)
-            }
-            if let data = data{
-                do{
-                    let hairProducts = try JSONDecoder().decode([AllHairProducts].self, from: data)
-                    completionHandler(nil,hairProducts)
-                }catch{
-                    completionHandler(AppError.decodingError(error),nil)
-                }
-            }
+        guard let url = URL(string: urlString) else {
+            assertionFailure("URL invalid")
+            return nil
         }
+        return genericRetrievalMethod(with: url, httpMethod: "GET")
+            .map { $0 as [AllHairProducts] }
+            .eraseToAnyPublisher()
     }
     
-    static func retrieveHairProduct(with barcodeNumber: String, completionHandler: @escaping (Result<HairProduct, AppError>) -> Void ) {
+    /// Retrieves a product from the server
+    /// - Parameter barcodeNumber: The bar code of the product.
+    /// - Returns: Publisher containing the returned hair product and a possible error.
+    func retrieveHairProduct(with barcodeNumber: String) -> AnyPublisher<HairProduct, AppError>? {
         let urlString = "https://api.barcodespider.com/v1/lookup?token=229820d4f6a2509d2307&upc=\(barcodeNumber)"
         
-        NetworkHelper.shared.performDataTask(endpointURLString: urlString, httpMethod: "GET", httpBody: nil) { (error, data, response) in
-            DispatchQueue.main.async {
-                if let error = error {
-                    completionHandler(.failure(.decodingError(error)))
-                }
-                if let data = data {
-                    do{
-                        let hairProduct = try JSONDecoder().decode(HairProduct.self, from: data)
-                        completionHandler(.success(hairProduct))
-                    }catch {
-                        completionHandler(.failure(.decodingError(error)))
-                    }
-                }
-            }
+        guard let url = URL(string: urlString) else {
+            assertionFailure("URL invalid")
+            return nil
         }
+        return genericRetrievalMethod(with: url, httpMethod: "GET")
+            .map { $0 as HairProduct }
+            .eraseToAnyPublisher()
+    }
+    
+    private func genericRetrievalMethod<T: Codable>(with url: URL, httpMethod: String, httpBody: Data? = nil ) -> AnyPublisher<T, AppError> {
+        
+        let passThroughSubject = PassthroughSubject<T, AppError>()
+        
+        networkHelper.performDataTask(endpointURL: url, httpMethod: httpMethod, httpBody: httpBody)
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                    case let .failure(error):
+                        passThroughSubject.send(completion: .failure(.networkError(error)))
+                    case . finished:
+                        passThroughSubject.send(completion: .finished)
+                }
+            }, receiveValue: { data in
+                do {
+                    let genericProduct = try JSONDecoder().decode(T.self, from: data)
+                    passThroughSubject.send(genericProduct)
+                } catch {
+                    passThroughSubject.send(completion: .failure(.decodingError(error)))
+                }
+            })
+            .store(in: &cancellables)
+        
+        return passThroughSubject.eraseToAnyPublisher()
     }
 }

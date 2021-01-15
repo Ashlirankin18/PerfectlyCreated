@@ -218,9 +218,9 @@ final class ProductViewController: UICollectionViewController {
     private func configureBarcodeScanner() {
         barcodeScannerViewController.bacodeStringPublisher.sink { [weak self] completion in
             switch completion {
-                case let .failure(error):
+            case let .failure(error):
                     self?.showAlert(title: "Error!", message: error.localizedDescription)
-                case .finished: break
+            case .finished: break
             }
         } receiveValue: { [weak self] barcodeString in
             self?.queryForProduct(with: barcodeString)

@@ -8,7 +8,6 @@ target 'PerfectlyCreated' do
   # Pods for PerfectlyCreated
 
 pod 'Firebase/Auth'
-pod 'MLKit'
 pod 'MLKitBarcodeScanning'
 pod 'Firebase/Firestore'
 pod 'FirebaseFirestoreSwift'

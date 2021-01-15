@@ -35,9 +35,9 @@ final class NetworkHelper {
         URLSession.shared.dataTaskPublisher(for: request)
             .sink { completion in
                 switch completion {
-                    case let .failure(error):
+                case let .failure(error):
                         passThroughSubject.send(completion: .failure(.networkError(error)))
-                    case  .finished:
+                case  .finished:
                         passThroughSubject.send(completion: .finished)
                 }
             } receiveValue: { result in

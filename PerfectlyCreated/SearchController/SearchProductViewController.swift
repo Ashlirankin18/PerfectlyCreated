@@ -32,7 +32,7 @@ final class SearchProductViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.searchBar.tintColor = .white
         searchController.searchBar.searchBarStyle = .prominent
-        searchController.searchBar.backgroundColor = .white
+        searchController.searchBar.backgroundColor = .clear
         searchController.isAccessibilityElement = true
         searchController.searchBar.isAccessibilityElement = true
         searchController.searchBar.accessibilityLabel = NSLocalizedString("Search Bar", comment: "Indicates to the user that this object is a search bar")

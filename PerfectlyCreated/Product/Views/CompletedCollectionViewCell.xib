@@ -22,19 +22,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="261" height="50"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yeT-tf-D54">
-                                <rect key="frame" x="16" y="10" width="229" height="30"/>
+                                <rect key="frame" x="16" y="0.0" width="245" height="50"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejR-vV-Z31">
-                                        <rect key="frame" x="0.0" y="0.0" width="199" height="30"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ejR-vV-Z31">
+                                        <rect key="frame" x="0.0" y="0.0" width="195" height="50"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zt6-Wq-uOi">
-                                        <rect key="frame" x="199" y="0.0" width="30" height="30"/>
+                                        <rect key="frame" x="195" y="0.0" width="50" height="50"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="UrI-ZN-WAe"/>
                                             <constraint firstAttribute="width" secondItem="Zt6-Wq-uOi" secondAttribute="height" id="fmw-Xy-gKh"/>
-                                            <constraint firstAttribute="height" constant="30" id="zm5-84-XBV"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="systemIndigoColor"/>
                                         <state key="normal">
@@ -46,10 +46,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="yeT-tf-D54" secondAttribute="bottom" constant="10" id="I9x-F8-beJ"/>
+                            <constraint firstAttribute="bottom" secondItem="yeT-tf-D54" secondAttribute="bottom" id="I9x-F8-beJ"/>
                             <constraint firstItem="yeT-tf-D54" firstAttribute="leading" secondItem="Hwh-mJ-acp" secondAttribute="leading" constant="16" id="hsB-P8-kRG"/>
-                            <constraint firstAttribute="trailing" secondItem="yeT-tf-D54" secondAttribute="trailing" constant="16" id="kEa-zt-hq8"/>
-                            <constraint firstItem="yeT-tf-D54" firstAttribute="top" secondItem="Hwh-mJ-acp" secondAttribute="top" constant="10" id="x8a-Sb-zi1"/>
+                            <constraint firstAttribute="trailing" secondItem="yeT-tf-D54" secondAttribute="trailing" id="kEa-zt-hq8"/>
+                            <constraint firstItem="yeT-tf-D54" firstAttribute="top" secondItem="Hwh-mJ-acp" secondAttribute="top" id="x8a-Sb-zi1"/>
                         </constraints>
                     </view>
                 </subviews>

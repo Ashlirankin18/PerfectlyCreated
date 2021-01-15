@@ -60,7 +60,6 @@
 		2E997F9A221B0FCF00730ED7 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F99221B0FCF00730ED7 /* AppError.swift */; };
 		2E997F9C221B0FFD00730ED7 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F9B221B0FFD00730ED7 /* ImageCache.swift */; };
 		2E997F9E221B18AA00730ED7 /* HairProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F9D221B18AA00730ED7 /* HairProductModel.swift */; };
-		2E997FA0221B1EFD00730ED7 /* ShowProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F9F221B1EFD00730ED7 /* ShowProductViewController.swift */; };
 		2E997FA2221B200D00730ED7 /* HairProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997FA1221B200D00730ED7 /* HairProductView.swift */; };
 		2E997FA8221B751300730ED7 /* OtherOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997FA7221B751300730ED7 /* OtherOptionsCell.swift */; };
 		2E997FAA221B99A300730ED7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997FA9221B99A300730ED7 /* DateExtension.swift */; };
@@ -68,8 +67,6 @@
 		2EA365A8220A2F0400FFDC5E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365A7220A2F0400FFDC5E /* UserModel.swift */; };
 		2EA365AA220A300C00FFDC5E /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365A9220A300C00FFDC5E /* PersistanceManager.swift */; };
 		2EA365B1220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */; };
-		2EA365B3220A59A900FFDC5E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B2220A59A900FFDC5E /* ProfileViewController.swift */; };
-		2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B6220A64E700FFDC5E /* LoginViewController.swift */; };
 		2EA365B9220A678200FFDC5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B8220A678200FFDC5E /* LoginView.swift */; };
 		2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365BA220A760800FFDC5E /* UserSession.swift */; };
 		2EAD2CF325AF3EDE00C71DAB /* ProductInfoDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD2CF225AF3EDE00C71DAB /* ProductInfoDraft.swift */; };
@@ -93,18 +90,15 @@
 		2EAE685A254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE6858254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib */; };
 		2EAF931125854B4300D28BAC /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF931025854B4300D28BAC /* UIView+IBInspectable.swift */; };
 		2EAF931C2585556900D28BAC /* UINavigationBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF931B2585556900D28BAC /* UINavigationBar+Appearance.swift */; };
-		2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */; };
 		2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */; };
 		2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */; };
 		2EB2A1A722272CC300525BD4 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A622272CC300525BD4 /* StorageManager.swift */; };
 		2EB2A1A922272DEF00525BD4 /* StorageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A822272DEF00525BD4 /* StorageKeys.swift */; };
-		2EC7B543223173AC00D165B1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7B542223173AC00D165B1 /* SettingsTableViewController.swift */; };
 		2EC7B5472231911700D165B1 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC7B5462231911700D165B1 /* EditProfileView.swift */; };
 		2EDB0E4B222DC230006DB8EE /* HairTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB0E4A222DC230006DB8EE /* HairTableViewCell.swift */; };
 		2EDB0E4D222DC49C006DB8EE /* ImageViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB0E4C222DC49C006DB8EE /* ImageViewControllerExtension.swift */; };
 		2EDB0E4F222E1014006DB8EE /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB0E4E222E1014006DB8EE /* FeedModel.swift */; };
 		2EED896722284C9E00ADDEBD /* ProfileOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EED896622284C9E00ADDEBD /* ProfileOptions.storyboard */; };
-		2EED896922284DED00ADDEBD /* HairProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED896822284DED00ADDEBD /* HairProductsTableViewController.swift */; };
 		2EED896D2229993700ADDEBD /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED896C2229993700ADDEBD /* ProductModel.swift */; };
 		2EF31070256F1BF90021EB58 /* AccountCreationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF3106F256F1BF90021EB58 /* AccountCreationValidator.swift */; };
 		2EF32CDD22175881006E2B1F /* hairProducts.json in Resources */ = {isa = PBXBuildFile; fileRef = 2EF32CDC22175881006E2B1F /* hairProducts.json */; };
@@ -169,7 +163,6 @@
 		2E997F99221B0FCF00730ED7 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		2E997F9B221B0FFD00730ED7 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		2E997F9D221B18AA00730ED7 /* HairProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairProductModel.swift; sourceTree = "<group>"; };
-		2E997F9F221B1EFD00730ED7 /* ShowProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProductViewController.swift; sourceTree = "<group>"; };
 		2E997FA1221B200D00730ED7 /* HairProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairProductView.swift; sourceTree = "<group>"; };
 		2E997FA7221B751300730ED7 /* OtherOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherOptionsCell.swift; sourceTree = "<group>"; };
 		2E997FA9221B99A300730ED7 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
@@ -177,8 +170,6 @@
 		2EA365A7220A2F0400FFDC5E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		2EA365A9220A300C00FFDC5E /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectlyCraftedTabBarViewController.swift; sourceTree = "<group>"; };
-		2EA365B2220A59A900FFDC5E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		2EA365B6220A64E700FFDC5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2EA365B8220A678200FFDC5E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EA365BA220A760800FFDC5E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		2EAD2CF225AF3EDE00C71DAB /* ProductInfoDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoDraft.swift; sourceTree = "<group>"; };
@@ -201,18 +192,15 @@
 		2EAE6858254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalCollectionReusableView.xib; sourceTree = "<group>"; };
 		2EAF931025854B4300D28BAC /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		2EAF931B2585556900D28BAC /* UINavigationBar+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Appearance.swift"; sourceTree = "<group>"; };
-		2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetProfileViewController.swift; sourceTree = "<group>"; };
 		2EB2A1812225B29700525BD4 /* SetUpProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpProfileView.swift; sourceTree = "<group>"; };
 		2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionKeys.swift; sourceTree = "<group>"; };
 		2EB2A1A622272CC300525BD4 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		2EB2A1A822272DEF00525BD4 /* StorageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageKeys.swift; sourceTree = "<group>"; };
-		2EC7B542223173AC00D165B1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		2EC7B5462231911700D165B1 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		2EDB0E4A222DC230006DB8EE /* HairTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairTableViewCell.swift; sourceTree = "<group>"; };
 		2EDB0E4C222DC49C006DB8EE /* ImageViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewControllerExtension.swift; sourceTree = "<group>"; };
 		2EDB0E4E222E1014006DB8EE /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		2EED896622284C9E00ADDEBD /* ProfileOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileOptions.storyboard; sourceTree = "<group>"; };
-		2EED896822284DED00ADDEBD /* HairProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairProductsTableViewController.swift; sourceTree = "<group>"; };
 		2EED896C2229993700ADDEBD /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		2EF3106F256F1BF90021EB58 /* AccountCreationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationValidator.swift; sourceTree = "<group>"; };
 		2EF32CDC22175881006E2B1F /* hairProducts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = hairProducts.json; sourceTree = "<group>"; };
@@ -359,13 +347,7 @@
 		2E4A3EA82208D37B00988116 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */,
-				2EED896822284DED00ADDEBD /* HairProductsTableViewController.swift */,
-				2EA365B6220A64E700FFDC5E /* LoginViewController.swift */,
-				2EA365B2220A59A900FFDC5E /* ProfileViewController.swift */,
-				2EC7B542223173AC00D165B1 /* SettingsTableViewController.swift */,
 				2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */,
-				2E997F9F221B1EFD00730ED7 /* ShowProductViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -669,7 +651,6 @@
 				2E997FAA221B99A300730ED7 /* DateExtension.swift in Sources */,
 				2E0FFC42254DB5800020D9DC /* BarcodeScannerController.swift in Sources */,
 				2EAE684A254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.swift in Sources */,
-				2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */,
 				2E997F9A221B0FCF00730ED7 /* AppError.swift in Sources */,
 				2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */,
 				2E04A4B6221A76620066568E /* PopUpView.swift in Sources */,
@@ -694,10 +675,7 @@
 				2EDB0E4F222E1014006DB8EE /* FeedModel.swift in Sources */,
 				2EA365B1220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift in Sources */,
 				2EAD2D0825B0969400C71DAB /* Store.swift in Sources */,
-				2E997FA0221B1EFD00730ED7 /* ShowProductViewController.swift in Sources */,
 				2EAD2D0525B0967B00C71DAB /* ItemResponse.swift in Sources */,
-				2EED896922284DED00ADDEBD /* HairProductsTableViewController.swift in Sources */,
-				2EC7B543223173AC00D165B1 /* SettingsTableViewController.swift in Sources */,
 				2E4A3EB02208E7A200988116 /* SignUpViewForm.swift in Sources */,
 				2E997F94221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift in Sources */,
 				2E997F98221B0E4700730ED7 /* Extension+Alerts.swift in Sources */,
@@ -720,9 +698,7 @@
 				2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */,
 				2EAE684F254F732D00BE0E1E /* AboutProductCollectionViewCell.swift in Sources */,
 				2E063E67220B5E9C00D85406 /* ProfileView.swift in Sources */,
-				2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */,
 				2E110A832550F203001ADACD /* CompletedCollectionViewCell.swift in Sources */,
-				2EA365B3220A59A900FFDC5E /* ProfileViewController.swift in Sources */,
 				2E07D20C25588E700029FB36 /* NotesCollectionViewCell.swift in Sources */,
 				2E7946A1220C816D00219B6A /* RatingCollectionViewCell.swift in Sources */,
 				2EB2A1A722272CC300525BD4 /* StorageManager.swift in Sources */,

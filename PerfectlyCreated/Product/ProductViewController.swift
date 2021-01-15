@@ -43,15 +43,25 @@ final class ProductViewController: UICollectionViewController {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "CategorySectionHeaderCollectionReusableView", alignment: .top)
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalWidth(0.8))
+     
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.45),
+                                              heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                               heightDimension: .fractionalWidth(0.7))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        group.interItemSpacing = .fixed(24)
         
         let section = NSCollectionLayoutSection(group: group)
+    
         section.boundarySupplementaryItems = [sectionHeader]
-        section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 24, bottom: 0, trailing: 24)
+        
+        section.interGroupSpacing = 24
+        
+        section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 0)
         return section
     }()
     
@@ -113,7 +123,7 @@ final class ProductViewController: UICollectionViewController {
         let alertController = UIAlertController(title: "Add Product", message: nil, preferredStyle: .actionSheet)
         
         let uploadProductAction = UIAlertAction(title: "Upload barcode", style: .default) { _ in
-            
+           
         }
         
         let scanBarCodeAction = UIAlertAction(title: "Scan barcode", style: .default) { [weak self] _ in

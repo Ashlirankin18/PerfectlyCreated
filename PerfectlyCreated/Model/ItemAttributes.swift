@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+struct ItemAttributes: Codable, Equatable, Hashable {
+   
+    let title, upc, category: String
+    let image: String
+    let itemAttributesDescription: String
+    
+    enum CodingKeys: String, CodingKey {
+        case title, upc
+        case category = "parent_category"
+        case image
+        case itemAttributesDescription = "description"
+    }
+}
+

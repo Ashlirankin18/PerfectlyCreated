@@ -91,6 +91,7 @@ final class ProductViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.configuresShadowlessTransparentNavigationBar(backgroundColor: .clear)
     }
     
     // MARK: - ProductViewController

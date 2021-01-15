@@ -30,16 +30,6 @@ final class EditProductViewController: UIViewController {
         return self.configureCell(collectionView: collectionView, model: model, indexPath: indexPath)
     }
     
-    private var coloredAppearance: UINavigationBarAppearance {
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithTransparentBackground()
-        coloredAppearance.backgroundColor = .appPurple
-        coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-        coloredAppearance.shadowColor = .clear
-        return coloredAppearance
-    }
-    
     private let additionalInfoCollectionLayoutSection: NSCollectionLayoutSection = {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -74,8 +64,6 @@ final class EditProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .appPurple
-        editProductCollectionView.backgroundColor = .appPurple
         configureNavBar()
         configureBackButton()
         configureSaveBarButton()
@@ -96,8 +84,6 @@ final class EditProductViewController: UIViewController {
     
     private func configureNavBar() {
         title = "Edit Product"
-        navigationController?.navigationBar.standardAppearance = coloredAppearance
-        navigationController?.navigationBar.scrollEdgeAppearance = coloredAppearance
     }
     
     private func configureLayout() {

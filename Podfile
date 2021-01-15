@@ -15,4 +15,7 @@ pod 'FirebaseFirestoreSwift'
 pod 'Kingfisher'
 pod 'CombineExt'
 pod 'CombineCocoa'
+pod 'Firebase/Crashlytics'
+pod 'Firebase/Analytics'
+pod 'SwiftLint'
 end

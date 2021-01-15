@@ -50,9 +50,11 @@ final class VideoSessionController: NSObject {
         startRunningSession()
         
         session.sessionPreset = AVCaptureSession.Preset.iFrame1280x720
-        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
-        let deviceInput = try! AVCaptureDeviceInput(device: captureDevice!)
+        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video), let deviceInput = try? AVCaptureDeviceInput(device: captureDevice) else {
+            return
+        }
+        
         let deviceOutput = AVCaptureVideoDataOutput()
         deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
         deviceOutput.setSampleBufferDelegate(self, queue: .global())
@@ -62,7 +64,6 @@ final class VideoSessionController: NSObject {
         configureOutput()
         
         session.startRunning()
-        
     }
     
     private func configureOutput() {
@@ -94,4 +95,3 @@ extension VideoSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
             .store(in: &self.cancellables)
     }
 }
-

@@ -9,22 +9,31 @@
 import Foundation
 import FirebaseFirestoreSwift
 
+/// Represents a product.
 struct ProductModel: Codable, Hashable {
     
+    /// The product name.
     let productName: String
     
+    /// The document id.
     let documentId: String
     
+    /// the product description.
     let productDescription: String
     
-    var userId: String
+    /// The user whose collection it belongs in.
+    let userId: String
     
+    /// The image url string.
     let productImageURL: String
     
+    /// The product category.
     let category: String
     
-    var isCompleted: Bool
+    /// Wether the product is completed.
+    let isCompleted: Bool
     
+    /// The notes on the product.
     let notes: String?
     
 }

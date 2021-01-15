@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import CombineCocoa
 import Combine
 import PhotosUI
 
+/// `UICollectionViewController` subclass which displays the user's products.
 final class ProductViewController: UICollectionViewController {
     
     @IBOutlet private weak var addBarButtonItem: UIBarButtonItem!
@@ -21,8 +21,6 @@ final class ProductViewController: UICollectionViewController {
         }
         return controller
     }()
-    
-    private lazy var barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.defaultNibName, bundle: .main)
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -41,6 +39,8 @@ final class ProductViewController: UICollectionViewController {
         let controller = PHPickerViewController(configuration: configuration)
         return controller
     }()
+    
+    private lazy var barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.defaultNibName, bundle: .main)
     
     private lazy var productManager = ProductManager()
     
@@ -74,6 +74,8 @@ final class ProductViewController: UICollectionViewController {
         return section
     }()
     
+    // MARK: - UICollectionViewController
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         photoController.delegate = self
@@ -89,6 +91,8 @@ final class ProductViewController: UICollectionViewController {
         navigationController?.configuresShadowlessOpaqueNavigationBar()
         navigationController?.navigationBar.prefersLargeTitles = true
     }
+    
+    // MARK: - ProductViewController
     
     private func configureCollectionView() {
         collectionView.register(UINib(nibName: ProductCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: ProductCollectionViewCell.defaultNibName)
@@ -221,6 +225,8 @@ final class ProductViewController: UICollectionViewController {
         
     }
     
+    // MARK: - UICollectionViewDelegate
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedProduct = dataSource.itemIdentifier(for: indexPath) else {
             return
@@ -234,6 +240,8 @@ final class ProductViewController: UICollectionViewController {
 }
 
 extension ProductViewController: PHPickerViewControllerDelegate {
+    
+    // MARK: - PHPickerViewControllerDelegate
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)

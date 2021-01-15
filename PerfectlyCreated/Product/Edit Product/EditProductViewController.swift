@@ -72,6 +72,7 @@ final class EditProductViewController: UIViewController {
         view.backgroundColor = .systemIndigo
         editProductCollectionView.backgroundColor = .systemIndigo
         configureNavBar()
+        configureBackButton()
         configureSaveBarButton()
         configureCollectionView()
         configureLayout()

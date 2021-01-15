@@ -126,7 +126,7 @@ final class EditProductViewController: UIViewController {
         }
         .store(in: &cancellables)
     }
-
+    
     private func configureCell(collectionView: UICollectionView, model: SectionData, indexPath: IndexPath) -> UICollectionViewCell {
         
         switch model {

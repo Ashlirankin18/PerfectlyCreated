@@ -218,7 +218,7 @@ final class ProductViewController: UICollectionViewController {
             self?.queryForProduct(with: barcodeString)
         }
         .store(in: &cancellables)
-
+        
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

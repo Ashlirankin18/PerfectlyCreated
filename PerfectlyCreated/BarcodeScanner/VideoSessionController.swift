@@ -64,7 +64,7 @@ final class VideoSessionController: NSObject {
         session.startRunning()
         
     }
-
+    
     private func configureOutput() {
         aVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
         aVCaptureVideoPreviewLayer?.frame = backgroundView.bounds
@@ -77,21 +77,21 @@ final class VideoSessionController: NSObject {
 }
 
 extension VideoSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
-     
+    
     // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        barcodeController.captureOutput(output, didOutput: sampleBuffer, from: connection) { [weak self] result in
-            
-            guard let self = self else {
-                return
+        barcodeController.captureOutput(with: .buffer(buffer: sampleBuffer))
+            .sink { [weak self] completion in
+                switch completion {
+                    case let .failure(error):
+                        self?.bacodeStringSubject.send(completion: .failure(error))
+                    case .finished: break
+                }
+            } receiveValue: { [weak self] barcodeString in
+                self?.bacodeStringSubject.send(barcodeString)
             }
-            switch result {
-                case let .failure(error):
-                    self.bacodeStringSubject.send(completion: .failure(error))
-                case let .success(barcodeString):
-                    self.bacodeStringSubject.send(barcodeString)
-            }
-        }
+            .store(in: &self.cancellables)
     }
 }
+

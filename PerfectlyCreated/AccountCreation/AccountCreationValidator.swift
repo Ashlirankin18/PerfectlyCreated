@@ -24,7 +24,7 @@ final class AccountCreationValidator {
     }
     
     func formatUserName() {
-        guard !emailText.isEmpty, let index = emailText.index(of: "@") else {
+        guard !emailText.isEmpty, let index = emailText.firstIndex(of: "@") else {
             return
         }
         

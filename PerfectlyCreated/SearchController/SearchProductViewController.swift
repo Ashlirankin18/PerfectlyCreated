@@ -53,7 +53,7 @@ final class SearchProductViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.allHairProducts = ProductDataManager.getProducts().sorted{$0.results.name < $1.results.name}
+        self.allHairProducts = ProductManager.getProducts().sorted{$0.results.name < $1.results.name}
     }
     
     // MARK: - SearchProductViewController
@@ -130,7 +130,7 @@ extension SearchProductViewController: UISearchResultsUpdating {
         }
         
         if searchText.isEmpty {
-            allHairProducts = ProductDataManager.getProducts()
+            allHairProducts = ProductManager.getProducts()
         } else {
             let anArray = allHairProducts.filter({$0.results.name.contains(searchText.capitalized)})
             allHairProducts = anArray.sorted{$0.results.name < $1.results.name}

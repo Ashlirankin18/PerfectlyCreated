@@ -45,7 +45,7 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
                 case .finished: break
             }
         }, receiveValue: { products in
-            ProductDataManager.setProducts(products: products)
+            ProductManager.setProducts(products: products)
         })
         .store(in: &cancellables)
     }

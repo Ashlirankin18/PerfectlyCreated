@@ -11,6 +11,7 @@ import FirebaseAuth
 import Combine
 import CombineCocoa
 
+/// `UIViewController` subclass which allows the user to sign in or sign up.
 final class SignupViewController: UIViewController {
     
     enum AccountFlow {
@@ -29,6 +30,10 @@ final class SignupViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
+    /// Creates a new instanc of `SignupViewController`.
+    /// - Parameters:
+    ///   - coder: An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.
+    ///   - accountFlow: The account flow.
     init?(coder: NSCoder, accountFlow: AccountFlow) {
         self.accountFlow = accountFlow
         super.init(coder: coder)
@@ -37,6 +42,8 @@ final class SignupViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +56,14 @@ final class SignupViewController: UIViewController {
             .store(in: &cancellables)
     }
     
+    // MARK: - SignupViewController
+    
     private func configureViews() {
         switch accountFlow {
-        case .signIn:
-            emailTextField.isHidden = true
-        case .signUp:
-            emailTextField.isHidden = false
+            case .signIn:
+                emailTextField.isHidden = true
+            case .signUp:
+                emailTextField.isHidden = false
         }
     }
     
@@ -64,59 +73,8 @@ final class SignupViewController: UIViewController {
     }
     
     private func configureTapHandlers() {
-        
-        signUpButton.tapPublisher.sink { [weak self] _ in
-            guard let self = self  else {
-                return
-            }
-            self.accountCreationValidator.formatUserName()
-            
-            do {
-                try self.userSession.createUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText, username: self.accountCreationValidator.usernameText)
-                
-                self.userSession.accountCreationPassThroughSubject.sink { [weak self] result in
-                    
-                    guard let self = self  else {
-                        return
-                    }
-                    
-                    switch result {
-                    case let .failure(error):
-                        self.showAlert(title: "Error!", message: "There was an error signing up : \(error.localizedDescription)")
-                    case .success:
-                        let controller = PerfectlyCraftedTabBarViewController()
-                        controller.modalPresentationStyle = .fullScreen
-                        self.show(controller, sender: self)
-                    }
-                }
-                .store(in: &self.cancellables)
-            } catch {
-                assertionFailure("An error occurred: \(error.localizedDescription)")
-            }
-        }
-        .store(in: &cancellables)
-        
-        signInButton.tapPublisher.sink { [weak self] _ in
-            guard let self = self else {
-                return
-            }
-            self.userSession.signInExistingUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText).sink { error in
-                switch error {
-                case let .failure(error):
-                    self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
-                case .finished: break
-                }
-            } receiveValue: { [weak self] _ in
-                guard let self = self else {
-                    return
-                }
-                let controller = PerfectlyCraftedTabBarViewController()
-                controller.modalPresentationStyle = .fullScreen
-                self.show(controller, sender: self)
-            }
-            .store(in: &self.cancellables)
-        }
-        .store(in: &cancellables)
+        configureSignInButton()
+        configureSignUpButton()
     }
     
     private func configureTextfieldHandlers() {
@@ -136,9 +94,57 @@ final class SignupViewController: UIViewController {
         }
         .store(in: &cancellables)
     }
+    
+    private func configureSignInButton() {
+        signInButton.tapPublisher.sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            self.userSession.signInExistingUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText).sink { error in
+                switch error {
+                    case let .failure(error):
+                        self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
+                    case .finished: break
+                }
+            } receiveValue: { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                let controller = PerfectlyCraftedTabBarViewController()
+                controller.modalPresentationStyle = .fullScreen
+                self.show(controller, sender: self)
+            }
+            .store(in: &self.cancellables)
+        }
+        .store(in: &cancellables)
+    }
+    
+    private func configureSignUpButton() {
+        signUpButton.tapPublisher.sink { [weak self] _ in
+            guard let self = self  else {
+                return
+            }
+            self.accountCreationValidator.formatUserName()
+            self.userSession.createUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText, username: self.accountCreationValidator.usernameText)
+                .sink(receiveCompletion: { error in
+                    switch error {
+                        case let .failure(error):
+                            self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
+                        case .finished: break
+                    }
+                }, receiveValue: { [weak self] _ in
+                    let controller = PerfectlyCraftedTabBarViewController()
+                    controller.modalPresentationStyle = .fullScreen
+                    self?.show(controller, sender: self)
+                }).store(in: &self.cancellables)
+        }
+        .store(in: &cancellables)
+    }
 }
 
 extension SignupViewController: UITextFieldDelegate {
+    
+    // MARK: - UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

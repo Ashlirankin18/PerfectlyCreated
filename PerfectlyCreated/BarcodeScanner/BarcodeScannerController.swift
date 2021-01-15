@@ -11,12 +11,17 @@ import MLKitBarcodeScanning
 import UIKit
 import AVFoundation
 import MLKitVision
+import Combine
 
+/// Handles the barcode processing logic.
 final class BarCodeScannerController {
     
-    enum AppError: Error {
-        case noBarcodeFound(String)
-        case processingError(Error)
+    /// Represents the output types.
+    enum OutputType {
+        
+        case image(image: UIImage)
+        
+        case buffer(buffer: CMSampleBuffer)
     }
     
     private lazy var barcodeDetector: BarcodeScanner = {
@@ -24,48 +29,40 @@ final class BarCodeScannerController {
         return scanner
     }()
     
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection, completion: @escaping (Result<String, Error>) -> Void) {
-        
-        let visionImage = VisionImage(buffer: sampleBuffer)
-        
-        barcodeDetector.process(visionImage) { barcodes, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            if let barcodes = barcodes {
-                for barcode in barcodes {
-                    if let barCodeString = barcode.rawValue {
-                        completion(.success(barCodeString))
-                        return
-                    }
-                }
-            }
-        }
-    }
+    private let passThroughSubject = PassthroughSubject<String, AppError>()
     
-    func captureOutout(with image: UIImage, completion: @escaping (Result<String, AppError>) -> Void) {
-        let visionImage = VisionImage(image: image)
-        barcodeDetector.process(visionImage) { ( barcodes, error) in
+    /// Captures the output.
+    /// - Parameter outputType: The type of out put we received.
+    /// - Returns: Publisher of the barcode string received. Or a possible error.
+    func captureOutput(with outputType: OutputType) -> AnyPublisher<String, AppError> {
+        
+        let visionImage: VisionImage
+        
+        switch outputType {
+            case let .buffer(buffer):
+                visionImage = VisionImage(buffer: buffer)
+            case let .image(image):
+                visionImage = VisionImage(image: image)
+        }
+       
+        barcodeDetector.process(visionImage) { [weak self] barcodes, error in
             if let error = error {
-                completion(.failure(.processingError(error)))
-                return
+                self?.passThroughSubject.send(completion: .failure(.processingError(error)))
             }
             
             if let barcodes = barcodes {
                 if barcodes.isEmpty {
-                    completion(.failure(.noBarcodeFound("Barcode could not be found.")))
+                    self?.passThroughSubject.send(completion: .failure(.noBarcodeFound("Barcode could not be found.")))
                 }
                 for barcode in barcodes {
                     if let barCodeString = barcode.rawValue {
-                        completion(.success(barCodeString))
-                        return
+                        self?.passThroughSubject.send(barCodeString)
                     }
                 }
             } else {
-                print("no bar code")
+                self?.passThroughSubject.send(completion: .failure(.noBarcodeFound("Barcode could not be found.")))
             }
         }
+        return passThroughSubject.eraseToAnyPublisher()
     }
 }

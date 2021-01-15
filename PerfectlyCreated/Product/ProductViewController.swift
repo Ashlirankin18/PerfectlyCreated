@@ -52,7 +52,7 @@ final class ProductViewController: UICollectionViewController {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "CategorySectionHeaderCollectionReusableView", alignment: .top)
-     
+        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.45),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -65,7 +65,7 @@ final class ProductViewController: UICollectionViewController {
         group.interItemSpacing = .fixed(24)
         
         let section = NSCollectionLayoutSection(group: group)
-    
+        
         section.boundarySupplementaryItems = [sectionHeader]
         
         section.interGroupSpacing = 24
@@ -81,6 +81,7 @@ final class ProductViewController: UICollectionViewController {
         configureButtonTapHandler()
         retrieveProducts()
         configureHeaders()
+        configureBarcodeScanner()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,12 +100,12 @@ final class ProductViewController: UICollectionViewController {
     private func retrieveProducts() {
         productManager.retrieveProducts { (result) in
             switch result {
-            case let .failure(error):
-                print(error)
-            case let .success(models):
-                let sections = Set(models.map { $0.category })
-                self.sectionTitles = Array(sections)
-                self.productsDictionary = models
+                case let .failure(error):
+                    print(error)
+                case let .success(models):
+                    let sections = Set(models.map { $0.category })
+                    self.sectionTitles = Array(sections)
+                    self.productsDictionary = models
             }
         }
     }
@@ -189,6 +190,35 @@ final class ProductViewController: UICollectionViewController {
         }
     }
     
+    private func queryForProduct(with barcodeString: String) {
+        HairProductApiClient.retrieveHairProduct(with: barcodeString) { [weak self] result in
+            switch result {
+                case let .failure(error):
+                    self?.showAlert(title: "Error", message: error.localizedDescription)
+                case let .success(product):
+                    let productController =
+                        UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
+                            return ProductDetailViewController(coder: coder, productType: .newApi(product))
+                        }
+                    self?.show(productController, sender: self)
+            }
+        }
+    }
+    
+    private func configureBarcodeScanner() {
+        barcodeScannerViewController.bacodeStringPublisher.sink { [weak self] completion in
+            switch completion {
+                case let .failure(error):
+                    self?.showAlert(title: "Error!", message: error.localizedDescription)
+                case .finished: break
+            }
+        } receiveValue: { [weak self] barcodeString in
+            self?.queryForProduct(with: barcodeString)
+        }
+        .store(in: &cancellables)
+
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedProduct = dataSource.itemIdentifier(for: indexPath) else {
             return
@@ -217,18 +247,7 @@ extension ProductViewController: PHPickerViewControllerDelegate {
                         self.show(controller, sender: self)
                         
                         controller.bacodeStringPublisher.sink { barcodeString in
-                            HairProductApiClient.retrieveHairProduct(with: barcodeString) { result in
-                                switch result {
-                                    case let .failure(error):
-                                        self.showAlert(title: "Error", message: error.localizedDescription)
-                                    case let .success(product):
-                                        let productController =
-                                            UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
-                                                return ProductDetailViewController(coder: coder, productType: .newApi(product))
-                                            }
-                                        self.show(productController, sender: self)
-                                }
-                            }
+                            self.queryForProduct(with: barcodeString)
                         }
                         .store(in: &self.cancellables)
                     } else {

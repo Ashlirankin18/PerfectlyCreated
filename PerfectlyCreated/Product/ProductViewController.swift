@@ -185,6 +185,9 @@ final class ProductViewController: UICollectionViewController {
             
             header.sectionTitleLabel.text = self.sectionTitles[indexPath.section]
             
+            if self.sectionTitles[indexPath.section].isEmpty {
+                header.sectionTitleLabel.text = "Uncategorized"
+            }
             return header
         }
     }

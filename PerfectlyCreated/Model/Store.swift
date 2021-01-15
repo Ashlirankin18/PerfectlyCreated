@@ -8,13 +8,28 @@
 
 import Foundation
 
-
-// MARK: - Store
+/// Represents a store object.
 struct Store: Codable, Equatable, Hashable {
-    let storeName, title: String
+    
+    /// The name of the store which has the product.
+    let storeName: String
+    
+    /// The title of the product
+    let title: String
+    
+    /// The image url string associate with the product.
     let image: String
-    let price, currency: String
+    
+    /// The price of the product.
+    let price: String
+    
+    /// The currency
+    let currency: String
+    
+    /// The product link
     let link: String
+    
+    /// When the product was last updated.
     let updated: String
     
     enum CodingKeys: String, CodingKey {

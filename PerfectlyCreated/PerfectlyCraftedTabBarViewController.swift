@@ -31,7 +31,7 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
             return ProductViewController(coder: coder)
         }
         let myProductNavigationController = UINavigationController(rootViewController: myProductViewController)
-        myProductViewController.tabBarItem.image = #imageLiteral(resourceName: "icons8-spray-filled-25.png")
+        myProductViewController.tabBarItem.image = UIImage(systemName: "house.fill")
         myProductViewController.title = "My Products"
         
         self.viewControllers = [myProductNavigationController]

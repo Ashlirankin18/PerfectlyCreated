@@ -256,6 +256,4 @@ extension ProductViewController: PHPickerViewControllerDelegate {
             }
         }
     }
-    
-    
 }

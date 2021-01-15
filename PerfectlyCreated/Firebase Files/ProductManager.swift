@@ -26,6 +26,20 @@ final class ProductManager {
         return firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
     }
     
+    private static var products = [AllHairProducts]()
+    
+    /// Sets the products.
+    /// - Parameter products: The products to set.
+    static func setProducts(products: [AllHairProducts]) {
+        self.products = products
+    }
+    
+    /// Reteieves the products
+    /// - Returns: the returned products.
+    static func getProducts() -> [AllHairProducts] {
+        return self.products
+    }
+    
     /// Adds a product to the database
     /// - Parameters:
     ///   - product: The product to be added.

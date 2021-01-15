@@ -11,4 +11,5 @@ struct FirebaseCollectionKeys {
   static let users = "users"
   static let products = "products"
   static let feed = "feed"
+  static let allProducts = "All Products"
 }

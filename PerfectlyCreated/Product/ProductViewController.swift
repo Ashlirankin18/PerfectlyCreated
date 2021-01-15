@@ -226,7 +226,6 @@ final class ProductViewController: UICollectionViewController {
             self?.queryForProduct(with: barcodeString)
         }
         .store(in: &cancellables)
-        
     }
     
     // MARK: - UICollectionViewDelegate

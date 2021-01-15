@@ -9,6 +9,7 @@
 import UIKit
 import CombineCocoa
 import Combine
+import PhotosUI
 
 final class ProductViewController: UICollectionViewController {
     
@@ -32,6 +33,14 @@ final class ProductViewController: UICollectionViewController {
     }
     
     private var sectionTitles = [String]()
+    
+    private var photoController: PHPickerViewController  = {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        let controller = PHPickerViewController(configuration: configuration)
+        return controller
+    }()
     
     private lazy var productManager = ProductManager()
     

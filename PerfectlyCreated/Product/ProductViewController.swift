@@ -48,6 +48,8 @@ final class ProductViewController: UICollectionViewController {
         return self.configureCell(model: model, indexPath: indexPath)
     }
     
+    private lazy var hairProductApiClient = HairProductApiClient()
+    
     private let productCellCollectionLayoutSection: NSCollectionLayoutSection = {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
@@ -197,18 +199,20 @@ final class ProductViewController: UICollectionViewController {
     }
     
     private func queryForProduct(with barcodeString: String) {
-        HairProductApiClient.retrieveHairProduct(with: barcodeString) { [weak self] result in
-            switch result {
+            hairProductApiClient.retrieveHairProduct(with: barcodeString)?.sink(receiveCompletion: { [weak self] completion in
+            switch completion {
                 case let .failure(error):
-                    self?.showAlert(title: "Error", message: error.localizedDescription)
-                case let .success(product):
-                    let productController =
-                        UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
-                            return ProductDetailViewController(coder: coder, productType: .newApi(product))
-                        }
-                    self?.show(productController, sender: self)
+                    self?.showAlert(title: "Error!", message: error.localizedDescription)
+                case .finished: break
             }
-        }
+        }, receiveValue: { [weak self] product in
+            let productController =
+                UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
+                    return ProductDetailViewController(coder: coder, productType: .newApi(product))
+                }
+            self?.show(productController, sender: self)
+        })
+        .store(in: &cancellables)
     }
     
     private func configureBarcodeScanner() {

@@ -10,15 +10,6 @@
 		2E07D20C25588E700029FB36 /* NotesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E07D20A25588E700029FB36 /* NotesCollectionViewCell.swift */; };
 		2E07D20D25588E700029FB36 /* NotesCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E07D20B25588E700029FB36 /* NotesCollectionViewCell.xib */; };
 		2E0FFB45254D13190020D9DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB44254D13190020D9DC /* GoogleService-Info.plist */; };
-		2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB83254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf */; };
-		2E0FFB8D254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB84254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf */; };
-		2E0FFB8E254D1D750020D9DC /* SF-Pro-Rounded-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB85254D1D750020D9DC /* SF-Pro-Rounded-Black.otf */; };
-		2E0FFB8F254D1D750020D9DC /* SF-Pro-Rounded-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB86254D1D750020D9DC /* SF-Pro-Rounded-Light.otf */; };
-		2E0FFB90254D1D750020D9DC /* SF-Pro-Rounded-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB87254D1D750020D9DC /* SF-Pro-Rounded-Thin.otf */; };
-		2E0FFB91254D1D750020D9DC /* SF-Pro-Rounded-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB88254D1D750020D9DC /* SF-Pro-Rounded-Medium.otf */; };
-		2E0FFB92254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB89254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf */; };
-		2E0FFB93254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB8A254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf */; };
-		2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB8B254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf */; };
 		2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */; };
 		2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A3EA62208D37500988116 /* SignupViewController.swift */; };
 		2E0FFC42254DB5800020D9DC /* BarcodeScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FFC41254DB5800020D9DC /* BarcodeScannerController.swift */; };
@@ -83,15 +74,6 @@
 		2E07D20A25588E700029FB36 /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E07D20B25588E700029FB36 /* NotesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotesCollectionViewCell.xib; sourceTree = "<group>"; };
 		2E0FFB44254D13190020D9DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		2E0FFB83254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
-		2E0FFB84254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Regular.otf"; sourceTree = "<group>"; };
-		2E0FFB85254D1D750020D9DC /* SF-Pro-Rounded-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Black.otf"; sourceTree = "<group>"; };
-		2E0FFB86254D1D750020D9DC /* SF-Pro-Rounded-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Light.otf"; sourceTree = "<group>"; };
-		2E0FFB87254D1D750020D9DC /* SF-Pro-Rounded-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Thin.otf"; sourceTree = "<group>"; };
-		2E0FFB88254D1D750020D9DC /* SF-Pro-Rounded-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Medium.otf"; sourceTree = "<group>"; };
-		2E0FFB89254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Ultralight.otf"; sourceTree = "<group>"; };
-		2E0FFB8A254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Heavy.otf"; sourceTree = "<group>"; };
-		2E0FFB8B254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Bold.otf"; sourceTree = "<group>"; };
 		2E0FFB98254D9B050020D9DC /* SignupViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignupViewController.storyboard; sourceTree = "<group>"; };
 		2E0FFC41254DB5800020D9DC /* BarcodeScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerController.swift; sourceTree = "<group>"; };
 		2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
@@ -188,22 +170,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		2E0FFB82254D1D750020D9DC /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				2E0FFB83254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf */,
-				2E0FFB84254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf */,
-				2E0FFB85254D1D750020D9DC /* SF-Pro-Rounded-Black.otf */,
-				2E0FFB86254D1D750020D9DC /* SF-Pro-Rounded-Light.otf */,
-				2E0FFB87254D1D750020D9DC /* SF-Pro-Rounded-Thin.otf */,
-				2E0FFB88254D1D750020D9DC /* SF-Pro-Rounded-Medium.otf */,
-				2E0FFB89254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf */,
-				2E0FFB8A254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf */,
-				2E0FFB8B254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf */,
-			);
-			path = Fonts;
-			sourceTree = "<group>";
-		};
 		2E0FFB97254D9AEC0020D9DC /* AccountCreation */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,7 +248,6 @@
 				2EED896B22298A1C00ADDEBD /* Firebase Files */,
 				2EA365AC220A302200FFDC5E /* NetworkServices */,
 				2EA365AD220A303000FFDC5E /* SupportingFiles */,
-				2E0FFB82254D1D750020D9DC /* Fonts */,
 				2E4A3E9E2208D2CB00988116 /* Info.plist */,
 				2E0FFB44254D13190020D9DC /* GoogleService-Info.plist */,
 			);
@@ -447,31 +412,22 @@
 			files = (
 				5B5ED21B23538100000227D1 /* Feeds.storyboard in Resources */,
 				2E0FFC48254DB8B50020D9DC /* BarcodeScannerViewController.xib in Resources */,
-				2E0FFB8F254D1D750020D9DC /* SF-Pro-Rounded-Light.otf in Resources */,
 				2EAE6850254F732D00BE0E1E /* AboutProductCollectionViewCell.xib in Resources */,
 				2E0FFB45254D13190020D9DC /* GoogleService-Info.plist in Resources */,
-				2E0FFB91254D1D750020D9DC /* SF-Pro-Rounded-Medium.otf in Resources */,
-				2E0FFB92254D1D750020D9DC /* SF-Pro-Rounded-Ultralight.otf in Resources */,
 				2EAE685A254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib in Resources */,
 				2EF32CDD22175881006E2B1F /* hairProducts.json in Resources */,
 				2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */,
-				2E0FFB8D254D1D750020D9DC /* SF-Pro-Rounded-Regular.otf in Resources */,
 				2E07D20D25588E700029FB36 /* NotesCollectionViewCell.xib in Resources */,
-				2E0FFB94254D1D750020D9DC /* SF-Pro-Rounded-Bold.otf in Resources */,
 				2E110A842550F203001ADACD /* CompletedCollectionViewCell.xib in Resources */,
 				2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */,
 				2E4A8231258DA12D0031F30E /* EditProductViewController.storyboard in Resources */,
 				2EAD2CFD25AFA83400C71DAB /* UploadBarcodeViewController.storyboard in Resources */,
 				2EAE684B254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.xib in Resources */,
-				2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */,
 				2E0FFBC3254D9D6D0020D9DC /* SignupViewController.storyboard in Resources */,
-				2E0FFB90254D1D750020D9DC /* SF-Pro-Rounded-Thin.otf in Resources */,
 				2EAE6836254DE36300BE0E1E /* SearchProductViewController.storyboard in Resources */,
 				2E4A3E9A2208D2CB00988116 /* Assets.xcassets in Resources */,
-				2E0FFB93254D1D750020D9DC /* SF-Pro-Rounded-Heavy.otf in Resources */,
 				2E0FFD06254DCFD90020D9DC /* ProductCollectionViewCell.xib in Resources */,
-				2E0FFB8E254D1D750020D9DC /* SF-Pro-Rounded-Black.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

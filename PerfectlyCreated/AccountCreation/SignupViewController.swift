@@ -128,9 +128,9 @@ final class SignupViewController: UIViewController {
             self.userSession.createUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText, username: self.accountCreationValidator.usernameText)
                 .sink(receiveCompletion: { error in
                     switch error {
-                        case let .failure(error):
+                    case let .failure(error):
                             self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
-                        case .finished: break
+                    case .finished: break
                     }
                 }, receiveValue: { [weak self] _ in
                     let controller = PerfectlyCraftedTabBarViewController()

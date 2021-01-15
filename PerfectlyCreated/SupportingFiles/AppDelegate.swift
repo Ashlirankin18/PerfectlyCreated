@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let rootController: UIViewController
         
-        if let _ = Auth.auth().currentUser {
+        if Auth.auth().currentUser != nil {
             rootController = PerfectlyCraftedTabBarViewController()
-        }else{
+        } else {
             let signUpViewController = UIStoryboard(name: "SignupViewController", bundle: .main).instantiateViewController(identifier: "SignupViewController") { coder in
                 return SignupViewController(coder: coder, accountFlow: .signUp)
             }
@@ -36,4 +36,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 }
-

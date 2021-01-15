@@ -89,9 +89,9 @@ extension NotesCollectionViewCell: UITextViewDelegate {
     // MARK: - UITextViewDelegate
     
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        //this assumes that collection view already correctly laid out the cell
-        //to the correct height for the contents of the UITextView
-        //textViewHeight simply needs to catch up to it before user starts typing
+        // this assumes that collection view already correctly laid out the cell
+        // to the correct height for the contents of the UITextView
+        // textViewHeight simply needs to catch up to it before user starts typing
         let fittingSize = textView.sizeThatFits(CGSize(width: notesTextView.frame.width, height: CGFloat.greatestFiniteMagnitude))
         textViewHeight = fittingSize.height
         
@@ -99,18 +99,18 @@ extension NotesCollectionViewCell: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        //calculate fitting size after the content has changed
+        // calculate fitting size after the content has changed
         let fittingSize = textView.sizeThatFits(CGSize(width: notesTextView.frame.width, height: CGFloat.greatestFiniteMagnitude))
         
-        //if the current height is not equal to
+        // if the current height is not equal to
         if textViewHeight != fittingSize.height {
-            //save the new height
+            // save the new height
             textViewHeight = fittingSize.height
         }
         
-        //notify the cell's delegate (most likely a UIViewController)
-        //that UITextView's intrinsic content size has changed
-        //perhaps with a protocol such as this:
+        // notify the cell's delegate (most likely a UIViewController)
+        // that UITextView's intrinsic content size has changed
+        // perhaps with a protocol such as this:
         textViewTextDidChangeSubject.send(textView.text)
     }
 }

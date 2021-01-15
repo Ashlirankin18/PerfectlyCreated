@@ -11,32 +11,13 @@ import FirebaseAuth
 import Combine
 import CombineExt
 import FirebaseFirestore
-protocol UserSessionAccountCreationDelegate:AnyObject {
-    func didReceiveError(_ userSession: UserSession, error:Error)
-    func didCreateAccount(_ userSession:UserSession,user:User)
-}
 
-protocol UserSessionSignOutDelegate:AnyObject{
-    func didReceiveSignOutError(_ userSession:UserSession,error:Error)
-    func didSignOutUser(_userSession:UserSession)
-}
-
-protocol UserSessionSignInExistingUserDelegate:AnyObject {
-    func didReceiveSignInError(_ userSession: UserSession,error:Error)
-    func didSignInUser(_ userSession: UserSession, user: User)
-}
-
+/// Handles all the logic related to user databse object.
 final class UserSession {
     
-    weak var userSessionAccountdelegate: UserSessionAccountCreationDelegate?
-    weak var userSessionSignOutDelegate: UserSessionSignOutDelegate?
-    weak var userSignInDelegate: UserSessionSignInExistingUserDelegate?
+    private var accountCreationPassThroughSubject = PassthroughSubject<Void, Error>()
     
-    var accountCreationPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
-    var signOutPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
-    var signInPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
-    
-    let firebaseDB: Firestore = {
+    private let firebaseDB: Firestore = {
         let db = Firestore.firestore()
         let settings = db.settings
         db.settings = settings
@@ -47,38 +28,51 @@ final class UserSession {
         return firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
     }
     
-    func createUser(email: String, password: String, username: String) throws {
+    /// Creates a new user.
+    /// - Parameters:
+    ///   - email: The email of the user
+    ///   - password: The password
+    ///   - username: The username
+    func createUser(email: String, password: String, username: String) -> AnyPublisher<Void, Error> {
         let userId = documentId
         let user = UserModel(userName: username, email: email, profileImageLink: nil, documentId: userId, productIds: [])
         
         Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authDataResults, error) in
             
             if let error = error {
-                self?.accountCreationPassThroughSubject.send(.failure(error))
+                self?.accountCreationPassThroughSubject.send(completion: .failure(error))
             } else {
-                self?.accountCreationPassThroughSubject.send((.success(())))
+                self?.accountCreationPassThroughSubject.send(())
                 do {
                     try self?.firebaseDB.collection(FirebaseCollectionKeys.users).document(userId).setData(from: user)
                 } catch {
-                    print(error)
+                    self?.accountCreationPassThroughSubject.send(completion: .failure(error))
                 }
             }
         }
+        return accountCreationPassThroughSubject.eraseToAnyPublisher()
     }
     
+    /// Gets the current user.
+    /// - Returns: The user if there is one.
     func getCurrentUser() -> User? {
         return Auth.auth().currentUser
     }
     
+    /// Signs out user.
     func signOut() {
         do {
             try Auth.auth().signOut()
-            signOutPassThroughSubject.send(.success(()))
         } catch {
-            signOutPassThroughSubject.send(.failure(error))
+            print(error.localizedDescription)
         }
     }
     
+    /// Signs in the user to their account.
+    /// - Parameters:
+    ///   - email: The user's email.
+    ///   - password: Their pass word.
+    /// - Returns: Publisher which publishes void and error.
     func signInExistingUser(email: String,password: String) -> AnyPublisher<Void, Error> {
         AnyPublisher.create { subscriber -> Cancellable in
             Auth.auth().signIn(withEmail: email, password: password) { (results, error) in

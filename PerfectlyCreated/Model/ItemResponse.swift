@@ -8,8 +8,15 @@
 
 import Foundation
 
-// MARK: - ItemResponse
+/// Represents the response.
 struct ItemResponse: Codable, Equatable, Hashable {
+    
+    /// The status code of the response
     let code: Int
-    let status, message: String
+    
+    /// The status
+    let status: String
+    
+    /// The message
+    let message: String
 }

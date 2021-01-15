@@ -39,7 +39,7 @@ final class ProductViewController: UICollectionViewController {
         let controller = PHPickerViewController(configuration: configuration)
         return controller
     }()
-    
+
     private lazy var barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.defaultNibName, bundle: .main)
     
     private lazy var productManager = ProductManager()
@@ -90,7 +90,6 @@ final class ProductViewController: UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.configuresShadowlessOpaqueNavigationBar()
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -199,7 +198,7 @@ final class ProductViewController: UICollectionViewController {
     }
     
     private func queryForProduct(with barcodeString: String) {
-            hairProductApiClient.retrieveHairProduct(with: barcodeString)?.sink(receiveCompletion: { [weak self] completion in
+        hairProductApiClient.retrieveHairProduct(with: barcodeString)?.sink(receiveCompletion: { [weak self] completion in
             switch completion {
                 case let .failure(error):
                     self?.showAlert(title: "Error!", message: error.localizedDescription)

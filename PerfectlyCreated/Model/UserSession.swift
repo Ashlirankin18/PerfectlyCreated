@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import Combine
 import CombineExt
-
+import FirebaseFirestore
 protocol UserSessionAccountCreationDelegate:AnyObject {
     func didReceiveError(_ userSession: UserSession, error:Error)
     func didCreateAccount(_ userSession:UserSession,user:User)
@@ -36,22 +36,29 @@ final class UserSession {
     var signOutPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
     var signInPassThroughSubject = PassthroughSubject<Result<Void, Error>, Never>()
     
+    let firebaseDB: Firestore = {
+        let db = Firestore.firestore()
+        let settings = db.settings
+        db.settings = settings
+        return db
+    }()
+    
     private var documentId: String {
-        return DataBaseManager.firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
+        return firebaseDB.collection(FirebaseCollectionKeys.users).document().documentID
     }
     
     func createUser(email: String, password: String, username: String) throws {
         let userId = documentId
         let user = UserModel(userName: username, email: email, profileImageLink: nil, documentId: userId, productIds: [])
         
-        Auth.auth().createUser(withEmail: email, password: password) { (authDataResults, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authDataResults, error) in
             
             if let error = error {
-                self.accountCreationPassThroughSubject.send(.failure(error))
+                self?.accountCreationPassThroughSubject.send(.failure(error))
             } else {
-                self.accountCreationPassThroughSubject.send((.success(())))
+                self?.accountCreationPassThroughSubject.send((.success(())))
                 do {
-                    try DataBaseManager.firebaseDB.collection(FirebaseCollectionKeys.users).document(userId).setData(from: user)
+                    try self?.firebaseDB.collection(FirebaseCollectionKeys.users).document(userId).setData(from: user)
                 } catch {
                     print(error)
                 }

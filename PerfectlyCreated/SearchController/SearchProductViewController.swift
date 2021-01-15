@@ -89,10 +89,9 @@ extension SearchProductViewController: UITableViewDataSource {
             fatalError("no product display cell found")
         }
         let hairProduct = allHairProducts[indexPath.row]
-        let urlString = hairProduct.results.images.first?.absoluteString ?? "no string found"
         cell.productName.text = hairProduct.results.name.capitalized
         cell.categoryLabel.text = hairProduct.results.category
-        getImage(imageView: cell.productImage, imageURLString: urlString)
+        cell.productImage.kf.setImage(with: hairProduct.results.images.first)
         return cell
     }
     

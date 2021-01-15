@@ -76,7 +76,7 @@ final class ProductViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        photoController.delegate = self
         configureCollectionView()
         configureButtonTapHandler()
         retrieveProducts()
@@ -131,8 +131,11 @@ final class ProductViewController: UICollectionViewController {
     private func showAlertController() {
         let alertController = UIAlertController(title: "Add Product", message: nil, preferredStyle: .actionSheet)
         
-        let uploadProductAction = UIAlertAction(title: "Upload barcode", style: .default) { _ in
-           
+        let uploadProductAction = UIAlertAction(title: "Upload barcode", style: .default) { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            self.present(self.photoController, animated: true)
         }
         
         let scanBarCodeAction = UIAlertAction(title: "Scan barcode", style: .default) { [weak self] _ in
@@ -196,4 +199,45 @@ final class ProductViewController: UICollectionViewController {
             }
         navigationController?.pushViewController(productController, animated: true)
     }
+}
+
+extension ProductViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self)
+            { [weak self]  image, error in
+                DispatchQueue.main.async {
+                    guard let self = self else { return }
+                    if let image = image as? UIImage {
+                        let controller = UIStoryboard(name: UploadBarcodeViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: UploadBarcodeViewController.defaultNibName) { coder in
+                            return UploadBarcodeViewController(coder: coder, chosenImage: image)
+                        }
+                        self.show(controller, sender: self)
+                        
+                        controller.bacodeStringPublisher.sink { barcodeString in
+                            HairProductApiClient.retrieveHairProduct(with: barcodeString) { result in
+                                switch result {
+                                    case let .failure(error):
+                                        self.showAlert(title: "Error", message: error.localizedDescription)
+                                    case let .success(product):
+                                        let productController =
+                                            UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
+                                                return ProductDetailViewController(coder: coder, productType: .newApi(product))
+                                            }
+                                        self.show(productController, sender: self)
+                                }
+                            }
+                        }
+                        .store(in: &self.cancellables)
+                    } else {
+                        self.showAlert(title: "Error", message: "Image could not be processed.")
+                    }
+                }
+            }
+        }
+    }
+    
+    
 }

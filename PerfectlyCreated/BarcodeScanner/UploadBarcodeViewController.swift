@@ -51,6 +51,7 @@ final class UploadBarcodeViewController: UIViewController {
         cropView.borderWidth = 3.0
         cropView.borderColor = .black
         
+        navigationController?.configuresShadowlessTransparentNavigationBar(backgroundColor: .black)
         saveBarButtonItem.tapPublisher.sink { [weak self] _ in
             guard let self = self else {
                 return
@@ -60,15 +61,15 @@ final class UploadBarcodeViewController: UIViewController {
                     case let .failure(error):
                         self.showAlert(title: "Error", message: error.localizedDescription)
                     case let .success(barcodeString):
-                        self.dismiss(animated: true)
                         self.bacodeStringSubject.send(barcodeString)
+                        self.navigationController?.popViewController(animated: true)
                 }
             }
         }
         .store(in: &cancellables)
         
         backBarButtonItem.tapPublisher.sink { [weak self] _ in
-            self?.dismiss(animated: true)
+            self?.navigationController?.popViewController(animated: true)
         }
         .store(in: &cancellables)
     }

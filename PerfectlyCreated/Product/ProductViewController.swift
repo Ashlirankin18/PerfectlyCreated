@@ -146,7 +146,6 @@ final class ProductViewController: UICollectionViewController {
             let navigationController = UINavigationController(rootViewController: self.barcodeScannerViewController)
             navigationController.modalPresentationStyle = .fullScreen
             self.present(navigationController, animated: true)
-            
         }
         
         let searchProduct = UIAlertAction(title: "Search", style: .default) { [weak self] _ in

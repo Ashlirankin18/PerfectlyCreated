@@ -9,18 +9,29 @@
 import UIKit
 import Combine
 
-class CompletedCollectionViewCell: UICollectionViewCell {
+/// `UICollectionViewCell` subclass which displays the if a product is completed.
+final class CompletedCollectionViewCell: UICollectionViewCell {
     
+    /// Contains the information needed to cofigure `CompletedCollectionViewCell`.
     struct ViewModel {
         
+        /// Represents the various configurations the cell can have.
         enum Configuration {
+            
+            /// Represents if the cells is not editing.
             case display
+            
+            /// Represents if the cells is editing.
             case editing
         }
         
+        /// Represents if the product is complete.
         let isCompleted: Bool
+        
+        /// The title of the cell.
         let title: String
         
+        /// The configurations the cell can take.
         let configuration: Configuration
         
         fileprivate var completeImage: UIImage! {
@@ -35,14 +46,17 @@ class CompletedCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var checkmarkButton: UIButton!
+    
     private var cancellables = Set<AnyCancellable>()
     
     private var isCompletedPassThroughSubject = PassthroughSubject<Bool, Never>()
-   
+    
+    /// Called when changes to the product completion state are published.
     var isCompletePublisher: AnyPublisher<Bool, Never> {
         return isCompletedPassThroughSubject.eraseToAnyPublisher()
     }
     
+    /// Single point of configuration of `CompletedCollectionViewCell`.
     var viewModel: ViewModel? {
         didSet {
             

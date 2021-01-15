@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ProductCollectionViewCell: UICollectionViewCell {
+/// `UICollectionViewCell` subclass which displays the user's chosen product.
+final class ProductCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var productNameLabel: UILabel!

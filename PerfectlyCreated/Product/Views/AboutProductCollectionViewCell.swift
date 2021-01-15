@@ -8,12 +8,22 @@
 
 import UIKit
 
+/// `UICollectionViewCell` which displays information about a product.
 final class AboutProductCollectionViewCell: UICollectionViewCell {
     
+    /// Contains the information needed to configure `AboutProductCollectionViewCell`.
     struct ViewModel {
+        
+        /// The name of the product.
         let productName: String
+        
+        /// The product description.
         let productDescription: String
-        let productURL: URL?
+        
+        /// The image url of the product.
+        let imageURL: URL?
+        
+        /// The product category.
         let category: String
     }
     
@@ -22,17 +32,16 @@ final class AboutProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var productDescriptionTextView: UITextView!
     @IBOutlet private weak var categoryLabel: UILabel!
     
+    /// Single point of configuration of the `AboutProductCollectionViewCell`.
     var viewModel: ViewModel? {
         didSet {
             productNameLabel.text = viewModel?.productName
             categoryLabel.text = viewModel?.category
-            productImageImageView.kf.setImage(with: viewModel?.productURL)
+            productImageImageView.kf.setImage(with: viewModel?.imageURL)
             if viewModel?.productDescription.isEmpty ?? true {
                 productDescriptionTextView.isHidden = true
             }
             productDescriptionTextView.text = viewModel?.productDescription
-            
         }
     }
 }
-

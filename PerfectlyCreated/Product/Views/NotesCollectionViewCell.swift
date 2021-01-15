@@ -9,13 +9,16 @@
 import UIKit
 import Combine
 
+/// <#Description#>
 final class NotesCollectionViewCell: UICollectionViewCell {
     
     /// Contains the information needed to configure `NotesCollectionViewCell`.
     struct ViewModel {
         
         enum Configuration {
+            /// Represents if the cells is not editing.
             case display
+            /// Represents if the cells is editing.
             case editing
         }
         
@@ -57,9 +60,10 @@ final class NotesCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    /// Called when the text view text changes.
     var notesTextHandler: ((String?) -> Void)?
     
-    /// Publishes changes to the 
+    /// Publishes changes to the textview text.
     var textViewTextDidChangePublisher: AnyPublisher<String, Never> {
         return textViewTextDidChangeSubject.eraseToAnyPublisher()
     }

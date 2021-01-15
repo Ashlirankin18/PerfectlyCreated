@@ -8,8 +8,7 @@
 
 import UIKit
 
+/// `UICollectionReusableView` subclass which displays the title of a section.
 final class CategorySectionHeaderCollectionReusableView: UICollectionReusableView {
-
     @IBOutlet weak var sectionTitleLabel: UILabel!
-    
 }

@@ -45,7 +45,7 @@ final class SearchProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productTableView.register(ProductDisplayCell.self, forCellReuseIdentifier: "ProductDisplayCell")
+        productTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: "ProductDisplayCell")
         configureNavigationItemProperties()
         setDelegates()
         configureDismissButtonHandler()
@@ -90,7 +90,7 @@ extension SearchProductViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = productTableView.dequeueReusableCell(withIdentifier: "ProductDisplayCell", for: indexPath) as? ProductDisplayCell else {
+        guard let cell = productTableView.dequeueReusableCell(withIdentifier: "ProductDisplayCell", for: indexPath) as? SearchTableViewCell else {
             fatalError("no product display cell found")
         }
         let hairProduct = allHairProducts[indexPath.row]

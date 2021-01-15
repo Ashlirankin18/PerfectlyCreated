@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-/// `UIViewController` subclass which allows a user to edit their profile.
+/// `UIViewController` subclass which allows a user to edit their products.
 final class EditProductViewController: UIViewController {
     
     private enum Section: Hashable {
@@ -57,6 +57,11 @@ final class EditProductViewController: UIViewController {
     
     private let productManager: ProductManager
     
+    /// Creates a new instance of `EditProductViewController`.
+    /// - Parameters:
+    ///   - coder: An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.
+    ///   - productInfoDraft: The product info draft.
+    ///   - productManager: The product Manager.
     init?(coder: NSCoder, productInfoDraft: ProductInfoDraft, productManager: ProductManager) {
         self.productInfoDraft = productInfoDraft
         self.productManager = productManager

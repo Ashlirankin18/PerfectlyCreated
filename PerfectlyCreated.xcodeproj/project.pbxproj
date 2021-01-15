@@ -28,7 +28,6 @@
 		2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A3E9B2208D2CB00988116 /* LaunchScreen.storyboard */; };
 		2E4A8231258DA12D0031F30E /* EditProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E4A8230258DA12D0031F30E /* EditProductViewController.storyboard */; };
 		2E4A8238258DA8F40031F30E /* EditProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E4A822D258DA11D0031F30E /* EditProductViewController.swift */; };
-		2E63590E2224A2CD0053BBD9 /* ProductDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E63590D2224A2CD0053BBD9 /* ProductDataManager.swift */; };
 		2E997F94221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F93221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift */; };
 		2E997F96221B0E2800730ED7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F95221B0E2800730ED7 /* NetworkHelper.swift */; };
 		2E997F98221B0E4700730ED7 /* Extension+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F97221B0E4700730ED7 /* Extension+Alerts.swift */; };
@@ -91,7 +90,6 @@
 		2E4A3EA62208D37500988116 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		2E4A822D258DA11D0031F30E /* EditProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProductViewController.swift; sourceTree = "<group>"; };
 		2E4A8230258DA12D0031F30E /* EditProductViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProductViewController.storyboard; sourceTree = "<group>"; };
-		2E63590D2224A2CD0053BBD9 /* ProductDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDataManager.swift; sourceTree = "<group>"; };
 		2E984787221D575800204A42 /* SearchProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductViewController.swift; sourceTree = "<group>"; };
 		2E997F93221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairProductDatabaseApiCleient.swift; sourceTree = "<group>"; };
 		2E997F95221B0E2800730ED7 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 				2E997FA9221B99A300730ED7 /* DateExtension.swift */,
 				2E997F93221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift */,
 				2E997F95221B0E2800730ED7 /* NetworkHelper.swift */,
-				2E63590D2224A2CD0053BBD9 /* ProductDataManager.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -508,7 +505,6 @@
 				2EAF931C2585556900D28BAC /* UINavigationBar+Appearance.swift in Sources */,
 				2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */,
 				2EAE6841254F04AF00BE0E1E /* ProductManager.swift in Sources */,
-				2E63590E2224A2CD0053BBD9 /* ProductDataManager.swift in Sources */,
 				2EEC71C825B14EEE009676C1 /* UserModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

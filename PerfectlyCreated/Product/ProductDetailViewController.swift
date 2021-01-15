@@ -20,16 +20,19 @@ final class ProductDetailViewController: UICollectionViewController {
     enum ProductType {
         case personal(ProductModel)
         case general(AllHairProducts)
+        case newApi(HairProduct)
     }
     
     enum Section: Int, CaseIterable, Hashable {
         case aboutProduct
         case additionalInfo
+        case newApi
     }
     
     enum SectionData: Hashable {
         case aboutProduct(HairProductDetails)
         case additionalInfo(ProductModel)
+        case newApi(HairProduct)
     }
     
     enum SectionDataTest: Hashable {
@@ -82,9 +85,8 @@ final class ProductDetailViewController: UICollectionViewController {
      
     private lazy var compositionalLayout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
          let sections = Section.allCases[sectionIndex]
-        
         switch sections {
-        case .aboutProduct:
+            case .aboutProduct, .newApi:
             return self.aboutProductCollectionLayoutSection
         case .additionalInfo:
             return self.additionalInfoCollectionLayoutSection
@@ -108,7 +110,7 @@ final class ProductDetailViewController: UICollectionViewController {
         configureHeaders()
         
         switch productType {
-            case .general:
+            case .general, .newApi:
                 reloadDataSource()
                 
             case let .personal(product):
@@ -174,8 +176,20 @@ final class ProductDetailViewController: UICollectionViewController {
                         self.dismiss(animated: true)
                     }
                 }
+               
+                let itemAttributes = ItemAttributes(title: model.name, upc: model.upc, category: model.category, image: model.images.first?.absoluteString ?? "", itemAttributesDescription: model.description)
+               
+                let hairProduct = HairProduct(itemAttributes: itemAttributes, stores: [])
+                self.productManager.addProduct(documentId: self.productManager.documentId, product: hairProduct) { [weak self] result in
+                    switch result {
+                        case let .failure(error):
+                            self?.showAlert(title: "Error!", message: error.localizedDescription)
+                        case .success: break
+                    }
+                }
             }
             .store(in: &cancellables)
+            
         case let .personal(product):
             navigationItem.rightBarButtonItem?.image = UIImage(systemName: "trash.fill")
             navigationItem.rightBarButtonItem?.tintColor = .systemRed
@@ -184,6 +198,36 @@ final class ProductDetailViewController: UICollectionViewController {
                 self?.persentDestructiveAlertController(title: nil, message: "Are you sure you want to delete this product?", destructiveTitle: "Delete", destructiveCompletion: {
                     self?.performDeleteAction(product: product)
                 }, nonDestructiveTitle: "Keep")
+            }
+            .store(in: &cancellables)
+        case let .newApi(product):
+            let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category:  product.itemAttributes.category, isCompleted: false, notes: nil)
+            
+            addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
+                guard let self = self else {
+                    return
+                }
+                
+                self.productManager.addProduct(product: newProduct) { [weak self] result in
+                    guard let self = self else {
+                        return
+                    }
+                    
+                    switch result {
+                        case let .failure(error):
+                            print(error)
+                        case .success:
+                            self.dismiss(animated: true)
+                    }
+                }
+                
+                self.productManager.addProduct(documentId: self.productManager.documentId, product: product) { result in
+                    switch result {
+                        case let .failure(error):
+                            self.showAlert(title: "Error!", message: error.localizedDescription)
+                        case .success: break
+                    }
+                }
             }
             .store(in: &cancellables)
         }
@@ -208,6 +252,9 @@ final class ProductDetailViewController: UICollectionViewController {
         case let .general(product):
             snapshot.appendItems([.productModel(.aboutProduct(product.results))], toSection: .aboutProduct)
         case .personal: break
+        case let .newApi(product):
+            snapshot.appendItems([.productModel(.newApi(product))], toSection: .aboutProduct)
+                
         }
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -242,6 +289,8 @@ final class ProductDetailViewController: UICollectionViewController {
                 cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: info.name, productDescription: info.features?.blob ?? info.description, productURL: info.images.first, category: info.category)
             case let .additionalInfo(product):
                 cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.productName, productDescription: product.productDescription, productURL: URL(string: product.productImageURL), category: product.category)
+            case let .newApi(product):
+                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.itemAttributes.title, productDescription: product.itemAttributes.itemAttributesDescription, productURL: URL(string: product.itemAttributes.image), category: product.itemAttributes.category)
             }
             return cell
         case let .completed(completed):
@@ -272,7 +321,7 @@ final class ProductDetailViewController: UICollectionViewController {
                     self.performSegue(withIdentifier: SegueIdentifier.editProduct, sender: self)
                 }
                 return header
-            case .general:
+                case .general, .newApi:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
                     return nil
                 }
@@ -288,6 +337,7 @@ final class ProductDetailViewController: UICollectionViewController {
         case .personal:
             let controller  = EditProductViewController(coder: coder, productInfoDraft: productInfoDraft, productManager: productManager)
             return controller
+        case .newApi(_): return nil
         }
     }
 }

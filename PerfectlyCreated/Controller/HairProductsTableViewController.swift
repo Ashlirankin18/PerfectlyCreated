@@ -148,26 +148,4 @@ class HairProductsTableViewController: UITableViewController {
             self.selectedProduct = product
         }
     }
-    
-    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            let section = Array(self.dict.keys)
-            guard let values = self.dict[section[indexPath.section]] else {return}
-            let product = values[indexPath.row]
-            DataBaseManager.deleteDocumentFromDatabase(product: product)
-        }
-        
-        let share = UITableViewRowAction(style: .normal, title: "Share") { (action, indexPath) in
-            let storyBoard = UIStoryboard.init(name: "ProfileOptions", bundle: nil)
-            guard let postViewController = storyBoard.instantiateViewController(withIdentifier: "PostFeedViewController") as? PostFeedViewController else {return}
-            if let selectedProduct = self.selectedProduct{
-                postViewController.sendSelectedProduct(self, selectedProduct: selectedProduct)
-            }
-            
-            self.present(postViewController, animated: true)
-        }
-        
-        share.backgroundColor = UIColor.lightGray
-        return [delete, share]
-    }
 }

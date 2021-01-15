@@ -29,4 +29,23 @@ final class HairProductApiClient {
         }
     }
     
+    static func retrieveHairProduct(with barcodeNumber: String, completionHandler: @escaping (Result<HairProduct, AppError>) -> Void ) {
+        let urlString = "https://api.barcodespider.com/v1/lookup?token=229820d4f6a2509d2307&upc=\(barcodeNumber)"
+        
+        NetworkHelper.shared.performDataTask(endpointURLString: urlString, httpMethod: "GET", httpBody: nil) { (error, data, response) in
+            DispatchQueue.main.async {
+                if let error = error {
+                    completionHandler(.failure(.decodingError(error)))
+                }
+                if let data = data {
+                    do{
+                        let hairProduct = try JSONDecoder().decode(HairProduct.self, from: data)
+                        completionHandler(.success(hairProduct))
+                    }catch {
+                        completionHandler(.failure(.decodingError(error)))
+                    }
+                }
+            }
+        }
+    }
 }

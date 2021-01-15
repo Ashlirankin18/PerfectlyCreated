@@ -69,11 +69,16 @@
 		2EA365AA220A300C00FFDC5E /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365A9220A300C00FFDC5E /* PersistanceManager.swift */; };
 		2EA365B1220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */; };
 		2EA365B3220A59A900FFDC5E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B2220A59A900FFDC5E /* ProfileViewController.swift */; };
-		2EA365B5220A59B900FFDC5E /* FeedsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B4220A59B900FFDC5E /* FeedsViewController.swift */; };
 		2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B6220A64E700FFDC5E /* LoginViewController.swift */; };
 		2EA365B9220A678200FFDC5E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365B8220A678200FFDC5E /* LoginView.swift */; };
 		2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA365BA220A760800FFDC5E /* UserSession.swift */; };
 		2EAD2CF325AF3EDE00C71DAB /* ProductInfoDraft.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD2CF225AF3EDE00C71DAB /* ProductInfoDraft.swift */; };
+		2EAD2CFA25AFA81900C71DAB /* UploadBarcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD2CF925AFA81900C71DAB /* UploadBarcodeViewController.swift */; };
+		2EAD2CFD25AFA83400C71DAB /* UploadBarcodeViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAD2CFC25AFA83400C71DAB /* UploadBarcodeViewController.storyboard */; };
+		2EAD2D0225B0963900C71DAB /* HairProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD2D0125B0963900C71DAB /* HairProduct.swift */; };
+		2EAD2D0525B0967B00C71DAB /* ItemResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD2D0425B0967B00C71DAB /* ItemResponse.swift */; };
+		2EAD2D0825B0969400C71DAB /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD2D0725B0969400C71DAB /* Store.swift */; };
+		2EAD2D0B25B096EE00C71DAB /* ItemAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAD2D0A25B096EE00C71DAB /* ItemAttributes.swift */; };
 		2EAE6836254DE36300BE0E1E /* SearchProductViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E0FFD0D254DDBF10020D9DC /* SearchProductViewController.storyboard */; };
 		2EAE6839254E5F7200BE0E1E /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */; };
 		2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */; };
@@ -98,7 +103,6 @@
 		2EDB0E4B222DC230006DB8EE /* HairTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB0E4A222DC230006DB8EE /* HairTableViewCell.swift */; };
 		2EDB0E4D222DC49C006DB8EE /* ImageViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB0E4C222DC49C006DB8EE /* ImageViewControllerExtension.swift */; };
 		2EDB0E4F222E1014006DB8EE /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB0E4E222E1014006DB8EE /* FeedModel.swift */; };
-		2EDB0E51222E1FCB006DB8EE /* PostFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EDB0E50222E1FCB006DB8EE /* PostFeedViewController.swift */; };
 		2EED896722284C9E00ADDEBD /* ProfileOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2EED896622284C9E00ADDEBD /* ProfileOptions.storyboard */; };
 		2EED896922284DED00ADDEBD /* HairProductsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED896822284DED00ADDEBD /* HairProductsTableViewController.swift */; };
 		2EED896D2229993700ADDEBD /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED896C2229993700ADDEBD /* ProductModel.swift */; };
@@ -176,11 +180,16 @@
 		2EA365A9220A300C00FFDC5E /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectlyCraftedTabBarViewController.swift; sourceTree = "<group>"; };
 		2EA365B2220A59A900FFDC5E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		2EA365B4220A59B900FFDC5E /* FeedsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedsViewController.swift; sourceTree = "<group>"; };
 		2EA365B6220A64E700FFDC5E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2EA365B8220A678200FFDC5E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		2EA365BA220A760800FFDC5E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		2EAD2CF225AF3EDE00C71DAB /* ProductInfoDraft.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoDraft.swift; sourceTree = "<group>"; };
+		2EAD2CF925AFA81900C71DAB /* UploadBarcodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadBarcodeViewController.swift; sourceTree = "<group>"; };
+		2EAD2CFC25AFA83400C71DAB /* UploadBarcodeViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UploadBarcodeViewController.storyboard; sourceTree = "<group>"; };
+		2EAD2D0125B0963900C71DAB /* HairProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairProduct.swift; sourceTree = "<group>"; };
+		2EAD2D0425B0967B00C71DAB /* ItemResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemResponse.swift; sourceTree = "<group>"; };
+		2EAD2D0725B0969400C71DAB /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		2EAD2D0A25B096EE00C71DAB /* ItemAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemAttributes.swift; sourceTree = "<group>"; };
 		2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		2EAE683B254E5F7E00BE0E1E /* ProductDetailViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetailViewController.storyboard; sourceTree = "<group>"; };
 		2EAE6840254F04AF00BE0E1E /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
@@ -204,7 +213,6 @@
 		2EDB0E4A222DC230006DB8EE /* HairTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairTableViewCell.swift; sourceTree = "<group>"; };
 		2EDB0E4C222DC49C006DB8EE /* ImageViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewControllerExtension.swift; sourceTree = "<group>"; };
 		2EDB0E4E222E1014006DB8EE /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
-		2EDB0E50222E1FCB006DB8EE /* PostFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostFeedViewController.swift; sourceTree = "<group>"; };
 		2EED896622284C9E00ADDEBD /* ProfileOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileOptions.storyboard; sourceTree = "<group>"; };
 		2EED896822284DED00ADDEBD /* HairProductsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairProductsTableViewController.swift; sourceTree = "<group>"; };
 		2EED896C2229993700ADDEBD /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -278,6 +286,8 @@
 				2E0FFC45254DB8B50020D9DC /* BarcodeScannerViewController.swift */,
 				2E0FFC46254DB8B50020D9DC /* BarcodeScannerViewController.xib */,
 				2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */,
+				2EAD2CF925AFA81900C71DAB /* UploadBarcodeViewController.swift */,
+				2EAD2CFC25AFA83400C71DAB /* UploadBarcodeViewController.storyboard */,
 			);
 			path = BarcodeScanner;
 			sourceTree = "<group>";
@@ -350,9 +360,7 @@
 			isa = PBXGroup;
 			children = (
 				2EB2A17F2225B27B00525BD4 /* SetProfileViewController.swift */,
-				2EDB0E50222E1FCB006DB8EE /* PostFeedViewController.swift */,
 				2EED896822284DED00ADDEBD /* HairProductsTableViewController.swift */,
-				2EA365B4220A59B900FFDC5E /* FeedsViewController.swift */,
 				2EA365B6220A64E700FFDC5E /* LoginViewController.swift */,
 				2EA365B2220A59A900FFDC5E /* ProfileViewController.swift */,
 				2EC7B542223173AC00D165B1 /* SettingsTableViewController.swift */,
@@ -403,6 +411,10 @@
 				2EA365A7220A2F0400FFDC5E /* UserModel.swift */,
 				2EDB0E4E222E1014006DB8EE /* FeedModel.swift */,
 				2EA365BA220A760800FFDC5E /* UserSession.swift */,
+				2EAD2D0125B0963900C71DAB /* HairProduct.swift */,
+				2EAD2D0425B0967B00C71DAB /* ItemResponse.swift */,
+				2EAD2D0725B0969400C71DAB /* Store.swift */,
+				2EAD2D0A25B096EE00C71DAB /* ItemAttributes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -540,11 +552,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Ashli Rankin";
 				TargetAttributes = {
 					2E4A3E8E2208D2C800988116 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1230;
 					};
 				};
 			};
@@ -588,6 +601,7 @@
 				2E110A842550F203001ADACD /* CompletedCollectionViewCell.xib in Resources */,
 				2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */,
 				2E4A8231258DA12D0031F30E /* EditProductViewController.storyboard in Resources */,
+				2EAD2CFD25AFA83400C71DAB /* UploadBarcodeViewController.storyboard in Resources */,
 				2EAE684B254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.xib in Resources */,
 				2E0FFB8C254D1D750020D9DC /* SF-Pro-Rounded-Semibold.otf in Resources */,
 				2EAE683C254E5F7E00BE0E1E /* ProductDetailViewController.storyboard in Resources */,
@@ -656,7 +670,6 @@
 				2E0FFC42254DB5800020D9DC /* BarcodeScannerController.swift in Sources */,
 				2EAE684A254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.swift in Sources */,
 				2EA365B7220A64E700FFDC5E /* LoginViewController.swift in Sources */,
-				2EDB0E51222E1FCB006DB8EE /* PostFeedViewController.swift in Sources */,
 				2E997F9A221B0FCF00730ED7 /* AppError.swift in Sources */,
 				2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */,
 				2E04A4B6221A76620066568E /* PopUpView.swift in Sources */,
@@ -666,6 +679,7 @@
 				2E063E69220B629A00D85406 /* ProfileCollectionViewCell.swift in Sources */,
 				2E4A8238258DA8F40031F30E /* EditProductViewController.swift in Sources */,
 				2EAE6839254E5F7200BE0E1E /* ProductDetailViewController.swift in Sources */,
+				2EAD2D0225B0963900C71DAB /* HairProduct.swift in Sources */,
 				2EA365A8220A2F0400FFDC5E /* UserModel.swift in Sources */,
 				2EDB0E4D222DC49C006DB8EE /* ImageViewControllerExtension.swift in Sources */,
 				2E997FA2221B200D00730ED7 /* HairProductView.swift in Sources */,
@@ -674,11 +688,14 @@
 				2EAE6859254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift in Sources */,
 				2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */,
 				2EAF931125854B4300D28BAC /* UIView+IBInspectable.swift in Sources */,
+				2EAD2CFA25AFA81900C71DAB /* UploadBarcodeViewController.swift in Sources */,
 				2EB2A1822225B29700525BD4 /* SetUpProfileView.swift in Sources */,
 				2E7946DF220CFABE00219B6A /* RatingViewController.swift in Sources */,
 				2EDB0E4F222E1014006DB8EE /* FeedModel.swift in Sources */,
 				2EA365B1220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift in Sources */,
+				2EAD2D0825B0969400C71DAB /* Store.swift in Sources */,
 				2E997FA0221B1EFD00730ED7 /* ShowProductViewController.swift in Sources */,
+				2EAD2D0525B0967B00C71DAB /* ItemResponse.swift in Sources */,
 				2EED896922284DED00ADDEBD /* HairProductsTableViewController.swift in Sources */,
 				2EC7B543223173AC00D165B1 /* SettingsTableViewController.swift in Sources */,
 				2E4A3EB02208E7A200988116 /* SignUpViewForm.swift in Sources */,
@@ -695,13 +712,13 @@
 				2E57C3CA220E506C00C89FFC /* CreateView.swift in Sources */,
 				2E98478A221D57D600204A42 /* SearchView.swift in Sources */,
 				2E0FFD05254DCFD90020D9DC /* ProductCollectionViewCell.swift in Sources */,
+				2EAD2D0B25B096EE00C71DAB /* ItemAttributes.swift in Sources */,
 				2E7946E1220CFB8700219B6A /* RatingView.swift in Sources */,
 				2EAD2CF325AF3EDE00C71DAB /* ProductInfoDraft.swift in Sources */,
 				2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */,
 				2E997FA8221B751300730ED7 /* OtherOptionsCell.swift in Sources */,
 				2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */,
 				2EAE684F254F732D00BE0E1E /* AboutProductCollectionViewCell.swift in Sources */,
-				2EA365B5220A59B900FFDC5E /* FeedsViewController.swift in Sources */,
 				2E063E67220B5E9C00D85406 /* ProfileView.swift in Sources */,
 				2EB2A1802225B27B00525BD4 /* SetProfileViewController.swift in Sources */,
 				2E110A832550F203001ADACD /* CompletedCollectionViewCell.swift in Sources */,
@@ -870,7 +887,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wmn4future.PerfectlyCreated;
 				PRODUCT_NAME = PerfectlyCreated;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -890,7 +907,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wmn4future.PerfectlyCreated;
 				PRODUCT_NAME = PerfectlyCreated;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -36,6 +36,21 @@ final class ProductManager {
         }
     }
     
+    func addProduct(documentId: String?, product: HairProduct, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let documentId = documentId else {
+            return
+        }
+        
+        do {
+            try firebaseDB.collection(FirebaseCollectionKeys.allProducts).document(documentId).setData(from: product)
+            completion(.success(()))
+            return
+        } catch {
+            completion(.failure(error))
+            return
+        }
+    }
+    
     func retrieveProducts(completion: @escaping (Result<[ProductModel], Error>) -> Void) {
         
         guard let currentUser = userManager.currentUser else {
@@ -70,7 +85,6 @@ final class ProductManager {
                 if let snapshot = snapshot {
                     do {
                         guard let model = try snapshot.data(as: ProductModel.self) else {
-                            assertionFailure("Could not find model.")
                             return
                         }
                         completion(.success(model))

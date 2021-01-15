@@ -17,44 +17,36 @@ final class BarcodeScannerViewController: UIViewController {
     
     private var cancelButton = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .done, target: nil, action: nil)
     
-    private var allHairProducts = [AllHairProducts]()
-    
     private var cancellables = Set<AnyCancellable>()
+    
+    var bacodeStringPublisher: AnyPublisher<String, Error> {
+        return bacodeStringSubject.eraseToAnyPublisher()
+    }
+    
+    private var bacodeStringSubject = PassthroughSubject<String, Error>()
     
     // MARK: - UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCancelButton()
-        allHairProducts = ProductDataManager.getProducts().sorted{$0.results.name < $1.results.name}
-        
+    
         videoSession.bacodeStringPublisher
-            .first()
+            .removeDuplicates()
             .sink { [weak self] result in
                 switch result {
                     case let .failure(error):
-                        self?.showAlert(title: "Error!", message: error.localizedDescription)
+                        self?.dismiss(animated: true)
+                        self?.bacodeStringSubject.send(completion: .failure(error))
+                        
                     case .finished: break
                 }
             } receiveValue: { [weak self] barcodeString in
-                
                 guard let self = self else {
                     return
                 }
-                let product = self.allHairProducts.first { $0.results.name == barcodeString }
-                
-                if let productUnwrapped = product {
-                    
-                    let productController =
-                        UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
-                            return ProductDetailViewController(coder: coder, productType: .general(productUnwrapped))
-                        }
-                    self.present(productController, animated: true)
-                } else {
-                    self.showAlert(title: "Product Not Found", message: "Could not find product in our database.", style: .alert) {
-                        self.dismiss(animated: true)
-                    }
-                }
+                self.dismiss(animated: true)
+                self.bacodeStringSubject.send(barcodeString)
             }.store(in: &cancellables)
     }
     

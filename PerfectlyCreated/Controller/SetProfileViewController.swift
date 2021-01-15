@@ -55,7 +55,7 @@ class SetProfileViewController: UIViewController {
     func setUpButtonAction(){
         setUpProfileView.userNameTextField.delegate = self
         setUpProfileView.hairTypeInput.delegate = self
-        setUpProfileView.setUpButton.addTarget(self, action: #selector(createButtonPressed), for: .touchUpInside)
+       // setUpProfileView.setUpButton.addTarget(self, action: #selector(createButtonPressed), for: .touchUpInside)
         setUpTapGesture(imageView: setUpProfileView.profileImage)
     }
     func setUpTapGesture(imageView:UIImageView){
@@ -66,13 +66,6 @@ class SetProfileViewController: UIViewController {
     }
     @objc func profileImagePressed(){
         showImagePickerController()
-    }
-    
-    @objc func createButtonPressed(){
-        if let _ = userSession.getCurrentUser(),let imageURL = imageURL {
-       
-            
-        }
     }
 }
 extension SetProfileViewController:UITextFieldDelegate{

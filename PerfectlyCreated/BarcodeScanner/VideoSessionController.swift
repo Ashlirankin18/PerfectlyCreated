@@ -22,6 +22,7 @@ final class VideoSessionController: NSObject {
     
     private lazy var barcodeController = BarCodeScannerController()
     
+    /// Subscriber to this publisher to recieve chages related to the barcode.
     var bacodeStringPublisher: AnyPublisher<String, Error> {
         return bacodeStringSubject.eraseToAnyPublisher()
     }
@@ -30,6 +31,8 @@ final class VideoSessionController: NSObject {
     
     private var cancellables = Set<AnyCancellable>()
     
+    /// Creates a new instance of `VideoSessionController`.
+    /// - Parameter backgroundView: The view which will display the video.
     init(backgroundView: UIView) {
         self.backgroundView = backgroundView
     }
@@ -74,6 +77,8 @@ final class VideoSessionController: NSObject {
 }
 
 extension VideoSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
+     
+    // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         barcodeController.captureOutput(output, didOutput: sampleBuffer, from: connection) { [weak self] result in

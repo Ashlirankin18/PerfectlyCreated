@@ -9,11 +9,15 @@
 import Foundation
 import Combine
 
-class ProductInfoDraft {
+/// Objects which contains the intermediate state of editing product experience.
+final class ProductInfoDraft {
     
+    /// The product document id.
     var documentId: String = ""
     
+    /// Publisher of the the notes property.
     @Published var notes = ""
     
+    /// Publisher of the the isComplete property.
     @Published var isCompleted = false
 }

@@ -33,7 +33,7 @@ final class EditProductViewController: UIViewController {
     private var coloredAppearance: UINavigationBarAppearance {
         let coloredAppearance = UINavigationBarAppearance()
         coloredAppearance.configureWithTransparentBackground()
-        coloredAppearance.backgroundColor = .systemIndigo
+        coloredAppearance.backgroundColor = .appPurple
         coloredAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         coloredAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         coloredAppearance.shadowColor = .clear
@@ -74,8 +74,8 @@ final class EditProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemIndigo
-        editProductCollectionView.backgroundColor = .systemIndigo
+        view.backgroundColor = .appPurple
+        editProductCollectionView.backgroundColor = .appPurple
         configureNavBar()
         configureBackButton()
         configureSaveBarButton()

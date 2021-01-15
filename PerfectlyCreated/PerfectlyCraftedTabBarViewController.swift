@@ -33,7 +33,7 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
         let myProductNavigationController = UINavigationController(rootViewController: myProductViewController)
         myProductViewController.tabBarItem.image = UIImage(systemName: "house.fill")
         myProductViewController.title = "My Products"
-        
+        tabBar.tintColor = .appPurple
         self.viewControllers = [myProductNavigationController]
     }
     

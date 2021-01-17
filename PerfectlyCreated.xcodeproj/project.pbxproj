@@ -33,6 +33,7 @@
 		2E6E31B525B3A0FE00857E5C /* StoreCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E6E31B325B3A0FE00857E5C /* StoreCollectionViewCell.xib */; };
 		2E6E31BB25B3CC8300857E5C /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E6E31B925B3CC8300857E5C /* OnboardingViewController.xib */; };
 		2E6E31BC25B3CC8300857E5C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E31BA25B3CC8300857E5C /* OnboardingViewController.swift */; };
+		2E6E31BF25B3E37B00857E5C /* NotificationName+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E31BE25B3E37B00857E5C /* NotificationName+String.swift */; };
 		2E997F94221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F93221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift */; };
 		2E997F96221B0E2800730ED7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F95221B0E2800730ED7 /* NetworkHelper.swift */; };
 		2E997F98221B0E4700730ED7 /* Extension+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F97221B0E4700730ED7 /* Extension+Alerts.swift */; };
@@ -99,6 +100,7 @@
 		2E6E31B325B3A0FE00857E5C /* StoreCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCollectionViewCell.xib; sourceTree = "<group>"; };
 		2E6E31B925B3CC8300857E5C /* OnboardingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
 		2E6E31BA25B3CC8300857E5C /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		2E6E31BE25B3E37B00857E5C /* NotificationName+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationName+String.swift"; sourceTree = "<group>"; };
 		2E984787221D575800204A42 /* SearchProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductViewController.swift; sourceTree = "<group>"; };
 		2E997F93221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairProductDatabaseApiCleient.swift; sourceTree = "<group>"; };
 		2E997F95221B0E2800730ED7 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -319,6 +321,7 @@
 				2EAE6853254F7AB400BE0E1E /* NSCoding+Nib.swift */,
 				2EAF931025854B4300D28BAC /* UIView+IBInspectable.swift */,
 				2EFE45EE25B22E9E006CD38E /* UIColor+AppColors.swift */,
+				2E6E31BE25B3E37B00857E5C /* NotificationName+String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -531,6 +534,7 @@
 			files = (
 				2E997F96221B0E2800730ED7 /* NetworkHelper.swift in Sources */,
 				2E6E31AF25B28D3A00857E5C /* SearchTableViewCell.swift in Sources */,
+				2E6E31BF25B3E37B00857E5C /* NotificationName+String.swift in Sources */,
 				2E997FAA221B99A300730ED7 /* DateExtension.swift in Sources */,
 				2E0FFC42254DB5800020D9DC /* BarcodeScannerController.swift in Sources */,
 				2EAE684A254F389600BE0E1E /* CategorySectionHeaderCollectionReusableView.swift in Sources */,

@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Combine
 
 final class OnboardingViewController: UIViewController {
 
     @IBAction private func createButtonTapped(_ sender: UIButton) {
-        dismiss(animated: true)
+        NotificationCenter.default.post(name: .signupSuccessfullyCompleted, object: nil)
     }
 }

@@ -30,7 +30,7 @@
         <scene sceneID="tif-yC-T2C">
             <objects>
                 <collectionViewController storyboardIdentifier="ProductDetailViewController" id="eKe-IB-Sah" customClass="ProductDetailViewController" customModule="PerfectlyCreated" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="43a-66-YTK">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="43a-66-YTK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -81,7 +81,7 @@
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="appPurple">
-            <color red="0.4823078596" green="0.39847653039999997" blue="0.70568218429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.47843137254901963" green="0.396078431372549" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

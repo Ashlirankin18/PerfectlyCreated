@@ -31,6 +31,7 @@ final class AboutProductCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var productNameLabel: UILabel!
     @IBOutlet private weak var productDescriptionTextView: UITextView!
     @IBOutlet private weak var categoryLabel: UILabel!
+    @IBOutlet private weak var containerView: UIView!
     
     /// Single point of configuration of the `AboutProductCollectionViewCell`.
     var viewModel: ViewModel? {
@@ -43,5 +44,35 @@ final class AboutProductCollectionViewCell: UICollectionViewCell {
             }
             productDescriptionTextView.text = viewModel?.productDescription
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        containerView.cornerRadius = 20
+        containerView.addShadow(location: .top)
+    }
+}
+
+enum VerticalLocation: String {
+    case bottom
+    case top
+}
+
+extension UIView {
+    func addShadow(location: VerticalLocation, color: UIColor = UIColor.appPurple.withAlphaComponent(0.3), opacity: Float = 0.5, radius: CGFloat = 3.0) {
+        switch location {
+        case .bottom:
+             addShadow(offset: CGSize(width: 0, height: 10), color: color, opacity: opacity, radius: radius)
+        case .top:
+            addShadow(offset: CGSize(width: 0, height: -10), color: color, opacity: opacity, radius: radius)
+        }
+    }
+
+    func addShadow(offset: CGSize, color: UIColor = .black, opacity: Float = 0.5, radius: CGFloat = 5.0) {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOffset = offset
+        self.layer.shadowOpacity = opacity
+        self.layer.shadowRadius = radius
     }
 }

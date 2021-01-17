@@ -21,11 +21,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="phA-5k-Re3">
                         <rect key="frame" x="0.0" y="0.0" width="416" height="760"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="G2X-as-qhR">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="kec-uK-Qw3">
                                 <rect key="frame" x="12" y="12" width="392" height="736"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="kec-uK-Qw3">
-                                        <rect key="frame" x="0.0" y="0.0" width="392" height="660"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="uZ5-1x-UtM">
+                                        <rect key="frame" x="0.0" y="0.0" width="392" height="332.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YEE-FT-mlW">
                                                 <rect key="frame" x="0.0" y="0.0" width="392" height="300"/>
@@ -34,70 +34,88 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r7u-Nh-92I">
-                                                <rect key="frame" x="174.5" y="324" width="43.5" height="20.5"/>
+                                                <rect key="frame" x="174.5" y="312" width="43.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7H-v6-ol5">
-                                                <rect key="frame" x="2" y="368.5" width="388" height="291.5"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <color key="textColor" systemColor="labelColor"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="6"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="1"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" name="appPurple"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="p7H-v6-ol5" firstAttribute="leading" secondItem="kec-uK-Qw3" secondAttribute="leading" constant="2" id="BFm-fX-xWp"/>
-                                            <constraint firstItem="YEE-FT-mlW" firstAttribute="leading" secondItem="kec-uK-Qw3" secondAttribute="leadingMargin" id="CbB-x8-joH"/>
-                                        </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DUg-sM-GZZ">
-                                        <rect key="frame" x="0.0" y="684" width="392" height="52"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pua-ka-sb1">
+                                        <rect key="frame" x="0.0" y="356.5" width="392" height="379.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfH-LX-Qyj">
-                                                <rect key="frame" x="0.0" y="0.0" width="392" height="20.5"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ0-4j-idA">
-                                                <rect key="frame" x="0.0" y="32.5" width="392" height="19.5"/>
-                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
-                                                <color key="textColor" name="appPurple"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="yBq-g9-xAp">
+                                                <rect key="frame" x="0.0" y="12" width="392" height="355.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ii7-Rc-iG0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="392" height="291.5"/>
+                                                        <subviews>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p7H-v6-ol5">
+                                                                <rect key="frame" x="0.0" y="0.0" width="392" height="291.5"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                                <color key="textColor" systemColor="labelColor"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="0.0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="0.0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" name="appPurple"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textView>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="DUg-sM-GZZ">
+                                                        <rect key="frame" x="0.0" y="303.5" width="79" height="52"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfH-LX-Qyj">
+                                                                <rect key="frame" x="0.0" y="0.0" width="79" height="20.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ0-4j-idA">
+                                                                <rect key="frame" x="0.0" y="32.5" width="79" height="19.5"/>
+                                                                <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
+                                                                <color key="textColor" name="appPurple"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
                                         </subviews>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="0.0"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </stackView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="yBq-g9-xAp" secondAttribute="bottom" constant="12" id="A5Q-Fm-Qc4"/>
+                                            <constraint firstAttribute="trailing" secondItem="yBq-g9-xAp" secondAttribute="trailing" id="JBT-Tu-GLz"/>
+                                            <constraint firstItem="yBq-g9-xAp" firstAttribute="top" secondItem="pua-ka-sb1" secondAttribute="top" constant="12" id="duh-UM-uyD"/>
+                                            <constraint firstItem="yBq-g9-xAp" firstAttribute="leading" secondItem="pua-ka-sb1" secondAttribute="leading" id="z6v-Fx-BSD"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="G2X-as-qhR" firstAttribute="top" secondItem="phA-5k-Re3" secondAttribute="top" constant="12" id="N2L-fH-ftF"/>
-                            <constraint firstAttribute="bottom" secondItem="G2X-as-qhR" secondAttribute="bottom" constant="12" id="mSt-va-yvg"/>
-                            <constraint firstItem="G2X-as-qhR" firstAttribute="leading" secondItem="phA-5k-Re3" secondAttribute="leading" constant="12" id="rvO-t3-JI2"/>
-                            <constraint firstAttribute="trailing" secondItem="G2X-as-qhR" secondAttribute="trailing" constant="12" id="ym3-0X-2xI"/>
+                            <constraint firstAttribute="trailing" secondItem="kec-uK-Qw3" secondAttribute="trailing" constant="12" id="Vrc-Bl-2CS"/>
+                            <constraint firstItem="kec-uK-Qw3" firstAttribute="leading" secondItem="phA-5k-Re3" secondAttribute="leading" constant="12" id="dal-G5-8Zd"/>
+                            <constraint firstItem="kec-uK-Qw3" firstAttribute="top" secondItem="phA-5k-Re3" secondAttribute="top" constant="12" id="x4G-IA-tS6"/>
+                            <constraint firstAttribute="bottom" secondItem="kec-uK-Qw3" secondAttribute="bottom" constant="12" id="zLW-jQ-uCC"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -112,6 +130,7 @@
             <size key="customSize" width="416" height="760"/>
             <connections>
                 <outlet property="categoryLabel" destination="iQ0-4j-idA" id="cRx-h8-BWL"/>
+                <outlet property="containerView" destination="pua-ka-sb1" id="VFU-6B-R80"/>
                 <outlet property="productDescriptionTextView" destination="p7H-v6-ol5" id="HgQ-8z-6lf"/>
                 <outlet property="productImageImageView" destination="YEE-FT-mlW" id="osj-JN-JTd"/>
                 <outlet property="productNameLabel" destination="r7u-Nh-92I" id="Vpv-kF-jTW"/>
@@ -121,7 +140,7 @@
     </objects>
     <resources>
         <namedColor name="appPurple">
-            <color red="0.4823078596" green="0.39847653039999997" blue="0.70568218429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.47843137254901963" green="0.396078431372549" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

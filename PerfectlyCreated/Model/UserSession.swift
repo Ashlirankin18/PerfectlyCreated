@@ -37,13 +37,14 @@ final class UserSession {
         let userId = documentId
         let user = UserModel(userName: username, email: email, profileImageLink: nil, documentId: userId, productIds: [])
         
-        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (authDataResults, error) in
+        Auth.auth().createUser(withEmail: email, password: password) { [weak self] (auth, error) in
             
             if let error = error {
                 self?.accountCreationPassThroughSubject.send(completion: .failure(error))
             } else {
                 self?.accountCreationPassThroughSubject.send(())
                 do {
+                    UserDefaults.standard.setValue(auth?.user.uid, forKey: "userId")
                     try self?.firebaseDB.collection(FirebaseCollectionKeys.users).document(userId).setData(from: user)
                 } catch {
                     self?.accountCreationPassThroughSubject.send(completion: .failure(error))
@@ -73,13 +74,13 @@ final class UserSession {
     ///   - email: The user's email.
     ///   - password: Their pass word.
     /// - Returns: Publisher which publishes void and error.
-    func signInExistingUser(email: String,password: String) -> AnyPublisher<Void, Error> {
+    func signInExistingUser(email: String, password: String) -> AnyPublisher<Void, Error> {
         AnyPublisher.create { subscriber -> Cancellable in
-            Auth.auth().signIn(withEmail: email, password: password) { (results, error) in
+            Auth.auth().signIn(withEmail: email, password: password) { (auth, error) in
                 if let error = error {
                     subscriber.send(completion: .failure(error))
-                }
-                else if results != nil {
+                } else if auth != nil {
+                    UserDefaults.standard.setValue(auth?.user.uid, forKey: "userId")
                     subscriber.send(())
                 }
             }

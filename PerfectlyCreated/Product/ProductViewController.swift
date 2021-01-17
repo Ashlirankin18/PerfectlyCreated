@@ -16,7 +16,7 @@ final class ProductViewController: UICollectionViewController {
     @IBOutlet private weak var addBarButtonItem: UIBarButtonItem!
     
     private var searchController: SearchProductViewController = {
-        let controller = UIStoryboard(name: "SearchProductViewController", bundle: .main).instantiateViewController(identifier: "SearchProductViewController") { coder in
+        let controller = UIStoryboard(name: SearchProductViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: SearchProductViewController.defaultNibName) { coder in
             return SearchProductViewController(coder: coder)
         }
         return controller
@@ -55,8 +55,7 @@ final class ProductViewController: UICollectionViewController {
         
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "CategorySectionHeaderCollectionReusableView", alignment: .top)
         
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.45),
-                                              heightDimension: .fractionalHeight(1.0))
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.48), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
@@ -64,15 +63,15 @@ final class ProductViewController: UICollectionViewController {
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
-        group.interItemSpacing = .fixed(24)
+        group.interItemSpacing = .flexible(0)
         
         let section = NSCollectionLayoutSection(group: group)
         
         section.boundarySupplementaryItems = [sectionHeader]
         
-        section.interGroupSpacing = 24
-        
-        section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 24, bottom: 12, trailing: 0)
+        section.interGroupSpacing = 0
+    
+        section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 10, bottom: 12, trailing: 10)
         return section
     }()
     
@@ -104,14 +103,14 @@ final class ProductViewController: UICollectionViewController {
     }
     
     private func retrieveProducts() {
-        productManager.retrieveProducts { (result) in
+        productManager.retrieveProducts { [weak self] (result) in
             switch result {
-                case let .failure(error):
+            case let .failure(error):
                     print(error)
-                case let .success(models):
+            case let .success(models):
                     let sections = Set(models.map { $0.category })
-                    self.sectionTitles = Array(sections)
-                    self.productsDictionary = models
+                    self?.sectionTitles = Array(sections)
+                    self?.productsDictionary = models
             }
         }
     }
@@ -216,7 +215,7 @@ final class ProductViewController: UICollectionViewController {
     }
     
     private func configureBarcodeScanner() {
-        barcodeScannerViewController.bacodeStringPublisher.sink { [weak self] completion in
+        barcodeScannerViewController.barcodeStringPublisher.sink { [weak self] completion in
             switch completion {
             case let .failure(error):
                     self?.showAlert(title: "Error!", message: error.localizedDescription)
@@ -259,7 +258,7 @@ extension ProductViewController: PHPickerViewControllerDelegate {
                         }
                         self.show(controller, sender: self)
                         
-                        controller.bacodeStringPublisher.sink { barcodeString in
+                        controller.barcodeStringPublisher.sink { barcodeString in
                             self.queryForProduct(with: barcodeString)
                         }
                         .store(in: &self.cancellables)

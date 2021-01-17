@@ -104,7 +104,7 @@ final class ProductManager {
     /// - Parameters:
     ///   - documenId: The document id of the product.
     ///   - completion: Called on completion of the newwork call.
-    func retireveProduct(with documenId: String, completion: @escaping (Result<ProductModel, Error>) -> Void) {
+    func retrieveProduct(with documenId: String, completion: @escaping (Result<ProductModel, Error>) -> Void) {
         firebaseDB.collection(FirebaseCollectionKeys.products).document(documenId).addSnapshotListener({ (snapshot, error) in
            
             DispatchQueue.main.async {

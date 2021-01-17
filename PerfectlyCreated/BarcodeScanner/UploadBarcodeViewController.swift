@@ -22,7 +22,7 @@ final class UploadBarcodeViewController: UIViewController {
     private lazy var barcodeController = BarCodeScannerController()
     
     /// Publisher which sends barcode changes.
-    var bacodeStringPublisher: AnyPublisher<String, Never> {
+    var barcodeStringPublisher: AnyPublisher<String, Never> {
         return bacodeStringSubject.eraseToAnyPublisher()
     }
     

@@ -21,7 +21,7 @@ final class BarcodeScannerViewController: UIViewController {
     private var cancellables = Set<AnyCancellable>()
     
     /// Subscriber to this publisher to recieve chages related to the barcode.
-    var bacodeStringPublisher: AnyPublisher<String, Error> {
+    var barcodeStringPublisher: AnyPublisher<String, Error> {
         return bacodeStringSubject.eraseToAnyPublisher()
     }
     

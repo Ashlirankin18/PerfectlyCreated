@@ -12,7 +12,7 @@ import Combine
 import CombineExt
 import FirebaseFirestore
 
-/// Handles all the logic related to user databse object.
+/// Handles all the logic related to user database object.
 final class UserSession {
     
     private var accountCreationPassThroughSubject = PassthroughSubject<Void, Error>()

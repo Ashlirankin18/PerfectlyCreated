@@ -8,11 +8,14 @@
 
 import UIKit
 import Firebase
+import Combine
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
+    
+    private lazy var cancellables = Set<AnyCancellable>()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -20,19 +23,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        let rootController: UIViewController
-        
-        if Auth.auth().currentUser != nil {
-            rootController = PerfectlyCraftedTabBarViewController()
+        if UserDefaults.standard.object(forKey: "userId") != nil {
+            window?.rootViewController = PerfectlyCraftedTabBarViewController()
+            self.window?.makeKeyAndVisible()
         } else {
-            let signUpViewController = UIStoryboard(name: "SignupViewController", bundle: .main).instantiateViewController(identifier: "SignupViewController") { coder in
+            let signUpViewController = UIStoryboard(name: SignupViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: SignupViewController.defaultNibName) { coder in
                 return SignupViewController(coder: coder, accountFlow: .signUp)
             }
-            rootController = signUpViewController
+            self.window?.rootViewController = signUpViewController
+            self.window?.makeKeyAndVisible()
         }
         
-        window?.rootViewController = rootController
-        window?.makeKeyAndVisible()
+        NotificationCenter.default.publisher(for: .signupSuccessfullyCompleted, object: nil).sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
+            self.window?.rootViewController = PerfectlyCraftedTabBarViewController()
+            self.window?.makeKeyAndVisible()
+        }
+        .store(in: &cancellables)
+        
         return true
     }
 }

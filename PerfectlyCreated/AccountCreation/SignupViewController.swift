@@ -26,6 +26,7 @@ final class SignupViewController: UIViewController {
     
     private lazy var userSession: UserSession = UserSession()
     private var accountCreationValidator = AccountCreationValidator()
+    private lazy var controller = OnboardingViewController(nibName: OnboardingViewController.defaultNibName, bundle: .main)
     private let accountFlow: AccountFlow
     
     private var cancellables = Set<AnyCancellable>()
@@ -133,11 +134,11 @@ final class SignupViewController: UIViewController {
                     case .finished: break
                     }
                 }, receiveValue: { [weak self] _ in
-                    let controller = UIStoryboard(name: OnboardingViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: OnboardingViewController.defaultNibName) {  coder in
-                        return OnboardingViewController(coder: coder)
+                    guard let self = self else {
+                        return
                     }
-                    controller.modalPresentationStyle = .fullScreen
-                    self?.show(controller, sender: self)
+                    self.controller.modalPresentationStyle = .fullScreen
+                    self.show(self.controller, sender: self)
                 }).store(in: &self.cancellables)
         }
         .store(in: &cancellables)

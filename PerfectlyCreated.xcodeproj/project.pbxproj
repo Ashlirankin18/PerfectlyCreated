@@ -31,6 +31,8 @@
 		2E6E31AF25B28D3A00857E5C /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E31AE25B28D3A00857E5C /* SearchTableViewCell.swift */; };
 		2E6E31B425B3A0FE00857E5C /* StoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E31B225B3A0FE00857E5C /* StoreCollectionViewCell.swift */; };
 		2E6E31B525B3A0FE00857E5C /* StoreCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E6E31B325B3A0FE00857E5C /* StoreCollectionViewCell.xib */; };
+		2E6E31BB25B3CC8300857E5C /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E6E31B925B3CC8300857E5C /* OnboardingViewController.xib */; };
+		2E6E31BC25B3CC8300857E5C /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E6E31BA25B3CC8300857E5C /* OnboardingViewController.swift */; };
 		2E997F94221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F93221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift */; };
 		2E997F96221B0E2800730ED7 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F95221B0E2800730ED7 /* NetworkHelper.swift */; };
 		2E997F98221B0E4700730ED7 /* Extension+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E997F97221B0E4700730ED7 /* Extension+Alerts.swift */; };
@@ -95,6 +97,8 @@
 		2E6E31AE25B28D3A00857E5C /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		2E6E31B225B3A0FE00857E5C /* StoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E6E31B325B3A0FE00857E5C /* StoreCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreCollectionViewCell.xib; sourceTree = "<group>"; };
+		2E6E31B925B3CC8300857E5C /* OnboardingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
+		2E6E31BA25B3CC8300857E5C /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		2E984787221D575800204A42 /* SearchProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductViewController.swift; sourceTree = "<group>"; };
 		2E997F93221B0E1600730ED7 /* HairProductDatabaseApiCleient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HairProductDatabaseApiCleient.swift; sourceTree = "<group>"; };
 		2E997F95221B0E2800730ED7 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 		2E4A3E912208D2C800988116 /* PerfectlyCreated */ = {
 			isa = PBXGroup;
 			children = (
+				2E6E31B825B3CC5700857E5C /* Onboarding */,
 				2EA365B0220A598D00FFDC5E /* PerfectlyCraftedTabBarViewController.swift */,
 				2EAE6852254F7A9C00BE0E1E /* Extension */,
 				2E0FFD0C254DDBDC0020D9DC /* SearchController */,
@@ -259,6 +264,15 @@
 				2E4A8230258DA12D0031F30E /* EditProductViewController.storyboard */,
 			);
 			path = "Edit Product";
+			sourceTree = "<group>";
+		};
+		2E6E31B825B3CC5700857E5C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				2E6E31BA25B3CC8300857E5C /* OnboardingViewController.swift */,
+				2E6E31B925B3CC8300857E5C /* OnboardingViewController.xib */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		2EA365AB220A301400FFDC5E /* Model */ = {
@@ -414,6 +428,7 @@
 				2E4A3E9D2208D2CB00988116 /* LaunchScreen.storyboard in Resources */,
 				2E07D20D25588E700029FB36 /* NotesCollectionViewCell.xib in Resources */,
 				2E110A842550F203001ADACD /* CompletedCollectionViewCell.xib in Resources */,
+				2E6E31BB25B3CC8300857E5C /* OnboardingViewController.xib in Resources */,
 				2E0FFD00254DCE060020D9DC /* ProductViewController.storyboard in Resources */,
 				2E4A8231258DA12D0031F30E /* EditProductViewController.storyboard in Resources */,
 				2E6E31B525B3A0FE00857E5C /* StoreCollectionViewCell.xib in Resources */,
@@ -547,6 +562,7 @@
 				2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */,
 				2EAE684F254F732D00BE0E1E /* AboutProductCollectionViewCell.swift in Sources */,
 				2E110A832550F203001ADACD /* CompletedCollectionViewCell.swift in Sources */,
+				2E6E31BC25B3CC8300857E5C /* OnboardingViewController.swift in Sources */,
 				2E07D20C25588E700029FB36 /* NotesCollectionViewCell.swift in Sources */,
 				2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */,
 				2E0FFCFC254DCDE60020D9DC /* ProductViewController.swift in Sources */,

@@ -43,7 +43,7 @@ extension UIView {
     @IBInspectable var isCircle: Bool {
         get {
             return layer.cornerRadius * 2 == frame.width
-        } set { //swiftlint:disable:this unused_setter_value
+        } set { // swiftlint:disable:this unused_setter_value
             layer.cornerRadius = frame.width / 2
         }
     }
@@ -133,4 +133,3 @@ extension UIView {
         }
     }
 }
-

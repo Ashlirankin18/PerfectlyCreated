@@ -85,9 +85,9 @@ extension VideoSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
         barcodeController.captureOutput(with: .buffer(buffer: sampleBuffer))
             .sink { [weak self] completion in
                 switch completion {
-                    case let .failure(error):
-                        self?.bacodeStringSubject.send(completion: .failure(error))
-                    case .finished: break
+                case let .failure(error):
+                    self?.bacodeStringSubject.send(completion: .failure(error))
+                case .finished: break
                 }
             } receiveValue: { [weak self] barcodeString in
                 self?.bacodeStringSubject.send(barcodeString)

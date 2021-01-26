@@ -34,14 +34,13 @@ final class CompletedCollectionViewCell: UICollectionViewCell {
         /// The configurations the cell can take.
         let configuration: Configuration
         
-        fileprivate var completeImage: UIImage! {
+        fileprivate var completeImage: UIImage {
             if isCompleted {
-                return UIImage(systemName: "checkmark.circle.fill")
+                return UIImage(systemName: "checkmark.circle.fill") ?? UIImage()
             } else {
-                return UIImage(systemName: "checkmark.circle")
+                return UIImage(systemName: "checkmark.circle") ?? UIImage()
             }
         }
-        
     }
     
     @IBOutlet private weak var titleLabel: UILabel!

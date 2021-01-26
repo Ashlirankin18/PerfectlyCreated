@@ -58,11 +58,10 @@ final class BarcodeScannerViewController: UIViewController {
             .removeDuplicates()
             .sink { [weak self] result in
                 switch result {
-                    case let .failure(error):
-                        self?.dismiss(animated: true)
-                        self?.bacodeStringSubject.send(completion: .failure(error))
-                        
-                    case .finished: break
+                case let .failure(error):
+                    self?.dismiss(animated: true)
+                    self?.bacodeStringSubject.send(completion: .failure(error))
+                case .finished: break
                 }
             } receiveValue: { [weak self] barcodeString in
                 guard let self = self else {

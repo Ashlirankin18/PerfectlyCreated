@@ -38,4 +38,3 @@ struct ProductModel: Codable, Hashable {
     
     let stores: [Store]
 }
-

@@ -39,10 +39,10 @@ final class BarCodeScannerController {
         let visionImage: VisionImage
         
         switch outputType {
-            case let .buffer(buffer):
-                visionImage = VisionImage(buffer: buffer)
-            case let .image(image):
-                visionImage = VisionImage(image: image)
+        case let .buffer(buffer):
+            visionImage = VisionImage(buffer: buffer)
+        case let .image(image):
+            visionImage = VisionImage(image: image)
         }
        
         barcodeDetector.process(visionImage) { [weak self] barcodes, error in

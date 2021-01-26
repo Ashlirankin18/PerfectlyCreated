@@ -10,5 +10,17 @@ import UIKit
 
 /// `UICollectionReusableView` subclass which displays the title of a section.
 final class CategorySectionHeaderCollectionReusableView: UICollectionReusableView {
-    @IBOutlet weak var sectionTitleLabel: UILabel!
+    
+    struct ViewModel {
+        
+        var title: String
+    }
+    
+    @IBOutlet private weak var sectionTitleLabel: UILabel!
+    
+    var viewModel: ViewModel? {
+        didSet {
+            sectionTitleLabel.text = viewModel?.title
+        }
+    }
 }

@@ -20,21 +20,20 @@ enum AppError: Error {
     
     func errorMessage() -> String {
         switch self {
-            case .badURL(let message):
-                return "badURL: \(message)"
-            case .networkError(let error):
-                return error.localizedDescription
-            case .noResponse:
-                return "no network response"
-            case .decodingError(let error):
-                return "decoding error: \(error)"
-            case .badStatusCode(let message):
-                return "bad status code: \(message)"
-            case .noBarcodeFound(let message):
-                return "no bar code found \(message)"
-            case .processingError(let error):
-                return "processing error: \(error)"
+        case .badURL(let message):
+            return "badURL: \(message)"
+        case .networkError(let error):
+            return error.localizedDescription
+        case .noResponse:
+            return "no network response"
+        case .decodingError(let error):
+            return "decoding error: \(error)"
+        case .badStatusCode(let message):
+            return "bad status code: \(message)"
+        case .noBarcodeFound(let message):
+            return "no bar code found \(message)"
+        case .processingError(let error):
+            return "processing error: \(error)"
         }
     }
 }
-

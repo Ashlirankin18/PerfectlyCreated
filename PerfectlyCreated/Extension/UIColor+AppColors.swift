@@ -11,5 +11,4 @@ import UIKit
 extension UIColor {
     
     static var appPurple: UIColor = UIColor(named: "appPurple") ?? .black
-
 }

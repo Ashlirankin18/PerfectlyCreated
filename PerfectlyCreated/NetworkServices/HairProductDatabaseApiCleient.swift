@@ -51,10 +51,10 @@ final class HairProductApiClient {
             .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { completion in
                 switch completion {
-                    case let .failure(error):
-                        passThroughSubject.send(completion: .failure(.networkError(error)))
-                    case . finished:
-                        passThroughSubject.send(completion: .finished)
+                case let .failure(error):
+                    passThroughSubject.send(completion: .failure(.networkError(error)))
+                case . finished:
+                    passThroughSubject.send(completion: .finished)
                 }
             }, receiveValue: { data in
                 do {

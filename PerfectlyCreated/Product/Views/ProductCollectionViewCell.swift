@@ -11,9 +11,23 @@ import UIKit
 /// `UICollectionViewCell` subclass which displays the user's chosen product.
 final class ProductCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var productImageView: UIImageView!
-    @IBOutlet weak var productNameLabel: UILabel!
+    struct ViewModel {
+        
+        var imageURL: URL?
+        
+        var productName: String
+    }
+    
+    @IBOutlet private weak var productImageView: UIImageView!
+    @IBOutlet private weak var productNameLabel: UILabel!
  
+    var viewModel: ViewModel? {
+        didSet {
+            productImageView.kf.setImage(with: viewModel?.imageURL)
+            productNameLabel.text = viewModel?.productName
+        }
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         configureCell()

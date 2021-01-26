@@ -33,4 +33,3 @@ struct ItemAttributes: Codable, Equatable, Hashable {
         case itemAttributesDescription = "description"
     }
 }
-

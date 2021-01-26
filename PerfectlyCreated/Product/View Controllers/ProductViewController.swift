@@ -39,7 +39,7 @@ final class ProductViewController: UICollectionViewController {
         let controller = PHPickerViewController(configuration: configuration)
         return controller
     }()
-
+    
     private lazy var barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.defaultNibName, bundle: .main)
     
     private lazy var productManager = ProductManager()
@@ -70,7 +70,7 @@ final class ProductViewController: UICollectionViewController {
         section.boundarySupplementaryItems = [sectionHeader]
         
         section.interGroupSpacing = 0
-    
+        
         section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 10, bottom: 12, trailing: 10)
         return section
     }()
@@ -79,6 +79,7 @@ final class ProductViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        photoController.modalPresentationStyle = .fullScreen
         photoController.delegate = self
         configureCollectionView()
         configureButtonTapHandler()
@@ -106,11 +107,11 @@ final class ProductViewController: UICollectionViewController {
         productManager.retrieveProducts { [weak self] (result) in
             switch result {
             case let .failure(error):
-                    print(error)
+                print(error)
             case let .success(models):
-                    let sections = Set(models.map { $0.category })
-                    self?.sectionTitles = Array(sections)
-                    self?.productsDictionary = models
+                let sections = Set(models.map { $0.category })
+                self?.sectionTitles = Array(sections)
+                self?.productsDictionary = models
             }
         }
     }
@@ -129,8 +130,7 @@ final class ProductViewController: UICollectionViewController {
         }
         let borderColor: UIColor = model.isCompleted ? UIColor.systemIndigo : UIColor.systemIndigo.withAlphaComponent(0.5)
         cell.borderColor = borderColor
-        cell.productImageView.kf.setImage(with: URL(string: model.productImageURL))
-        cell.productNameLabel.text = model.productName
+        cell.viewModel = .init(imageURL: URL(string: model.productImageURL), productName: model.productName)
         return cell
     }
     
@@ -158,7 +158,7 @@ final class ProductViewController: UICollectionViewController {
             guard let self = self else {
                 return
             }
-            let controller  = UINavigationController(rootViewController: self.searchController)
+            let controller = UINavigationController(rootViewController: self.searchController)
             controller.modalPresentationStyle = .fullScreen
             self.present(controller, animated: true)
         }
@@ -183,15 +183,14 @@ final class ProductViewController: UICollectionViewController {
     }
     
     private func configureHeaders() {
-        dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+        dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, _, indexPath: IndexPath) -> UICollectionReusableView? in
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: "view", withReuseIdentifier: "CategorySectionHeaderCollectionReusableView", for: indexPath) as? CategorySectionHeaderCollectionReusableView else {
                 return nil
             }
-            
-            header.sectionTitleLabel.text = self.sectionTitles[indexPath.section]
+            header.viewModel = .init(title: self.sectionTitles[indexPath.section])
             
             if self.sectionTitles[indexPath.section].isEmpty {
-                header.sectionTitleLabel.text = "Uncategorized"
+                header.viewModel?.title = "Uncategorized"
             }
             return header
         }
@@ -200,9 +199,9 @@ final class ProductViewController: UICollectionViewController {
     private func queryForProduct(with barcodeString: String) {
         hairProductApiClient.retrieveHairProduct(with: barcodeString)?.sink(receiveCompletion: { [weak self] completion in
             switch completion {
-                case let .failure(error):
+            case let .failure(error):
                     self?.showAlert(title: "Error!", message: error.localizedDescription)
-                case .finished: break
+            case .finished: break
             }
         }, receiveValue: { [weak self] product in
             let productController =
@@ -218,7 +217,7 @@ final class ProductViewController: UICollectionViewController {
         barcodeScannerViewController.barcodeStringPublisher.sink { [weak self] completion in
             switch completion {
             case let .failure(error):
-                    self?.showAlert(title: "Error!", message: error.localizedDescription)
+                self?.showAlert(title: "Error!", message: error.localizedDescription)
             case .finished: break
             }
         } receiveValue: { [weak self] barcodeString in
@@ -248,10 +247,11 @@ extension ProductViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
         if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
-            itemProvider.loadObject(ofClass: UIImage.self)
-            { [weak self]  image, error in
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self]  image, _ in
                 DispatchQueue.main.async {
-                    guard let self = self else { return }
+                    guard let self = self else {
+                        return
+                    }
                     if let image = image as? UIImage {
                         let controller = UIStoryboard(name: UploadBarcodeViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: UploadBarcodeViewController.defaultNibName) { coder in
                             return UploadBarcodeViewController(coder: coder, chosenImage: image)

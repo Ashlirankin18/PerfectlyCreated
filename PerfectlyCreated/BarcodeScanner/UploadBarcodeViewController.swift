@@ -80,9 +80,9 @@ final class UploadBarcodeViewController: UIViewController {
             self.barcodeController.captureOutput(with: .image(image: self.chosenImage))
                 .sink { [weak self] completion in
                     switch completion {
-                        case let .failure(error):
-                            self?.showAlert(title: "Error", message: error.localizedDescription)
-                        case .finished: break
+                    case let .failure(error):
+                        self?.showAlert(title: "Error", message: error.localizedDescription)
+                    case .finished: break
                     }
                 } receiveValue: { [weak self] barcodeString in
                     self?.bacodeStringSubject.send(barcodeString)

@@ -40,9 +40,9 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
     private func getAllHairProducts() {
         hairProductApiClient.getHairProducts()?.sink(receiveCompletion: { [weak self] completion in
             switch completion {
-                case let .failure(error):
-                    self?.showAlert(title: "Error!!", message: error.localizedDescription)
-                case .finished: break
+            case let .failure(error):
+                self?.showAlert(title: "Error!!", message: error.localizedDescription)
+            case .finished: break
             }
         }, receiveValue: { products in
             ProductManager.setProducts(products: products)

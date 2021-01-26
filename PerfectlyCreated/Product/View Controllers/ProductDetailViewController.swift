@@ -310,7 +310,7 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     private func configureHeaders() {
-        dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, kind: String, indexPath: IndexPath) -> UICollectionReusableView? in
+        dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, _, indexPath: IndexPath) -> UICollectionReusableView? in
             
             switch self.productType {
             case .personal:

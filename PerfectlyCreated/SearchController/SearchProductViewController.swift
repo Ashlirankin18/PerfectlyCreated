@@ -17,7 +17,7 @@ final class SearchProductViewController: UIViewController {
     @IBOutlet private weak var productTableView: UITableView!
     
     private var allHairProducts = [AllHairProducts]() {
-        didSet{
+        didSet {
             DispatchQueue.main.async {
                 self.navigationItem.title = "\(self.allHairProducts.count) Products"
                 self.productTableView.reloadData()
@@ -53,7 +53,7 @@ final class SearchProductViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.allHairProducts = ProductManager.getProducts().sorted{$0.results.name < $1.results.name}
+        self.allHairProducts = ProductManager.getProducts().sorted { $0.results.name < $1.results.name }
     }
     
     // MARK: - SearchProductViewController
@@ -113,7 +113,7 @@ extension SearchProductViewController: UITableViewDataSource {
 
 extension SearchProductViewController: UITableViewDelegate {
     
-    // MARK : - UITableViewDelegate
+    // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -122,7 +122,7 @@ extension SearchProductViewController: UITableViewDelegate {
 
 extension SearchProductViewController: UISearchResultsUpdating {
     
-    // MARK : - UISearchResultsUpdating
+    // MARK: - UISearchResultsUpdating
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else {
@@ -132,8 +132,8 @@ extension SearchProductViewController: UISearchResultsUpdating {
         if searchText.isEmpty {
             allHairProducts = ProductManager.getProducts()
         } else {
-            let anArray = allHairProducts.filter({$0.results.name.contains(searchText.capitalized)})
-            allHairProducts = anArray.sorted{$0.results.name < $1.results.name}
+            let anArray = allHairProducts.filter({ $0.results.name.contains(searchText.capitalized) })
+            allHairProducts = anArray.sorted { $0.results.name < $1.results.name }
             self.navigationItem.title = "\(allHairProducts.count) Products"
         }
     }

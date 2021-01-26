@@ -97,14 +97,14 @@ final class EditProductViewController: UIViewController {
                 return
             }
             
-            let productFieldsToUpdate: [String: Any] = [ "notes": self.productInfoDraft.notes , "isCompleted": self.productInfoDraft.isCompleted]
+            let productFieldsToUpdate: [String: Any] = [ "notes": self.productInfoDraft.notes, "isCompleted": self.productInfoDraft.isCompleted]
             
             self.productManager.updateProduct(documentId: self.productInfoDraft.documentId, productFields: productFieldsToUpdate) { result in
                 switch result {
-                    case let .failure(error):
-                        self.showAlert(title: "Error!", message: "\(error.localizedDescription)")
-                    case .success:
-                        self.navigationController?.popViewController(animated: true)
+                case let .failure(error):
+                    self.showAlert(title: "Error!", message: "\(error.localizedDescription)")
+                case .success:
+                    self.navigationController?.popViewController(animated: true)
                 }
             }
         }
@@ -121,35 +121,35 @@ final class EditProductViewController: UIViewController {
     private func configureCell(collectionView: UICollectionView, model: SectionData, indexPath: IndexPath) -> UICollectionViewCell {
         
         switch model {
-            case let .info(isCompleted):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
-                    return  UICollectionViewCell()
-                }
-                
-                cell.viewModel = .init(isCompleted: isCompleted, title: "Is Completed?", configuration: .editing)
-                
-                cell.isCompletePublisher.sink { isCompleted in
-                    self.productInfoDraft.isCompleted = isCompleted
-                }
-                .store(in: &cancellables)
-                
-                return cell
-            case let .notes(notes):
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.defaultNibName, for: indexPath) as? NotesCollectionViewCell else {
-                    return  UICollectionViewCell()
-                }
-                
-                cell.viewModel = .init(title: "Add notes here.", notes: notes, configuration: .editing)
-                
-                cell.textViewTextDidChangePublisher.sink { [weak self] _ in
-                    self?.editProductCollectionView.collectionViewLayout.invalidateLayout()
-                }
-                .store(in: &cancellables)
-                
-                cell.notesTextHandler = { text in
-                    self.productInfoDraft.notes = text ?? ""
-                }
-                return cell
+        case let .info(isCompleted):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
+                return  UICollectionViewCell()
+            }
+            
+            cell.viewModel = .init(isCompleted: isCompleted, title: "Is Completed?", configuration: .editing)
+            
+            cell.isCompletePublisher.sink { isCompleted in
+                self.productInfoDraft.isCompleted = isCompleted
+            }
+            .store(in: &cancellables)
+            
+            return cell
+        case let .notes(notes):
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.defaultNibName, for: indexPath) as? NotesCollectionViewCell else {
+                return  UICollectionViewCell()
+            }
+            
+            cell.viewModel = .init(title: "Add notes here.", notes: notes, configuration: .editing)
+            
+            cell.textViewTextDidChangePublisher.sink { [weak self] _ in
+                self?.editProductCollectionView.collectionViewLayout.invalidateLayout()
+            }
+            .store(in: &cancellables)
+            
+            cell.notesTextHandler = { text in
+                self.productInfoDraft.notes = text ?? ""
+            }
+            return cell
         }
     }
     

@@ -10,14 +10,14 @@ import UIKit
 
 final class SearchTableViewCell: UITableViewCell {
 
-  lazy var productImage:UIImageView = {
+  lazy var productImage: UIImageView = {
     let imageView = UIImageView()
     imageView.layer.masksToBounds = true
     imageView.layer.cornerRadius = 5
     return imageView
   }()
     
-  lazy var dividerView:UIView = {
+  lazy var dividerView: UIView = {
     let view = UIView()
     view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
     return view
@@ -55,7 +55,7 @@ final class SearchTableViewCell: UITableViewCell {
     commonInit()
   }
   
-  func commonInit(){
+  func commonInit() {
     setUpViews()
   }
 }

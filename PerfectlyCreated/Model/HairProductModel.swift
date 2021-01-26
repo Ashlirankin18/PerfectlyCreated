@@ -15,13 +15,13 @@ struct AllHairProducts: Codable, Hashable {
 
 struct HairProductDetails: Codable, Hashable {
     
-  let gtins:[String]
+  let gtins: [String]
   let upc: String
   let created_at: Int
   let name: String
   let images: [URL]
   let sitedetails: [SiteDetails]
-  let description:String
+  let description: String
   let features: Features?
   let category: String
 }
@@ -35,13 +35,13 @@ struct Features: Codable, Hashable {
   let blob: String?
 }
 
-struct LatestOffers:Codable, Hashable {
+struct LatestOffers: Codable, Hashable {
   let price: String
-  let lastrecorded_at : Int
+  let lastrecorded_at: Int
   let isActive: Int?
   let currency: String
   let firstrecorded_at: Int
-  let id:String
-  let avalibility:String?
-  let seller:String
+  let id: String
+  let avalibility: String?
+  let seller: String
 }

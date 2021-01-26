@@ -79,7 +79,7 @@ final class ProductManager {
     /// - Parameter completion: Called on completion of the network call.
     func retrieveProducts(completion: @escaping (Result<[ProductModel], Error>) -> Void) {
         
-        guard let currentUser =  Auth.auth().currentUser else {
+        guard let currentUser = Auth.auth().currentUser else {
             return
         }
         

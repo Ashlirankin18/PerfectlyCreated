@@ -61,7 +61,7 @@
     </objects>
     <resources>
         <namedColor name="appPurple">
-            <color red="0.4823078596" green="0.39847653039999997" blue="0.70568218429999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.4779999852180481" green="0.39599999785423279" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

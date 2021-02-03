@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import Combine
 import FirebaseAuth
+import SafariServices
 
 /// <#Description#>
 final class ProductDetailViewController: UICollectionViewController {
@@ -70,7 +71,7 @@ final class ProductDetailViewController: UICollectionViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [sectionHeader]
-        section.orthogonalScrollingBehavior = .continuous
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         return section
     }()
     
@@ -89,9 +90,9 @@ final class ProductDetailViewController: UICollectionViewController {
         let sections = Section.allCases[sectionIndex]
         switch sections {
         case .aboutProduct, .newApi:
-            return self.aboutProductCollectionLayoutSection
+                return self.aboutProductCollectionLayoutSection
         case .additionalInfo:
-            return self.additionalInfoCollectionLayoutSection
+                return self.additionalInfoCollectionLayoutSection
         }
     }
     
@@ -117,16 +118,16 @@ final class ProductDetailViewController: UICollectionViewController {
         
         switch productType {
         case .general, .newApi:
-            reloadDataSource()
+                reloadDataSource()
         case let .personal(product):
-            productManager.retrieveProduct(with: product.documentId) { result in
-                switch result {
-                case let .failure(error):
-                    print(error.localizedDescription)
-                case let .success(retrievedProduct):
-                    self.reloadDataSource(product: retrievedProduct)
+                productManager.retrieveProduct(with: product.documentId) { result in
+                    switch result {
+                    case let .failure(error):
+                            print(error.localizedDescription)
+                    case let .success(retrievedProduct):
+                            self.reloadDataSource(product: retrievedProduct)
+                    }
                 }
-            }
         }
     }
     
@@ -140,8 +141,10 @@ final class ProductDetailViewController: UICollectionViewController {
         collectionView.register(UINib(nibName: AboutProductCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: AboutProductCollectionViewCell.defaultNibName)
         collectionView.register(UINib(nibName: CompletedCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: CompletedCollectionViewCell.defaultNibName)
         collectionView.register(UINib(nibName: NotesCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: NotesCollectionViewCell.defaultNibName)
-        collectionView.register(UINib(nibName: AdditionalCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName)
         collectionView.register(UINib(nibName: StoreCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: StoreCollectionViewCell.defaultNibName)
+        collectionView.register(UINib(nibName: HeaderCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: HeaderCollectionReusableView.defaultNibName, withReuseIdentifier: HeaderCollectionReusableView.defaultNibName)
+        collectionView.register(UINib(nibName: AdditionalCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName)
+        
         collectionView.collectionViewLayout = compositionalLayout
         collectionView.dataSource = dataSource
     }
@@ -160,44 +163,44 @@ final class ProductDetailViewController: UICollectionViewController {
         
         switch productType {
         case let .general(product):
-            
-            let model = product.results
-            
-            let product = ProductModel(productName: model.name, documentId: productManager.documentId, productDescription: model.features?.blob ?? model.description, userId: currentUser.uid, productImageURL: model.images.first?.absoluteString ?? "", category: model.category, isCompleted: false, notes: nil, stores: [])
-            
-            addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
-                guard let self = self else {
-                    return
-                }
                 
-                self.productManager.addProduct(product: product) { [weak self] result in
+                let model = product.results
+                
+                let product = ProductModel(productName: model.name, documentId: productManager.documentId, productDescription: model.features?.blob ?? model.description, userId: currentUser.uid, productImageURL: model.images.first?.absoluteString ?? "", category: model.category, isCompleted: false, notes: nil, stores: [])
+                
+                addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
                     guard let self = self else {
                         return
                     }
                     
-                    switch result {
-                    case let .failure(error):
-                        print(error)
-                    case .success:
-                        self.dismiss(animated: true)
+                    self.productManager.addProduct(product: product) { [weak self] result in
+                        guard let self = self else {
+                            return
+                        }
+                        
+                        switch result {
+                        case let .failure(error):
+                                print(error)
+                        case .success:
+                                self.dismiss(animated: true)
+                        }
                     }
                 }
-            }
-            .store(in: &cancellables)
-            
+                .store(in: &cancellables)
+                
         case let .personal(product):
-            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "trash.fill")
-            navigationItem.rightBarButtonItem?.tintColor = .systemRed
-            
-            addProductBarButtonItem.tapPublisher.sink { [weak self] _ in
-                self?.persentDestructiveAlertController(title: nil, message: "Are you sure you want to delete this product?", destructiveTitle: "Delete", destructiveCompletion: {
-                    self?.performDeleteAction(product: product)
-                }, nonDestructiveTitle: "Keep")
-            }
-            .store(in: &cancellables)
+                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "trash.fill")
+                navigationItem.rightBarButtonItem?.tintColor = .systemRed
+                
+                addProductBarButtonItem.tapPublisher.sink { [weak self] _ in
+                    self?.persentDestructiveAlertController(title: nil, message: "Are you sure you want to delete this product?", destructiveTitle: "Delete", destructiveCompletion: {
+                        self?.performDeleteAction(product: product)
+                    }, nonDestructiveTitle: "Keep")
+                }
+                .store(in: &cancellables)
         case let .newApi(product):
             let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, stores: product.stores)
-            
+                
             addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
                 guard let self = self else {
                     return
@@ -216,9 +219,10 @@ final class ProductDetailViewController: UICollectionViewController {
                     }
                 }
             }
-            .store(in: &cancellables)
+                .store(in: &cancellables)
         }
     }
+    
     private func performDeleteAction(product: ProductModel) {
         productManager.deleteProduct(product, completionHandler: { [weak self] result in
             switch result {
@@ -242,7 +246,7 @@ final class ProductDetailViewController: UICollectionViewController {
             snapshot.appendItems([.productModel(.newApi(product))], toSection: .aboutProduct)
             product.stores.forEach { store in
                 snapshot.appendItems([.stores(store)], toSection: .additionalInfo)
-            }
+                }
         }
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -284,7 +288,7 @@ final class ProductDetailViewController: UICollectionViewController {
             case let .newApi(product):
                 cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.itemAttributes.title, productDescription: product.itemAttributes.itemAttributesDescription, imageURL: URL(string: product.itemAttributes.image), category: product.itemAttributes.category)
             }
-            return cell
+                return cell
         case let .completed(completed):
             guard let completedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
                 return UICollectionViewCell()
@@ -322,11 +326,18 @@ final class ProductDetailViewController: UICollectionViewController {
                     self.performSegue(withIdentifier: SegueIdentifier.editProduct, sender: self)
                 }
                 return header
-            case .general, .newApi:
+            case .general:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
                     return nil
                 }
                 header.isHidden = true
+                return header
+            case .newApi:
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: HeaderCollectionReusableView.defaultNibName, withReuseIdentifier: HeaderCollectionReusableView.defaultNibName, for: indexPath) as? HeaderCollectionReusableView else {
+                    return nil
+                }
+                
+                header.titleLabel.text = "Find product at stores below"
                 return header
             }
         }
@@ -340,6 +351,20 @@ final class ProductDetailViewController: UICollectionViewController {
             let controller = EditProductViewController(coder: coder, productInfoDraft: productInfoDraft, productManager: productManager)
             return controller
         case .newApi: return nil
+        }
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch productType {
+        case .general : break
+        case let .newApi(product):
+            let store = product.stores[indexPath.row]
+            guard let url = URL(string: store.link) else {
+                return
+            }
+            let controller = SFSafariViewController(url: url)
+            present(controller, animated: true)
+        case .personal: break
         }
     }
 }

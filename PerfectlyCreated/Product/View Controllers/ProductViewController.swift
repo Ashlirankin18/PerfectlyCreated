@@ -197,24 +197,24 @@ final class ProductViewController: UICollectionViewController {
     }
     
     private func queryForProduct(with barcodeString: String) {
-        hairProductApiClient.retrieveHairProduct(with: barcodeString)?.sink(receiveCompletion: { [weak self] completion in
-            switch completion {
+        productManager.retrieveProduct(upc: barcodeString) { [weak self] result in
+            switch result {
             case let .failure(error):
-                    self?.showAlert(title: "Error!", message: error.localizedDescription)
-            case .finished: break
+                self?.showAlert(title: "Error!", message: error.localizedDescription)
+            case let .success(product):
+                let productController =
+                    UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
+                        return ProductDetailViewController(coder: coder, productType: .newApi(product))
+                    }
+                self?.show(productController, sender: self)
             }
-        }, receiveValue: { [weak self] product in
-            let productController =
-                UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
-                    return ProductDetailViewController(coder: coder, productType: .newApi(product))
-                }
-            self?.show(productController, sender: self)
-        })
-        .store(in: &cancellables)
+        }
     }
     
     private func configureBarcodeScanner() {
-        barcodeScannerViewController.barcodeStringPublisher.sink { [weak self] completion in
+        barcodeScannerViewController.barcodeStringPublisher
+            .removeDuplicates()
+            .sink { [weak self] completion in
             switch completion {
             case let .failure(error):
                 self?.showAlert(title: "Error!", message: error.localizedDescription)
@@ -258,7 +258,8 @@ extension ProductViewController: PHPickerViewControllerDelegate {
                         }
                         self.show(controller, sender: self)
                         
-                        controller.barcodeStringPublisher.sink { barcodeString in
+                        controller.barcodeStringPublisher
+                            .sink { barcodeString in
                             self.queryForProduct(with: barcodeString)
                         }
                         .store(in: &self.cancellables)

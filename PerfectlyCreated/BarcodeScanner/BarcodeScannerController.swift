@@ -51,9 +51,6 @@ final class BarCodeScannerController {
             }
             
             if let barcodes = barcodes {
-                if barcodes.isEmpty {
-                    self?.passThroughSubject.send(completion: .failure(.noBarcodeFound("Barcode could not be found.")))
-                }
                 for barcode in barcodes {
                     if let barCodeString = barcode.rawValue {
                         self?.passThroughSubject.send(barCodeString)

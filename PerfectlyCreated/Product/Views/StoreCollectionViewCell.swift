@@ -31,6 +31,7 @@ final class StoreCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var productNameLabel: UILabel!
     @IBOutlet private weak var storeNameLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var containerStackView: UIStackView!
     
     var viewModel: ViewModel? {
         didSet {

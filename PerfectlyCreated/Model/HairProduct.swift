@@ -17,8 +17,11 @@ struct HairProduct: Codable, Hashable, Equatable {
     /// The stores where the product can be found.
     let stores: [Store]
     
+    let upc: String
+    
     enum CodingKeys: String, CodingKey {
         case itemAttributes = "item_attributes"
         case stores = "Stores"
+        case upc
     }
 }

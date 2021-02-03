@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,54 +19,86 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z4a-uu-jml">
-                        <rect key="frame" x="0.0" y="0.0" width="380" height="365"/>
+                        <rect key="frame" x="16" y="16" width="348" height="333"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="xzb-vT-cH0">
-                                <rect key="frame" x="0.0" y="0.0" width="380" height="341"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xzb-vT-cH0">
+                                <rect key="frame" x="16" y="16" width="316" height="293"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG9-37-Izn">
-                                        <rect key="frame" x="168.5" y="0.0" width="43.5" height="21"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SXt-H3-qck">
-                                        <rect key="frame" x="0.0" y="29" width="380" height="255"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6Q-bR-xaO">
-                                        <rect key="frame" x="170.5" y="292" width="39.5" height="20"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cG9-37-Izn">
+                                        <rect key="frame" x="138.5" y="0.0" width="39.5" height="18.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISL-AC-UYt">
-                                        <rect key="frame" x="168.5" y="320" width="43.5" height="21"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SXt-H3-qck">
+                                        <rect key="frame" x="58" y="30.5" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="T1A-HF-BrB"/>
+                                            <constraint firstAttribute="height" constant="200" id="sdk-gY-xJx"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J6Q-bR-xaO">
+                                        <rect key="frame" x="136.5" y="242.5" width="43.5" height="20.5"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISL-AC-UYt">
+                                        <rect key="frame" x="139.5" y="275" width="37.5" height="18"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xzb-vT-cH0" firstAttribute="top" secondItem="z4a-uu-jml" secondAttribute="top" id="0zm-te-IJj"/>
+                            <constraint firstItem="xzb-vT-cH0" firstAttribute="top" secondItem="z4a-uu-jml" secondAttribute="top" constant="16" id="0zm-te-IJj"/>
                             <constraint firstAttribute="bottom" secondItem="xzb-vT-cH0" secondAttribute="bottom" constant="24" id="9Gx-Cp-N8W"/>
-                            <constraint firstItem="xzb-vT-cH0" firstAttribute="leading" secondItem="z4a-uu-jml" secondAttribute="leading" id="UHJ-K0-Hez"/>
-                            <constraint firstAttribute="trailing" secondItem="xzb-vT-cH0" secondAttribute="trailing" id="c4S-y7-Jgy"/>
+                            <constraint firstItem="xzb-vT-cH0" firstAttribute="leading" secondItem="z4a-uu-jml" secondAttribute="leading" constant="16" id="UHJ-K0-Hez"/>
+                            <constraint firstAttribute="trailing" secondItem="xzb-vT-cH0" secondAttribute="trailing" constant="16" id="c4S-y7-Jgy"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" name="appPurple"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="z4a-uu-jml" secondAttribute="trailing" id="Ed9-lU-2A3"/>
-                <constraint firstItem="z4a-uu-jml" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="mVz-8c-Vs7"/>
-                <constraint firstAttribute="bottom" secondItem="z4a-uu-jml" secondAttribute="bottom" id="vr9-sh-1T5"/>
-                <constraint firstItem="z4a-uu-jml" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="zHk-b3-K7Q"/>
+                <constraint firstAttribute="trailing" secondItem="z4a-uu-jml" secondAttribute="trailing" constant="16" id="Ed9-lU-2A3"/>
+                <constraint firstItem="z4a-uu-jml" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="mVz-8c-Vs7"/>
+                <constraint firstAttribute="bottom" secondItem="z4a-uu-jml" secondAttribute="bottom" constant="16" id="vr9-sh-1T5"/>
+                <constraint firstItem="z4a-uu-jml" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="zHk-b3-K7Q"/>
             </constraints>
             <size key="customSize" width="380" height="365"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                    <real key="value" value="0.0"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="0.0"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <connections>
+                <outlet property="containerStackView" destination="xzb-vT-cH0" id="VLZ-6c-Hw1"/>
                 <outlet property="priceLabel" destination="ISL-AC-UYt" id="9WM-WP-tXH"/>
                 <outlet property="productImageView" destination="SXt-H3-qck" id="ly3-NU-kjR"/>
                 <outlet property="productNameLabel" destination="cG9-37-Izn" id="UGZ-ce-7cs"/>
@@ -75,6 +108,9 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <namedColor name="appPurple">
+            <color red="0.4779999852180481" green="0.39599999785423279" blue="0.70200002193450928" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

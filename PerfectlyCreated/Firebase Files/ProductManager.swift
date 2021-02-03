@@ -126,6 +126,27 @@ final class ProductManager {
         })
     }
     
+    /// Retrieves a specific product from the database.
+    /// - Parameters:
+    ///   - documenId: The document id of the product.
+    ///   - completion: Called on completion of the newwork call.
+    func retrieveProduct(upc: String, completion: @escaping (Result<HairProduct, Error>) -> Void) {
+        firebaseDB.collection(FirebaseCollectionKeys.allProducts).whereField("upc", isEqualTo: upc).getDocuments(completion: { (snapshot, error) in
+            
+                if let error = error {
+                    completion(.failure(error))
+                }
+                if let snapshot = snapshot {
+                   
+                        let model = snapshot.documents.compactMap { try? $0.data(as: HairProduct.self) }
+                        guard let retrievedProduct = model.first else {
+                            return
+                        }
+                        completion(.success(retrievedProduct))
+                }
+        })
+    }
+    
     /// Deletes a product from the database.
     /// - Parameters:
     ///   - product: The product to be deleted.

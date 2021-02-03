@@ -1,5 +1,5 @@
 //
-//  HairProductDatabaseApiCleient.swift
+//  HairProductApiClient.swift
 //  PerfectlyCrafted
 //
 //  Created by Ashli Rankin on 2/18/19.
@@ -23,12 +23,27 @@ final class HairProductApiClient {
             assertionFailure("URL invalid")
             return nil
         }
-        return genericRetrievalMethod(with: url, httpMethod: "GET")
+        return genericRetrievalMethod(with: url)
             .map { $0 as [AllHairProducts] }
             .eraseToAnyPublisher()
     }
     
-    private func genericRetrievalMethod<T: Codable>(with url: URL, httpMethod: String, httpBody: Data? = nil ) -> AnyPublisher<T, AppError> {
+    /// Retrieves a product from the server
+    /// - Parameter barcodeNumber: The bar code of the product.
+    /// - Returns: Publisher containing the returned hair product and a possible error.
+    func retrieveHairProduct(with barcodeNumber: String) -> AnyPublisher<HairProduct, AppError>? {
+        let urlString = "https://api.barcodespider.com/v1/lookup?token=b36443ec5e1ee9b8b2b5&upc=\(barcodeNumber)"
+        
+        guard let url = URL(string: urlString) else {
+            assertionFailure("URL invalid")
+            return nil
+        }
+        return genericRetrievalMethod(with: url)
+            .map { $0 as HairProduct }
+            .eraseToAnyPublisher()
+    }
+    
+    private func genericRetrievalMethod<T: Codable>(with url: URL, httpMethod: String = "GET", httpBody: Data? = nil ) -> AnyPublisher<T, AppError> {
         
         let passThroughSubject = PassthroughSubject<T, AppError>()
         

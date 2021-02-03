@@ -14,7 +14,7 @@ final class BarcodeScannerViewController: UIViewController {
     
     @IBOutlet private weak var barcodeView: UIView!
     
-    private lazy var videoSession = VideoSessionController(backgroundView: barcodeView)
+    private lazy var videoSession = VideoSessionController()
     
     private var cancelButton = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .done, target: nil, action: nil)
     
@@ -31,15 +31,11 @@ final class BarcodeScannerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        videoSession.configureCaptureDevice(with: barcodeView)
         configureCancelButton()
         configureBarcodeScannerPublisher()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        videoSession.configureCaptureDevice()
-    }
-    
+
     // MARK: - BarcodeScannerViewController
     
     private func configureCancelButton() {
@@ -55,7 +51,6 @@ final class BarcodeScannerViewController: UIViewController {
     
     private func configureBarcodeScannerPublisher() {
         videoSession.bacodeStringPublisher
-            .removeDuplicates()
             .sink { [weak self] result in
                 switch result {
                 case let .failure(error):

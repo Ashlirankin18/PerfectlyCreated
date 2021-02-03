@@ -80,13 +80,13 @@ final class ProductDetailViewController: UICollectionViewController {
         return section
     }()
     
-    private lazy var compositionalLayout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
+    private lazy var compositionalLayout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ -> NSCollectionLayoutSection? in
         let sections = Section.allCases[sectionIndex]
         switch sections {
         case .aboutProduct:
-                return self.aboutProductCollectionLayoutSection
+                return self?.aboutProductCollectionLayoutSection
         case .additionalInfo:
-                return self.additionalInfoCollectionLayoutSection
+                return self?.additionalInfoCollectionLayoutSection
         }
     }
     
@@ -115,12 +115,12 @@ final class ProductDetailViewController: UICollectionViewController {
         case .general:
                 reloadDataSource()
         case .personal:
-            productManager.retrieveProduct(with: productModel.documentId) { result in
+            productManager.retrieveProduct(with: productModel.documentId) { [weak self] result in
                 switch result {
                 case let .failure(error):
                     print(error.localizedDescription)
                 case let .success(retrievedProduct):
-                    self.reloadDataSource(product: retrievedProduct)
+                    self?.reloadDataSource(product: retrievedProduct)
                 }
             }
         }
@@ -289,7 +289,10 @@ final class ProductDetailViewController: UICollectionViewController {
                     return nil
                 }
                 
-                header.editButtonTapHandler = {
+                header.editButtonTapHandler = { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
                     self.performSegue(withIdentifier: SegueIdentifier.editProduct, sender: self)
                 }
                 return header

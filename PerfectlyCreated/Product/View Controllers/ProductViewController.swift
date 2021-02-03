@@ -45,8 +45,8 @@ final class ProductViewController: UICollectionViewController {
     
     private lazy var productManager = ProductManager()
     
-    private lazy var dataSource: UICollectionViewDiffableDataSource<String, ProductModel> = UICollectionViewDiffableDataSource(collectionView: self.collectionView) { (_, indexPath, model) -> UICollectionViewCell? in
-        return self.configureCell(model: model, indexPath: indexPath)
+    private lazy var dataSource: UICollectionViewDiffableDataSource<String, ProductModel> = UICollectionViewDiffableDataSource(collectionView: self.collectionView) { [weak self] (_, indexPath, model) -> UICollectionViewCell? in
+        return self?.configureCell(model: model, indexPath: indexPath)
     }
     
     private lazy var hairProductApiClient = HairProductApiClient()
@@ -59,8 +59,7 @@ final class ProductViewController: UICollectionViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.48), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
-                                               heightDimension: .fractionalWidth(0.7))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.7))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         
@@ -268,10 +267,10 @@ extension ProductViewController: PHPickerViewControllerDelegate {
                         self.show(controller, sender: self)
                         
                         controller.barcodeStringPublisher
-                            .sink { barcodeString in
-                            self.queryForProduct(with: barcodeString)
-                        }
-                        .store(in: &self.cancellables)
+                            .sink { [weak self] barcodeString in
+                                self?.queryForProduct(with: barcodeString)
+                            }
+                            .store(in: &self.cancellables)
                     } else {
                         self.showAlert(title: "Error", message: "Image could not be processed.")
                     }

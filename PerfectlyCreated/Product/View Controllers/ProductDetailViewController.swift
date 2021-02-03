@@ -326,9 +326,19 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch productType {
-        case .general : break
         
+        let section = Section.allCases[indexPath.section]
+        
+        switch section {
+        case .aboutProduct: break
+            
+        case .additionalInfo:
+            let store = productModel.stores[indexPath.row - 2]
+            guard let url = URL(string: store.link) else {
+                return
+            }
+            let controller = SFSafariViewController(url: url)
+            present(controller, animated: true)
         case .newApi:
             let store = productModel.stores[indexPath.row]
             guard let url = URL(string: store.link) else {
@@ -336,7 +346,6 @@ final class ProductDetailViewController: UICollectionViewController {
             }
             let controller = SFSafariViewController(url: url)
             present(controller, animated: true)
-        case .personal: break
         }
     }
 }

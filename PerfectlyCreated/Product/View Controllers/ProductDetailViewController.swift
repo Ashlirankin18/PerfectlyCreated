@@ -84,9 +84,9 @@ final class ProductDetailViewController: UICollectionViewController {
         let sections = Section.allCases[sectionIndex]
         switch sections {
         case .aboutProduct:
-                return self?.aboutProductCollectionLayoutSection
+            return self?.aboutProductCollectionLayoutSection
         case .additionalInfo:
-                return self?.additionalInfoCollectionLayoutSection
+            return self?.additionalInfoCollectionLayoutSection
         }
     }
     

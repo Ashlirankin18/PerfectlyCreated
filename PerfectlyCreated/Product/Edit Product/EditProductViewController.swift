@@ -26,8 +26,8 @@ final class EditProductViewController: UIViewController {
     @IBOutlet private weak var backBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var saveBarButtonItem: UIBarButtonItem!
     
-    private lazy var editProductDataSource: UICollectionViewDiffableDataSource<Section, SectionData> = UICollectionViewDiffableDataSource(collectionView: self.editProductCollectionView) { collectionView, indexPath, model  in
-        return self.configureCell(collectionView: collectionView, model: model, indexPath: indexPath)
+    private lazy var editProductDataSource: UICollectionViewDiffableDataSource<Section, SectionData> = UICollectionViewDiffableDataSource(collectionView: self.editProductCollectionView) { [weak self] collectionView, indexPath, model  in
+        return self?.configureCell(collectionView: collectionView, model: model, indexPath: indexPath)
     }
     
     private let additionalInfoCollectionLayoutSection: NSCollectionLayoutSection = {
@@ -128,8 +128,8 @@ final class EditProductViewController: UIViewController {
             
             cell.viewModel = .init(isCompleted: isCompleted, title: "Is Completed?", configuration: .editing)
             
-            cell.isCompletePublisher.sink { isCompleted in
-                self.productInfoDraft.isCompleted = isCompleted
+            cell.isCompletePublisher.sink { [weak self] isCompleted in
+                self?.productInfoDraft.isCompleted = isCompleted
             }
             .store(in: &cancellables)
             
@@ -146,8 +146,8 @@ final class EditProductViewController: UIViewController {
             }
             .store(in: &cancellables)
             
-            cell.notesTextHandler = { text in
-                self.productInfoDraft.notes = text ?? ""
+            cell.notesTextHandler = { [weak self] text in
+                self?.productInfoDraft.notes = text ?? ""
             }
             return cell
         }

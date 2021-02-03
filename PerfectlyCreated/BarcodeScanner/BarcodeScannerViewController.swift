@@ -43,8 +43,8 @@ final class BarcodeScannerViewController: UIViewController {
         navigationItem.leftBarButtonItem = cancelButton
         navigationController?.configuresShadowlessTransparentNavigationBar(backgroundColor: .black)
         
-        cancelButton.tapPublisher.sink { _ in
-            self.dismiss(animated: true  )
+        cancelButton.tapPublisher.sink { [weak self] _ in
+            self?.dismiss(animated: true  )
         }
         .store(in: &cancellables)
     }

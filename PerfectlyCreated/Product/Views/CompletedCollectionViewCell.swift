@@ -78,7 +78,10 @@ final class CompletedCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        checkmarkButton.tapPublisher.sink { _ in
+        checkmarkButton.tapPublisher.sink { [weak self] _ in
+            guard let self = self else {
+                return
+            }
             self.checkmarkButton.isSelected.toggle()
             
             if self.checkmarkButton.isSelected {

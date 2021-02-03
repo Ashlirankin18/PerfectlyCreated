@@ -25,8 +25,11 @@ final class SignupViewController: UIViewController {
     @IBOutlet private weak var signInButton: UIButton!
     
     private lazy var userSession: UserSession = UserSession()
-    private var accountCreationValidator = AccountCreationValidator()
+    
     private lazy var controller = OnboardingViewController(nibName: OnboardingViewController.defaultNibName, bundle: .main)
+    
+    private var accountCreationValidator = AccountCreationValidator()
+ 
     private let accountFlow: AccountFlow
     
     private var cancellables = Set<AnyCancellable>()
@@ -87,11 +90,11 @@ final class SignupViewController: UIViewController {
         }
         .store(in: &cancellables)
         
-        passwordTextField.textPublisher.sink { passwordText in
+        passwordTextField.textPublisher.sink { [weak self] passwordText in
             guard let text = passwordText else {
                 return
             }
-            self.accountCreationValidator.passwordText = text
+            self?.accountCreationValidator.passwordText = text
         }
         .store(in: &cancellables)
     }
@@ -101,10 +104,10 @@ final class SignupViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            self.userSession.signInExistingUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText).sink { error in
+            self.userSession.signInExistingUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText).sink { [weak self] error in
                 switch error {
                 case let .failure(error):
-                    self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
+                    self?.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
                 case .finished: break
                 }
             } receiveValue: { [weak self] _ in
@@ -127,10 +130,10 @@ final class SignupViewController: UIViewController {
             }
             self.accountCreationValidator.formatUserName()
             self.userSession.createUser(email: self.accountCreationValidator.emailText, password: self.accountCreationValidator.passwordText, username: self.accountCreationValidator.usernameText)
-                .sink(receiveCompletion: { error in
+                .sink(receiveCompletion: { [weak self] error in
                     switch error {
                     case let .failure(error):
-                        self.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
+                        self?.showAlert(title: "Error!", message: "There was an error logging in: \(error.localizedDescription)")
                     case .finished: break
                     }
                 }, receiveValue: { [weak self] _ in

@@ -21,7 +21,7 @@ final class AdditionalCollectionReusableView: UICollectionReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        editButton.tapPublisher.sink {[weak self] _ in
+        editButton.tapPublisher.sink { [weak self] _ in
             self?.editButtonTapHandler?()
         }
         .store(in: &cancellables)

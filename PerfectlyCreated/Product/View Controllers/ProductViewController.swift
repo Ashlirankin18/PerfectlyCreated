@@ -213,7 +213,7 @@ final class ProductViewController: UICollectionViewController {
                 
                 let productController =
                     UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
-                        return ProductDetailViewController(coder: coder, productType: .newApi, productModel: newProduct)
+                        return ProductDetailViewController(coder: coder, productType: .general, productModel: newProduct)
                     }
                 self.show(productController, sender: self)
             }

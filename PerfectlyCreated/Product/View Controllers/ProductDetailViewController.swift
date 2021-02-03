@@ -21,14 +21,12 @@ final class ProductDetailViewController: UICollectionViewController {
     
     enum ProductType {
         case general
-        case newApi
         case personal
     }
     
     private enum Section: Int, CaseIterable, Hashable {
         case aboutProduct
         case additionalInfo
-        case newApi
     }
     
     private enum SectionData: Hashable {
@@ -85,7 +83,7 @@ final class ProductDetailViewController: UICollectionViewController {
     private lazy var compositionalLayout = UICollectionViewCompositionalLayout { sectionIndex, _ -> NSCollectionLayoutSection? in
         let sections = Section.allCases[sectionIndex]
         switch sections {
-        case .aboutProduct, .newApi:
+        case .aboutProduct:
                 return self.aboutProductCollectionLayoutSection
         case .additionalInfo:
                 return self.additionalInfoCollectionLayoutSection
@@ -114,7 +112,7 @@ final class ProductDetailViewController: UICollectionViewController {
         configureHeaders()
         
         switch productType {
-        case .general, .newApi:
+        case .general:
                 reloadDataSource()
         case .personal:
             productManager.retrieveProduct(with: productModel.documentId) { result in
@@ -155,7 +153,7 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private func configureBarButtonTapHandler() {        
         switch productType {
-        case .general, .newApi:
+        case .general:
             addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
                 guard let self = self else {
                     return
@@ -219,8 +217,6 @@ final class ProductDetailViewController: UICollectionViewController {
         
         switch productType {
         case .general:
-            snapshot.appendItems([.productModel(productModel)], toSection: .aboutProduct)
-        case .newApi:
             snapshot.appendItems([.productModel(productModel)], toSection: .aboutProduct)
             productModel.stores.forEach { store in
                 snapshot.appendItems([.stores(store)], toSection: .additionalInfo)
@@ -298,12 +294,6 @@ final class ProductDetailViewController: UICollectionViewController {
                 }
                 return header
             case .general:
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
-                    return nil
-                }
-                header.isHidden = true
-                return header
-            case .newApi:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: HeaderCollectionReusableView.defaultNibName, withReuseIdentifier: HeaderCollectionReusableView.defaultNibName, for: indexPath) as? HeaderCollectionReusableView else {
                     return nil
                 }
@@ -321,7 +311,6 @@ final class ProductDetailViewController: UICollectionViewController {
         case .personal:
             let controller = EditProductViewController(coder: coder, productInfoDraft: productInfoDraft, productManager: productManager)
             return controller
-        case .newApi: return nil
         }
     }
     
@@ -330,17 +319,15 @@ final class ProductDetailViewController: UICollectionViewController {
         let section = Section.allCases[indexPath.section]
         
         switch section {
-        case .aboutProduct: break
-            
-        case .additionalInfo:
-            let store = productModel.stores[indexPath.row - 2]
+        case .aboutProduct:
+            let store = productModel.stores[indexPath.row]
             guard let url = URL(string: store.link) else {
                 return
             }
             let controller = SFSafariViewController(url: url)
             present(controller, animated: true)
-        case .newApi:
-            let store = productModel.stores[indexPath.row]
+        case .additionalInfo:
+            let store = productModel.stores[indexPath.row - 2]
             guard let url = URL(string: store.link) else {
                 return
             }

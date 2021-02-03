@@ -78,10 +78,6 @@ final class SearchProductViewController: UIViewController {
         }
         .store(in: &cancellables)
     }
-    
-    @objc private func backButtonPressed() {
-        self.dismiss(animated: true)
-    }
 }
 
 extension SearchProductViewController: UITableViewDataSource {

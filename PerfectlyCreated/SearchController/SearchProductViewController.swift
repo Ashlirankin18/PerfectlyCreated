@@ -9,6 +9,7 @@
 import UIKit
 import CombineCocoa
 import Combine
+import FirebaseAuth
 
 /// `UIViewContrller` subclass which allows a user to search for a product.
 final class SearchProductViewController: UIViewController {
@@ -24,6 +25,8 @@ final class SearchProductViewController: UIViewController {
             }
         }
     }
+    
+    private lazy var productManager = ProductManager()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -101,10 +104,15 @@ extension SearchProductViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        let model = self.allHairProducts[indexPath.row]
+        let product = ProductModel(productName: model.results.name, documentId: productManager.documentId, productDescription: model.results.features?.blob ?? model.results.description, userId: currentUser.uid, productImageURL: model.results.images.first?.absoluteString ?? "", category: model.results.category, isCompleted: false, notes: nil, upc: model.results.upc, stores: [])
         
         let productController =
             UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
-            return ProductDetailViewController(coder: coder, productType: .general(self.allHairProducts[indexPath.row]))
+                return ProductDetailViewController(coder: coder, productType: .general, productModel: product)
         }
         
         self.navigationController?.pushViewController(productController, animated: true)

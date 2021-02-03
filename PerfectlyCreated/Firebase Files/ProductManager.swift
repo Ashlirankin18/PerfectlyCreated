@@ -125,6 +125,30 @@ final class ProductManager {
             }
         })
     }
+
+    /// Retrieves a specific product from the database.
+    /// - Parameters:
+    ///   - documenId: The document id of the product.
+    ///   - completion: Called on completion of the newwork call.
+    func validateProductCollection(upc: String, completion: @escaping (Result<Void, AppError>) -> Void) {
+        guard let currentUserId = Auth.auth().currentUser?.uid else {
+            return
+        }
+        firebaseDB.collection(FirebaseCollectionKeys.products).whereField("upc", isEqualTo: upc).whereField("userId", isEqualTo: currentUserId).getDocuments(completion: { (snapshot, error) in
+            
+            if let error = error {
+                completion(.failure(.networkError(error)))
+            }
+            
+            if let snapshot = snapshot {
+                if snapshot.documents.isEmpty {
+                    completion(.success(()))
+                } else {
+                    completion(.failure(.productNotFound("Your collection already contains this product.")))
+                }
+            }
+        })
+    }
     
     /// Retrieves a specific product from the database.
     /// - Parameters:

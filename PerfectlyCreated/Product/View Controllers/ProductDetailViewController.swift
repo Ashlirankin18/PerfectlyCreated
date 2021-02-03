@@ -12,7 +12,7 @@ import Combine
 import FirebaseAuth
 import SafariServices
 
-/// <#Description#>
+/// `UIViewController` subclass which displays the details of a product.
 final class ProductDetailViewController: UICollectionViewController {
     
     private enum SegueIdentifier {
@@ -20,9 +20,9 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     enum ProductType {
-        case personal(ProductModel)
-        case general(AllHairProducts)
-        case newApi(HairProduct)
+        case general
+        case newApi
+        case personal
     }
     
     private enum Section: Int, CaseIterable, Hashable {
@@ -32,13 +32,7 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     private enum SectionData: Hashable {
-        case aboutProduct(HairProductDetails)
-        case additionalInfo(ProductModel)
-        case newApi(HairProduct)
-    }
-    
-    private enum SectionDataTest: Hashable {
-        case productModel(SectionData)
+        case productModel(ProductModel)
         case completed(Bool)
         case notes(String)
         case stores(Store)
@@ -50,11 +44,13 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private let productType: ProductType
     
+    private let productModel: ProductModel
+    
     private var cancellables = Set<AnyCancellable>()
     
     private lazy var productManager = ProductManager()
     
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, SectionDataTest> = UICollectionViewDiffableDataSource(collectionView: self.collectionView) { (_, indexPath, model) -> UICollectionViewCell? in
+    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, SectionData> = UICollectionViewDiffableDataSource(collectionView: self.collectionView) { (_, indexPath, model) -> UICollectionViewCell? in
         return self.configureCell(model: model, indexPath: indexPath)
     }
     
@@ -100,8 +96,9 @@ final class ProductDetailViewController: UICollectionViewController {
     /// - Parameters:
     ///   - coder: An abstract class that serves as the basis for objects that enable archiving and distribution of other objects.
     ///   - productType: The type of product.
-    init?(coder: NSCoder, productType: ProductType) {
+    init?(coder: NSCoder, productType: ProductType, productModel: ProductModel) {
         self.productType = productType
+        self.productModel = productModel
         super.init(coder: coder)
     }
     
@@ -119,15 +116,15 @@ final class ProductDetailViewController: UICollectionViewController {
         switch productType {
         case .general, .newApi:
                 reloadDataSource()
-        case let .personal(product):
-                productManager.retrieveProduct(with: product.documentId) { result in
-                    switch result {
-                    case let .failure(error):
-                            print(error.localizedDescription)
-                    case let .success(retrievedProduct):
-                            self.reloadDataSource(product: retrievedProduct)
-                    }
+        case .personal:
+            productManager.retrieveProduct(with: productModel.documentId) { result in
+                switch result {
+                case let .failure(error):
+                    print(error.localizedDescription)
+                case let .success(retrievedProduct):
+                    self.reloadDataSource(product: retrievedProduct)
                 }
+            }
         }
     }
     
@@ -156,70 +153,52 @@ final class ProductDetailViewController: UICollectionViewController {
         .store(in: &cancellables)
     }
     
-    private func configureBarButtonTapHandler() {
-        guard let currentUser = Auth.auth().currentUser else {
-            return
-        }
-        
+    private func configureBarButtonTapHandler() {        
         switch productType {
-        case let .general(product):
-                
-                let model = product.results
-                
-                let product = ProductModel(productName: model.name, documentId: productManager.documentId, productDescription: model.features?.blob ?? model.description, userId: currentUser.uid, productImageURL: model.images.first?.absoluteString ?? "", category: model.category, isCompleted: false, notes: nil, stores: [])
-                
-                addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
-                    guard let self = self else {
-                        return
-                    }
-                    
-                    self.productManager.addProduct(product: product) { [weak self] result in
-                        guard let self = self else {
-                            return
-                        }
-                        
-                        switch result {
-                        case let .failure(error):
-                                print(error)
-                        case .success:
-                                self.dismiss(animated: true)
-                        }
-                    }
-                }
-                .store(in: &cancellables)
-                
-        case let .personal(product):
-                navigationItem.rightBarButtonItem?.image = UIImage(systemName: "trash.fill")
-                navigationItem.rightBarButtonItem?.tintColor = .systemRed
-                
-                addProductBarButtonItem.tapPublisher.sink { [weak self] _ in
-                    self?.persentDestructiveAlertController(title: nil, message: "Are you sure you want to delete this product?", destructiveTitle: "Delete", destructiveCompletion: {
-                        self?.performDeleteAction(product: product)
-                    }, nonDestructiveTitle: "Keep")
-                }
-                .store(in: &cancellables)
-        case let .newApi(product):
-            let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, stores: product.stores)
-                
+        case .general, .newApi:
             addProductBarButtonItem.tapPublisher.sink { [weak self]  _ in
                 guard let self = self else {
                     return
                 }
+                self.addProductToDatabase(product: self.productModel)
+            }
+            .store(in: &cancellables)
+            
+        case  .personal:
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "trash.fill")
+            navigationItem.rightBarButtonItem?.tintColor = .systemRed
+            
+            addProductBarButtonItem.tapPublisher.sink { [weak self] _ in
                 
-                self.productManager.addProduct(product: newProduct) { [weak self] result in
+                guard let self = self else {
+                    return
+                }
+                self.persentDestructiveAlertController(title: nil, message: "Are you sure you want to delete this product?", destructiveTitle: "Delete", destructiveCompletion: {
+                    self.performDeleteAction(product: self.productModel)
+                }, nonDestructiveTitle: "Keep")
+            }
+            .store(in: &cancellables)
+        }
+    }
+    
+    private func addProductToDatabase(product: ProductModel) {
+        productManager.validateProductCollection(upc: product.upc) { [weak self] result in
+            switch result {
+            case let .failure(error):
+                self?.showAlert(title: "Error", message: "An error occurred: \(error.localizedDescription)")
+            case .success:
+                self?.productManager.addProduct(product: product) { [weak self] result in
                     guard let self = self else {
                         return
                     }
-                    
                     switch result {
                     case let .failure(error):
-                        print(error)
+                        self.showAlert(title: "Error", message: "An error occurred: \(error.localizedDescription)")
                     case .success:
-                        self.dismiss(animated: true)
+                        self.navigationController?.popViewController(animated: true)
                     }
                 }
             }
-                .store(in: &cancellables)
         }
     }
     
@@ -235,31 +214,31 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     private func reloadDataSource() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, SectionDataTest>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, SectionData>()
         snapshot.appendSections([.aboutProduct, .additionalInfo])
         
         switch productType {
-        case let .general(product):
-            snapshot.appendItems([.productModel(.aboutProduct(product.results))], toSection: .aboutProduct)
+        case .general:
+            snapshot.appendItems([.productModel(productModel)], toSection: .aboutProduct)
         case .personal: break
-        case let .newApi(product):
-            snapshot.appendItems([.productModel(.newApi(product))], toSection: .aboutProduct)
-            product.stores.forEach { store in
+        case .newApi:
+            snapshot.appendItems([.productModel(productModel)], toSection: .aboutProduct)
+            productModel.stores.forEach { store in
                 snapshot.appendItems([.stores(store)], toSection: .additionalInfo)
-                }
+            }
         }
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
     private func reloadDataSource(product: ProductModel) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, SectionDataTest>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, SectionData>()
         snapshot.appendSections([.aboutProduct, .additionalInfo])
         
         productInfoDraft.documentId = product.documentId
         productInfoDraft.isCompleted = product.isCompleted
         productInfoDraft.notes = product.notes ?? "Tap edit to add note"
         
-        snapshot.appendItems([.productModel(.additionalInfo(product))], toSection: .aboutProduct)
+        snapshot.appendItems([.productModel(product)], toSection: .aboutProduct)
         
         snapshot.appendItems([.completed(productInfoDraft.isCompleted)], toSection: .additionalInfo)
         
@@ -272,22 +251,14 @@ final class ProductDetailViewController: UICollectionViewController {
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    private func configureCell(model: SectionDataTest, indexPath: IndexPath) -> UICollectionViewCell {
+    private func configureCell(model: SectionData, indexPath: IndexPath) -> UICollectionViewCell {
         
         switch model {
-        case let .productModel(sectionData):
-            
+        case let .productModel(info):
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutProductCollectionViewCell", for: indexPath) as? AboutProductCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            switch sectionData {
-            case let .aboutProduct(info):
-                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: info.name, productDescription: info.features?.blob ?? info.description, imageURL: info.images.first, category: info.category)
-            case let .additionalInfo(product):
-                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.productName, productDescription: product.productDescription, imageURL: URL(string: product.productImageURL), category: product.category)
-            case let .newApi(product):
-                cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: product.itemAttributes.title, productDescription: product.itemAttributes.itemAttributesDescription, imageURL: URL(string: product.itemAttributes.image), category: product.itemAttributes.category)
-            }
+            cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: info.productName, productDescription: info.productDescription, imageURL: URL(string: info.productImageURL), category: info.category)
                 return cell
         case let .completed(completed):
             guard let completedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
@@ -357,8 +328,9 @@ final class ProductDetailViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch productType {
         case .general : break
-        case let .newApi(product):
-            let store = product.stores[indexPath.row]
+        
+        case .newApi:
+            let store = productModel.stores[indexPath.row]
             guard let url = URL(string: store.link) else {
                 return
             }

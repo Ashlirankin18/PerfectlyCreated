@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 import PhotosUI
+import FirebaseAuth
 
 /// `UICollectionViewController` subclass which displays the user's products.
 final class ProductViewController: UICollectionViewController {
@@ -197,16 +198,24 @@ final class ProductViewController: UICollectionViewController {
     }
     
     private func queryForProduct(with barcodeString: String) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
         productManager.retrieveProduct(upc: barcodeString) { [weak self] result in
+            guard let self = self else {
+                return
+            }
             switch result {
             case let .failure(error):
-                self?.showAlert(title: "Error!", message: error.localizedDescription)
+                self.showAlert(title: "Error!", message: error.localizedDescription)
             case let .success(product):
+                let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
+                
                 let productController =
                     UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
-                        return ProductDetailViewController(coder: coder, productType: .newApi(product))
+                        return ProductDetailViewController(coder: coder, productType: .newApi, productModel: newProduct)
                     }
-                self?.show(productController, sender: self)
+                self.show(productController, sender: self)
             }
         }
     }
@@ -234,7 +243,7 @@ final class ProductViewController: UICollectionViewController {
         }
         let productController =
             UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
-                return ProductDetailViewController(coder: coder, productType: .personal(selectedProduct))
+                return ProductDetailViewController(coder: coder, productType: .personal, productModel: selectedProduct)
             }
         navigationController?.pushViewController(productController, animated: true)
     }

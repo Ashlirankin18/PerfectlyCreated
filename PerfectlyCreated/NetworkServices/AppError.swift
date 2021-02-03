@@ -17,6 +17,7 @@ enum AppError: Error {
     case badStatusCode(String)
     case noBarcodeFound(String)
     case processingError(Error)
+    case productNotFound(String)
     
     func errorMessage() -> String {
         switch self {
@@ -34,6 +35,8 @@ enum AppError: Error {
             return "no bar code found \(message)"
         case .processingError(let error):
             return "processing error: \(error)"
+        case .productNotFound(let message):
+            return message
         }
     }
 }

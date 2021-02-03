@@ -36,5 +36,7 @@ struct ProductModel: Codable, Hashable {
     /// The notes on the product.
     let notes: String?
     
+    let upc: String
+    
     let stores: [Store]
 }

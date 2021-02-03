@@ -106,7 +106,7 @@ final class ProductManager {
     ///   - completion: Called on completion of the newwork call.
     func retrieveProduct(with documenId: String, completion: @escaping (Result<ProductModel, Error>) -> Void) {
         firebaseDB.collection(FirebaseCollectionKeys.products).document(documenId).addSnapshotListener({ (snapshot, error) in
-           
+            
             DispatchQueue.main.async {
                 if let error = error {
                     completion(.failure(error))
@@ -157,17 +157,17 @@ final class ProductManager {
     func retrieveProduct(upc: String, completion: @escaping (Result<HairProduct, Error>) -> Void) {
         firebaseDB.collection(FirebaseCollectionKeys.allProducts).whereField("upc", isEqualTo: upc).getDocuments(completion: { (snapshot, error) in
             
-                if let error = error {
-                    completion(.failure(error))
+            if let error = error {
+                completion(.failure(error))
+            }
+            if let snapshot = snapshot {
+                
+                let model = snapshot.documents.compactMap { try? $0.data(as: HairProduct.self) }
+                guard let retrievedProduct = model.first else {
+                    return
                 }
-                if let snapshot = snapshot {
-                   
-                        let model = snapshot.documents.compactMap { try? $0.data(as: HairProduct.self) }
-                        guard let retrievedProduct = model.first else {
-                            return
-                        }
-                        completion(.success(retrievedProduct))
-                }
+                completion(.success(retrievedProduct))
+            }
         })
     }
     

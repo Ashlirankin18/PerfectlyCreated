@@ -220,12 +220,12 @@ final class ProductDetailViewController: UICollectionViewController {
         switch productType {
         case .general:
             snapshot.appendItems([.productModel(productModel)], toSection: .aboutProduct)
-        case .personal: break
         case .newApi:
             snapshot.appendItems([.productModel(productModel)], toSection: .aboutProduct)
             productModel.stores.forEach { store in
                 snapshot.appendItems([.stores(store)], toSection: .additionalInfo)
             }
+        case .personal: break
         }
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -308,7 +308,7 @@ final class ProductDetailViewController: UICollectionViewController {
                     return nil
                 }
                 
-                header.titleLabel.text = "Find product at stores below"
+                header.titleLabel.text = "Stores"
                 return header
             }
         }

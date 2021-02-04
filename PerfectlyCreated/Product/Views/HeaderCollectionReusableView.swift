@@ -10,5 +10,15 @@ import UIKit
 
 final class HeaderCollectionReusableView: UICollectionReusableView {
 
-    @IBOutlet weak var titleLabel: UILabel!
+    struct ViewModel {
+        let title: String
+    }
+    
+    @IBOutlet private weak var titleLabel: UILabel!
+    
+    var viewModel: ViewModel? {
+        didSet {
+            titleLabel.text = viewModel?.title
+        }
+    }
 }

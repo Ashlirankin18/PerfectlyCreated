@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,7 +28,7 @@
                                                 <rect key="frame" x="12" y="297.5" width="390" height="179"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="qxC-cB-chs" firstAttribute="height" secondItem="JyT-lp-z33" secondAttribute="width" id="Nk5-DA-FQu"/>
                                             <constraint firstItem="qxC-cB-chs" firstAttribute="centerX" secondItem="JyT-lp-z33" secondAttribute="centerX" id="RuL-CN-ihu"/>
@@ -38,6 +37,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="JyT-lp-z33" firstAttribute="height" secondItem="bso-If-uOg" secondAttribute="height" priority="250" id="Ftj-oN-3sS"/>
                                     <constraint firstAttribute="bottom" secondItem="JyT-lp-z33" secondAttribute="bottom" id="IWm-HW-gi4"/>
@@ -55,6 +55,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus the barcode within the lines outlined" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUt-C5-hQ2">
                                         <rect key="frame" x="16" y="12" width="243" height="45.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -80,7 +81,6 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0oN-tv-i3E"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="0oN-tv-i3E" firstAttribute="bottom" secondItem="bso-If-uOg" secondAttribute="bottom" id="16o-xp-mja"/>
                             <constraint firstItem="IPc-cF-JZU" firstAttribute="height" secondItem="mWB-Rl-8bK" secondAttribute="height" multiplier="0.2" id="DRV-BB-FnB"/>
@@ -134,8 +134,5 @@
     </scenes>
     <resources>
         <image name="multiply" catalog="system" width="128" height="111"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

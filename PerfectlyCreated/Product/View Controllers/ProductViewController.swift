@@ -264,7 +264,9 @@ extension ProductViewController: PHPickerViewControllerDelegate {
                         let controller = UIStoryboard(name: UploadBarcodeViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: UploadBarcodeViewController.defaultNibName) { coder in
                             return UploadBarcodeViewController(coder: coder, chosenImage: image)
                         }
-                        self.show(controller, sender: self)
+                        let navigationController = UINavigationController(rootViewController: controller)
+                        navigationController.modalPresentationStyle = .fullScreen
+                        self.present(navigationController, animated: true)
                         
                         controller.barcodeStringPublisher
                             .sink { [weak self] barcodeString in

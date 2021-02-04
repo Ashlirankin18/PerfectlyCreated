@@ -144,7 +144,7 @@ final class ProductManager {
                 if snapshot.documents.isEmpty {
                     completion(.success(()))
                 } else {
-                    completion(.failure(.productNotFound("Your collection already contains this product.")))
+                    completion(.failure(.productNotFound))
                 }
             }
         })

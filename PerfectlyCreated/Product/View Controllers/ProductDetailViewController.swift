@@ -27,6 +27,7 @@ final class ProductDetailViewController: UICollectionViewController {
     private enum Section: Int, CaseIterable, Hashable {
         case aboutProduct
         case additionalInfo
+        case store
     }
     
     private enum SectionData: Hashable {
@@ -69,6 +70,21 @@ final class ProductDetailViewController: UICollectionViewController {
         return section
     }()
     
+    private let storeCollectionLayoutSection: NSCollectionLayoutSection = {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+        
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: AdditionalCollectionReusableView.defaultNibName, alignment: .top)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .estimated(50))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [sectionHeader]
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        return section
+    }()
+    
     private let additionalInfoCollectionLayoutSection: NSCollectionLayoutSection = {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -87,6 +103,8 @@ final class ProductDetailViewController: UICollectionViewController {
             return self?.aboutProductCollectionLayoutSection
         case .additionalInfo:
             return self?.additionalInfoCollectionLayoutSection
+        case .store:
+            return  self?.storeCollectionLayoutSection
         }
     }
     
@@ -213,13 +231,13 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private func reloadDataSource() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, SectionData>()
-        snapshot.appendSections([.aboutProduct, .additionalInfo])
+        snapshot.appendSections([.aboutProduct, .additionalInfo, .store])
         
         switch productType {
         case .general:
             snapshot.appendItems([.productModel(productModel)], toSection: .aboutProduct)
             productModel.stores.forEach { store in
-                snapshot.appendItems([.stores(store)], toSection: .additionalInfo)
+                snapshot.appendItems([.stores(store)], toSection: .store)
             }
         case .personal: break
         }
@@ -228,7 +246,7 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private func reloadDataSource(product: ProductModel) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, SectionData>()
-        snapshot.appendSections([.aboutProduct, .additionalInfo])
+        snapshot.appendSections([.aboutProduct, .additionalInfo, .store])
         
         productInfoDraft.documentId = product.documentId
         productInfoDraft.isCompleted = product.isCompleted
@@ -242,7 +260,7 @@ final class ProductDetailViewController: UICollectionViewController {
         snapshot.appendItems([.notes(notes)], toSection: .additionalInfo)
         
         product.stores.forEach { store in
-            snapshot.appendItems([.stores(store)], toSection: .additionalInfo)
+            snapshot.appendItems([.stores(store)], toSection: .store)
         }
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -295,13 +313,15 @@ final class ProductDetailViewController: UICollectionViewController {
                     }
                     self.performSegue(withIdentifier: SegueIdentifier.editProduct, sender: self)
                 }
+                
+                print(indexPath.row, indexPath.section, indexPath.item)
                 return header
             case .general:
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: HeaderCollectionReusableView.defaultNibName, withReuseIdentifier: HeaderCollectionReusableView.defaultNibName, for: indexPath) as? HeaderCollectionReusableView else {
                     return nil
                 }
                 
-                header.titleLabel.text = "Stores"
+                header.viewModel = .init(title: "Stores")
                 return header
             }
         }
@@ -329,13 +349,8 @@ final class ProductDetailViewController: UICollectionViewController {
             }
             let controller = SFSafariViewController(url: url)
             present(controller, animated: true)
-        case .additionalInfo:
-            let store = productModel.stores[indexPath.row - 2]
-            guard let url = URL(string: store.link) else {
-                return
-            }
-            let controller = SFSafariViewController(url: url)
-            present(controller, animated: true)
+        case .additionalInfo: break
+        case .store: break
         }
     }
 }

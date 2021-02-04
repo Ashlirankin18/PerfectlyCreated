@@ -51,13 +51,24 @@ final class BarCodeScannerController {
             }
             
             if let barcodes = barcodes {
+                
                 for barcode in barcodes {
                     if let barCodeString = barcode.rawValue {
                         self?.passThroughSubject.send(barCodeString)
+                    } else {
+                        self?.passThroughSubject.send(completion: .failure(.noBarcodeFound))
+                    }
+                }
+                
+                switch outputType {
+                case .buffer: break
+                case .image:
+                    if barcodes.isEmpty {
+                        self?.passThroughSubject.send(completion: .failure(.noBarcodeFound))
                     }
                 }
             } else {
-                self?.passThroughSubject.send(completion: .failure(.noBarcodeFound("Barcode could not be found.")))
+                self?.passThroughSubject.send(completion: .failure(.noBarcodeFound))
             }
         }
         return passThroughSubject.eraseToAnyPublisher()

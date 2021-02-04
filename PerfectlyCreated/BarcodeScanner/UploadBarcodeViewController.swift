@@ -50,10 +50,16 @@ final class UploadBarcodeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureBarButtonItems()
+        chosenImageImageView.image = chosenImage
         configureScrollView()
-        navigationController?.configuresShadowlessTransparentNavigationBar(backgroundColor: .black)
+        
         configureSaveButton()
         configureBackButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.configuresShadowlessTransparentNavigationBar(backgroundColor: .black)
     }
     
     // MARK: - UploadBarcodeViewController
@@ -64,7 +70,6 @@ final class UploadBarcodeViewController: UIViewController {
     }
     
     private func configureScrollView() {
-        chosenImageImageView.image = chosenImage
         scrollView.minimumZoomScale = 0.5
         scrollView.maximumZoomScale = 2
         
@@ -86,7 +91,7 @@ final class UploadBarcodeViewController: UIViewController {
                     }
                 } receiveValue: { [weak self] barcodeString in
                     self?.bacodeStringSubject.send(barcodeString)
-                    self?.navigationController?.popViewController(animated: true)
+                    self?.dismiss(animated: true)
                 }
                 .store(in: &self.cancellables)
         }
@@ -95,7 +100,7 @@ final class UploadBarcodeViewController: UIViewController {
     
     private func configureBackButton() {
         backBarButtonItem.tapPublisher.sink { [weak self] _ in
-            self?.navigationController?.popViewController(animated: true)
+            self?.dismiss(animated: true)
         }
         .store(in: &cancellables)
     }

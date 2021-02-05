@@ -31,9 +31,13 @@ final class BarcodeScannerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        videoSession.configureCaptureDevice(with: barcodeView)
         configureCancelButton()
         configureBarcodeScannerPublisher()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        videoSession.configureCaptureDevice(with: barcodeView)
     }
 
     // MARK: - BarcodeScannerViewController

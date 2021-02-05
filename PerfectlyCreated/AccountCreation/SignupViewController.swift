@@ -26,7 +26,7 @@ final class SignupViewController: UIViewController {
     
     private lazy var userSession: UserSession = UserSession()
     
-    private lazy var controller = OnboardingViewController(nibName: OnboardingViewController.defaultNibName, bundle: .main)
+    private lazy var controller = OnboardingViewController(nibName: OnboardingViewController.nibName, bundle: .main)
     
     private var accountCreationValidator = AccountCreationValidator()
  

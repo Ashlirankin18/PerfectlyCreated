@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.rootViewController = PerfectlyCraftedTabBarViewController()
             self.window?.makeKeyAndVisible()
         } else {
-            let signUpViewController = UIStoryboard(name: SignupViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: SignupViewController.defaultNibName) { coder in
+            let signUpViewController = UIStoryboard(name: SignupViewController.nibName, bundle: .main).instantiateViewController(identifier: SignupViewController.nibName) { coder in
                 return SignupViewController(coder: coder, accountFlow: .signUp)
             }
             self.window?.rootViewController = signUpViewController

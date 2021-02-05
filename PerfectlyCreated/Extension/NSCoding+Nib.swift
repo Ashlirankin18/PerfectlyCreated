@@ -10,8 +10,8 @@ import Foundation
 
 extension NSCoding {
     
-    /// The default name for a nib. Matches the name of the class, without any module name spacing.
-    static var defaultNibName: String {
+    /// The name for a nib.
+    static var nibName: String {
         return String(describing: self)
     }
 }

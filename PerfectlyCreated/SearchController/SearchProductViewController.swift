@@ -48,7 +48,7 @@ final class SearchProductViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        productTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.defaultNibName)
+        productTableView.register(SearchTableViewCell.self, forCellReuseIdentifier: SearchTableViewCell.nibName)
         configureNavigationItemProperties()
         setDelegates()
         configureDismissButtonHandler()
@@ -89,7 +89,7 @@ extension SearchProductViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = productTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.defaultNibName, for: indexPath) as? SearchTableViewCell else {
+        guard let cell = productTableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.nibName, for: indexPath) as? SearchTableViewCell else {
             fatalError("no product display cell found")
         }
         let hairProduct = allHairProducts[indexPath.row]
@@ -107,7 +107,7 @@ extension SearchProductViewController: UITableViewDataSource {
         let product = ProductModel(productName: model.results.name, documentId: productManager.documentId, productDescription: model.results.features?.blob ?? model.results.description, userId: currentUser.uid, productImageURL: model.results.images.first?.absoluteString ?? "", category: model.results.category, isCompleted: false, notes: nil, upc: model.results.upc, stores: [])
         
         let productController =
-            UIStoryboard(name: ProductDetailViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.defaultNibName) { coder in
+            UIStoryboard(name: ProductDetailViewController.nibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.nibName) { coder in
                 return ProductDetailViewController(coder: coder, productType: .general, productModel: product)
         }
         

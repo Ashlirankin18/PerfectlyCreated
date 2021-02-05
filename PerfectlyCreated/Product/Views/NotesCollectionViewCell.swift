@@ -51,12 +51,6 @@ final class NotesCollectionViewCell: UICollectionViewCell {
             
             notesTextView.isEditable = viewModel.configuration == .editing
             notesTextView.isSelectable = viewModel.configuration == .editing
-            
-            if viewModel.configuration == .editing {
-                borderWidth = 1.0
-                borderColor = .systemIndigo
-                cornerRadius = 10
-            }
         }
     }
     
@@ -81,6 +75,23 @@ final class NotesCollectionViewCell: UICollectionViewCell {
                 self?.notesTextHandler?(text)
             }
             .store(in: &cancellables)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureCell()
+    }
+    
+    private func configureCell() {
+        layer.cornerRadius = frame.height / 2
+        layer.masksToBounds = false
+        contentView.layer.cornerRadius = 25
+        contentView.layer.masksToBounds = true
+        layer.shadowColor = UIColor.appPurple.withAlphaComponent(0.3).cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowOpacity = 1.0
+        
+        self.layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
     }
 }
 

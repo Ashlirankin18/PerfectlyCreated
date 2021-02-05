@@ -78,8 +78,8 @@ final class EditProductViewController: UIViewController {
     }
     
     private func configureCollectionView() {
-        editProductCollectionView.register(UINib(nibName: CompletedCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: CompletedCollectionViewCell.defaultNibName)
-        editProductCollectionView.register(UINib(nibName: NotesCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: NotesCollectionViewCell.defaultNibName)
+        editProductCollectionView.register(UINib(nibName: CompletedCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: CompletedCollectionViewCell.nibName)
+        editProductCollectionView.register(UINib(nibName: NotesCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: NotesCollectionViewCell.nibName)
     }
     
     private func configureNavBar() {
@@ -122,7 +122,7 @@ final class EditProductViewController: UIViewController {
         
         switch model {
         case let .info(isCompleted):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.nibName, for: indexPath) as? CompletedCollectionViewCell else {
                 return  UICollectionViewCell()
             }
             
@@ -135,7 +135,7 @@ final class EditProductViewController: UIViewController {
             
             return cell
         case let .notes(notes):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.defaultNibName, for: indexPath) as? NotesCollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.nibName, for: indexPath) as? NotesCollectionViewCell else {
                 return  UICollectionViewCell()
             }
             

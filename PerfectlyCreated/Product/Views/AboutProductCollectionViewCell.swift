@@ -27,6 +27,7 @@ final class AboutProductCollectionViewCell: UICollectionViewCell {
         let category: String
     }
     
+    @IBOutlet private weak var aboutLabel: UILabel!
     @IBOutlet private weak var productImageImageView: UIImageView!
     @IBOutlet private weak var productNameLabel: UILabel!
     @IBOutlet private weak var productDescriptionTextView: UITextView!
@@ -36,19 +37,15 @@ final class AboutProductCollectionViewCell: UICollectionViewCell {
     /// Single point of configuration of the `AboutProductCollectionViewCell`.
     var viewModel: ViewModel? {
         didSet {
+            aboutLabel.isHidden = false
             productNameLabel.text = viewModel?.productName
             categoryLabel.text = viewModel?.category
             productImageImageView.kf.setImage(with: viewModel?.imageURL)
             if viewModel?.productDescription.isEmpty ?? true {
                 productDescriptionTextView.isHidden = true
+                aboutLabel.isHidden = true
             }
             productDescriptionTextView.text = viewModel?.productDescription
         }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        containerView.cornerRadius = 20
-        containerView.addShadow(location: .top)
     }
 }

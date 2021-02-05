@@ -15,6 +15,17 @@ import SafariServices
 /// `UIViewController` subclass which displays the details of a product.
 final class ProductDetailViewController: UICollectionViewController {
     
+    private enum DesignConstants {
+        static let storeTitle = NSLocalizedString("Stores", comment: "Indicates to the user they can purchase products at these links.")
+        static let notesTitle = NSLocalizedString("Notes", comment: "Indicates to the user they can use this field to add their notes.")
+        static let errorTitle = NSLocalizedString("Error", comment: "Indicates to the user there was an error.")
+        
+        static let headerHeight: CGFloat = 44.0
+        static let estimatedHeight: CGFloat = 50.0
+        static let fractionalWidth: CGFloat = 1.0
+        static let estimatedHeightItem: CGFloat = 500.0
+        static let estimatedHeightGroup: CGFloat = 300.0
+    }
     private enum SegueIdentifier {
         static let editProduct = "editProduct"
     }
@@ -26,8 +37,8 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private enum Section: Int, CaseIterable, Hashable {
         case aboutProduct
-        case additionalInfo
         case store
+        case additionalInfo
     }
     
     private enum SectionData: Hashable {
@@ -56,43 +67,58 @@ final class ProductDetailViewController: UICollectionViewController {
     private var productInfoDraft = ProductInfoDraft()
     
     private let aboutProductCollectionLayoutSection: NSCollectionLayoutSection = {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
-        
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: AdditionalCollectionReusableView.defaultNibName, alignment: .bottom)
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
+
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(DesignConstants.estimatedHeightItem))
+       
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(300)), subitems: [item])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.boundarySupplementaryItems = [sectionHeader]
-        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+     
         return section
     }()
     
     private let storeCollectionLayoutSection: NSCollectionLayoutSection = {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(DesignConstants.fractionalWidth), heightDimension: .estimated(DesignConstants.headerHeight))
         
-        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: AdditionalCollectionReusableView.defaultNibName, alignment: .top)
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8), heightDimension: .estimated(50))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: HeaderCollectionReusableView.nibName, alignment: .top)
+      
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: itemSize, subitems: [item])
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalWidth(0.7))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        group.interItemSpacing = .flexible(0)
         
         let section = NSCollectionLayoutSection(group: group)
+        
         section.boundarySupplementaryItems = [sectionHeader]
+        
+        section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: .zero)
+        section.interGroupSpacing = .zero
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         return section
     }()
     
     private let additionalInfoCollectionLayoutSection: NSCollectionLayoutSection = {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(50))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(DesignConstants.headerHeight))
+        
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: AdditionalCollectionReusableView.nibName, alignment: .top)
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(DesignConstants.fractionalWidth), heightDimension: .estimated(DesignConstants.estimatedHeight))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let group = NSCollectionLayoutGroup.vertical(layoutSize: itemSize, subitems: [item])
         
+        group.interItemSpacing = .fixed(16.0)
+        
         let section = NSCollectionLayoutSection(group: group)
         
+        section.interGroupSpacing = 24.0
+        section.contentInsets = .init(top: 12, leading: 12, bottom: 12, trailing: 12)
+        section.boundarySupplementaryItems = [sectionHeader]
         return section
     }()
     
@@ -151,12 +177,12 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     private func configureCollectionView() {
-        collectionView.register(UINib(nibName: AboutProductCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: AboutProductCollectionViewCell.defaultNibName)
-        collectionView.register(UINib(nibName: CompletedCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: CompletedCollectionViewCell.defaultNibName)
-        collectionView.register(UINib(nibName: NotesCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: NotesCollectionViewCell.defaultNibName)
-        collectionView.register(UINib(nibName: StoreCollectionViewCell.defaultNibName, bundle: .main), forCellWithReuseIdentifier: StoreCollectionViewCell.defaultNibName)
-        collectionView.register(UINib(nibName: HeaderCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: HeaderCollectionReusableView.defaultNibName, withReuseIdentifier: HeaderCollectionReusableView.defaultNibName)
-        collectionView.register(UINib(nibName: AdditionalCollectionReusableView.defaultNibName, bundle: .main), forSupplementaryViewOfKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName)
+        collectionView.register(UINib(nibName: AboutProductCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: AboutProductCollectionViewCell.nibName)
+        collectionView.register(UINib(nibName: CompletedCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: CompletedCollectionViewCell.nibName)
+        collectionView.register(UINib(nibName: NotesCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: NotesCollectionViewCell.nibName)
+        collectionView.register(UINib(nibName: StoreCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: StoreCollectionViewCell.nibName)
+        collectionView.register(UINib(nibName: HeaderCollectionReusableView.nibName, bundle: .main), forSupplementaryViewOfKind: HeaderCollectionReusableView.nibName, withReuseIdentifier: HeaderCollectionReusableView.nibName)
+        collectionView.register(UINib(nibName: AdditionalCollectionReusableView.nibName, bundle: .main), forSupplementaryViewOfKind: AdditionalCollectionReusableView.nibName, withReuseIdentifier: AdditionalCollectionReusableView.nibName)
         
         collectionView.collectionViewLayout = compositionalLayout
         collectionView.dataSource = dataSource
@@ -201,7 +227,7 @@ final class ProductDetailViewController: UICollectionViewController {
         productManager.validateProductCollection(upc: product.upc) { [weak self] result in
             switch result {
             case let .failure(error):
-                self?.showAlert(title: "Error", message: "An error occurred: \(error.localizedDescription)")
+                self?.showAlert(title: DesignConstants.errorTitle, message: "An error occurred: \(error.localizedDescription)")
             case .success:
                 self?.productManager.addProduct(product: product) { [weak self] result in
                     guard let self = self else {
@@ -209,7 +235,7 @@ final class ProductDetailViewController: UICollectionViewController {
                     }
                     switch result {
                     case let .failure(error):
-                        self.showAlert(title: "Error", message: "An error occurred: \(error.localizedDescription)")
+                        self.showAlert(title: DesignConstants.errorTitle, message: "An error occurred: \(error.localizedDescription)")
                     case .success:
                         self.navigationController?.popViewController(animated: true)
                     }
@@ -222,7 +248,7 @@ final class ProductDetailViewController: UICollectionViewController {
         productManager.deleteProduct(product, completionHandler: { [weak self] result in
             switch result {
             case let .failure(error):
-                self?.showAlert(title: "Error", message: "An error occurred: \(error.localizedDescription)")
+                self?.showAlert(title: DesignConstants.errorTitle, message: "An error occurred: \(error.localizedDescription)")
             case .success:
                 self?.navigationController?.popViewController(animated: true)
             }
@@ -231,7 +257,7 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private func reloadDataSource() {
         var snapshot = NSDiffableDataSourceSnapshot<Section, SectionData>()
-        snapshot.appendSections([.aboutProduct, .additionalInfo, .store])
+        snapshot.appendSections([.aboutProduct, .store, .additionalInfo])
         
         switch productType {
         case .general:
@@ -246,11 +272,11 @@ final class ProductDetailViewController: UICollectionViewController {
     
     private func reloadDataSource(product: ProductModel) {
         var snapshot = NSDiffableDataSourceSnapshot<Section, SectionData>()
-        snapshot.appendSections([.aboutProduct, .additionalInfo, .store])
+        snapshot.appendSections([.aboutProduct, .store, .additionalInfo])
         
         productInfoDraft.documentId = product.documentId
         productInfoDraft.isCompleted = product.isCompleted
-        productInfoDraft.notes = product.notes ?? "Tap edit to add note"
+        productInfoDraft.notes = product.notes ?? NSLocalizedString("Tap edit to add note", comment: "Indicates that the edit button can be used to edit notes.")
         
         snapshot.appendItems([.productModel(product)], toSection: .aboutProduct)
         
@@ -266,28 +292,27 @@ final class ProductDetailViewController: UICollectionViewController {
     }
     
     private func configureCell(model: SectionData, indexPath: IndexPath) -> UICollectionViewCell {
-        
         switch model {
         case let .productModel(info):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AboutProductCollectionViewCell", for: indexPath) as? AboutProductCollectionViewCell else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AboutProductCollectionViewCell.nibName, for: indexPath) as? AboutProductCollectionViewCell else {
                 return UICollectionViewCell()
             }
             cell.viewModel = AboutProductCollectionViewCell.ViewModel(productName: info.productName, productDescription: info.productDescription, imageURL: URL(string: info.productImageURL), category: info.category)
                 return cell
         case let .completed(completed):
-            guard let completedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.defaultNibName, for: indexPath) as? CompletedCollectionViewCell else {
+            guard let completedCell = collectionView.dequeueReusableCell(withReuseIdentifier: CompletedCollectionViewCell.nibName, for: indexPath) as? CompletedCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            completedCell.viewModel = CompletedCollectionViewCell.ViewModel(isCompleted: completed, title: "Product Complete", configuration: .display)
+            completedCell.viewModel = CompletedCollectionViewCell.ViewModel(isCompleted: completed, title: NSLocalizedString("Product Complete", comment: "Indicates  that this product is complete"), configuration: .display)
             return completedCell
         case let .notes(notes):
-            guard let notesCell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.defaultNibName, for: indexPath) as? NotesCollectionViewCell else {
+            guard let notesCell = collectionView.dequeueReusableCell(withReuseIdentifier: NotesCollectionViewCell.nibName, for: indexPath) as? NotesCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            notesCell.viewModel = NotesCollectionViewCell.ViewModel(title: "Notes", notes: notes, configuration: .display)
+            notesCell.viewModel = NotesCollectionViewCell.ViewModel(title: DesignConstants.notesTitle, notes: notes, configuration: .display)
             return notesCell
         case let .stores(store):
-            guard let storeCell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreCollectionViewCell.defaultNibName, for: indexPath) as? StoreCollectionViewCell else {
+            guard let storeCell = collectionView.dequeueReusableCell(withReuseIdentifier: StoreCollectionViewCell.nibName, for: indexPath) as? StoreCollectionViewCell else {
                 return UICollectionViewCell()
             }
             guard let url = URL(string: store.image) else {
@@ -303,25 +328,54 @@ final class ProductDetailViewController: UICollectionViewController {
             
             switch self.productType {
             case .personal:
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.defaultNibName, withReuseIdentifier: AdditionalCollectionReusableView.defaultNibName, for: indexPath) as? AdditionalCollectionReusableView else {
-                    return nil
-                }
                 
-                header.editButtonTapHandler = { [weak self] in
-                    guard let self = self else {
-                        return
+                let section = Section.allCases[indexPath.section]
+                
+                switch section {
+                case .aboutProduct:
+                    guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.nibName, withReuseIdentifier: AdditionalCollectionReusableView.nibName, for: indexPath) as? AdditionalCollectionReusableView else {
+                        return nil
                     }
-                    self.performSegue(withIdentifier: SegueIdentifier.editProduct, sender: self)
+                    header.isHidden = true
+                    return header
+                case .additionalInfo:
+                    guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.nibName, withReuseIdentifier: AdditionalCollectionReusableView.nibName, for: indexPath) as? AdditionalCollectionReusableView else {
+                        return nil
+                    }
+                    header.editButtonTapHandler = { [weak self] in
+                        guard let self = self else {
+                            return
+                        }
+                        self.performSegue(withIdentifier: SegueIdentifier.editProduct, sender: self)
+                    }
+                    return header
+                case .store:
+                    guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: HeaderCollectionReusableView.nibName, withReuseIdentifier: HeaderCollectionReusableView.nibName, for: indexPath) as? HeaderCollectionReusableView else {
+                        return nil
+                    }
+                    
+                    header.viewModel = .init(title: DesignConstants.storeTitle)
+                    return header
                 }
-                
-                print(indexPath.row, indexPath.section, indexPath.item)
-                return header
             case .general:
-                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: HeaderCollectionReusableView.defaultNibName, withReuseIdentifier: HeaderCollectionReusableView.defaultNibName, for: indexPath) as? HeaderCollectionReusableView else {
+                let section = Section.allCases[indexPath.section]
+                
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: HeaderCollectionReusableView.nibName, withReuseIdentifier: HeaderCollectionReusableView.nibName, for: indexPath) as? HeaderCollectionReusableView else {
                     return nil
                 }
                 
-                header.viewModel = .init(title: "Stores")
+                header.viewModel = .init(title: DesignConstants.storeTitle)
+              
+                switch section {
+                case .aboutProduct, .additionalInfo:
+                    header.isHidden = true
+                case .store:
+                    if self.productModel.stores.isEmpty {
+                        header.isHidden = true
+                    } else {
+                        header.isHidden = false
+                    }
+                }
                 return header
             }
         }
@@ -342,15 +396,15 @@ final class ProductDetailViewController: UICollectionViewController {
         let section = Section.allCases[indexPath.section]
         
         switch section {
-        case .aboutProduct:
+        case .aboutProduct: break
+        case .additionalInfo: break
+        case .store:
             let store = productModel.stores[indexPath.row]
             guard let url = URL(string: store.link) else {
                 return
             }
             let controller = SFSafariViewController(url: url)
             present(controller, animated: true)
-        case .additionalInfo: break
-        case .store: break
         }
     }
 }

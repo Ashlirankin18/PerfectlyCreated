@@ -41,4 +41,21 @@ final class StoreCollectionViewCell: UICollectionViewCell {
             priceLabel.text = viewModel?.price
         }
     }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        configureCell()
+    }
+    
+    private func configureCell() {
+        layer.cornerRadius = frame.height / 2
+        layer.masksToBounds = false
+        contentView.layer.cornerRadius = 25
+        contentView.layer.masksToBounds = true
+        layer.shadowColor = UIColor.appPurple.withAlphaComponent(0.3).cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowOpacity = 1.0
+        
+        self.layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
+    }
 }

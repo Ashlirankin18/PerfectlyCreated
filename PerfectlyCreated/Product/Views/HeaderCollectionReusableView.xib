@@ -13,19 +13,19 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqf-gW-5Ce">
-                    <rect key="frame" x="16" y="0.0" width="288" height="41"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqf-gW-5Ce">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="qqf-gW-5Ce" firstAttribute="centerY" secondItem="U6b-Vx-4bR" secondAttribute="centerY" id="0DS-s0-LX0"/>
                 <constraint firstItem="qqf-gW-5Ce" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="9Vl-1s-fOO"/>
                 <constraint firstItem="qqf-gW-5Ce" firstAttribute="centerX" secondItem="U6b-Vx-4bR" secondAttribute="centerX" id="BHU-17-N3t"/>
-                <constraint firstItem="qqf-gW-5Ce" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="16" id="Q2F-YI-Nvj"/>
+                <constraint firstItem="qqf-gW-5Ce" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="Q2F-YI-Nvj"/>
             </constraints>
             <connections>
                 <outlet property="titleLabel" destination="qqf-gW-5Ce" id="xQW-GM-Ni1"/>

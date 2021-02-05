@@ -27,7 +27,7 @@ final class PerfectlyCraftedTabBarViewController: UITabBarController {
     // MARK: - PerfectlyCraftedTabBarViewController
     
     private func setUpTabBarItems() {
-        let myProductViewController = UIStoryboard(name: ProductViewController.defaultNibName, bundle: .main).instantiateViewController(identifier: ProductViewController.defaultNibName) { coder in
+        let myProductViewController = UIStoryboard(name: ProductViewController.nibName, bundle: .main).instantiateViewController(identifier: ProductViewController.nibName) { coder in
             return ProductViewController(coder: coder)
         }
         let myProductNavigationController = UINavigationController(rootViewController: myProductViewController)

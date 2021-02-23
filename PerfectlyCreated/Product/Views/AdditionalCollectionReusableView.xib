@@ -20,16 +20,16 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="rXh-Mu-Itr">
-                            <rect key="frame" x="12" y="0.0" width="308" height="50"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Experiences" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m9q-hp-YPE">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="299" height="50"/>
                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gd4-YR-0cx">
-                                    <rect key="frame" x="287" y="0.0" width="21" height="50"/>
+                                    <rect key="frame" x="299" y="0.0" width="21" height="50"/>
                                     <color key="tintColor" name="appPurple"/>
                                     <state key="normal">
                                         <color key="titleColor" name="appPurple"/>
@@ -44,7 +44,7 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="rXh-Mu-Itr" firstAttribute="leading" secondItem="kTd-xW-lyR" secondAttribute="leading" constant="12" id="0tS-rh-AAo"/>
+                        <constraint firstItem="rXh-Mu-Itr" firstAttribute="leading" secondItem="kTd-xW-lyR" secondAttribute="leading" id="0tS-rh-AAo"/>
                         <constraint firstItem="rXh-Mu-Itr" firstAttribute="top" secondItem="kTd-xW-lyR" secondAttribute="top" id="7Lm-xO-ohR"/>
                         <constraint firstAttribute="trailing" secondItem="rXh-Mu-Itr" secondAttribute="trailing" id="stB-Dh-xRX"/>
                         <constraint firstAttribute="bottom" secondItem="rXh-Mu-Itr" secondAttribute="bottom" id="xpo-Sx-ZgO"/>

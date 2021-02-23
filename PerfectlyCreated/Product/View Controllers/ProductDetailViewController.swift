@@ -130,7 +130,11 @@ final class ProductDetailViewController: UICollectionViewController {
         case .additionalInfo:
             return self?.additionalInfoCollectionLayoutSection
         case .store:
-            return  self?.storeCollectionLayoutSection
+            if self?.productModel.stores.isEmpty ?? true {
+                return nil
+            } else {
+                return  self?.storeCollectionLayoutSection
+            }
         }
     }
     
@@ -285,9 +289,12 @@ final class ProductDetailViewController: UICollectionViewController {
         let notes = productInfoDraft.notes
         snapshot.appendItems([.notes(notes)], toSection: .additionalInfo)
         
-        product.stores.forEach { store in
-            snapshot.appendItems([.stores(store)], toSection: .store)
+        if !product.stores.isEmpty {
+            product.stores.forEach { store in
+                snapshot.appendItems([.stores(store)], toSection: .store)
+            }
         }
+        
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     

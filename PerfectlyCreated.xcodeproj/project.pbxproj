@@ -63,6 +63,8 @@
 		2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6853254F7AB400BE0E1E /* NSCoding+Nib.swift */; };
 		2EAE6859254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAE6857254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift */; };
 		2EAE685A254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2EAE6858254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib */; };
+		2EAF205625EC95A700E8049F /* AddProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF205525EC95A700E8049F /* AddProductView.swift */; };
+		2EAF205925EC962B00E8049F /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF205825EC962B00E8049F /* PhotoPicker.swift */; };
 		2EAF931125854B4300D28BAC /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF931025854B4300D28BAC /* UIView+IBInspectable.swift */; };
 		2EAF931C2585556900D28BAC /* UINavigationBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF931B2585556900D28BAC /* UINavigationBar+Appearance.swift */; };
 		2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */; };
@@ -133,6 +135,8 @@
 		2EAE6853254F7AB400BE0E1E /* NSCoding+Nib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCoding+Nib.swift"; sourceTree = "<group>"; };
 		2EAE6857254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalCollectionReusableView.swift; sourceTree = "<group>"; };
 		2EAE6858254F86FE00BE0E1E /* AdditionalCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdditionalCollectionReusableView.xib; sourceTree = "<group>"; };
+		2EAF205525EC95A700E8049F /* AddProductView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddProductView.swift; sourceTree = "<group>"; };
+		2EAF205825EC962B00E8049F /* PhotoPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		2EAF931025854B4300D28BAC /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		2EAF931B2585556900D28BAC /* UINavigationBar+Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Appearance.swift"; sourceTree = "<group>"; };
 		2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCollectionKeys.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 		2E0FFCFA254DCDC50020D9DC /* Product */ = {
 			isa = PBXGroup;
 			children = (
+				2EAF205825EC962B00E8049F /* PhotoPicker.swift */,
 				2E6E31C125B3F7E900857E5C /* View Controllers */,
 				2E07D20725588D990029FB36 /* Views */,
 				2E4A8234258DA8980031F30E /* Edit Product */,
@@ -285,6 +290,7 @@
 		2E6E31C125B3F7E900857E5C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2EAF205525EC95A700E8049F /* AddProductView.swift */,
 				2E0FFCFB254DCDE60020D9DC /* ProductViewController.swift */,
 				2E0FFCFF254DCE060020D9DC /* ProductViewController.storyboard */,
 				2EAE6838254E5F7200BE0E1E /* ProductDetailViewController.swift */,
@@ -584,11 +590,13 @@
 				2EAD2CF325AF3EDE00C71DAB /* ProductInfoDraft.swift in Sources */,
 				2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */,
 				2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */,
+				2EAF205925EC962B00E8049F /* PhotoPicker.swift in Sources */,
 				2EAE684F254F732D00BE0E1E /* AboutProductCollectionViewCell.swift in Sources */,
 				2E110A832550F203001ADACD /* CompletedCollectionViewCell.swift in Sources */,
 				2E6E31BC25B3CC8300857E5C /* OnboardingViewController.swift in Sources */,
 				2E07D20C25588E700029FB36 /* NotesCollectionViewCell.swift in Sources */,
 				2E4A3E932208D2C800988116 /* AppDelegate.swift in Sources */,
+				2EAF205625EC95A700E8049F /* AddProductView.swift in Sources */,
 				2E0FFCFC254DCDE60020D9DC /* ProductViewController.swift in Sources */,
 				2EAF931C2585556900D28BAC /* UINavigationBar+Appearance.swift in Sources */,
 				2EA365BB220A760800FFDC5E /* UserSession.swift in Sources */,

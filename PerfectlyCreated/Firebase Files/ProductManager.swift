@@ -78,7 +78,6 @@ final class ProductManager {
     /// Retrieves all the products from the database.
     /// - Parameter completion: Called on completion of the network call.
     func retrieveProducts(completion: @escaping (Result<[ProductModel], Error>) -> Void) {
-        
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
@@ -154,19 +153,22 @@ final class ProductManager {
     /// - Parameters:
     ///   - documenId: The document id of the product.
     ///   - completion: Called on completion of the newwork call.
-    func retrieveProduct(upc: String, completion: @escaping (Result<HairProduct, Error>) -> Void) {
+    func retrieveProduct(upc: String, completion: @escaping (Result<HairProduct, AppError>) -> Void) {
         firebaseDB.collection(FirebaseCollectionKeys.allProducts).whereField("upc", isEqualTo: upc).getDocuments(completion: { (snapshot, error) in
             
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(.networkError(error)))
             }
             if let snapshot = snapshot {
-                
-                let model = snapshot.documents.compactMap { try? $0.data(as: HairProduct.self) }
-                guard let retrievedProduct = model.first else {
-                    return
+                if snapshot.documents.isEmpty {
+                    completion(.failure(.productNotFound))
+                } else {
+                    let model = snapshot.documents.compactMap { try? $0.data(as: HairProduct.self) }
+                    guard let retrievedProduct = model.first else {
+                        return
+                    }
+                    completion(.success(retrievedProduct))
                 }
-                completion(.success(retrievedProduct))
             }
         })
     }

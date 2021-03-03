@@ -18,6 +18,7 @@ enum AppError: LocalizedError {
     case noBarcodeFound
     case processingError(Error)
     case productNotFound
+    case imageNotFound
     
     var errorDescription: String? {
         switch self {
@@ -37,6 +38,8 @@ enum AppError: LocalizedError {
             return NSLocalizedString("An error was encounter when processing image \(error)", comment: "Indicates to the user that an error occured")
         case .productNotFound:
             return NSLocalizedString("This product could not be found", comment: "Informs the user that the product could not be found.")
+        case .imageNotFound:
+            return NSLocalizedString("This product could not be found", comment: "Informs the user that the product could not be found.")
         }
     }
     
@@ -54,6 +57,8 @@ enum AppError: LocalizedError {
             return NSLocalizedString("Check your connection and try again.", comment: "Informs the user they should check their connection.")
         case .noBarcodeFound, .processingError, .productNotFound:
             return NSLocalizedString("Try scanning another barcode.", comment: "Informs the user that they should try scanning another barcode.")
+        case .imageNotFound:
+            return NSLocalizedString("This product could not be found", comment: "Informs the user that the product could not be found.")
         }
     }
 }

@@ -22,10 +22,10 @@ class VideoSessionController: NSObject {
     
     /// Subscriber to this publisher to recieve chages related to the barcode.
     var bacodeStringPublisher: AnyPublisher<String, Error> {
-        return bacodeStringSubject.eraseToAnyPublisher()
+        return barcodeStringSubject.eraseToAnyPublisher()
     }
     
-    private var bacodeStringSubject = PassthroughSubject<String, Error>()
+    private var barcodeStringSubject = PassthroughSubject<String, Error>()
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -76,13 +76,16 @@ extension VideoSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         barcodeController.captureOutput(with: .buffer(buffer: sampleBuffer))
+            .removeDuplicates()
+            .first { !$0.isEmpty }
             .sink { completion in
                 switch completion {
-                case .failure: break
-                case .finished: break
+                case let .failure(error):
+                    print("There is an error: \(error.localizedDescription)")
+                case .finished: return
                 }
             } receiveValue: { [weak self] barcodeString in
-                self?.bacodeStringSubject.send(barcodeString)
+                self?.barcodeStringSubject.send(barcodeString)
             }
             .store(in: &self.cancellables)
     }

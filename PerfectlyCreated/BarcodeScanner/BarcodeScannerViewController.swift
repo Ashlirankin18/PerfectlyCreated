@@ -60,7 +60,7 @@ final class BarcodeScannerViewController: UIViewController {
     }
     
     private func configureBarcodeScannerPublisher() {
-        videoSession.bacodeStringPublisher
+        videoSession.barcodeStringPublisher
             .removeDuplicates()
             .sink { [weak self] result in
                 switch result {

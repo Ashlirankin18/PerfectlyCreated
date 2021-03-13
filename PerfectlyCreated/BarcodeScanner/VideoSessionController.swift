@@ -20,8 +20,8 @@ class VideoSessionController: NSObject {
     
     private var barcodeController = BarCodeScannerController()
     
-    /// Subscriber to this publisher to recieve chages related to the barcode.
-    var bacodeStringPublisher: AnyPublisher<String, Error> {
+    /// Subscriber to this publisher to receive changes related to the barcode.
+    var barcodeStringPublisher: AnyPublisher<String, Error> {
         return barcodeStringSubject.eraseToAnyPublisher()
     }
     

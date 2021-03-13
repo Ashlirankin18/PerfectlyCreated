@@ -78,15 +78,14 @@ extension VideoSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
         barcodeController.captureOutput(with: .buffer(buffer: sampleBuffer))
             .removeDuplicates()
             .first { !$0.isEmpty }
-            .sink { completion in
-                switch completion {
+            .sink(result: { result in
+                switch result {
                 case let .failure(error):
                     print("There is an error: \(error.localizedDescription)")
-                case .finished: return
+                case let .success(barcodeString):
+                    self.barcodeStringSubject.send(barcodeString)
                 }
-            } receiveValue: { [weak self] barcodeString in
-                self?.barcodeStringSubject.send(barcodeString)
-            }
+            })
             .store(in: &self.cancellables)
     }
 }

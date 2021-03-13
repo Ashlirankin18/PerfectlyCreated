@@ -10,40 +10,6 @@ import SwiftUI
 import Combine
 import PhotosUI
 
-class ViewModel: ObservableObject {
-    
-    @Published var image: UIImage?
-    
-    var productName: String = ""
-    
-    var productDescription: String = ""
-    
-    var barcodeString: String = ""
-    
-    func retrieveImage() -> UIImage {
-        return image ?? UIImage()
-    }
-    
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    func snapshotURL() -> URL? {
-        if let data = self.retrieveImage().pngData() {
-            let filename = getDocumentsDirectory().appendingPathComponent("PerfectlyCreated.png")
-            do {
-                try data.write(to: filename)
-            } catch {
-                print(error)
-            }
-            return filename
-        } else {
-            return nil
-        }
-    }
-}
-
 struct AddProductView: View {
     
     @State private var isPresented: Bool = false

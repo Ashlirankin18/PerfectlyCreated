@@ -14,6 +14,9 @@ class CardPresentationManager: NSObject {
 }
 
 extension CardPresentationManager: UIViewControllerTransitioningDelegate {
+    
+    // MARK: - UIViewControllerTransitioningDelegate
+    
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
         return CardPresentationController(presentedViewController: presented, presentingViewController: presenting, presentationDirection: presentationDirection)
     }

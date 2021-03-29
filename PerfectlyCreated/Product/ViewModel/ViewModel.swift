@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewModel: ObservableObject {
+final class ViewModel: ObservableObject {
     
     @Published var image: UIImage?
     

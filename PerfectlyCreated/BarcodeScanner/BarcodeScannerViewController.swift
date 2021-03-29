@@ -13,9 +13,7 @@ import SwiftUI
 
 /// `UIViewController` subclass which displays the barcode scanner.
 final class BarcodeScannerViewController: UIViewController {
-    
-    @IBOutlet private weak var barcodeView: UIView!
-    
+
     private lazy var videoSession = VideoSessionController()
     
     private var cancelButton = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .done, target: nil, action: nil)
@@ -37,13 +35,9 @@ final class BarcodeScannerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        videoSession.configureCaptureDevice(with: view)
         configureCancelButton()
         configureBarcodeScannerPublisher()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        videoSession.configureCaptureDevice(with: barcodeView)
     }
 
     // MARK: - BarcodeScannerViewController
@@ -61,7 +55,6 @@ final class BarcodeScannerViewController: UIViewController {
     
     private func configureBarcodeScannerPublisher() {
         videoSession.barcodeStringPublisher
-            .removeDuplicates()
             .sink { [weak self] result in
                 switch result {
                 case let .failure(error):
@@ -87,34 +80,26 @@ final class BarcodeScannerViewController: UIViewController {
             }
             switch result {
             case let .failure(error):
-                switch error {
-                case .productNotFound:
-                    self.viewModel.barcodeString = barcodeString
-                    let productView = AddProductView(viewModel: self.viewModel) {
+                    switch error {
+                    case .productNotFound:
+                        let alertController = UIAlertController(title: "Product not found", message: "The product was not found would you like to add it?", preferredStyle: .alert)
+                        let addAction = UIAlertAction(title: "Add Product", style: .default) { [weak self] _ in
+                            self?.addNewProduct(barcodeString: barcodeString, currentUserId: currentUser.uid)
+                        }
+                        
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self] _ in
+                            self?.videoSession.startRunningSession()
+                        }
+                        alertController.addAction(addAction)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true)
+                    default:
                         self.dismiss(animated: true)
-                    } saveButtonTapped: { [weak self] in
-                        guard let self = self else {
-                            return
-                        }
-                       
-                        let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUser.uid, productImageURL: self.viewModel.snapshotURL()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
-                        self.productManager.addProduct(product: newProduct) { result in
-                            switch result {
-                            case let .failure(error):
-                                    self.showAlert(title: "Error!", message: error.localizedDescription)
-                            case .success:
-                                    self.dismiss(animated: true)
-                            }
-                        }
+                        self.showAlert(title: "Error!", message: error.localizedDescription)
                     }
-                    let hostingController = UIHostingController(rootView: productView)
-                    self.present(hostingController, animated: true)
-                default:
-                    self.dismiss(animated: true)
-                    self.showAlert(title: "Error!", message: error.localizedDescription)
-                }
-              
+                    
             case let .success(product):
+                self.videoSession.startRunningSession()
                 let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
                 
                 let productController =
@@ -125,5 +110,29 @@ final class BarcodeScannerViewController: UIViewController {
                 return
             }
         }
+    }
+    
+    private func addNewProduct(barcodeString: String, currentUserId: String) {
+        videoSession.stopRunningSession()
+        viewModel.barcodeString = barcodeString
+        let productView = AddProductView(viewModel: self.viewModel) {
+            self.dismiss(animated: true)
+        } saveButtonTapped: { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.snapshotURL()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
+            self.productManager.addProduct(product: newProduct) { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    self?.showAlert(title: "Error!", message: error.localizedDescription)
+                case .success:
+                    self?.dismiss(animated: true)
+                }
+            }
+        }
+        let hostingController = UIHostingController(rootView: productView)
+        self.present(hostingController, animated: true)
     }
 }

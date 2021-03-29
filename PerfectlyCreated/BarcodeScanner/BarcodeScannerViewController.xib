@@ -4,11 +4,14 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BarcodeScannerViewController" customModule="PerfectlyCreated" customModuleProvider="target">
             <connections>
+                <outlet property="cameraView" destination="eeK-2r-cI0" id="mYa-7Y-SXa"/>
+                <outlet property="promptView" destination="Ian-rE-uVM" id="Uaf-aw-hof"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -16,9 +19,39 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeK-2r-cI0" userLabel="Camera View">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ian-rE-uVM" userLabel="Prompt View">
+                    <rect key="frame" x="0.0" y="729" width="414" height="167"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="eeK-2r-cI0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BdI-8I-TUK"/>
+                <constraint firstItem="eeK-2r-cI0" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="Fou-Dc-6Vs"/>
+                <constraint firstItem="Ian-rE-uVM" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.186384" id="KX9-qE-ATO"/>
+                <constraint firstItem="Ian-rE-uVM" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="QZJ-8e-77n"/>
+                <constraint firstItem="Ian-rE-uVM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TZz-0r-D7n"/>
+                <constraint firstItem="Ian-rE-uVM" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="YKy-y5-7dm"/>
+                <constraint firstItem="eeK-2r-cI0" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="a1R-yd-2cb"/>
+                <constraint firstItem="eeK-2r-cI0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qy8-my-JvX"/>
+            </constraints>
             <point key="canvasLocation" x="144.92753623188406" y="62.946428571428569"/>
         </view>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

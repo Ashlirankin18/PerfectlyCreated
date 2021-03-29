@@ -58,7 +58,7 @@ final class VideoSessionController: NSObject {
         
         metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
         metadataOutput.metadataObjectTypes = [.ean8, .ean13, .pdf417]
-        metadataOutput.rectOfInterest = aVCaptureVideoPreviewLayer?.metadataOutputRectConverted(fromLayerRect: CGRect(x: view.bounds.width * 0.068, y: view.center.y, width: view.frame.width * 0.85, height: view.frame.width * 0.5)) ?? .zero
+        metadataOutput.rectOfInterest = aVCaptureVideoPreviewLayer?.metadataOutputRectConverted(fromLayerRect: CGRect(x: view.frame.width * 0.068, y: view.center.y, width: view.frame.width * 0.85, height: view.frame.width * 0.5)) ?? .zero
     }
     
     private func configureOutput(view: UIView) {
@@ -73,7 +73,7 @@ final class VideoSessionController: NSObject {
     }
     
     private func configureRoundRectPath(view: UIView) {
-        let path = UIBezierPath(roundedRect: CGRect(x: view.bounds.width * 0.068, y: view.center.y, width: view.frame.width * 0.85, height: view.frame.width * 0.5), cornerRadius: 20.0)
+        let path = UIBezierPath(roundedRect: CGRect(x: view.frame.width * 0.068, y: view.center.y, width: view.frame.width * 0.85, height: view.frame.width * 0.5), cornerRadius: 20.0)
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.lineWidth = 5.0
         shapeLayer.strokeColor = UIColor.white.cgColor

@@ -12,7 +12,7 @@ import Combine
 extension Publisher {
     
     /// A single value sink function that coalesces either one `Output` or one `Failure` as a `Result`-type.
-    public func sink(result: @escaping ((Result<Self.Output, Self.Failure>) -> Void)) -> AnyCancellable {
+    func sink(result: @escaping ((Result<Self.Output, Self.Failure>) -> Void)) -> AnyCancellable {
         return sink(receiveCompletion: { completion in
             switch completion {
             case .failure(let error):

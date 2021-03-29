@@ -20,7 +20,7 @@ class StorageManager {
         return Storage.storage().reference()
     }()
     
-    func retrieveItemImages(imageURL: String, completion: @escaping (Result<UIImage,Error>) -> Void) {
+    func retrieveItemImages(imageURL: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
         storage.reference(forURL: imageURL).getData(maxSize: 1 * 1024 * 1024) { (data, error) in
             if let error = error {
                 completion(.failure(error))
@@ -46,11 +46,10 @@ class StorageManager {
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         let uploadTask = newImageRef.putData(data, metadata: metadata) { (metadata, error) in
-            guard let metadata = metadata else {
+            guard metadata != nil else {
                 print("error uploading data")
                 return
             }
-            let _ = metadata.size // other properties, content-type
             newImageRef.downloadURL(completion: { (url, error) in
                 if let error = error {
                     print("downloadURL error: \(error)")
@@ -61,19 +60,19 @@ class StorageManager {
             })
         }
         // observe states on uploadTask
-        uploadTask.observe(.failure) { (storageTaskSnapshot) in
+        uploadTask.observe(.failure) { _ in
             print("failure...")
         }
-        uploadTask.observe(.pause) { (storageTaskSnapshot) in
+        uploadTask.observe(.pause) { _ in
             print("pause...")
         }
-        uploadTask.observe(.progress) { (storageTaskSnapshot) in
+        uploadTask.observe(.progress) { _ in
             print("progress...")
         }
-        uploadTask.observe(.resume) { (storageTaskSnapshot) in
+        uploadTask.observe(.resume) { _ in
             print("resume...")
         }
-        uploadTask.observe(.success) { (storageTaskSnapshot) in
+        uploadTask.observe(.success) { _ in
             print("success...")
         }
     }

@@ -14,7 +14,10 @@ import SwiftUI
 /// `UIViewController` subclass which displays the barcode scanner.
 final class BarcodeScannerViewController: UIViewController {
 
-    private lazy var videoSession = VideoSessionController()
+    @IBOutlet private weak var cameraView: UIView!
+    @IBOutlet private weak var promptView: UIView!
+    
+    private var videoSession = VideoSessionController()
     
     private var cancelButton = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .done, target: nil, action: nil)
     
@@ -23,6 +26,8 @@ final class BarcodeScannerViewController: UIViewController {
     private lazy var productManager = ProductManager()
     
     private lazy var transitionManager: CardPresentationManager = CardPresentationManager()
+
+    private let promptController = UIHostingController(rootView: PromptDisplayView(displayText: "Focus the barcode inside the box to scan."))
     
     @ObservedObject var viewModel: ViewModel = ViewModel()
     
@@ -34,12 +39,18 @@ final class BarcodeScannerViewController: UIViewController {
     private var barcodeStringSubject = PassthroughSubject<String, Error>()
     
     // MARK: - UIViewController
+  
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        videoSession.configureCaptureDevice(with: cameraView)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        videoSession.configureCaptureDevice(with: view)
         configureCancelButton()
         configureBarcodeScannerPublisher()
+        navigationController?.configuresShadowlessTransparentNavigationBar(backgroundColor: .clear)
+        displayChildViewController(promptController, in: promptView)
     }
 
     // MARK: - BarcodeScannerViewController
@@ -137,6 +148,7 @@ final class BarcodeScannerViewController: UIViewController {
             }
         })
         let hostingController = UIHostingController(rootView: productView)
+        transitionManager.presentationDirection = .bottom
         hostingController.modalPresentationStyle = .custom
         hostingController.transitioningDelegate = transitionManager
         self.present(hostingController, animated: true)

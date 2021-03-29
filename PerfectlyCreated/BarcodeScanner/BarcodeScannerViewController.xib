@@ -40,9 +40,9 @@
                 <constraint firstItem="eeK-2r-cI0" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="BdI-8I-TUK"/>
                 <constraint firstItem="eeK-2r-cI0" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="Fou-Dc-6Vs"/>
                 <constraint firstItem="Ian-rE-uVM" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.186384" id="KX9-qE-ATO"/>
+                <constraint firstItem="Ian-rE-uVM" firstAttribute="width" secondItem="fnl-2z-Ty3" secondAttribute="width" id="PAB-El-WVT"/>
                 <constraint firstItem="Ian-rE-uVM" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="QZJ-8e-77n"/>
-                <constraint firstItem="Ian-rE-uVM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TZz-0r-D7n"/>
-                <constraint firstItem="Ian-rE-uVM" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="YKy-y5-7dm"/>
+                <constraint firstItem="Ian-rE-uVM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="XEZ-rE-vy9"/>
                 <constraint firstItem="eeK-2r-cI0" firstAttribute="trailing" secondItem="i5M-Pr-FkT" secondAttribute="trailing" id="a1R-yd-2cb"/>
                 <constraint firstItem="eeK-2r-cI0" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qy8-my-JvX"/>
             </constraints>

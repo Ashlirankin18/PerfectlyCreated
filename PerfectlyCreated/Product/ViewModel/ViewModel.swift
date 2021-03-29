@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class ViewModel: ObservableObject {
     
@@ -17,6 +18,12 @@ final class ViewModel: ObservableObject {
     var productDescription: String = ""
     
     var barcodeString: String = ""
+    
+    var cameraModel: CameraModel? {
+        didSet {
+            self.image = cameraModel?.photo.image
+        }
+    }
     
     private lazy var storageManager = StorageManager()
     

@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import PhotosUI
 import FirebaseAuth
+import SwiftUI
 
 /// `UICollectionViewController` subclass which displays the user's products.
 final class ProductViewController: UICollectionViewController {
@@ -30,6 +31,10 @@ final class ProductViewController: UICollectionViewController {
             reloadDataSource(models: productsDictionary)
         }
     }
+    
+    private lazy var transitionManager: CardPresentationManager = CardPresentationManager()
+    
+    @ObservedObject var viewModel: ViewModel = ViewModel()
     
     private var sectionTitles = [String]()
     
@@ -205,19 +210,61 @@ final class ProductViewController: UICollectionViewController {
                 return
             }
             switch result {
-            case let .failure(error):
-                self.showAlert(title: "Error!", message: error.localizedDescription)
-            case let .success(product):
-                let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
-                
-                let productController =
-                    UIStoryboard(name: ProductDetailViewController.nibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.nibName) { coder in
-                        return ProductDetailViewController(coder: coder, productType: .general, productModel: newProduct)
+                case let .failure(error):
+                    switch error {
+                        case .productNotFound:
+                            let alertController = UIAlertController(title: "Product not found", message: "The product was not found would you like to add it?", preferredStyle: .alert)
+                            let addAction = UIAlertAction(title: "Add Product", style: .default) { [weak self] _ in
+                                self?.addNewProduct(barcodeString: barcodeString, currentUserId: currentUser.uid)
+                            }
+                            
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                            alertController.addAction(addAction)
+                            alertController.addAction(cancelAction)
+                            self.present(alertController, animated: true)
+                        default:
+                            self.dismiss(animated: true)
+                            self.showAlert(title: "Error!", message: error.localizedDescription)
                     }
-                self.show(productController, sender: self)
-                return
+                    
+                case let .success(product):
+                    let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
+                    
+                    let productController =
+                        UIStoryboard(name: ProductDetailViewController.nibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.nibName) { coder in
+                            return ProductDetailViewController(coder: coder, productType: .general, productModel: newProduct)
+                        }
+                    self.show(productController, sender: self)
+                    return
             }
         }
+    }
+    
+    private func addNewProduct(barcodeString: String, currentUserId: String) {
+        viewModel.barcodeString = barcodeString
+        let productView = AddProductView(viewModel: self.viewModel, backButtonTapped: { [weak self] in
+            self?.dismiss(animated: true)
+        }, saveButtonTapped: { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.saveImage()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
+            
+            self.productManager.addProduct(product: newProduct) { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    self?.showAlert(title: "Error!", message: error.localizedDescription)
+                case .success:
+                    self?.dismiss(animated: true)
+                }
+            }
+        })
+        let hostingController = UIHostingController(rootView: productView)
+        transitionManager.presentationDirection = .bottom
+        hostingController.modalPresentationStyle = .custom
+        hostingController.transitioningDelegate = transitionManager
+        self.present(hostingController, animated: true)
     }
     
     private func configureBarcodeScanner() {

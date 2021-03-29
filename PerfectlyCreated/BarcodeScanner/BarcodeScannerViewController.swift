@@ -117,9 +117,10 @@ final class BarcodeScannerViewController: UIViewController {
     private func addNewProduct(barcodeString: String, currentUserId: String) {
         videoSession.stopRunningSession()
         viewModel.barcodeString = barcodeString
-        let productView = AddProductView(viewModel: self.viewModel) {
-            self.dismiss(animated: true)
-        } saveButtonTapped: { [weak self] in
+        let productView = AddProductView(viewModel: self.viewModel, backButtonTapped: { [weak self] in
+            self?.dismiss(animated: true)
+            self?.videoSession.startRunningSession()
+        }, saveButtonTapped: { [weak self] in
             guard let self = self else {
                 return
             }
@@ -133,9 +134,8 @@ final class BarcodeScannerViewController: UIViewController {
                 case .success:
                     self?.dismiss(animated: true)
                 }
-                self?.videoSession.startRunningSession()
             }
-        }
+        })
         let hostingController = UIHostingController(rootView: productView)
         hostingController.modalPresentationStyle = .custom
         hostingController.transitioningDelegate = transitionManager

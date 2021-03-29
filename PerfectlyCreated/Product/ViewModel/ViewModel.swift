@@ -18,6 +18,8 @@ final class ViewModel: ObservableObject {
     
     var barcodeString: String = ""
     
+    private lazy var storageManager = StorageManager()
+    
     func retrieveImage() -> UIImage {
         return image ?? UIImage()
     }
@@ -39,5 +41,13 @@ final class ViewModel: ObservableObject {
         } else {
             return nil
         }
+    }
+    
+    func saveImage() -> URL? {
+        guard let data = retrieveImage().pngData() else {
+            return nil
+        }
+        storageManager.postImage(withData: data)
+        return snapshotURL()
     }
 }

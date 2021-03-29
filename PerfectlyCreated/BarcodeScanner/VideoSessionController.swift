@@ -12,13 +12,15 @@ import AVFoundation
 import Combine
 
 /// Controls the logic related to reading the barcodes.
-class VideoSessionController: NSObject {
+final class VideoSessionController: NSObject {
     
     private lazy var session: AVCaptureSession = AVCaptureSession()
     
     private var aVCaptureVideoPreviewLayer: AVCaptureVideoPreviewLayer?
     
     private var barcodeController = BarCodeScannerController()
+    
+    private let shapeLayer = CAShapeLayer()
     
     /// Subscriber to this publisher to receive changes related to the barcode.
     var barcodeStringPublisher: AnyPublisher<String, Error> {
@@ -40,52 +42,61 @@ class VideoSessionController: NSObject {
     /// Configures the AvCaptureDevice.
     func configureCaptureDevice(with view: UIView) {
         startRunningSession()
+    
+        let metadataOutput = AVCaptureMetadataOutput()
         
         session.sessionPreset = AVCaptureSession.Preset.iFrame1280x720
         
-        guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video), let deviceInput = try? AVCaptureDeviceInput(device: captureDevice) else {
+        guard let captureDevice = AVCaptureDevice.default(for: .video), let deviceInput = try? AVCaptureDeviceInput(device: captureDevice) else {
             return
         }
         
-        let deviceOutput = AVCaptureVideoDataOutput()
-        deviceOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-        deviceOutput.setSampleBufferDelegate(self, queue: .global())
-        
         session.addInput(deviceInput)
-        session.addOutput(deviceOutput)
+        session.addOutput(metadataOutput)
         
         configureOutput(view: view)
         
-        session.startRunning()
+        metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
+        metadataOutput.metadataObjectTypes = [.ean8, .ean13, .pdf417]
+        metadataOutput.rectOfInterest = aVCaptureVideoPreviewLayer?.metadataOutputRectConverted(fromLayerRect: CGRect(x: view.bounds.width * 0.068, y: view.center.y, width: view.frame.width * 0.85, height: view.frame.width * 0.5)) ?? .zero
     }
     
     private func configureOutput(view: UIView) {
         aVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session: session)
-        aVCaptureVideoPreviewLayer?.frame = view.bounds
+        aVCaptureVideoPreviewLayer?.frame = view.frame
         aVCaptureVideoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         
         if let previewLayerUnwrap = aVCaptureVideoPreviewLayer {
             view.layer.addSublayer(previewLayerUnwrap)
+            configureRoundRectPath(view: view)
         }
+    }
+    
+    private func configureRoundRectPath(view: UIView) {
+        let path = UIBezierPath(roundedRect: CGRect(x: view.bounds.width * 0.068, y: view.center.y, width: view.frame.width * 0.85, height: view.frame.width * 0.5), cornerRadius: 20.0)
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = 5.0
+        shapeLayer.strokeColor = UIColor.white.cgColor
+        shapeLayer.path = path.cgPath
+        view.layer.addSublayer(shapeLayer)
     }
 }
 
-extension VideoSessionController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension VideoSessionController: AVCaptureMetadataOutputObjectsDelegate {
+   
+    // MARK: - AVCaptureMetadataOutputObjectsDelegate
     
-    // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
-    
-    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        barcodeController.captureOutput(with: .buffer(buffer: sampleBuffer))
-            .removeDuplicates()
-            .first { !$0.isEmpty }
-            .sink(result: { result in
-                switch result {
-                case let .failure(error):
-                    print("There is an error: \(error.localizedDescription)")
-                case let .success(barcodeString):
-                    self.barcodeStringSubject.send(barcodeString)
-                }
-            })
-            .store(in: &self.cancellables)
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        guard let metadataObject = metadataObjects.first else {
+            return
+        }
+        guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else {
+            return
+        }
+        guard let stringValue = readableObject.stringValue else {
+            return
+        }
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        self.barcodeStringSubject.send(stringValue)
     }
 }

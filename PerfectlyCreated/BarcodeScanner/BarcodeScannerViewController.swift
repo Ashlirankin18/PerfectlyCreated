@@ -17,7 +17,7 @@ final class BarcodeScannerViewController: UIViewController {
     @IBOutlet private weak var cameraView: UIView!
     @IBOutlet private weak var promptView: UIView!
     
-    private var videoSession = VideoSessionController()
+    private lazy var videoSession = VideoSessionController(view: cameraView)
     
     private var cancelButton = UIBarButtonItem(image: UIImage(systemName: "multiply"), style: .done, target: nil, action: nil)
     
@@ -39,14 +39,14 @@ final class BarcodeScannerViewController: UIViewController {
     private var barcodeStringSubject = PassthroughSubject<String, Error>()
     
     // MARK: - UIViewController
-  
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        videoSession.configureCaptureDevice(with: cameraView)
-    }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        videoSession.configureCaptureDevice()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         configureCancelButton()
         configureBarcodeScannerPublisher()
         navigationController?.configuresShadowlessTransparentNavigationBar(backgroundColor: .clear)

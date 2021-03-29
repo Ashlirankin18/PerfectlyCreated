@@ -10,4 +10,5 @@ import Foundation
 
 enum PresentationDirection {
     case bottom
+    case oneThird
 }

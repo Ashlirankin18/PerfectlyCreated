@@ -63,6 +63,8 @@ class CardPresentationController: UIPresentationController {
         switch presentationDirection {
         case .bottom:
             return CGSize(width: parentSize.width, height: parentSize.height * (2.0 / 3.0))
+        case .oneThird:
+            return CGSize(width: parentSize.width, height: parentSize.height * (1.0 / 3.0))
         }
     }
     
@@ -73,6 +75,8 @@ class CardPresentationController: UIPresentationController {
         switch presentationDirection {
         case .bottom:
             frame.origin.y = containerView!.frame.height * (1.0 / 3.0)
+        case .oneThird:
+            frame.origin.y = containerView!.frame.height * (2.0 / 3.0)
         }
         return frame
     }

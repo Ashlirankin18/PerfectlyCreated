@@ -51,7 +51,6 @@ final class BarCodeScannerController {
             }
             
             if let barcodes = barcodes {
-                
                 for barcode in barcodes {
                     if let barCodeString = barcode.rawValue {
                         self?.passThroughSubject.send(barCodeString)
@@ -59,7 +58,6 @@ final class BarCodeScannerController {
                         self?.passThroughSubject.send(completion: .failure(.noBarcodeFound))
                     }
                 }
-                
                 switch outputType {
                 case .buffer: break
                 case .image:

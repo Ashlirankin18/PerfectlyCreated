@@ -23,5 +23,6 @@ pod 'CombineExt'
 pod 'CombineCocoa'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Analytics'
+pod 'Firebase/Storage'
 pod 'SwiftLint'
 end

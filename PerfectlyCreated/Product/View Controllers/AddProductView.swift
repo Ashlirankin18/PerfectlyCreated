@@ -66,15 +66,15 @@ struct AddProductView: View {
                                     Button(action: {
                                         backButtonTapped?()
                                     }, label: {
-                                        Image(systemName: "chevron.left")
+                                        Image(systemName: "multiply")
                                     })
-                                    .foregroundColor(.pink), trailing:
+                                    .foregroundColor(Color(UIColor.appPurple)), trailing:
                                         Button(action: {
                                             saveButtonTapped?()
                                         }, label: {
                                             Text("Save")
                                         })
-                                        .foregroundColor(.pink))
+                                        .foregroundColor(Color(UIColor.appPurple)))
             
             .navigationTitle(Text("Add Product"))
         }

@@ -22,6 +22,8 @@ final class BarcodeScannerViewController: UIViewController {
     
     private lazy var productManager = ProductManager()
     
+    private lazy var transitionManager: CardPresentationManager = CardPresentationManager()
+    
     @ObservedObject var viewModel: ViewModel = ViewModel()
     
     /// Subscriber to this publisher to recieve chages related to the barcode.
@@ -71,6 +73,7 @@ final class BarcodeScannerViewController: UIViewController {
     }
     
     private func queryForProduct(with barcodeString: String) {
+        videoSession.stopRunningSession()
         guard let currentUser = Auth.auth().currentUser else {
             return
         }
@@ -99,7 +102,6 @@ final class BarcodeScannerViewController: UIViewController {
                     }
                     
             case let .success(product):
-                self.videoSession.startRunningSession()
                 let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
                 
                 let productController =
@@ -122,7 +124,8 @@ final class BarcodeScannerViewController: UIViewController {
                 return
             }
             
-            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.snapshotURL()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
+            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.saveImage()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
+            
             self.productManager.addProduct(product: newProduct) { [weak self] result in
                 switch result {
                 case let .failure(error):
@@ -130,9 +133,12 @@ final class BarcodeScannerViewController: UIViewController {
                 case .success:
                     self?.dismiss(animated: true)
                 }
+                self?.videoSession.startRunningSession()
             }
         }
         let hostingController = UIHostingController(rootView: productView)
+        hostingController.modalPresentationStyle = .custom
+        hostingController.transitioningDelegate = transitionManager
         self.present(hostingController, animated: true)
     }
 }

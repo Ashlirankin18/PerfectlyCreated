@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import SwiftUI
 
 /// `UIViewController` subclass which allows the user to upload a bar code.
 final class UploadBarcodeViewController: UIViewController {
@@ -17,9 +18,17 @@ final class UploadBarcodeViewController: UIViewController {
     @IBOutlet private weak var saveBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var backBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var cropView: UIView!
-    @IBOutlet private weak var toastLabel: UILabel!
+    @IBOutlet private weak var promptView: UIView!
     
     private lazy var barcodeController = BarCodeScannerController()
+    
+    private let promptController = UIHostingController(rootView: PromptDisplayView(displayText: "Focus the barcode inside the box to upload."))
+    
+    @ObservedObject var viewModel: ViewModel = ViewModel()
+    
+    private lazy var productManager = ProductManager()
+    
+    private lazy var transitionManager: CardPresentationManager = CardPresentationManager()
     
     /// Publisher which sends barcode changes.
     var barcodeStringPublisher: AnyPublisher<String, Never> {
@@ -49,6 +58,7 @@ final class UploadBarcodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        displayChildViewController(promptController, in: promptView)
         configureBarButtonItems()
         chosenImageImageView.image = chosenImage
         configureScrollView()
@@ -70,11 +80,12 @@ final class UploadBarcodeViewController: UIViewController {
     }
     
     private func configureScrollView() {
-        scrollView.minimumZoomScale = 0.5
+        scrollView.minimumZoomScale = 0.1
         scrollView.maximumZoomScale = 2
         
-        cropView.borderWidth = 3.0
-        cropView.borderColor = .black
+        cropView.borderWidth = 5.0
+        cropView.cornerRadius = 20
+        cropView.borderColor = .white
     }
     
     private func configureSaveButton() {
@@ -103,6 +114,33 @@ final class UploadBarcodeViewController: UIViewController {
             self?.dismiss(animated: true)
         }
         .store(in: &cancellables)
+    }
+    
+    private func addNewProduct(barcodeString: String, currentUserId: String) {
+        viewModel.barcodeString = barcodeString
+        let productView = AddProductView(viewModel: self.viewModel, backButtonTapped: { [weak self] in
+            self?.dismiss(animated: true)
+        }, saveButtonTapped: { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.saveImage()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
+            
+            self.productManager.addProduct(product: newProduct) { [weak self] result in
+                switch result {
+                case let .failure(error):
+                    self?.showAlert(title: "Error!", message: error.localizedDescription)
+                case .success:
+                    self?.dismiss(animated: true)
+                }
+            }
+        })
+        let hostingController = UIHostingController(rootView: productView)
+        transitionManager.presentationDirection = .bottom
+        hostingController.modalPresentationStyle = .custom
+        hostingController.transitioningDelegate = transitionManager
+        self.present(hostingController, animated: true)
     }
 }
 

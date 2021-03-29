@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -50,47 +51,28 @@
                                     <outlet property="delegate" destination="sdF-oQ-1g4" id="9YZ-Ur-k60"/>
                                 </connections>
                             </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Od5-C5-i96" userLabel="Toast View">
-                                <rect key="frame" x="69.5" y="112" width="275" height="69.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Focus the barcode within the lines outlined" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUt-C5-hQ2">
-                                        <rect key="frame" x="16" y="12" width="243" height="45.5"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="16"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="2"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="uUt-C5-hQ2" secondAttribute="trailing" constant="16" id="HFW-yp-Nu6"/>
-                                    <constraint firstItem="uUt-C5-hQ2" firstAttribute="top" secondItem="Od5-C5-i96" secondAttribute="top" constant="12" id="ZO6-Yn-UUd"/>
-                                    <constraint firstAttribute="bottom" secondItem="uUt-C5-hQ2" secondAttribute="bottom" constant="12" id="b66-o6-jbp"/>
-                                    <constraint firstItem="uUt-C5-hQ2" firstAttribute="leading" secondItem="Od5-C5-i96" secondAttribute="leading" constant="16" id="iBn-rt-8Ga"/>
-                                </constraints>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ien-Tz-krV">
+                                <rect key="frame" x="0.0" y="695" width="414" height="167"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0oN-tv-i3E"/>
                         <constraints>
+                            <constraint firstItem="ien-Tz-krV" firstAttribute="leading" secondItem="0oN-tv-i3E" secondAttribute="leading" id="0Za-52-dWx"/>
                             <constraint firstItem="0oN-tv-i3E" firstAttribute="bottom" secondItem="bso-If-uOg" secondAttribute="bottom" id="16o-xp-mja"/>
+                            <constraint firstItem="ien-Tz-krV" firstAttribute="trailing" secondItem="0oN-tv-i3E" secondAttribute="trailing" id="1eQ-Nk-jLg"/>
                             <constraint firstItem="IPc-cF-JZU" firstAttribute="height" secondItem="mWB-Rl-8bK" secondAttribute="height" multiplier="0.2" id="DRV-BB-FnB"/>
                             <constraint firstItem="0oN-tv-i3E" firstAttribute="trailing" secondItem="IPc-cF-JZU" secondAttribute="trailing" constant="12" id="FHV-2G-6of"/>
                             <constraint firstItem="bso-If-uOg" firstAttribute="leading" secondItem="0oN-tv-i3E" secondAttribute="leading" id="HOP-oP-chR"/>
-                            <constraint firstItem="Od5-C5-i96" firstAttribute="top" secondItem="0oN-tv-i3E" secondAttribute="top" constant="24" id="Nug-aU-CHa"/>
                             <constraint firstItem="IPc-cF-JZU" firstAttribute="centerY" secondItem="0oN-tv-i3E" secondAttribute="centerY" id="P8t-XW-o4L"/>
-                            <constraint firstItem="Od5-C5-i96" firstAttribute="centerX" secondItem="0oN-tv-i3E" secondAttribute="centerX" id="Pir-CN-azL"/>
-                            <constraint firstItem="Od5-C5-i96" firstAttribute="width" secondItem="0oN-tv-i3E" secondAttribute="width" multiplier="0.664734" id="oev-rW-cv6"/>
-                            <constraint firstItem="Od5-C5-i96" firstAttribute="height" secondItem="0oN-tv-i3E" secondAttribute="height" multiplier="0.09" id="ovi-jK-Por"/>
+                            <constraint firstItem="ien-Tz-krV" firstAttribute="height" secondItem="mWB-Rl-8bK" secondAttribute="height" multiplier="0.186384" id="mDT-R5-3mi"/>
+                            <constraint firstItem="0oN-tv-i3E" firstAttribute="bottom" secondItem="ien-Tz-krV" secondAttribute="bottom" id="n72-YU-0NZ"/>
                             <constraint firstItem="IPc-cF-JZU" firstAttribute="leading" secondItem="0oN-tv-i3E" secondAttribute="leading" constant="12" id="qba-bX-sUy"/>
                             <constraint firstItem="0oN-tv-i3E" firstAttribute="trailing" secondItem="bso-If-uOg" secondAttribute="trailing" id="vvK-3k-FNV"/>
                             <constraint firstItem="bso-If-uOg" firstAttribute="top" secondItem="0oN-tv-i3E" secondAttribute="top" id="zdb-cR-ikc"/>
@@ -104,9 +86,9 @@
                         <outlet property="backBarButtonItem" destination="WqQ-FG-Xm0" id="OYu-bV-ZM2"/>
                         <outlet property="chosenImageImageView" destination="qxC-cB-chs" id="OWh-tp-p4m"/>
                         <outlet property="cropView" destination="IPc-cF-JZU" id="Wlc-5K-fAq"/>
+                        <outlet property="promptView" destination="ien-Tz-krV" id="7RS-eW-Blg"/>
                         <outlet property="saveBarButtonItem" destination="eFh-GU-l46" id="BaT-sj-8l7"/>
                         <outlet property="scrollView" destination="bso-If-uOg" id="P6S-ab-EAZ"/>
-                        <outlet property="toastLabel" destination="uUt-C5-hQ2" id="7ac-mu-A9I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Jg-lz-imd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -134,5 +116,8 @@
     </scenes>
     <resources>
         <image name="multiply" catalog="system" width="128" height="111"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

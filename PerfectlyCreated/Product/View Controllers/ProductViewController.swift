@@ -210,32 +210,32 @@ final class ProductViewController: UICollectionViewController {
                 return
             }
             switch result {
-                case let .failure(error):
-                    switch error {
-                        case .productNotFound:
-                            let alertController = UIAlertController(title: "Product not found", message: "The product was not found would you like to add it?", preferredStyle: .alert)
-                            let addAction = UIAlertAction(title: "Add Product", style: .default) { [weak self] _ in
-                                self?.addNewProduct(barcodeString: barcodeString, currentUserId: currentUser.uid)
-                            }
-                            
-                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-                            alertController.addAction(addAction)
-                            alertController.addAction(cancelAction)
-                            self.present(alertController, animated: true)
-                        default:
-                            self.dismiss(animated: true)
-                            self.showAlert(title: "Error!", message: error.localizedDescription)
-                    }
-                    
-                case let .success(product):
-                    let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
-                    
-                    let productController =
-                        UIStoryboard(name: ProductDetailViewController.nibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.nibName) { coder in
-                            return ProductDetailViewController(coder: coder, productType: .general, productModel: newProduct)
+            case let .failure(error):
+                switch error {
+                case .productNotFound:
+                        let alertController = UIAlertController(title: "Product not found", message: "The product was not found would you like to add it?", preferredStyle: .alert)
+                        let addAction = UIAlertAction(title: "Add Product", style: .default) { [weak self] _ in
+                            self?.addNewProduct(barcodeString: barcodeString, currentUserId: currentUser.uid)
                         }
-                    self.show(productController, sender: self)
-                    return
+                        
+                        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                        alertController.addAction(addAction)
+                        alertController.addAction(cancelAction)
+                        self.present(alertController, animated: true)
+                default:
+                        self.dismiss(animated: true)
+                        self.showAlert(title: "Error!", message: error.localizedDescription)
+                }
+                    
+            case let .success(product):
+                let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
+                
+                let productController =
+                    UIStoryboard(name: ProductDetailViewController.nibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.nibName) { coder in
+                        return ProductDetailViewController(coder: coder, productType: .general, productModel: newProduct)
+                    }
+                self.show(productController, sender: self)
+                return
             }
         }
     }
@@ -315,12 +315,6 @@ extension ProductViewController: PHPickerViewControllerDelegate {
                         let navigationController = UINavigationController(rootViewController: controller)
                         navigationController.modalPresentationStyle = .fullScreen
                         self.present(navigationController, animated: true)
-                        
-                        controller.barcodeStringPublisher
-                            .sink { [weak self] barcodeString in
-                                self?.queryForProduct(with: barcodeString)
-                            }
-                            .store(in: &self.cancellables)
                     } else {
                         self.showAlert(title: "Error", message: "Image could not be processed.")
                     }

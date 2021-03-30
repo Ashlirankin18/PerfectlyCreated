@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 final class ViewModel: ObservableObject {
     
@@ -19,13 +20,15 @@ final class ViewModel: ObservableObject {
     
     var barcodeString: String = ""
     
-    var cameraModel: CameraModel? {
-        didSet {
-            self.image = cameraModel?.photo.image
-        }
-    }
-    
+    var cameraModel: CameraModel = CameraModel()
+
     private lazy var storageManager = StorageManager()
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        getPhoto()
+    }
     
     func retrieveImage() -> UIImage {
         return image ?? UIImage()
@@ -56,5 +59,16 @@ final class ViewModel: ObservableObject {
         }
         storageManager.postImage(withData: data)
         return snapshotURL()
+    }
+    
+    func getPhoto() {
+        cameraModel.$photo.sink { photo in
+            if let photo = photo {
+                self.image = photo.image
+            } else {
+                self.image = nil
+            }
+        }
+        .store(in: &cancellables)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 import Combine
 import SwiftUI
+import FirebaseAuth
 
 /// `UIViewController` subclass which allows the user to upload a bar code.
 final class UploadBarcodeViewController: UIViewController {
@@ -29,13 +30,6 @@ final class UploadBarcodeViewController: UIViewController {
     private lazy var productManager = ProductManager()
     
     private lazy var transitionManager: CardPresentationManager = CardPresentationManager()
-    
-    /// Publisher which sends barcode changes.
-    var barcodeStringPublisher: AnyPublisher<String, Never> {
-        return bacodeStringSubject.eraseToAnyPublisher()
-    }
-    
-    private var bacodeStringSubject = PassthroughSubject<String, Never>()
     
     private let chosenImage: UIImage
     
@@ -101,8 +95,7 @@ final class UploadBarcodeViewController: UIViewController {
                     case .finished: break
                     }
                 } receiveValue: { [weak self] barcodeString in
-                    self?.bacodeStringSubject.send(barcodeString)
-                    self?.dismiss(animated: true)
+                    self?.queryForProduct(with: barcodeString)
                 }
                 .store(in: &self.cancellables)
         }
@@ -141,6 +134,45 @@ final class UploadBarcodeViewController: UIViewController {
         hostingController.modalPresentationStyle = .custom
         hostingController.transitioningDelegate = transitionManager
         self.present(hostingController, animated: true)
+    }
+    
+    private func queryForProduct(with barcodeString: String) {
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        productManager.retrieveProduct(upc: barcodeString) { [weak self] result in
+            guard let self = self else {
+                return
+            }
+            switch result {
+                case let .failure(error):
+                    switch error {
+                        case .productNotFound:
+                            let alertController = UIAlertController(title: "Product not found", message: "The product was not found would you like to add it?", preferredStyle: .alert)
+                            let addAction = UIAlertAction(title: "Add Product", style: .default) { [weak self] _ in
+                                self?.addNewProduct(barcodeString: barcodeString, currentUserId: currentUser.uid)
+                            }
+                            
+                            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+                            alertController.addAction(addAction)
+                            alertController.addAction(cancelAction)
+                            self.present(alertController, animated: true)
+                        default:
+                            self.dismiss(animated: true)
+                            self.showAlert(title: "Error!", message: error.localizedDescription)
+                    }
+                    
+                case let .success(product):
+                    let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
+                    
+                    let productController =
+                        UIStoryboard(name: ProductDetailViewController.nibName, bundle: .main).instantiateViewController(identifier: ProductDetailViewController.nibName) { coder in
+                            return ProductDetailViewController(coder: coder, productType: .general, productModel: newProduct)
+                        }
+                    self.show(productController, sender: self)
+                    return
+            }
+        }
     }
 }
 

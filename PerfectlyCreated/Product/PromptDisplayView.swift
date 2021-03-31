@@ -17,13 +17,14 @@ struct PromptDisplayView: View {
     var body: some View {
         VStack(spacing: 12) {
             Text(displayText)
+                .foregroundColor(.black)
             Button(action: {
-              addButtonTapped?()
+                addButtonTapped?()
             }, label: {
                 Text("Select another image")
             })
             .frame(width: 200, height: 48, alignment: .center)
-            .foregroundColor(.black)
+            .foregroundColor(.white)
             .background(Color(.appPurple))
             .clipShape(Capsule())
         }

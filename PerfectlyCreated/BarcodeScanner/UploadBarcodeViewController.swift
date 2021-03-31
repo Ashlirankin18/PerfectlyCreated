@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import SwiftUI
 import FirebaseAuth
+import PhotosUI
 
 /// `UIViewController` subclass which allows the user to upload a bar code.
 final class UploadBarcodeViewController: UIViewController {
@@ -23,7 +24,9 @@ final class UploadBarcodeViewController: UIViewController {
     
     private lazy var barcodeController = BarCodeScannerController()
     
-    private let promptController = UIHostingController(rootView: PromptDisplayView(displayText: "Focus the barcode inside the box to upload."))
+    private lazy var promptController = UIHostingController(rootView: PromptDisplayView(displayText: "Focus the barcode inside the box to upload.", addButtonTapped: {
+        self.present(self.photoController, animated: true)
+    }))
     
     @ObservedObject var viewModel: ViewModel = ViewModel()
     
@@ -31,9 +34,17 @@ final class UploadBarcodeViewController: UIViewController {
     
     private lazy var transitionManager: CardPresentationManager = CardPresentationManager()
     
-    private let chosenImage: UIImage
+    private var chosenImage: UIImage
     
     private var cancellables = Set<AnyCancellable>()
+    
+    private var photoController: PHPickerViewController  = {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
+        let controller = PHPickerViewController(configuration: configuration)
+        return controller
+    }()
     
     /// Creates a new instance of `UploadBarcodeViewController`.
     /// - Parameters:
@@ -52,6 +63,9 @@ final class UploadBarcodeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        photoController.modalPresentationStyle = .fullScreen
+        photoController.delegate = self
+        promptController.view.backgroundColor = .clear
         displayChildViewController(promptController, in: promptView)
         configureBarButtonItems()
         chosenImageImageView.image = chosenImage
@@ -152,9 +166,9 @@ final class UploadBarcodeViewController: UIViewController {
                 return
             }
             switch result {
-                case let .failure(error):
+            case let .failure(error):
                     switch error {
-                        case .productNotFound:
+                    case .productNotFound:
                             let alertController = UIAlertController(title: "Product not found", message: "The product was not found would you like to add it?", preferredStyle: .alert)
                             let addAction = UIAlertAction(title: "Add Product", style: .default) { [weak self] _ in
                                 self?.addNewProduct(barcodeString: barcodeString, currentUserId: currentUser.uid)
@@ -164,12 +178,12 @@ final class UploadBarcodeViewController: UIViewController {
                             alertController.addAction(addAction)
                             alertController.addAction(cancelAction)
                             self.present(alertController, animated: true)
-                        default:
+                    default:
                             self.dismiss(animated: true)
                             self.showAlert(title: "Error!", message: error.localizedDescription)
                     }
                     
-                case let .success(product):
+            case let .success(product):
                     let newProduct = ProductModel(productName: product.itemAttributes.title, documentId: self.productManager.documentId, productDescription: product.itemAttributes.itemAttributesDescription, userId: currentUser.uid, productImageURL: product.itemAttributes.image, category: product.itemAttributes.category, isCompleted: false, notes: nil, upc: product.upc, stores: product.stores)
                     
                     let productController =
@@ -191,3 +205,28 @@ extension UploadBarcodeViewController: UIScrollViewDelegate {
         return chosenImageImageView
     }
 }
+
+extension UploadBarcodeViewController: PHPickerViewControllerDelegate {
+    
+    // MARK: - PHPickerViewControllerDelegate
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self) {
+            itemProvider.loadObject(ofClass: UIImage.self) { [weak self]  image, _ in
+                DispatchQueue.main.async {
+                    guard let self = self else {
+                        return
+                    }
+                    if let image = image as? UIImage {
+                        self.chosenImageImageView.image = image
+                        self.chosenImage = image
+                    } else {
+                        self.showAlert(title: "Error", message: "Image could not be processed.")
+                    }
+                }
+            }
+        }
+    }
+}
+

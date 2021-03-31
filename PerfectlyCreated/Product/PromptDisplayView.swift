@@ -12,8 +12,21 @@ struct PromptDisplayView: View {
     
     var displayText: String
     
+    var addButtonTapped: (() -> Void)?
+    
     var body: some View {
-        Text(displayText)
+        VStack(spacing: 12) {
+            Text(displayText)
+            Button(action: {
+              addButtonTapped?()
+            }, label: {
+                Text("Select another image")
+            })
+            .frame(width: 200, height: 48, alignment: .center)
+            .foregroundColor(.black)
+            .background(Color(.appPurple))
+            .clipShape(Capsule())
+        }
     }
 }
 

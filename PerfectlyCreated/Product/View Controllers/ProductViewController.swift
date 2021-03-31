@@ -249,13 +249,14 @@ final class ProductViewController: UICollectionViewController {
                 return
             }
             
-            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.saveImage()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
+            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.snapshotURL()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
             
             self.productManager.addProduct(product: newProduct) { [weak self] result in
                 switch result {
                 case let .failure(error):
                     self?.showAlert(title: "Error!", message: error.localizedDescription)
                 case .success:
+                    self?.viewModel.saveImage()
                     self?.dismiss(animated: true)
                 }
             }

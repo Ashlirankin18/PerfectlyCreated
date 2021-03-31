@@ -53,12 +53,11 @@ final class ViewModel: ObservableObject {
         }
     }
     
-    func saveImage() -> URL? {
+    func saveImage() {
         guard let data = retrieveImage().pngData() else {
-            return nil
+            return
         }
         storageManager.postImage(withData: data)
-        return snapshotURL()
     }
     
     func getPhoto() {

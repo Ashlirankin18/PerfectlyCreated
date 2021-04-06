@@ -40,7 +40,7 @@ final class AboutProductCollectionViewCell: UICollectionViewCell {
             aboutLabel.isHidden = false
             productNameLabel.text = viewModel?.productName
             categoryLabel.text = viewModel?.category
-            productImageImageView.kf.setImage(with: viewModel?.imageURL)
+            productImageImageView.kf.setImage(with: viewModel?.imageURL, placeholder: UIImage(systemName: "photo.on.rectangle"))
             if viewModel?.productDescription.isEmpty ?? true {
                 productDescriptionTextView.isHidden = true
                 aboutLabel.isHidden = true

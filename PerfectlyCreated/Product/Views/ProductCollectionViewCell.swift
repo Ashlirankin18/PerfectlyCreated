@@ -23,7 +23,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
  
     var viewModel: ViewModel? {
         didSet {
-            productImageView.kf.setImage(with: viewModel?.imageURL)
+            productImageView.kf.setImage(with: viewModel?.imageURL, placeholder: UIImage(systemName: "photo.on.rectangle"))
             productNameLabel.text = viewModel?.productName
         }
     }

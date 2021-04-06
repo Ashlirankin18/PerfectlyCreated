@@ -38,7 +38,9 @@ struct AddProductView: View {
                         
                         TextField("Enter Product Name", text: $viewModel.productName)
                     }
-                    Section(header: Text("Add an image to the product."), footer:
+                    Section(header:
+                                Text("Add an image to the product."),
+                            footer:
                                 Text("Adding this product helps our community greatly")
                                 .font(.headline)
                                 .multilineTextAlignment(.leading)

@@ -131,21 +131,20 @@ final class BarcodeScannerViewController: UIViewController {
         let productView = AddProductView(viewModel: self.viewModel, backButtonTapped: { [weak self] in
             self?.dismiss(animated: true)
             self?.videoSession.startRunningSession()
-        }, saveButtonTapped: { [weak self] in
+        }, saveButtonTapped: {  [weak self] in
             guard let self = self else {
                 return
             }
-            
-            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.snapshotURL()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
-            
-            self.productManager.addProduct(product: newProduct) { [weak self] result in
-                switch result {
-                case let .failure(error):
-                    self?.showAlert(title: "Error!", message: error.localizedDescription)
-                case .success:
-                    self?.dismiss(animated: true)
+                let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.snapshotURL()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
+                
+                self.productManager.addProduct(product: newProduct) { [weak self] result in
+                    switch result {
+                    case let .failure(error):
+                        self?.showAlert(title: "Error!", message: error.localizedDescription)
+                    case .success:
+                        self?.dismiss(animated: true)
+                    }
                 }
-            }
         })
         let hostingController = UIHostingController(rootView: productView)
         transitionManager.presentationDirection = .bottom

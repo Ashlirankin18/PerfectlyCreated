@@ -16,6 +16,8 @@ struct AddProductView: View {
     
     @State private var isPresented: Bool = false
     
+    @State private var alertIsPresented: Bool = false
+    
     @ObservedObject var viewModel: ViewModel
     
     var backButtonTapped: (() -> Void)?
@@ -65,7 +67,8 @@ struct AddProductView: View {
                             Image(uiImage: (viewModel.retrieveImage()))
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
-                                .frame(width: 300, height: 300, alignment: .center)
+                                .frame(width: 250, height: 250, alignment: .center)
+                                .foregroundColor(Color(.appPurple))
                             Spacer()
                         }
                     }
@@ -79,12 +82,18 @@ struct AddProductView: View {
                                     })
                                     .foregroundColor(Color(UIColor.appPurple)), trailing:
                                         Button(action: {
-                                            saveButtonTapped?()
+                                            if viewModel.productName.isEmpty || viewModel.productName.count == 1 {
+                                                alertIsPresented.toggle()
+                                            } else {
+                                                saveButtonTapped?()
+                                            }
                                         }, label: {
                                             Text("Save")
                                         })
+                                        .alert(isPresented: $alertIsPresented, content: {
+                                            Alert(title: Text("Add product name to save it."))
+                                        })
                                         .foregroundColor(Color(UIColor.appPurple)))
-            
             .navigationTitle(Text("Add Product"))
         }
     }

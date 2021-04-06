@@ -14,7 +14,7 @@ final class ViewModel: ObservableObject {
     
     @Published var image: UIImage?
     
-    var productName: String = ""
+    @Published var productName: String = ""
     
     var productDescription: String = ""
     
@@ -31,7 +31,7 @@ final class ViewModel: ObservableObject {
     }
     
     func retrieveImage() -> UIImage {
-        return image ?? UIImage()
+        return image ?? UIImage(systemName: "photo.on.rectangle") ?? UIImage()
     }
     
     func getDocumentsDirectory() -> URL {

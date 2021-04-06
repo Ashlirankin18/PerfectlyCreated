@@ -24,7 +24,7 @@ final class UploadBarcodeViewController: UIViewController {
     
     private lazy var barcodeController = BarCodeScannerController()
     
-    private lazy var promptController = UIHostingController(rootView: PromptDisplayView(displayText: "Focus the barcode inside the box to upload.", addButtonTapped: {
+    private lazy var promptController = UIHostingController(rootView: PromptDisplayView(displayVersion: .upload, displayText: "Focus the barcode inside the box to upload.", addButtonTapped: {
         self.present(self.photoController, animated: true)
     }))
     

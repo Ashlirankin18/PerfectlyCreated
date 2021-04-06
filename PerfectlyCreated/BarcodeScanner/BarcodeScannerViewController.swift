@@ -27,7 +27,7 @@ final class BarcodeScannerViewController: UIViewController {
     
     private lazy var transitionManager: CardPresentationManager = CardPresentationManager()
 
-    private let promptController = UIHostingController(rootView: PromptDisplayView(displayText: "Focus the barcode inside the box to scan."))
+    private let promptController = UIHostingController(rootView: PromptDisplayView(displayVersion: .scan, displayText: "Focus the barcode inside the box to scan."))
     
     @ObservedObject var viewModel: ViewModel = ViewModel()
     

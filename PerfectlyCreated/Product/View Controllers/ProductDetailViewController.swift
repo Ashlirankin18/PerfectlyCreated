@@ -26,6 +26,7 @@ final class ProductDetailViewController: UICollectionViewController {
         static let estimatedHeightItem: CGFloat = 500.0
         static let estimatedHeightGroup: CGFloat = 300.0
     }
+    
     private enum SegueIdentifier {
         static let editProduct = "editProduct"
     }

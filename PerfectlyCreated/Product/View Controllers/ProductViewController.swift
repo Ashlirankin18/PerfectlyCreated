@@ -168,10 +168,12 @@ final class ProductViewController: UICollectionViewController {
             self.present(controller, animated: true)
         }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
         alertController.addAction(uploadProductAction)
         alertController.addAction(scanBarCodeAction)
         alertController.addAction(searchProduct)
-        
+        alertController.addAction(cancelAction)
         present(alertController, animated: true)
     }
     

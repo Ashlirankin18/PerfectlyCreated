@@ -141,7 +141,7 @@ final class ProductViewController: UICollectionViewController {
     
     private func showAlertController() {
         let alertController = UIAlertController(title: "Add Product", message: nil, preferredStyle: .actionSheet)
-        
+        alertController.view.tintColor = .appPurple
         let uploadProductAction = UIAlertAction(title: "Upload barcode", style: .default) { [weak self] _ in
             guard let self = self else {
                 return

@@ -80,6 +80,27 @@ final class ProductViewController: UICollectionViewController {
         return section
     }()
     
+    
+    private let emptyStateCollectionLayoutSection: NSCollectionLayoutSection = {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
+        
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: CategorySectionHeaderCollectionReusableView.nibName, alignment: .top)
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1))
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        group.interItemSpacing = .flexible(0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        
+        section.boundarySupplementaryItems = [sectionHeader]
+        return section
+    }()
+    
     // MARK: - UICollectionViewController
     
     override func viewDidLoad() {
@@ -104,6 +125,9 @@ final class ProductViewController: UICollectionViewController {
     private func configureCollectionView() {
         collectionView.register(UINib(nibName: ProductCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: ProductCollectionViewCell.nibName)
         collectionView.register(UINib(nibName: CategorySectionHeaderCollectionReusableView.nibName, bundle: .main), forSupplementaryViewOfKind: "view", withReuseIdentifier: CategorySectionHeaderCollectionReusableView.nibName)
+        collectionView.register(UINib(nibName: EmptyStateCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: EmptyStateCollectionViewCell.nibName)
+        
+        
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: productCellCollectionLayoutSection)
         collectionView.dataSource = dataSource
     }

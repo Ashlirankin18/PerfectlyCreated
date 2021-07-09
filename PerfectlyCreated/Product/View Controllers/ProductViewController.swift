@@ -46,7 +46,7 @@ final class ProductViewController: UICollectionViewController {
         return controller
     }()
     
-    private lazy var barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.nibName, bundle: .main)
+    private let barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.nibName, bundle: .main)
     
     private lazy var productManager = ProductManager()
     
@@ -79,8 +79,7 @@ final class ProductViewController: UICollectionViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 10)
         return section
     }()
-    
-    
+
     private let emptyStateCollectionLayoutSection: NSCollectionLayoutSection = {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
@@ -126,7 +125,6 @@ final class ProductViewController: UICollectionViewController {
         collectionView.register(UINib(nibName: ProductCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: ProductCollectionViewCell.nibName)
         collectionView.register(UINib(nibName: CategorySectionHeaderCollectionReusableView.nibName, bundle: .main), forSupplementaryViewOfKind: "view", withReuseIdentifier: CategorySectionHeaderCollectionReusableView.nibName)
         collectionView.register(UINib(nibName: EmptyStateCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: EmptyStateCollectionViewCell.nibName)
-        
         
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: productCellCollectionLayoutSection)
         collectionView.dataSource = dataSource

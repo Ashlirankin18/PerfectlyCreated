@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "abseil",
+        "repositoryURL": "https://github.com/firebase/abseil-cpp-SwiftPM.git",
+        "state": {
+          "branch": null,
+          "revision": "fffc3c2729be5747390ad02d5100291a0d9ad26a",
+          "version": "0.20200225.4"
+        }
+      },
+      {
+        "package": "BoringSSL-GRPC",
+        "repositoryURL": "https://github.com/firebase/boringssl-SwiftPM.git",
+        "state": {
+          "branch": null,
+          "revision": "734a8247442fde37df4364c21f6a0085b6a36728",
+          "version": "0.7.2"
+        }
+      },
+      {
         "package": "Camera-SwiftUI",
         "repositoryURL": "https://github.com/rorodriguez116/Camera-SwiftUI.git",
         "state": {
@@ -11,12 +29,201 @@
         }
       },
       {
+        "package": "combine-schedulers",
+        "repositoryURL": "https://github.com/pointfreeco/combine-schedulers",
+        "state": {
+          "branch": null,
+          "revision": "c37e5ae8012fb654af776cc556ff8ae64398c841",
+          "version": "0.5.0"
+        }
+      },
+      {
+        "package": "CombineCocoa",
+        "repositoryURL": "https://github.com/CombineCommunity/CombineCocoa.git",
+        "state": {
+          "branch": null,
+          "revision": "57ee891f1c662cad97fdfe48cb06faffad93a1ea",
+          "version": "0.3.0"
+        }
+      },
+      {
+        "package": "CombineExt",
+        "repositoryURL": "https://github.com/CombineCommunity/CombineExt.git",
+        "state": {
+          "branch": null,
+          "revision": "5b8a0c0f178527f9204200505c5fefa6847e528f",
+          "version": "1.3.0"
+        }
+      },
+      {
         "package": "ConfettiView",
         "repositoryURL": "https://github.com/ziligy/ConfettiView",
         "state": {
           "branch": null,
           "revision": "296020d5553799f0cdf77470138a8822d8e1e133",
           "version": "1.1.0"
+        }
+      },
+      {
+        "package": "Firebase",
+        "repositoryURL": "https://github.com/firebase/firebase-ios-sdk.git",
+        "state": {
+          "branch": null,
+          "revision": "7f61fe1e2e88736a4fb21a1fb9f28472f8112448",
+          "version": "8.3.0"
+        }
+      },
+      {
+        "package": "GoogleAppMeasurement",
+        "repositoryURL": "https://github.com/google/GoogleAppMeasurement.git",
+        "state": {
+          "branch": null,
+          "revision": "06e74ef7ee7326e1af724d462091eed1e5c6fb4a",
+          "version": "8.3.0"
+        }
+      },
+      {
+        "package": "GoogleDataTransport",
+        "repositoryURL": "https://github.com/google/GoogleDataTransport.git",
+        "state": {
+          "branch": null,
+          "revision": "cad598c0338e8b203b94378dff0d4d819fa141cf",
+          "version": "9.0.1"
+        }
+      },
+      {
+        "package": "GoogleUtilities",
+        "repositoryURL": "https://github.com/google/GoogleUtilities.git",
+        "state": {
+          "branch": null,
+          "revision": "94f9ab80d39da19dd3a2492d5451e909333f0269",
+          "version": "7.4.3"
+        }
+      },
+      {
+        "package": "gRPC",
+        "repositoryURL": "https://github.com/firebase/grpc-SwiftPM.git",
+        "state": {
+          "branch": null,
+          "revision": "fb405dd2c7901485f7e158b24e3a0a47e4efd8b5",
+          "version": "1.28.4"
+        }
+      },
+      {
+        "package": "GTMSessionFetcher",
+        "repositoryURL": "https://github.com/google/gtm-session-fetcher.git",
+        "state": {
+          "branch": null,
+          "revision": "424886f9336a71891aa81852d0c2c08d807d21aa",
+          "version": "1.6.1"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "44450a8f564d7c0165f736ba2250649ff8d3e556",
+          "version": "6.3.0"
+        }
+      },
+      {
+        "package": "leveldb",
+        "repositoryURL": "https://github.com/firebase/leveldb.git",
+        "state": {
+          "branch": null,
+          "revision": "0706abcc6b0bd9cedfbb015ba840e4a780b5159b",
+          "version": "1.22.2"
+        }
+      },
+      {
+        "package": "nanopb",
+        "repositoryURL": "https://github.com/firebase/nanopb.git",
+        "state": {
+          "branch": null,
+          "revision": "7ee9ef9f627d85cbe1b8c4f49a3ed26eed216c77",
+          "version": "2.30908.0"
+        }
+      },
+      {
+        "package": "Promises",
+        "repositoryURL": "https://github.com/google/promises.git",
+        "state": {
+          "branch": null,
+          "revision": "afa9a1ace74e116848d4f743599ab83e584ff8cb",
+          "version": "1.2.12"
+        }
+      },
+      {
+        "package": "SourceKitten",
+        "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
+        "state": {
+          "branch": null,
+          "revision": "7f4be006fe73211b0fd9666c73dc2f2303ffa756",
+          "version": "0.31.0"
+        }
+      },
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
+        "state": {
+          "branch": null,
+          "revision": "9564d61b08a5335ae0a36f789a7d71493eacadfc",
+          "version": "0.3.2"
+        }
+      },
+      {
+        "package": "SwiftProtobuf",
+        "repositoryURL": "https://github.com/apple/swift-protobuf.git",
+        "state": {
+          "branch": null,
+          "revision": "1f62db409f2c9b0223a3f68567b4a01333aae778",
+          "version": "1.17.0"
+        }
+      },
+      {
+        "package": "SwiftLint",
+        "repositoryURL": "https://github.com/realm/SwiftLint.git",
+        "state": {
+          "branch": null,
+          "revision": "180d94132758dd183124ab1e63d6aa8e10023ec2",
+          "version": "0.43.1"
+        }
+      },
+      {
+        "package": "SwiftyTextTable",
+        "repositoryURL": "https://github.com/scottrhoyt/SwiftyTextTable.git",
+        "state": {
+          "branch": null,
+          "revision": "c6df6cf533d120716bff38f8ff9885e1ce2a4ac3",
+          "version": "0.9.0"
+        }
+      },
+      {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
+        "state": {
+          "branch": null,
+          "revision": "9183170d20857753d4f331b0ca63f73c60764bf3",
+          "version": "5.0.2"
+        }
+      },
+      {
+        "package": "xctest-dynamic-overlay",
+        "repositoryURL": "https://github.com/pointfreeco/xctest-dynamic-overlay",
+        "state": {
+          "branch": null,
+          "revision": "603974e3909ad4b48ba04aad7e0ceee4f077a518",
+          "version": "0.1.0"
+        }
+      },
+      {
+        "package": "Yams",
+        "repositoryURL": "https://github.com/jpsim/Yams.git",
+        "state": {
+          "branch": null,
+          "revision": "9ff1cc9327586db4e0c8f46f064b6a82ec1566fa",
+          "version": "4.0.6"
         }
       }
     ]

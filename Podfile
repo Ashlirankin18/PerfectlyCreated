@@ -14,15 +14,5 @@ target 'PerfectlyCreated' do
 
   # Pods for PerfectlyCreated
 
-pod 'Firebase/Auth'
 pod 'GoogleMLKit/BarcodeScanning'
-pod 'Firebase/Firestore'
-pod 'FirebaseFirestoreSwift'
-pod 'Kingfisher'
-pod 'CombineExt'
-pod 'CombineCocoa'
-pod 'Firebase/Crashlytics'
-pod 'Firebase/Analytics'
-pod 'Firebase/Storage'
-pod 'SwiftLint'
 end

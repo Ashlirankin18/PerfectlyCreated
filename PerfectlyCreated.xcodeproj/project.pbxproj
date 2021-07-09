@@ -67,17 +67,17 @@
 		2EAF205925EC962B00E8049F /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF205825EC962B00E8049F /* PhotoPicker.swift */; };
 		2EAF931125854B4300D28BAC /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF931025854B4300D28BAC /* UIView+IBInspectable.swift */; };
 		2EAF931C2585556900D28BAC /* UINavigationBar+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EAF931B2585556900D28BAC /* UINavigationBar+Appearance.swift */; };
-		2EB292D426987CF300279852 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292D326987CF300279852 /* Kingfisher */; };
-		2EB292D726987D6F00279852 /* SwiftLintFramework in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292D626987D6F00279852 /* SwiftLintFramework */; };
-		2EB292DA26987E0400279852 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292D926987E0400279852 /* FirebaseFirestore */; };
-		2EB292DC26987E0400279852 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292DB26987E0400279852 /* FirebaseFirestoreSwift-Beta */; };
-		2EB292DE26987E0400279852 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292DD26987E0400279852 /* FirebaseAnalytics */; };
-		2EB292E026987E0400279852 /* FirebaseStorageSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292DF26987E0400279852 /* FirebaseStorageSwift-Beta */; };
-		2EB292E226987E0400279852 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292E126987E0400279852 /* FirebaseStorage */; };
-		2EB292E426987E0400279852 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292E326987E0400279852 /* FirebaseCrashlytics */; };
-		2EB292E626987E0400279852 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292E526987E0400279852 /* FirebaseAuth */; };
-		2EB292E926987E4500279852 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292E826987E4500279852 /* CombineExt */; };
-		2EB292EC26987E8900279852 /* CombineCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292EB26987E8900279852 /* CombineCocoa */; };
+		2EB292D426987CF300279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292D326987CF300279852 /* SwiftPackageProductDependency */; };
+		2EB292D726987D6F00279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292D626987D6F00279852 /* SwiftPackageProductDependency */; };
+		2EB292DA26987E0400279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292D926987E0400279852 /* SwiftPackageProductDependency */; };
+		2EB292DC26987E0400279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292DB26987E0400279852 /* SwiftPackageProductDependency */; };
+		2EB292DE26987E0400279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292DD26987E0400279852 /* SwiftPackageProductDependency */; };
+		2EB292E026987E0400279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292DF26987E0400279852 /* SwiftPackageProductDependency */; };
+		2EB292E226987E0400279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292E126987E0400279852 /* SwiftPackageProductDependency */; };
+		2EB292E426987E0400279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292E326987E0400279852 /* SwiftPackageProductDependency */; };
+		2EB292E626987E0400279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292E526987E0400279852 /* SwiftPackageProductDependency */; };
+		2EB292E926987E4500279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292E826987E4500279852 /* SwiftPackageProductDependency */; };
+		2EB292EC26987E8900279852 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB292EB26987E8900279852 /* SwiftPackageProductDependency */; };
 		2EB2A1A52227077800525BD4 /* FirebaseCollectionKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB2A1A42227077800525BD4 /* FirebaseCollectionKeys.swift */; };
 		2EBE54E52640A98D005CDF45 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE54E42640A98D005CDF45 /* UserModel.swift */; };
 		2EBE552D2640B0AC005CDF45 /* EmptyStateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBE552B2640B0AC005CDF45 /* EmptyStateCollectionViewCell.swift */; };
@@ -88,19 +88,21 @@
 		2EC0D7DB2612538100D4E01C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D7DA2612538100D4E01C /* StorageManager.swift */; };
 		2EC0D82326126CB800D4E01C /* PromptDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D82226126CB800D4E01C /* PromptDisplayView.swift */; };
 		2EC0D8272612700900D4E01C /* ChildViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D8262612700900D4E01C /* ChildViewControllers.swift */; };
-		2EC0D82B2612877900D4E01C /* Camera-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D82A2612877900D4E01C /* Camera-SwiftUI */; };
+		2EC0D82B2612877900D4E01C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D82A2612877900D4E01C /* SwiftPackageProductDependency */; };
 		2EC0D8312612F74A00D4E01C /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D8302612F74A00D4E01C /* CameraView.swift */; };
 		2EC0D8342612F7A100D4E01C /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D8332612F7A100D4E01C /* CameraModel.swift */; };
-		2EC0D8382612FAAC00D4E01C /* ConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D8372612FAAC00D4E01C /* ConfettiView */; };
+		2EC0D8382612FAAC00D4E01C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D8372612FAAC00D4E01C /* SwiftPackageProductDependency */; };
 		2EC0D83B2612FB1600D4E01C /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D83A2612FB1600D4E01C /* CelebrationView.swift */; };
 		2EED896D2229993700ADDEBD /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED896C2229993700ADDEBD /* ProductModel.swift */; };
 		2EF31070256F1BF90021EB58 /* AccountCreationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF3106F256F1BF90021EB58 /* AccountCreationValidator.swift */; };
 		2EFE45EF25B22E9E006CD38E /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFE45EE25B22E9E006CD38E /* UIColor+AppColors.swift */; };
-		3B22E0D278FDF46BBCBA5B2E /* Pods_PerfectlyCreated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64821ADDE9BA5272B57B9802 /* Pods_PerfectlyCreated.framework */; };
 		5B5ED21B23538100000227D1 /* Feeds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B5ED21A23538100000227D1 /* Feeds.storyboard */; };
+		8FCE4C3C924FC5F2ECFEE872 /* Pods_PerfectlyCreated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDD6404F4D08593DEB8D9DD /* Pods_PerfectlyCreated.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E687F6B139606E756916BFE /* Pods-PerfectlyCreated.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectlyCreated.debug.xcconfig"; path = "Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated.debug.xcconfig"; sourceTree = "<group>"; };
+		1EDD6404F4D08593DEB8D9DD /* Pods_PerfectlyCreated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerfectlyCreated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E07D20A25588E700029FB36 /* NotesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E07D20B25588E700029FB36 /* NotesCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotesCollectionViewCell.xib; sourceTree = "<group>"; };
 		2E0FFB44254D13190020D9DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -179,10 +181,8 @@
 		2EED896C2229993700ADDEBD /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		2EF3106F256F1BF90021EB58 /* AccountCreationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationValidator.swift; sourceTree = "<group>"; };
 		2EFE45EE25B22E9E006CD38E /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
-		58668C8A5219B8004D4CB508 /* Pods-PerfectlyCreated.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectlyCreated.debug.xcconfig"; path = "Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated.debug.xcconfig"; sourceTree = "<group>"; };
+		362F2F1A118F61EC7AE64626 /* Pods-PerfectlyCreated.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectlyCreated.release.xcconfig"; path = "Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated.release.xcconfig"; sourceTree = "<group>"; };
 		5B5ED21A23538100000227D1 /* Feeds.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feeds.storyboard; sourceTree = "<group>"; };
-		64821ADDE9BA5272B57B9802 /* Pods_PerfectlyCreated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerfectlyCreated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF41B260E967E65C65AE2F04 /* Pods-PerfectlyCreated.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectlyCreated.release.xcconfig"; path = "Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,20 +190,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EB292D426987CF300279852 /* Kingfisher in Frameworks */,
-				2EC0D82B2612877900D4E01C /* Camera-SwiftUI in Frameworks */,
-				2EB292DE26987E0400279852 /* FirebaseAnalytics in Frameworks */,
-				2EB292E226987E0400279852 /* FirebaseStorage in Frameworks */,
-				2EB292DC26987E0400279852 /* FirebaseFirestoreSwift-Beta in Frameworks */,
-				2EB292E426987E0400279852 /* FirebaseCrashlytics in Frameworks */,
-				2EC0D8382612FAAC00D4E01C /* ConfettiView in Frameworks */,
-				2EB292E626987E0400279852 /* FirebaseAuth in Frameworks */,
-				2EB292E926987E4500279852 /* CombineExt in Frameworks */,
-				2EB292E026987E0400279852 /* FirebaseStorageSwift-Beta in Frameworks */,
-				3B22E0D278FDF46BBCBA5B2E /* Pods_PerfectlyCreated.framework in Frameworks */,
-				2EB292D726987D6F00279852 /* SwiftLintFramework in Frameworks */,
-				2EB292EC26987E8900279852 /* CombineCocoa in Frameworks */,
-				2EB292DA26987E0400279852 /* FirebaseFirestore in Frameworks */,
+				2EB292D426987CF300279852 /* BuildFile in Frameworks */,
+				2EC0D82B2612877900D4E01C /* BuildFile in Frameworks */,
+				2EB292DE26987E0400279852 /* BuildFile in Frameworks */,
+				2EB292E226987E0400279852 /* BuildFile in Frameworks */,
+				2EB292DC26987E0400279852 /* BuildFile in Frameworks */,
+				2EB292E426987E0400279852 /* BuildFile in Frameworks */,
+				2EC0D8382612FAAC00D4E01C /* BuildFile in Frameworks */,
+				2EB292E626987E0400279852 /* BuildFile in Frameworks */,
+				2EB292E926987E4500279852 /* BuildFile in Frameworks */,
+				2EB292E026987E0400279852 /* BuildFile in Frameworks */,
+				2EB292D726987D6F00279852 /* BuildFile in Frameworks */,
+				2EB292EC26987E8900279852 /* BuildFile in Frameworks */,
+				2EB292DA26987E0400279852 /* BuildFile in Frameworks */,
+				8FCE4C3C924FC5F2ECFEE872 /* Pods_PerfectlyCreated.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,7 +299,7 @@
 				2E4A3E912208D2C800988116 /* PerfectlyCreated */,
 				2E4A3E902208D2C800988116 /* Products */,
 				59E3D6A9E1C5CBD750C6D823 /* Pods */,
-				D0481E1FCAE0D2EF11F1C2E5 /* Frameworks */,
+				D06AC624036E35809D5ECC1B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -436,8 +436,8 @@
 		59E3D6A9E1C5CBD750C6D823 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				58668C8A5219B8004D4CB508 /* Pods-PerfectlyCreated.debug.xcconfig */,
-				EF41B260E967E65C65AE2F04 /* Pods-PerfectlyCreated.release.xcconfig */,
+				0E687F6B139606E756916BFE /* Pods-PerfectlyCreated.debug.xcconfig */,
+				362F2F1A118F61EC7AE64626 /* Pods-PerfectlyCreated.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -450,10 +450,10 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		D0481E1FCAE0D2EF11F1C2E5 /* Frameworks */ = {
+		D06AC624036E35809D5ECC1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				64821ADDE9BA5272B57B9802 /* Pods_PerfectlyCreated.framework */,
+				1EDD6404F4D08593DEB8D9DD /* Pods_PerfectlyCreated.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -465,12 +465,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E4A3EA12208D2CB00988116 /* Build configuration list for PBXNativeTarget "PerfectlyCreated" */;
 			buildPhases = (
-				6A3D2E7DE0EF0D66B5FF621C /* [CP] Check Pods Manifest.lock */,
+				FAB5B4AD7FD8386F02837529 /* [CP] Check Pods Manifest.lock */,
 				2E4A3E8B2208D2C800988116 /* Sources */,
 				2E4A3E8C2208D2C800988116 /* Frameworks */,
 				2E4A3E8D2208D2C800988116 /* Resources */,
 				2EFE464525B23548006CD38E /* SwiftLint */,
-				6C67F229B56C5361394DA191 /* [CP] Embed Pods Frameworks */,
+				DA202FE6F88BFE875B83F693 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -478,19 +478,19 @@
 			);
 			name = PerfectlyCreated;
 			packageProductDependencies = (
-				2EC0D82A2612877900D4E01C /* Camera-SwiftUI */,
-				2EC0D8372612FAAC00D4E01C /* ConfettiView */,
-				2EB292D326987CF300279852 /* Kingfisher */,
-				2EB292D626987D6F00279852 /* SwiftLintFramework */,
-				2EB292D926987E0400279852 /* FirebaseFirestore */,
-				2EB292DB26987E0400279852 /* FirebaseFirestoreSwift-Beta */,
-				2EB292DD26987E0400279852 /* FirebaseAnalytics */,
-				2EB292DF26987E0400279852 /* FirebaseStorageSwift-Beta */,
-				2EB292E126987E0400279852 /* FirebaseStorage */,
-				2EB292E326987E0400279852 /* FirebaseCrashlytics */,
-				2EB292E526987E0400279852 /* FirebaseAuth */,
-				2EB292E826987E4500279852 /* CombineExt */,
-				2EB292EB26987E8900279852 /* CombineCocoa */,
+				2EC0D82A2612877900D4E01C /* SwiftPackageProductDependency */,
+				2EC0D8372612FAAC00D4E01C /* SwiftPackageProductDependency */,
+				2EB292D326987CF300279852 /* SwiftPackageProductDependency */,
+				2EB292D626987D6F00279852 /* SwiftPackageProductDependency */,
+				2EB292D926987E0400279852 /* SwiftPackageProductDependency */,
+				2EB292DB26987E0400279852 /* SwiftPackageProductDependency */,
+				2EB292DD26987E0400279852 /* SwiftPackageProductDependency */,
+				2EB292DF26987E0400279852 /* SwiftPackageProductDependency */,
+				2EB292E126987E0400279852 /* SwiftPackageProductDependency */,
+				2EB292E326987E0400279852 /* SwiftPackageProductDependency */,
+				2EB292E526987E0400279852 /* SwiftPackageProductDependency */,
+				2EB292E826987E4500279852 /* SwiftPackageProductDependency */,
+				2EB292EB26987E8900279852 /* SwiftPackageProductDependency */,
 			);
 			productName = PerfectlyCrafted;
 			productReference = 2E4A3E8F2208D2C800988116 /* PerfectlyCreated.app */;
@@ -522,13 +522,13 @@
 			);
 			mainGroup = 2E4A3E862208D2C800988116;
 			packageReferences = (
-				2EC0D8292612877800D4E01C /* XCRemoteSwiftPackageReference "Camera-SwiftUI" */,
-				2EC0D8362612FAAC00D4E01C /* XCRemoteSwiftPackageReference "ConfettiView" */,
-				2EB292D226987CF300279852 /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				2EB292D526987D6F00279852 /* XCRemoteSwiftPackageReference "SwiftLint" */,
-				2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				2EB292E726987E4500279852 /* XCRemoteSwiftPackageReference "CombineExt" */,
-				2EB292EA26987E8800279852 /* XCRemoteSwiftPackageReference "CombineCocoa" */,
+				2EC0D8292612877800D4E01C /* RemoteSwiftPackageReference */,
+				2EC0D8362612FAAC00D4E01C /* RemoteSwiftPackageReference */,
+				2EB292D226987CF300279852 /* RemoteSwiftPackageReference */,
+				2EB292D526987D6F00279852 /* RemoteSwiftPackageReference */,
+				2EB292D826987E0400279852 /* RemoteSwiftPackageReference */,
+				2EB292E726987E4500279852 /* RemoteSwiftPackageReference */,
+				2EB292EA26987E8800279852 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 2E4A3E902208D2C800988116 /* Products */;
 			projectDirPath = "";
@@ -589,7 +589,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\n";
 		};
-		6A3D2E7DE0EF0D66B5FF621C /* [CP] Check Pods Manifest.lock */ = {
+		DA202FE6F88BFE875B83F693 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAB5B4AD7FD8386F02837529 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -609,23 +626,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6C67F229B56C5361394DA191 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -827,7 +827,7 @@
 		};
 		2E4A3EA22208D2CB00988116 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58668C8A5219B8004D4CB508 /* Pods-PerfectlyCreated.debug.xcconfig */;
+			baseConfigurationReference = 0E687F6B139606E756916BFE /* Pods-PerfectlyCreated.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -849,7 +849,7 @@
 		};
 		2E4A3EA32208D2CB00988116 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF41B260E967E65C65AE2F04 /* Pods-PerfectlyCreated.release.xcconfig */;
+			baseConfigurationReference = 362F2F1A118F61EC7AE64626 /* Pods-PerfectlyCreated.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -892,7 +892,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2EB292D226987CF300279852 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		2EB292D226987CF300279852 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -900,7 +900,7 @@
 				minimumVersion = 6.3.0;
 			};
 		};
-		2EB292D526987D6F00279852 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+		2EB292D526987D6F00279852 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/SwiftLint.git";
 			requirement = {
@@ -908,7 +908,7 @@
 				minimumVersion = 0.43.1;
 			};
 		};
-		2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		2EB292D826987E0400279852 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
@@ -916,7 +916,7 @@
 				minimumVersion = 8.3.0;
 			};
 		};
-		2EB292E726987E4500279852 /* XCRemoteSwiftPackageReference "CombineExt" */ = {
+		2EB292E726987E4500279852 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineExt.git";
 			requirement = {
@@ -924,7 +924,7 @@
 				minimumVersion = 1.3.0;
 			};
 		};
-		2EB292EA26987E8800279852 /* XCRemoteSwiftPackageReference "CombineCocoa" */ = {
+		2EB292EA26987E8800279852 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/CombineCommunity/CombineCocoa.git";
 			requirement = {
@@ -932,7 +932,7 @@
 				minimumVersion = 0.3.0;
 			};
 		};
-		2EC0D8292612877800D4E01C /* XCRemoteSwiftPackageReference "Camera-SwiftUI" */ = {
+		2EC0D8292612877800D4E01C /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rorodriguez116/Camera-SwiftUI.git";
 			requirement = {
@@ -940,7 +940,7 @@
 				minimumVersion = 0.0.5;
 			};
 		};
-		2EC0D8362612FAAC00D4E01C /* XCRemoteSwiftPackageReference "ConfettiView" */ = {
+		2EC0D8362612FAAC00D4E01C /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ziligy/ConfettiView";
 			requirement = {
@@ -951,69 +951,69 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2EB292D326987CF300279852 /* Kingfisher */ = {
+		2EB292D326987CF300279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D226987CF300279852 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = 2EB292D226987CF300279852 /* RemoteSwiftPackageReference */;
 			productName = Kingfisher;
 		};
-		2EB292D626987D6F00279852 /* SwiftLintFramework */ = {
+		2EB292D626987D6F00279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D526987D6F00279852 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			package = 2EB292D526987D6F00279852 /* RemoteSwiftPackageReference */;
 			productName = SwiftLintFramework;
 		};
-		2EB292D926987E0400279852 /* FirebaseFirestore */ = {
+		2EB292D926987E0400279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 2EB292D826987E0400279852 /* RemoteSwiftPackageReference */;
 			productName = FirebaseFirestore;
 		};
-		2EB292DB26987E0400279852 /* FirebaseFirestoreSwift-Beta */ = {
+		2EB292DB26987E0400279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 2EB292D826987E0400279852 /* RemoteSwiftPackageReference */;
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
-		2EB292DD26987E0400279852 /* FirebaseAnalytics */ = {
+		2EB292DD26987E0400279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 2EB292D826987E0400279852 /* RemoteSwiftPackageReference */;
 			productName = FirebaseAnalytics;
 		};
-		2EB292DF26987E0400279852 /* FirebaseStorageSwift-Beta */ = {
+		2EB292DF26987E0400279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 2EB292D826987E0400279852 /* RemoteSwiftPackageReference */;
 			productName = "FirebaseStorageSwift-Beta";
 		};
-		2EB292E126987E0400279852 /* FirebaseStorage */ = {
+		2EB292E126987E0400279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 2EB292D826987E0400279852 /* RemoteSwiftPackageReference */;
 			productName = FirebaseStorage;
 		};
-		2EB292E326987E0400279852 /* FirebaseCrashlytics */ = {
+		2EB292E326987E0400279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 2EB292D826987E0400279852 /* RemoteSwiftPackageReference */;
 			productName = FirebaseCrashlytics;
 		};
-		2EB292E526987E0400279852 /* FirebaseAuth */ = {
+		2EB292E526987E0400279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292D826987E0400279852 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 2EB292D826987E0400279852 /* RemoteSwiftPackageReference */;
 			productName = FirebaseAuth;
 		};
-		2EB292E826987E4500279852 /* CombineExt */ = {
+		2EB292E826987E4500279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292E726987E4500279852 /* XCRemoteSwiftPackageReference "CombineExt" */;
+			package = 2EB292E726987E4500279852 /* RemoteSwiftPackageReference */;
 			productName = CombineExt;
 		};
-		2EB292EB26987E8900279852 /* CombineCocoa */ = {
+		2EB292EB26987E8900279852 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EB292EA26987E8800279852 /* XCRemoteSwiftPackageReference "CombineCocoa" */;
+			package = 2EB292EA26987E8800279852 /* RemoteSwiftPackageReference */;
 			productName = CombineCocoa;
 		};
-		2EC0D82A2612877900D4E01C /* Camera-SwiftUI */ = {
+		2EC0D82A2612877900D4E01C /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EC0D8292612877800D4E01C /* XCRemoteSwiftPackageReference "Camera-SwiftUI" */;
+			package = 2EC0D8292612877800D4E01C /* RemoteSwiftPackageReference */;
 			productName = "Camera-SwiftUI";
 		};
-		2EC0D8372612FAAC00D4E01C /* ConfettiView */ = {
+		2EC0D8372612FAAC00D4E01C /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EC0D8362612FAAC00D4E01C /* XCRemoteSwiftPackageReference "ConfettiView" */;
+			package = 2EC0D8362612FAAC00D4E01C /* RemoteSwiftPackageReference */;
 			productName = ConfettiView;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -77,16 +77,16 @@
 		2EC0D7DB2612538100D4E01C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D7DA2612538100D4E01C /* StorageManager.swift */; };
 		2EC0D82326126CB800D4E01C /* PromptDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D82226126CB800D4E01C /* PromptDisplayView.swift */; };
 		2EC0D8272612700900D4E01C /* ChildViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D8262612700900D4E01C /* ChildViewControllers.swift */; };
-		2EC0D82B2612877900D4E01C /* Camera-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D82A2612877900D4E01C /* Camera-SwiftUI */; };
+		2EC0D82B2612877900D4E01C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D82A2612877900D4E01C /* SwiftPackageProductDependency */; };
 		2EC0D8312612F74A00D4E01C /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D8302612F74A00D4E01C /* CameraView.swift */; };
 		2EC0D8342612F7A100D4E01C /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D8332612F7A100D4E01C /* CameraModel.swift */; };
-		2EC0D8382612FAAC00D4E01C /* ConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D8372612FAAC00D4E01C /* ConfettiView */; };
+		2EC0D8382612FAAC00D4E01C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D8372612FAAC00D4E01C /* SwiftPackageProductDependency */; };
 		2EC0D83B2612FB1600D4E01C /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D83A2612FB1600D4E01C /* CelebrationView.swift */; };
 		2EED896D2229993700ADDEBD /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED896C2229993700ADDEBD /* ProductModel.swift */; };
 		2EF31070256F1BF90021EB58 /* AccountCreationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF3106F256F1BF90021EB58 /* AccountCreationValidator.swift */; };
 		2EFE45EF25B22E9E006CD38E /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFE45EE25B22E9E006CD38E /* UIColor+AppColors.swift */; };
-		3B22E0D278FDF46BBCBA5B2E /* Pods_PerfectlyCreated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64821ADDE9BA5272B57B9802 /* Pods_PerfectlyCreated.framework */; };
 		5B5ED21B23538100000227D1 /* Feeds.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B5ED21A23538100000227D1 /* Feeds.storyboard */; };
+		AF5A5319DA9D473FCBFDF313 /* Pods_PerfectlyCreated.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2595773E446E61FA3E0092 /* Pods_PerfectlyCreated.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,10 +168,10 @@
 		2EED896C2229993700ADDEBD /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		2EF3106F256F1BF90021EB58 /* AccountCreationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationValidator.swift; sourceTree = "<group>"; };
 		2EFE45EE25B22E9E006CD38E /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
-		58668C8A5219B8004D4CB508 /* Pods-PerfectlyCreated.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectlyCreated.debug.xcconfig"; path = "Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated.debug.xcconfig"; sourceTree = "<group>"; };
+		387C7F4CDFA6CF1E529F7F6C /* Pods-PerfectlyCreated.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectlyCreated.release.xcconfig"; path = "Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated.release.xcconfig"; sourceTree = "<group>"; };
 		5B5ED21A23538100000227D1 /* Feeds.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feeds.storyboard; sourceTree = "<group>"; };
-		64821ADDE9BA5272B57B9802 /* Pods_PerfectlyCreated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerfectlyCreated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF41B260E967E65C65AE2F04 /* Pods-PerfectlyCreated.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectlyCreated.release.xcconfig"; path = "Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated.release.xcconfig"; sourceTree = "<group>"; };
+		6C2595773E446E61FA3E0092 /* Pods_PerfectlyCreated.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PerfectlyCreated.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E7444EE77C62F772E34FFE3 /* Pods-PerfectlyCreated.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PerfectlyCreated.debug.xcconfig"; path = "Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,9 +179,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2EC0D82B2612877900D4E01C /* Camera-SwiftUI in Frameworks */,
-				2EC0D8382612FAAC00D4E01C /* ConfettiView in Frameworks */,
-				3B22E0D278FDF46BBCBA5B2E /* Pods_PerfectlyCreated.framework in Frameworks */,
+				2EC0D82B2612877900D4E01C /* BuildFile in Frameworks */,
+				2EC0D8382612FAAC00D4E01C /* BuildFile in Frameworks */,
+				AF5A5319DA9D473FCBFDF313 /* Pods_PerfectlyCreated.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,7 +277,7 @@
 				2E4A3E912208D2C800988116 /* PerfectlyCreated */,
 				2E4A3E902208D2C800988116 /* Products */,
 				59E3D6A9E1C5CBD750C6D823 /* Pods */,
-				D0481E1FCAE0D2EF11F1C2E5 /* Frameworks */,
+				90351D5F9F5E72BC016BE2C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -414,8 +414,8 @@
 		59E3D6A9E1C5CBD750C6D823 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				58668C8A5219B8004D4CB508 /* Pods-PerfectlyCreated.debug.xcconfig */,
-				EF41B260E967E65C65AE2F04 /* Pods-PerfectlyCreated.release.xcconfig */,
+				7E7444EE77C62F772E34FFE3 /* Pods-PerfectlyCreated.debug.xcconfig */,
+				387C7F4CDFA6CF1E529F7F6C /* Pods-PerfectlyCreated.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -428,10 +428,10 @@
 			path = Feed;
 			sourceTree = "<group>";
 		};
-		D0481E1FCAE0D2EF11F1C2E5 /* Frameworks */ = {
+		90351D5F9F5E72BC016BE2C3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				64821ADDE9BA5272B57B9802 /* Pods_PerfectlyCreated.framework */,
+				6C2595773E446E61FA3E0092 /* Pods_PerfectlyCreated.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -443,12 +443,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2E4A3EA12208D2CB00988116 /* Build configuration list for PBXNativeTarget "PerfectlyCreated" */;
 			buildPhases = (
-				6A3D2E7DE0EF0D66B5FF621C /* [CP] Check Pods Manifest.lock */,
+				80B6B5CD1BB7E757D97DBF8E /* [CP] Check Pods Manifest.lock */,
 				2E4A3E8B2208D2C800988116 /* Sources */,
 				2E4A3E8C2208D2C800988116 /* Frameworks */,
 				2E4A3E8D2208D2C800988116 /* Resources */,
 				2EFE464525B23548006CD38E /* SwiftLint */,
-				6C67F229B56C5361394DA191 /* [CP] Embed Pods Frameworks */,
+				2EFE464725B23701006CD38E /* Crashlytics */,
+				892460379CC0D060AFAC2DE8 /* [CP] Embed Pods Frameworks */,
+				9E7883E2F00DBC4E6C28FC8C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -456,8 +458,8 @@
 			);
 			name = PerfectlyCreated;
 			packageProductDependencies = (
-				2EC0D82A2612877900D4E01C /* Camera-SwiftUI */,
-				2EC0D8372612FAAC00D4E01C /* ConfettiView */,
+				2EC0D82A2612877900D4E01C /* SwiftPackageProductDependency */,
+				2EC0D8372612FAAC00D4E01C /* SwiftPackageProductDependency */,
 			);
 			productName = PerfectlyCrafted;
 			productReference = 2E4A3E8F2208D2C800988116 /* PerfectlyCreated.app */;
@@ -489,8 +491,8 @@
 			);
 			mainGroup = 2E4A3E862208D2C800988116;
 			packageReferences = (
-				2EC0D8292612877800D4E01C /* XCRemoteSwiftPackageReference "Camera-SwiftUI" */,
-				2EC0D8362612FAAC00D4E01C /* XCRemoteSwiftPackageReference "ConfettiView" */,
+				2EC0D8292612877800D4E01C /* RemoteSwiftPackageReference */,
+				2EC0D8362612FAAC00D4E01C /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 2E4A3E902208D2C800988116 /* Products */;
 			projectDirPath = "";
@@ -551,7 +553,27 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\n";
 		};
-		6A3D2E7DE0EF0D66B5FF621C /* [CP] Check Pods Manifest.lock */ = {
+		2EFE464725B23701006CD38E /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			name = Crashlytics;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\n";
+		};
+		80B6B5CD1BB7E757D97DBF8E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -573,7 +595,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6C67F229B56C5361394DA191 /* [CP] Embed Pods Frameworks */ = {
+		892460379CC0D060AFAC2DE8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -588,6 +610,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E7883E2F00DBC4E6C28FC8C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PerfectlyCreated/Pods-PerfectlyCreated-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -789,7 +828,7 @@
 		};
 		2E4A3EA22208D2CB00988116 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 58668C8A5219B8004D4CB508 /* Pods-PerfectlyCreated.debug.xcconfig */;
+			baseConfigurationReference = 7E7444EE77C62F772E34FFE3 /* Pods-PerfectlyCreated.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -811,7 +850,7 @@
 		};
 		2E4A3EA32208D2CB00988116 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF41B260E967E65C65AE2F04 /* Pods-PerfectlyCreated.release.xcconfig */;
+			baseConfigurationReference = 387C7F4CDFA6CF1E529F7F6C /* Pods-PerfectlyCreated.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -854,7 +893,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		2EC0D8292612877800D4E01C /* XCRemoteSwiftPackageReference "Camera-SwiftUI" */ = {
+		2EC0D8292612877800D4E01C /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/rorodriguez116/Camera-SwiftUI.git";
 			requirement = {
@@ -862,7 +901,7 @@
 				minimumVersion = 0.0.5;
 			};
 		};
-		2EC0D8362612FAAC00D4E01C /* XCRemoteSwiftPackageReference "ConfettiView" */ = {
+		2EC0D8362612FAAC00D4E01C /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ziligy/ConfettiView";
 			requirement = {
@@ -873,14 +912,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		2EC0D82A2612877900D4E01C /* Camera-SwiftUI */ = {
+		2EC0D82A2612877900D4E01C /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EC0D8292612877800D4E01C /* XCRemoteSwiftPackageReference "Camera-SwiftUI" */;
+			package = 2EC0D8292612877800D4E01C /* RemoteSwiftPackageReference */;
 			productName = "Camera-SwiftUI";
 		};
-		2EC0D8372612FAAC00D4E01C /* ConfettiView */ = {
+		2EC0D8372612FAAC00D4E01C /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 2EC0D8362612FAAC00D4E01C /* XCRemoteSwiftPackageReference "ConfettiView" */;
+			package = 2EC0D8362612FAAC00D4E01C /* RemoteSwiftPackageReference */;
 			productName = ConfettiView;
 		};
 /* End XCSwiftPackageProductDependency section */

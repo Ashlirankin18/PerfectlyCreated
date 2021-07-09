@@ -139,14 +139,18 @@ final class UploadBarcodeViewController: UIViewController {
                 case let .failure(error):
                     self?.showAlert(title: "Error!", message: error.localizedDescription)
                 case .success:
-                    self?.viewModel.saveImage()
-                    self?.dismiss(animated: true)
-                    self?.presentingViewController?.dismiss(animated: true)
-                    let hostingController = UIHostingController(rootView: CelebrationView(backButtonTapped: { [weak self] in
-                        self?.dismiss(animated: true)
-                    }))
+                    self?.viewModel.saveImage { url in
+                        self?.productManager.updateProduct(documentId: self?.productManager.documentId ?? "", productFields: ["imageProductURL": url.absoluteString], completion: { [weak self] _ in
+                            self?.dismiss(animated: true)
+                            self?.presentingViewController?.dismiss(animated: true)
+                            let hostingController = UIHostingController(rootView: CelebrationView(backButtonTapped: { [weak self] in
+                                self?.dismiss(animated: true)
+                            }))
+                            
+                            self?.present(hostingController, animated: true)
+                        })
+                    }
                     
-                    self?.present(hostingController, animated: true)
                 }
             }
         })

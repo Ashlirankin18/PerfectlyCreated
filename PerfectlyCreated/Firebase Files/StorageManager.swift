@@ -36,7 +36,7 @@ class StorageManager {
         }
     }
     
-    func postImage(withData data: Data) {
+    func postImage(withData data: Data, urlHandler: @escaping ((URL) -> Void)) {
         guard let user = Auth.auth().currentUser else {
             print("no logged user")
             return
@@ -54,8 +54,7 @@ class StorageManager {
                 if let error = error {
                     print("downloadURL error: \(error)")
                 } else if let url = url {
-                    // can be attached to a document in the a firestore collection as needed
-                    print("downloadURL: \(url)")
+                    urlHandler(url)
                 }
             })
         }

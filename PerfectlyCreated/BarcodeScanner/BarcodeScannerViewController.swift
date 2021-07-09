@@ -29,14 +29,14 @@ final class BarcodeScannerViewController: UIViewController {
 
     private let promptController = UIHostingController(rootView: PromptDisplayView(displayVersion: .scan, displayText: "Focus the barcode inside the box to scan."))
     
-    @StateObject var viewModel: ViewModel = ViewModel()
+    @ObservedObject var viewModel: ViewModel = ViewModel()
     
-    /// Subscriber to this publisher to recieve chages related to the barcode.
+    private var barcodeStringSubject = PassthroughSubject<String, Error>()
+    
+    /// Subscriber to this publisher to receive chages related to the barcode.
     var barcodeStringPublisher: AnyPublisher<String, Error> {
         return barcodeStringSubject.eraseToAnyPublisher()
     }
-    
-    private var barcodeStringSubject = PassthroughSubject<String, Error>()
     
     // MARK: - UIViewController
     

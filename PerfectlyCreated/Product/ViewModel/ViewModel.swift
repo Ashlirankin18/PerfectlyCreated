@@ -31,7 +31,7 @@ final class ViewModel: ObservableObject {
     }
     
     func retrieveImage() -> UIImage {
-        return image ?? UIImage(systemName: "photo.on.rectangle") ?? UIImage()
+        return image ?? UIImage(named: "placeHolderImage") ?? UIImage()
     }
     
     func getDocumentsDirectory() -> URL {
@@ -53,11 +53,13 @@ final class ViewModel: ObservableObject {
         }
     }
     
-    func saveImage() {
+    func saveImage(urlHandler: @escaping ((URL) -> Void)) {
         guard let data = retrieveImage().pngData() else {
             return
         }
-        storageManager.postImage(withData: data)
+        storageManager.postImage(withData: data) { url in
+            urlHandler(url)
+        }
     }
     
     func getPhoto() {

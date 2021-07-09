@@ -195,9 +195,14 @@ final class ProductManager {
     func updateProduct(documentId: String, productFields: [String: Any], completion: @escaping ((Result<Void, Error>) -> Void)) {
         firebaseDB.collection(FirebaseCollectionKeys.products).document(documentId).updateData(productFields) { error in
             if let error = error {
-                completion(.failure(error))
+                DispatchQueue.main.async {
+                    completion(.failure(error))
+                }
+               
             } else {
-                completion(.success(()))
+                DispatchQueue.main.async {
+                    completion(.success(()))
+                }
             }
         }
     }

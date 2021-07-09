@@ -46,7 +46,7 @@ final class ProductViewController: UICollectionViewController {
         return controller
     }()
     
-    private lazy var barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.nibName, bundle: .main)
+    private let barcodeScannerViewController = BarcodeScannerViewController(nibName: BarcodeScannerViewController.nibName, bundle: .main)
     
     private lazy var productManager = ProductManager()
     
@@ -79,8 +79,7 @@ final class ProductViewController: UICollectionViewController {
         section.contentInsets = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 10)
         return section
     }()
-    
-    
+
     private let emptyStateCollectionLayoutSection: NSCollectionLayoutSection = {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(44))
         
@@ -126,7 +125,6 @@ final class ProductViewController: UICollectionViewController {
         collectionView.register(UINib(nibName: ProductCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: ProductCollectionViewCell.nibName)
         collectionView.register(UINib(nibName: CategorySectionHeaderCollectionReusableView.nibName, bundle: .main), forSupplementaryViewOfKind: "view", withReuseIdentifier: CategorySectionHeaderCollectionReusableView.nibName)
         collectionView.register(UINib(nibName: EmptyStateCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: EmptyStateCollectionViewCell.nibName)
-        
         
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: productCellCollectionLayoutSection)
         collectionView.dataSource = dataSource
@@ -275,15 +273,18 @@ final class ProductViewController: UICollectionViewController {
                 return
             }
             
-            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: self.viewModel.snapshotURL()?.absoluteString ?? "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
+            let newProduct: ProductModel = ProductModel(productName: self.viewModel.productName, documentId: self.productManager.documentId, productDescription: "This product has no description", userId: currentUserId, productImageURL: "", category: "Uncategorized", isCompleted: false, notes: nil, upc: self.viewModel.barcodeString, stores: [])
             
             self.productManager.addProduct(product: newProduct) { [weak self] result in
                 switch result {
                 case let .failure(error):
                     self?.showAlert(title: "Error!", message: error.localizedDescription)
                 case .success:
-                    self?.viewModel.saveImage()
-                    self?.dismiss(animated: true)
+                    self?.viewModel.saveImage() { url in
+                        self?.productManager.updateProduct(documentId: self?.productManager.documentId ?? "", productFields: ["imageProductURL": url.absoluteString], completion: { [weak self] _ in
+                            self?.dismiss(animated: true)
+                        })
+                    }
                 }
             }
         })

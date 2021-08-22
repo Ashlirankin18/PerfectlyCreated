@@ -24,6 +24,7 @@
 		2E110A832550F203001ADACD /* CompletedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E110A812550F203001ADACD /* CompletedCollectionViewCell.swift */; };
 		2E110A842550F203001ADACD /* CompletedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E110A822550F203001ADACD /* CompletedCollectionViewCell.xib */; };
 		2E1352CE25FD35D300E18614 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1352CD25FD35D300E18614 /* ViewModel.swift */; };
+		2E1C37BD26D3098D00A67127 /* VisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1C37BC26D3098D00A67127 /* VisionController.swift */; };
 		2E3C8F6D25CA6CDD00474A30 /* Result+Combine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C8F6C25CA6CDD00474A30 /* Result+Combine.swift */; };
 		2E3C8F7125CA6E8A00474A30 /* HeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3C8F6F25CA6E8A00474A30 /* HeaderCollectionReusableView.swift */; };
 		2E3C8F7225CA6E8A00474A30 /* HeaderCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E3C8F7025CA6E8A00474A30 /* HeaderCollectionReusableView.xib */; };
@@ -115,6 +116,7 @@
 		2E110A812550F203001ADACD /* CompletedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedCollectionViewCell.swift; sourceTree = "<group>"; };
 		2E110A822550F203001ADACD /* CompletedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompletedCollectionViewCell.xib; sourceTree = "<group>"; };
 		2E1352CD25FD35D300E18614 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		2E1C37BC26D3098D00A67127 /* VisionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionController.swift; sourceTree = "<group>"; };
 		2E3C8F6C25CA6CDD00474A30 /* Result+Combine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Combine.swift"; sourceTree = "<group>"; };
 		2E3C8F6F25CA6E8A00474A30 /* HeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		2E3C8F7025CA6E8A00474A30 /* HeaderCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderCollectionReusableView.xib; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				2E0FFC5D254DBD860020D9DC /* VideoSessionController.swift */,
 				2EAD2CF925AFA81900C71DAB /* UploadBarcodeViewController.swift */,
 				2EAD2CFC25AFA83400C71DAB /* UploadBarcodeViewController.storyboard */,
+				2E1C37BC26D3098D00A67127 /* VisionController.swift */,
 			);
 			path = BarcodeScanner;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 				2E6E31B425B3A0FE00857E5C /* StoreCollectionViewCell.swift in Sources */,
 				2EAE6859254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift in Sources */,
 				2E3C8F6D25CA6CDD00474A30 /* Result+Combine.swift in Sources */,
+				2E1C37BD26D3098D00A67127 /* VisionController.swift in Sources */,
 				2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */,
 				2EAF931125854B4300D28BAC /* UIView+IBInspectable.swift in Sources */,
 				2EAD2CFA25AFA81900C71DAB /* UploadBarcodeViewController.swift in Sources */,

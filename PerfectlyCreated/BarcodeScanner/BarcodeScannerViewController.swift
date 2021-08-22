@@ -33,7 +33,7 @@ final class BarcodeScannerViewController: UIViewController {
     
     private var barcodeStringSubject = PassthroughSubject<String, Error>()
     
-    /// Subscriber to this publisher to receive chages related to the barcode.
+    /// Subscriber to this publisher to receive changes related to the barcode.
     var barcodeStringPublisher: AnyPublisher<String, Error> {
         return barcodeStringSubject.eraseToAnyPublisher()
     }

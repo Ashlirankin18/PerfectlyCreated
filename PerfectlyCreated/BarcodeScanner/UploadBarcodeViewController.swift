@@ -26,7 +26,7 @@ final class UploadBarcodeViewController: UIViewController {
         self.present(self.photoController, animated: true)
     }))
     
-    @ObservedObject var viewModel: ViewModel = ViewModel()
+    @Published private(set) var viewModel: ViewModel = ViewModel()
     
     private lazy var productManager = ProductManager()
     

@@ -22,8 +22,6 @@ final class UploadBarcodeViewController: UIViewController {
     @IBOutlet private weak var cropView: UIView!
     @IBOutlet private weak var promptView: UIView!
     
-    private lazy var barcodeController = BarCodeScannerController()
-    
     private lazy var promptController = UIHostingController(rootView: PromptDisplayView(displayVersion: .upload, displayText: "Focus the barcode inside the box to upload.", addButtonTapped: {
         self.present(self.photoController, animated: true)
     }))
@@ -101,17 +99,7 @@ final class UploadBarcodeViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            self.barcodeController.captureOutput(with: .image(image: self.chosenImage))
-                .sink { [weak self] completion in
-                    switch completion {
-                    case let .failure(error):
-                        self?.showAlert(title: "Error", message: error.localizedDescription)
-                    case .finished: break
-                    }
-                } receiveValue: { [weak self] barcodeString in
-                    self?.queryForProduct(with: barcodeString)
-                }
-                .store(in: &self.cancellables)
+
         }
         .store(in: &cancellables)
     }

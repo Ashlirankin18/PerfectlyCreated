@@ -14,5 +14,5 @@ target 'PerfectlyCreated' do
 
   # Pods for PerfectlyCreated
 
-pod 'GoogleMLKit/BarcodeScanning'
+pod 'SwiftLint'
 end

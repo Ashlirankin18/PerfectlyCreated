@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseStorage
 import FirebaseAuth
+import UIKit
 
 class StorageManager {
     

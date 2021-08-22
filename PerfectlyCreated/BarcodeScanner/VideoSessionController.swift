@@ -18,8 +18,6 @@ final class VideoSessionController: NSObject {
     
     private var aVCaptureVideoPreviewLayer: AVCaptureVideoPreviewLayer?
     
-    private var barcodeController = BarCodeScannerController()
-    
     private let shapeLayer = CAShapeLayer()
     
     /// Subscriber to this publisher to receive changes related to the barcode.

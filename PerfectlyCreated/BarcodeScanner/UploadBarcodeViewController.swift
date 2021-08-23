@@ -32,6 +32,8 @@ final class UploadBarcodeViewController: UIViewController {
     
     private lazy var transitionManager: CardPresentationManager = CardPresentationManager()
     
+    private let visionController = VisionController()
+
     private var chosenImage: UIImage
     
     private var cancellables = Set<AnyCancellable>()
@@ -99,7 +101,7 @@ final class UploadBarcodeViewController: UIViewController {
             guard let self = self else {
                 return
             }
-
+            self.visionController.createVisionRequest(image: self.chosenImageImageView.image ?? UIImage())
         }
         .store(in: &cancellables)
     }
@@ -212,6 +214,7 @@ extension UploadBarcodeViewController: PHPickerViewControllerDelegate {
                     }
                     if let image = image as? UIImage {
                         self.chosenImageImageView.image = image
+                    
                         self.chosenImage = image
                     } else {
                         self.showAlert(title: "Error", message: "Image could not be processed.")

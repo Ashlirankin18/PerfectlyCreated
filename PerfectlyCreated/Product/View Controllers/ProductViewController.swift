@@ -12,6 +12,8 @@ import PhotosUI
 import FirebaseAuth
 import SwiftUI
 
+let shouldDisplayUploadBarcode = false
+
 /// `UICollectionViewController` subclass which displays the user's products.
 final class ProductViewController: UICollectionViewController {
     
@@ -164,11 +166,14 @@ final class ProductViewController: UICollectionViewController {
     private func showAlertController() {
         let alertController = UIAlertController(title: "Add Product", message: nil, preferredStyle: .actionSheet)
         alertController.view.tintColor = .appPurple
-        let uploadProductAction = UIAlertAction(title: "Upload barcode", style: .default) { [weak self] _ in
-            guard let self = self else {
-                return
+        if shouldDisplayUploadBarcode {
+            let uploadProductAction = UIAlertAction(title: "Upload barcode", style: .default) { [weak self] _ in
+                guard let self = self else {
+                    return
+                }
+                self.present(self.photoController, animated: true)
             }
-            self.present(self.photoController, animated: true)
+            alertController.addAction(uploadProductAction)
         }
         
         let scanBarCodeAction = UIAlertAction(title: "Scan barcode", style: .default) { [weak self] _ in
@@ -192,7 +197,6 @@ final class ProductViewController: UICollectionViewController {
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        alertController.addAction(uploadProductAction)
         alertController.addAction(scanBarCodeAction)
         alertController.addAction(searchProduct)
         alertController.addAction(cancelAction)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b14-zI-eDy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="b14-zI-eDy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -53,14 +53,20 @@
                         <barButtonItem key="leftBarButtonItem" image="chevron.left" catalog="system" id="Nbt-ct-3Ig">
                             <color key="tintColor" name="appPurple"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="1fB-Hq-11r">
-                            <color key="tintColor" name="appPurple"/>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Item" image="plus" catalog="system" id="1fB-Hq-11r">
+                                <color key="tintColor" name="appPurple"/>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="zUj-VU-Vqz">
+                                <color key="tintColor" name="appPurple"/>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="addProductBarButtonItem" destination="1fB-Hq-11r" id="ain-mU-3u9"/>
                         <outlet property="backBarButtonItem" destination="Nbt-ct-3Ig" id="B1A-tS-7m7"/>
+                        <outlet property="editExperienceButton" destination="zUj-VU-Vqz" id="G3c-BU-a1e"/>
                         <segue destination="UW6-nH-OgY" kind="show" identifier="editProduct" destinationCreationSelector="makeEditViewControllerWithCoder:" id="wXg-up-pIt"/>
                     </connections>
                 </collectionViewController>

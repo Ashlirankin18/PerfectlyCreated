@@ -93,6 +93,12 @@
 		2EC0D8342612F7A100D4E01C /* CameraModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D8332612F7A100D4E01C /* CameraModel.swift */; };
 		2EC0D8382612FAAC00D4E01C /* ConfettiView in Frameworks */ = {isa = PBXBuildFile; productRef = 2EC0D8372612FAAC00D4E01C /* ConfettiView */; };
 		2EC0D83B2612FB1600D4E01C /* CelebrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC0D83A2612FB1600D4E01C /* CelebrationView.swift */; };
+		2ED0CA7428503163001EE27A /* ProductDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0CA7328503163001EE27A /* ProductDisplayView.swift */; };
+		2ED0CA76285036A1001EE27A /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0CA75285036A1001EE27A /* ProductRow.swift */; };
+		2ED0CA7828503BFA001EE27A /* ProductDisplayViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0CA7728503BFA001EE27A /* ProductDisplayViewViewModel.swift */; };
+		2ED0CA7A28504A6C001EE27A /* SearchProductView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0CA7928504A6C001EE27A /* SearchProductView.swift */; };
+		2ED0CA7C28504EAB001EE27A /* SearchRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0CA7B28504EAB001EE27A /* SearchRowView.swift */; };
+		2ED0CA7F285053AF001EE27A /* SearchProductViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ED0CA7E285053AF001EE27A /* SearchProductViewViewModel.swift */; };
 		2EED896D2229993700ADDEBD /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EED896C2229993700ADDEBD /* ProductModel.swift */; };
 		2EF31070256F1BF90021EB58 /* AccountCreationValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF3106F256F1BF90021EB58 /* AccountCreationValidator.swift */; };
 		2EFE45EF25B22E9E006CD38E /* UIColor+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFE45EE25B22E9E006CD38E /* UIColor+AppColors.swift */; };
@@ -176,6 +182,12 @@
 		2EC0D8302612F74A00D4E01C /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		2EC0D8332612F7A100D4E01C /* CameraModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraModel.swift; sourceTree = "<group>"; };
 		2EC0D83A2612FB1600D4E01C /* CelebrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CelebrationView.swift; sourceTree = "<group>"; };
+		2ED0CA7328503163001EE27A /* ProductDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDisplayView.swift; sourceTree = "<group>"; };
+		2ED0CA75285036A1001EE27A /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
+		2ED0CA7728503BFA001EE27A /* ProductDisplayViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDisplayViewViewModel.swift; sourceTree = "<group>"; };
+		2ED0CA7928504A6C001EE27A /* SearchProductView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductView.swift; sourceTree = "<group>"; };
+		2ED0CA7B28504EAB001EE27A /* SearchRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRowView.swift; sourceTree = "<group>"; };
+		2ED0CA7E285053AF001EE27A /* SearchProductViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductViewViewModel.swift; sourceTree = "<group>"; };
 		2EED896C2229993700ADDEBD /* ProductModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
 		2EF3106F256F1BF90021EB58 /* AccountCreationValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCreationValidator.swift; sourceTree = "<group>"; };
 		2EFE45EE25B22E9E006CD38E /* UIColor+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+AppColors.swift"; sourceTree = "<group>"; };
@@ -323,6 +335,7 @@
 				2EA365AD220A303000FFDC5E /* SupportingFiles */,
 				2E4A3E9E2208D2CB00988116 /* Info.plist */,
 				2E0FFB44254D13190020D9DC /* GoogleService-Info.plist */,
+				2ED0CA7D2850538F001EE27A /* SwiftUIViews */,
 			);
 			path = PerfectlyCreated;
 			sourceTree = "<group>";
@@ -415,6 +428,19 @@
 				2EC0D7D52612512400D4E01C /* PresentationDirection.swift */,
 			);
 			path = CardPresentation;
+			sourceTree = "<group>";
+		};
+		2ED0CA7D2850538F001EE27A /* SwiftUIViews */ = {
+			isa = PBXGroup;
+			children = (
+				2ED0CA7328503163001EE27A /* ProductDisplayView.swift */,
+				2ED0CA75285036A1001EE27A /* ProductRow.swift */,
+				2ED0CA7728503BFA001EE27A /* ProductDisplayViewViewModel.swift */,
+				2ED0CA7928504A6C001EE27A /* SearchProductView.swift */,
+				2ED0CA7B28504EAB001EE27A /* SearchRowView.swift */,
+				2ED0CA7E285053AF001EE27A /* SearchProductViewViewModel.swift */,
+			);
+			path = SwiftUIViews;
 			sourceTree = "<group>";
 		};
 		2EED896B22298A1C00ADDEBD /* Firebase Files */ = {
@@ -547,6 +573,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ED0CA7A28504A6C001EE27A /* SearchProductView.swift in Sources */,
 				2E997F96221B0E2800730ED7 /* NetworkHelper.swift in Sources */,
 				2E6E31AF25B28D3A00857E5C /* SearchTableViewCell.swift in Sources */,
 				2E6E31BF25B3E37B00857E5C /* NotificationName+String.swift in Sources */,
@@ -559,6 +586,7 @@
 				2EFE45EF25B22E9E006CD38E /* UIColor+AppColors.swift in Sources */,
 				2E0FFBC5254D9D720020D9DC /* SignupViewController.swift in Sources */,
 				2EC0D82326126CB800D4E01C /* PromptDisplayView.swift in Sources */,
+				2ED0CA76285036A1001EE27A /* ProductRow.swift in Sources */,
 				2E997F9E221B18AA00730ED7 /* HairProductModel.swift in Sources */,
 				2E4A8238258DA8F40031F30E /* EditProductViewController.swift in Sources */,
 				2EAE6839254E5F7200BE0E1E /* ProductDetailViewController.swift in Sources */,
@@ -566,6 +594,8 @@
 				2E6E31B425B3A0FE00857E5C /* StoreCollectionViewCell.swift in Sources */,
 				2EAE6859254F86FE00BE0E1E /* AdditionalCollectionReusableView.swift in Sources */,
 				2E3C8F6D25CA6CDD00474A30 /* Result+Combine.swift in Sources */,
+				2ED0CA7C28504EAB001EE27A /* SearchRowView.swift in Sources */,
+				2ED0CA7F285053AF001EE27A /* SearchProductViewViewModel.swift in Sources */,
 				2E1C37BD26D3098D00A67127 /* VisionController.swift in Sources */,
 				2E0FFC5E254DBD860020D9DC /* VideoSessionController.swift in Sources */,
 				2EAF931125854B4300D28BAC /* UIView+IBInspectable.swift in Sources */,
@@ -580,6 +610,7 @@
 				2E0FFC47254DB8B50020D9DC /* BarcodeScannerViewController.swift in Sources */,
 				2EC0D7DB2612538100D4E01C /* StorageManager.swift in Sources */,
 				2E0FFD3B254DDD260020D9DC /* SearchProductViewController.swift in Sources */,
+				2ED0CA7828503BFA001EE27A /* ProductDisplayViewViewModel.swift in Sources */,
 				2EED896D2229993700ADDEBD /* ProductModel.swift in Sources */,
 				2EF31070256F1BF90021EB58 /* AccountCreationValidator.swift in Sources */,
 				2E0FFD05254DCFD90020D9DC /* ProductCollectionViewCell.swift in Sources */,
@@ -590,6 +621,7 @@
 				2EAE6854254F7AB400BE0E1E /* NSCoding+Nib.swift in Sources */,
 				2EAF205925EC962B00E8049F /* PhotoPicker.swift in Sources */,
 				2EAE684F254F732D00BE0E1E /* AboutProductCollectionViewCell.swift in Sources */,
+				2ED0CA7428503163001EE27A /* ProductDisplayView.swift in Sources */,
 				2EC0D83B2612FB1600D4E01C /* CelebrationView.swift in Sources */,
 				2E110A832550F203001ADACD /* CompletedCollectionViewCell.swift in Sources */,
 				2EBE54E52640A98D005CDF45 /* UserModel.swift in Sources */,
@@ -747,7 +779,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = ASLRJLYD2S;
 				INFOPLIST_FILE = PerfectlyCreated/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -767,7 +799,7 @@
 				CURRENT_PROJECT_VERSION = 1.4.1;
 				DEVELOPMENT_TEAM = ASLRJLYD2S;
 				INFOPLIST_FILE = PerfectlyCreated/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

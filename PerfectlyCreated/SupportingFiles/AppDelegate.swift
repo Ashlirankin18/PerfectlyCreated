@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Combine
+import SwiftUI
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         if UserDefaults.standard.object(forKey: "userId") != nil {
-            window?.rootViewController = PerfectlyCraftedTabBarViewController()
+            window?.rootViewController = UIHostingController(rootView: ProductDisplayView())
             self.window?.makeKeyAndVisible()
         } else {
             let signUpViewController = UIStoryboard(name: SignupViewController.nibName, bundle: .main).instantiateViewController(identifier: SignupViewController.nibName) { coder in

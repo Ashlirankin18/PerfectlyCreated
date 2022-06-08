@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct AllHairProducts: Codable, Hashable {
+struct AllHairProducts: Codable, Hashable, Identifiable {
   let id: String
   let results: HairProductDetails
 }

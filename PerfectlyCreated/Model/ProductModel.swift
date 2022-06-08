@@ -10,7 +10,10 @@ import Foundation
 import FirebaseFirestoreSwift
 
 /// Represents a product.
-struct ProductModel: Codable, Hashable {
+struct ProductModel: Codable, Hashable, Identifiable {
+    var id: String {
+        return documentId
+    }
     
     /// The product name.
     let productName: String

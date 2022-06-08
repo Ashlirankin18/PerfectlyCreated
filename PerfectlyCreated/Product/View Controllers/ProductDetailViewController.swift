@@ -373,23 +373,23 @@ final class ProductDetailViewController: UICollectionViewController {
                 case .general:
                     let section = Section.allCases[indexPath.section]
                     
-                    guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: HeaderCollectionReusableView.nibName, withReuseIdentifier: HeaderCollectionReusableView.nibName, for: indexPath) as? HeaderCollectionReusableView else {
+                    guard let new = collectionView.dequeueReusableSupplementaryView(ofKind: AdditionalCollectionReusableView.nibName, withReuseIdentifier: AdditionalCollectionReusableView.nibName, for: indexPath) as? AdditionalCollectionReusableView else {
                         return nil
                     }
                     
-                    header.viewModel = .init(title: DesignConstants.storeTitle)
+                   //new.viewModel = .init(title: DesignConstants.storeTitle)//
                     
                     switch section {
                         case .aboutProduct, .additionalInfo:
-                            header.isHidden = true
+                            new.isHidden = true
                         case .store:
                             if self.productModel.stores.isEmpty {
-                                header.isHidden = true
+                                new.isHidden = true
                             } else {
-                                header.isHidden = false
+                                new.isHidden = false
                             }
                     }
-                    return header
+                return new
             }
         }
     }

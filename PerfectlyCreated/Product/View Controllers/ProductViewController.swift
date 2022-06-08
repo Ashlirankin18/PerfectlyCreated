@@ -125,7 +125,7 @@ final class ProductViewController: UICollectionViewController {
     
     private func configureCollectionView() {
         collectionView.register(UINib(nibName: ProductCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: ProductCollectionViewCell.nibName)
-        collectionView.register(UINib(nibName: CategorySectionHeaderCollectionReusableView.nibName, bundle: .main), forSupplementaryViewOfKind: "view", withReuseIdentifier: CategorySectionHeaderCollectionReusableView.nibName)
+        collectionView.register(UINib(nibName: CategorySectionHeaderCollectionReusableView.nibName, bundle: .main), forSupplementaryViewOfKind: CategorySectionHeaderCollectionReusableView.nibName, withReuseIdentifier: CategorySectionHeaderCollectionReusableView.nibName)
         collectionView.register(UINib(nibName: EmptyStateCollectionViewCell.nibName, bundle: .main), forCellWithReuseIdentifier: EmptyStateCollectionViewCell.nibName)
         
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: productCellCollectionLayoutSection)
@@ -217,8 +217,8 @@ final class ProductViewController: UICollectionViewController {
     
     private func configureHeaders() {
         dataSource.supplementaryViewProvider = { (collectionView: UICollectionView, _, indexPath: IndexPath) -> UICollectionReusableView? in
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: "view", withReuseIdentifier: CategorySectionHeaderCollectionReusableView.nibName, for: indexPath) as? CategorySectionHeaderCollectionReusableView else {
-                return nil
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: CategorySectionHeaderCollectionReusableView.nibName, withReuseIdentifier: CategorySectionHeaderCollectionReusableView.nibName, for: indexPath) as? CategorySectionHeaderCollectionReusableView else {
+                return UICollectionReusableView(frame: .zero)
             }
             header.viewModel = .init(title: self.sectionTitles[indexPath.section])
             
